@@ -1,0 +1,80 @@
+{
+  "execution_time": 0.07057952880859375,
+  "timestamp": "2026-08-20 13:33:20",
+  "results": {
+    "performance_summary": {
+      "BA": {
+        "accuracy": 0.7656142876266714,
+        "cost": 67.87588945024982,
+        "efficiency": 0.011279620699303463,
+        "adaptability": 0.2
+      },
+      "TA": {
+        "accuracy": 0.6335985511566654,
+        "cost": 42.52705073511318,
+        "efficiency": 0.014898718349954234,
+        "adaptability": 0.2
+      },
+      "Hybrid": {
+        "accuracy": 0.7546248763197331,
+        "cost": 85.51228614879504,
+        "efficiency": 0.008824753848899016,
+        "adaptability": 0.2
+      },
+      "RL-Adaptive": {
+        "accuracy": 0.847925914645899,
+        "cost": 38.92277729381165,
+        "efficiency": 0.02247665096650848,
+        "adaptability": 0.85
+      }
+    },
+    "best_performers": {
+      "accuracy": [
+        "RL-Adaptive",
+        {
+          "accuracy": 0.847925914645899,
+          "cost": 38.92277729381165,
+          "efficiency": 0.02247665096650848,
+          "adaptability": 0.85
+        }
+      ],
+      "efficiency": [
+        "RL-Adaptive",
+        {
+          "accuracy": 0.847925914645899,
+          "cost": 38.92277729381165,
+          "efficiency": 0.02247665096650848,
+          "adaptability": 0.85
+        }
+      ],
+      "cost": [
+        "RL-Adaptive",
+        {
+          "accuracy": 0.847925914645899,
+          "cost": 38.92277729381165,
+          "efficiency": 0.02247665096650848,
+          "adaptability": 0.85
+        }
+      ]
+    },
+    "rl_improvements": {
+      "accuracy_improvement": 18.10442941454235,
+      "cost_reduction": 40.398541723208446,
+      "efficiency_improvement": 92.63998497423167
+    },
+    "training_success": true,
+    "key_findings": [
+      "RL-Adaptive achieved 0.848 accuracy at 38.9 cost",
+      "RL approach improved efficiency by 92.6%",
+      "RL approach reduced costs by 40.4%",
+      "RL-Adaptive demonstrated high adaptability (0.85) vs fixed modes (0.2)",
+      "Best fixed mode was TA with 0.0149 efficiency"
+    ],
+    "recommendations": [
+      "Deploy RL-Adaptive system for production use due to significant efficiency gains",
+      "Implement gradual rollout with human oversight for critical contracts",
+      "Monitor performance metrics and retrain models periodically",
+      "Use hybrid approach combining RL recommendations with expert review"
+    ]
+  }
+}

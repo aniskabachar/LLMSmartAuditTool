@@ -34,7 +34,7 @@ except ImportError:
     SLITHER_AVAILABLE = False
     print("Slither not available. Using regex-based analysis only.")
 
-from rl_architecture import ContractFeatures
+from .rl_architecture import ContractFeatures
 
 class SolidityPatterns:
     """
