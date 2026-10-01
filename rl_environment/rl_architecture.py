@@ -72,10 +72,18 @@ class ContractFeatures:
     has_withdrawal_pattern: bool
     has_access_control: bool
     
+    # NEW: Additional security-focused features (Task 1)
+    has_unchecked_block: bool           # Solidity 0.8+ unchecked{}
+    reentrancy_guard_present: bool      # Explicit reentrancy protection
+    uses_safemath: bool                 # SafeMath library usage
+    num_state_vars_modified_after_call: int  # State changes after external calls
+    has_flash_loan_callback: bool       # Flash loan callback functions
+    cyclomatic_complexity: int          # Computed via AST analysis
+    
     def to_vector(self) -> np.ndarray:
-        """Convert features to numerical vector for RL state"""
+        """Convert features to numerical vector for RL state (expanded from 22 to 28 features)"""
         return np.array([
-            # Normalize numerical features
+            # Original 22 features (normalized)
             min(self.lines_of_code / 1000.0, 1.0),  # Cap at 1000 LOC
             min(self.function_count / 50.0, 1.0),   # Cap at 50 functions
             min(self.modifier_count / 20.0, 1.0),   # Cap at 20 modifiers
@@ -100,6 +108,14 @@ class ContractFeatures:
             float(self.handles_ether),
             float(self.has_withdrawal_pattern),
             float(self.has_access_control),
+            
+            # NEW: 6 additional features (22 → 28)
+            float(self.has_unchecked_block),
+            float(self.reentrancy_guard_present),
+            float(self.uses_safemath),
+            min(self.num_state_vars_modified_after_call / 10.0, 1.0),  # Cap at 10
+            float(self.has_flash_loan_callback),
+            min(self.cyclomatic_complexity / 100.0, 1.0),  # Cap at complexity 100
         ], dtype=np.float32)
 
 @dataclass
@@ -176,7 +192,7 @@ class SmartContractAuditEnv(gym.Env):
         }
         
         # Define observation and action spaces
-        state_dim = 22 + 5  # 22 contract features + 5 temporal features
+        state_dim = 28 + 5  # 28 contract features + 5 temporal features (expanded from 22+5)
         self.observation_space = gym.spaces.Box(
             low=0.0, high=1.0, shape=(state_dim,), dtype=np.float32
         )

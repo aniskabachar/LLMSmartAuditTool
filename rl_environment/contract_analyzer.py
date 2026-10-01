@@ -19,6 +19,7 @@ import os
 import json
 import subprocess
 import tempfile
+import numpy as np
 from typing import Dict, List, Tuple, Optional, Set, Any
 from dataclasses import dataclass, asdict
 import logging
@@ -120,6 +121,34 @@ class SolidityPatterns:
         r'\b_initialize\b',
         r'\binitialize\s*\('
     ]
+    
+    # NEW: Security-focused patterns for Task 1
+    UNCHECKED_BLOCK_PATTERN = r'\bunchecked\s*\{'
+    REENTRANCY_GUARD_PATTERNS = [
+        r'\bReentrancyGuard\b',
+        r'\bnonReentrant\b',
+        r'\b_nonReentrantBefore\b',
+        r'\b_nonReentrantAfter\b',
+        r'\bmutex\b.*\bmodifier\b'
+    ]
+    SAFEMATH_PATTERNS = [
+        r'\bSafeMath\b',
+        r'\busing\s+SafeMath\s+for\b',
+        r'\.add\s*\(',
+        r'\.sub\s*\(',
+        r'\.mul\s*\(',
+        r'\.div\s*\('
+    ]
+    FLASH_LOAN_PATTERNS = [
+        r'\bflashLoan\b',
+        r'\bflashBorrow\b',
+        r'\bonFlashLoan\b',
+        r'\breceiveFlashLoan\b',
+        r'\bexecuteOperation\b'
+    ]
+    
+    # Pattern to identify state variable modifications after external calls
+    STATE_MODIFICATION_AFTER_CALL_PATTERN = r'\.call\s*\([^)]*\)[^;]*;[^}]*\w+\s*='
 
 class ContractAnalyzer:
     """
@@ -351,6 +380,13 @@ class ContractAnalyzer:
             handles_ether=handles_ether,
             has_withdrawal_pattern=has_withdrawal,
             has_access_control=has_access_control,
+            # NEW: Additional features (approximated via Slither)
+            has_unchecked_block=False,  # Would need AST analysis
+            reentrancy_guard_present=False,  # Would need deeper analysis
+            uses_safemath=False,  # Would need import analysis
+            num_state_vars_modified_after_call=0,  # Complex to detect via Slither
+            has_flash_loan_callback=False,  # Would need function name analysis
+            cyclomatic_complexity=total_loops + total_conditionals,  # Rough approximation
         )
     
     def _analyze_with_regex(self, contract_code: str) -> ContractFeatures:
@@ -423,6 +459,27 @@ class ContractAnalyzer:
         has_access_control = any(bool(re.search(pattern, contract_code, re.IGNORECASE))
                                for pattern in SolidityPatterns.ACCESS_CONTROL_PATTERNS)
         
+        # NEW: Additional security features for Task 1
+        has_unchecked_block = bool(re.search(SolidityPatterns.UNCHECKED_BLOCK_PATTERN, contract_code, re.IGNORECASE))
+        
+        reentrancy_guard_present = any(bool(re.search(pattern, contract_code, re.IGNORECASE))
+                                     for pattern in SolidityPatterns.REENTRANCY_GUARD_PATTERNS)
+        
+        uses_safemath = any(bool(re.search(pattern, contract_code, re.IGNORECASE))
+                          for pattern in SolidityPatterns.SAFEMATH_PATTERNS)
+        
+        # Count state variable modifications after external calls
+        num_state_vars_modified_after_call = len(re.findall(
+            SolidityPatterns.STATE_MODIFICATION_AFTER_CALL_PATTERN, 
+            contract_code, re.IGNORECASE
+        ))
+        
+        has_flash_loan_callback = any(bool(re.search(pattern, contract_code, re.IGNORECASE))
+                                    for pattern in SolidityPatterns.FLASH_LOAN_PATTERNS)
+        
+        # Calculate cyclomatic complexity (basic approximation)
+        cyclomatic_complexity = self._calculate_cyclomatic_complexity(contract_code)
+        
         return ContractFeatures(
             lines_of_code=lines_of_code,
             function_count=function_count,
@@ -446,7 +503,38 @@ class ContractAnalyzer:
             handles_ether=handles_ether,
             has_withdrawal_pattern=has_withdrawal_pattern,
             has_access_control=has_access_control,
+            # NEW: Additional features
+            has_unchecked_block=has_unchecked_block,
+            reentrancy_guard_present=reentrancy_guard_present,
+            uses_safemath=uses_safemath,
+            num_state_vars_modified_after_call=num_state_vars_modified_after_call,
+            has_flash_loan_callback=has_flash_loan_callback,
+            cyclomatic_complexity=cyclomatic_complexity,
         )
+    
+    def _calculate_cyclomatic_complexity(self, contract_code: str) -> int:
+        """Calculate cyclomatic complexity via regex approximation"""
+        complexity = 1  # Base complexity
+        
+        # Count decision points
+        decision_patterns = [
+            r'\bif\s*\(',
+            r'\belse\s*if\s*\(',
+            r'\bfor\s*\(',
+            r'\bwhile\s*\(',
+            r'\bdo\s*{.*}\s*while\s*\(',
+            r'\bcatch\s*\(',
+            r'\?\s*.*\s*:',  # Ternary operator
+            r'&&',
+            r'\|\|',
+            r'\bswitch\s*\(',
+            r'\bcase\s+',
+        ]
+        
+        for pattern in decision_patterns:
+            complexity += len(re.findall(pattern, contract_code, re.IGNORECASE))
+        
+        return complexity
 
 class ContractComplexityCalculator:
     """

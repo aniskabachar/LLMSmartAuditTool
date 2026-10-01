@@ -57,54 +57,77 @@ class ContractComplexityEncoder(BaseFeaturesExtractor):
     """
     Neural network for encoding contract complexity features
     
-    Transforms the 27-dimensional state vector into learned representations
+    Transforms the 33-dimensional state vector into learned representations
     that capture relevant patterns for mode selection.
+    UPDATED: Added residual connections, increased attention heads, higher dropout
     """
     
     def __init__(self, observation_space: gym.Space, features_dim: int = 256):
         super().__init__(observation_space, features_dim)
         
-        input_dim = observation_space.shape[0]  # 27 features
+        input_dim = observation_space.shape[0]  # 33 features (expanded from 27)
         
-        # Contract feature encoding layers
+        # Contract feature encoding layers with residual connections
         self.contract_encoder = nn.Sequential(
             nn.Linear(input_dim, 128),
             nn.ReLU(),
             nn.BatchNorm1d(128),
-            nn.Dropout(0.2),
+            nn.Dropout(0.3),  # Increased from 0.2
             
             nn.Linear(128, 256), 
             nn.ReLU(),
             nn.BatchNorm1d(256),
-            nn.Dropout(0.2),
+            nn.Dropout(0.3),  # Increased from 0.2
             
             nn.Linear(256, features_dim),
             nn.ReLU()
         )
         
-        # Attention mechanism for important features
+        # Residual projection layers for skip connections
+        self.residual_proj1 = nn.Linear(input_dim, 128)
+        self.residual_proj2 = nn.Linear(128, 256)
+        self.residual_proj3 = nn.Linear(256, features_dim)
+        
+        # Attention mechanism with increased heads for better representation
         self.attention = nn.MultiheadAttention(
             embed_dim=features_dim,
-            num_heads=8,
+            num_heads=12,  # Increased from 8
             dropout=0.1,
             batch_first=True
         )
         
-        self.layer_norm = nn.LayerNorm(features_dim)
+        # Layer normalization after attention blocks
+        self.layer_norm1 = nn.LayerNorm(features_dim)
+        self.layer_norm2 = nn.LayerNorm(features_dim)
         
     def forward(self, observations: torch.Tensor) -> torch.Tensor:
         batch_size = observations.shape[0]
         
-        # Encode contract features
-        encoded = self.contract_encoder(observations)
+        # First encoding layer with residual connection
+        x1 = self.contract_encoder[0:4](observations)  # First 4 layers
+        residual1 = self.residual_proj1(observations)
+        x1 = x1 + residual1  # Skip connection
+        
+        # Second encoding layer with residual connection  
+        x2 = self.contract_encoder[4:8](x1)  # Next 4 layers
+        residual2 = self.residual_proj2(x1)
+        x2 = x2 + residual2  # Skip connection
+        
+        # Final encoding layer with residual connection
+        encoded = self.contract_encoder[8:](x2)  # Final layers
+        residual3 = self.residual_proj3(x2)
+        encoded = encoded + residual3  # Skip connection
+        
+        # Apply layer normalization
+        encoded = self.layer_norm1(encoded)
         
         # Apply self-attention (treat features as sequence length 1)
         encoded_expanded = encoded.unsqueeze(1)  # [batch, 1, features_dim]
         attended, _ = self.attention(encoded_expanded, encoded_expanded, encoded_expanded)
         attended = attended.squeeze(1)  # [batch, features_dim]
         
-        # Residual connection and layer norm
-        output = self.layer_norm(encoded + attended)
+        # Residual connection and layer norm after attention
+        output = self.layer_norm2(encoded + attended)
         
         return output
 

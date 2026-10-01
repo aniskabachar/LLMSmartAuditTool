@@ -38,6 +38,7 @@ from camel.typing import ModelType
 
 from rl_environment.contract_analyzer import ContractAnalyzer, ContractFeatures
 from rl_environment.rl_architecture import AuditState, AuditMode
+from rl_environment.reward_function import VulnerabilityType
 from rl_policies.mode_selector import ModeSelector
 from rl_policies.stopping_policy import StoppingPolicy
 from evaluation.benchmark_datasets import ContractSample, VulnerabilityLabel
@@ -182,13 +183,31 @@ class PhaseInterceptor:
             Tuple of (should_continue, confidence)
         """
         
+        # NEW: Never stop before minimum rounds
+        if current_round < 2:  # minimum_rounds = 2
+            return True, 0.9  # Force continue with high confidence
+        
         if current_round >= max_rounds:
             return False, 1.0  # Forced stop
+        
+        # NEW: Check if critical bug found this round - force continue
+        if hasattr(audit_state, 'vulnerabilities_this_round'):
+            for vuln in audit_state.vulnerabilities_this_round:
+                if vuln.vuln_type == VulnerabilityType.CRITICAL:
+                    self.logger.info("Critical bug found this round - forcing CONTINUE")
+                    return True, 0.95
             
         # Use RL policy to make stopping decision
         should_stop, confidence = self.stopping_policy.predict(
             audit_state, deterministic=True
         )
+        
+        # NEW: Higher confidence threshold before stopping
+        if not should_stop and audit_state.confidence_scores:
+            avg_confidence = np.mean(audit_state.confidence_scores)
+            if avg_confidence < 0.85:  # Increased from ~0.75
+                should_stop = False  # Force continue if confidence too low
+                confidence = max(confidence, 0.8)
         
         self.logger.info(f"RL Stopping Policy - Round {current_round}: "
                         f"{'STOP' if should_stop else 'CONTINUE'} (confidence: {confidence:.3f})")

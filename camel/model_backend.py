@@ -29,12 +29,19 @@ except ImportError:
     openai_new_api = False  # old openai api version
 
 import os
+import warnings
 
-OPENAI_API_KEY = os.environ['OPENAI_API_KEY']
-if 'BASE_URL' in os.environ:
-    BASE_URL = os.environ['BASE_URL']
-else:
-    BASE_URL = None
+OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY', None)
+if OPENAI_API_KEY is None:
+    warnings.warn(
+        "OPENAI_API_KEY environment variable is not set. "
+        "OpenAI-backed models will fail at runtime. "
+        "Set the variable before running audits that require the OpenAI API.",
+        RuntimeWarning,
+        stacklevel=2,
+    )
+
+BASE_URL = os.environ.get('BASE_URL', None)
 
 
 class ModelBackend(ABC):

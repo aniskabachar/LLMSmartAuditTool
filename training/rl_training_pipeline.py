@@ -98,25 +98,27 @@ class CurriculumManager:
         self.stage_progress = 0
         self.timesteps_per_stage = config.total_timesteps // config.curriculum_stages
         
-        # Define curriculum stages
+        # Define curriculum stages - TASK 6: Rebalanced for improved learning progression
+        # Updated from (0-50, 50-100, 100-150) equivalent to (0-30, 30-90, 90-150)
+        # Normalized to 0-1 scale: simple (0-0.2), medium (0.2-0.6), complex (0.6-1.0)
         self.stages = [
             {
                 'name': 'simple_contracts',
-                'complexity_range': (0.0, 0.4),
+                'complexity_range': (0.0, 0.2),  # Narrower simple range for easier start
                 'vulnerability_density': 'low',
-                'description': 'Simple contracts with few vulnerabilities'
+                'description': 'Simple contracts with minimal vulnerabilities - easier curriculum start'
             },
             {
                 'name': 'medium_contracts', 
-                'complexity_range': (0.3, 0.7),
+                'complexity_range': (0.2, 0.6),  # Expanded medium range for gradual progression
                 'vulnerability_density': 'medium',
-                'description': 'Medium complexity contracts'
+                'description': 'Medium complexity contracts with moderate vulnerabilities'
             },
             {
                 'name': 'complex_contracts',
-                'complexity_range': (0.6, 1.0),
+                'complexity_range': (0.6, 1.0),  # Complex range starts higher for challenging finish
                 'vulnerability_density': 'high', 
-                'description': 'Complex contracts with many vulnerabilities'
+                'description': 'Complex contracts with many vulnerabilities - challenging final stage'
             }
         ]
     

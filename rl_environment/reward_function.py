@@ -77,13 +77,22 @@ class AccuracyMetrics:
     """Calculates accuracy metrics for audit results"""
     
     def __init__(self):
-        # Severity weights for different vulnerability types
+        # Updated severity weights - increased critical/high penalties for missed bugs
         self.severity_weights = {
-            VulnerabilityType.CRITICAL: 10.0,
-            VulnerabilityType.HIGH: 5.0,
-            VulnerabilityType.MEDIUM: 2.0,
-            VulnerabilityType.LOW: 1.0,
-            VulnerabilityType.INFO: 0.5,
+            VulnerabilityType.CRITICAL: 20.0,  # Doubled from 10.0
+            VulnerabilityType.HIGH: 8.0,      # Increased from 5.0
+            VulnerabilityType.MEDIUM: 3.0,    # Increased from 2.0
+            VulnerabilityType.LOW: 1.0,       # Unchanged
+            VulnerabilityType.INFO: 0.5,      # Unchanged
+        }
+        
+        # New: Explicit missed vulnerability penalties
+        self.missed_penalties = {
+            VulnerabilityType.CRITICAL: -15.0,  # Heavy penalty for missed critical
+            VulnerabilityType.HIGH: -5.0,       # Moderate penalty for missed high
+            VulnerabilityType.MEDIUM: -2.0,     # Light penalty for missed medium
+            VulnerabilityType.LOW: -0.5,        # Minimal penalty for missed low
+            VulnerabilityType.INFO: -0.1,       # Negligible penalty for missed info
         }
     
     def calculate_precision_recall(
@@ -132,14 +141,18 @@ class AccuracyMetrics:
         predicted: List[VulnerabilityDetection],
         ground_truth: List[VulnerabilityDetection]
     ) -> float:
-        """Calculate severity-weighted accuracy score"""
+        """Calculate severity-weighted accuracy score with explicit missed penalties"""
         
         total_weight = 0.0
         matched_weight = 0.0
         penalty_weight = 0.0
+        missed_penalty = 0.0
+        
+        # Track which ground truth vulnerabilities were found
+        found_gt_indices = set()
         
         # Calculate matched vulnerabilities (true positives)
-        for gt in ground_truth:
+        for gt_idx, gt in enumerate(ground_truth):
             weight = self.severity_weights[gt.vuln_type]
             total_weight += weight
             
@@ -148,7 +161,13 @@ class AccuracyMetrics:
                     self._locations_match(pred.location, gt.location)):
                     # Weight by confidence for partial credit
                     matched_weight += weight * pred.confidence
+                    found_gt_indices.add(gt_idx)
                     break
+        
+        # NEW: Calculate explicit penalties for missed vulnerabilities
+        for gt_idx, gt in enumerate(ground_truth):
+            if gt_idx not in found_gt_indices:
+                missed_penalty += self.missed_penalties[gt.vuln_type]
         
         # Penalize false positives
         for pred in predicted:
@@ -163,12 +182,15 @@ class AccuracyMetrics:
                 weight = self.severity_weights[pred.vuln_type]
                 penalty_weight += weight * pred.confidence * 0.5  # 50% penalty for FP
         
-        # Calculate final accuracy
+        # Calculate final accuracy with missed penalties
         if total_weight == 0:
-            return 1.0 if penalty_weight == 0 else 0.5  # No vulnerabilities case
+            return 1.0 if penalty_weight == 0 and missed_penalty == 0 else 0.5
         
-        accuracy = max(0.0, (matched_weight - penalty_weight) / total_weight)
-        return min(1.0, accuracy)
+        # Normalize missed penalties relative to total weight
+        normalized_missed_penalty = missed_penalty / max(1.0, total_weight * 0.1)  # Scale to make meaningful
+        
+        accuracy = (matched_weight - penalty_weight + normalized_missed_penalty) / total_weight
+        return max(0.0, min(1.0, accuracy))
     
     def _locations_match(self, loc1: str, loc2: str, tolerance: int = 5) -> bool:
         """Check if two vulnerability locations match within tolerance"""
