@@ -1,0 +1,39 @@
+name: no_ensemble
+description: >
+  Ensemble TA checker disabled. Returns BA findings only without
+  the lightweight ensemble verification pass.
+
+ppo:
+  active: true
+  checkpoint: rl_policies/checkpoints/ppo_v2.zip
+
+dqn:
+  active: true
+  checkpoint: rl_policies/checkpoints/dqn_v2.zip
+  min_rounds: 2
+  confidence_threshold: 0.85
+  force_continue_on_critical: true
+
+features:
+  dim: 33
+  mask_new: false
+
+ta_scenarios:
+  count: 60
+  mask_above: null
+
+ensemble:
+  active: false
+  # complexity_threshold and budget_threshold unused when active=false
+
+reward:
+  version: v2
+  alpha: 0.7
+  beta: 0.3
+  critical_weight: 20
+  high_weight: 8
+  missed_critical_penalty: 0.15
+  missed_high_penalty: 0.05
+
+curriculum:
+  stages: [30, 90, 150]

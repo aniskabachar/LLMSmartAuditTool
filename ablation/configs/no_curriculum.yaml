@@ -1,0 +1,41 @@
+name: no_curriculum
+description: >
+  Reverts to original equal-split curriculum stages [50, 100, 150].
+  Tests contribution of rebalanced curriculum (30/60/60 split).
+
+ppo:
+  active: true
+  checkpoint: rl_policies/checkpoints/ppo_v2.zip
+
+dqn:
+  active: true
+  checkpoint: rl_policies/checkpoints/dqn_v2.zip
+  min_rounds: 2
+  confidence_threshold: 0.85
+  force_continue_on_critical: true
+
+features:
+  dim: 33
+  mask_new: false
+
+ta_scenarios:
+  count: 60
+  mask_above: null
+
+ensemble:
+  active: true
+  complexity_threshold: 0.8
+  budget_threshold: 15
+  top_k_scenarios: 5
+
+reward:
+  version: v2
+  alpha: 0.7
+  beta: 0.3
+  critical_weight: 20
+  high_weight: 8
+  missed_critical_penalty: 0.15
+  missed_high_penalty: 0.05
+
+curriculum:
+  stages: [50, 100, 150]   # original equal 50/50/50 split

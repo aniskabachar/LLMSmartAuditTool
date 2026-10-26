@@ -1,0 +1,41 @@
+name: no_dqn
+description: DQN replaced with fixed n=3 stopping policy
+
+ppo:
+  active: true
+  checkpoint: rl_policies/checkpoints/ppo_v2.zip
+
+dqn:
+  active: false
+  fallback: fixed_rounds
+  fixed_n: 3
+  # The following fields are unused but kept for schema consistency
+  min_rounds: null
+  confidence_threshold: null
+  force_continue_on_critical: null
+
+features:
+  dim: 33
+  mask_new: false
+
+ta_scenarios:
+  count: 60
+  mask_above: null
+
+ensemble:
+  active: true
+  complexity_threshold: 0.8
+  budget_threshold: 15
+  top_k_scenarios: 5
+
+reward:
+  version: v2
+  alpha: 0.7
+  beta: 0.3
+  critical_weight: 20
+  high_weight: 8
+  missed_critical_penalty: 0.15
+  missed_high_penalty: 0.05
+
+curriculum:
+  stages: [30, 90, 150]

@@ -1,0 +1,114 @@
+{
+  "full_v2": {
+    "label": "Full v2 (all enhanced)",
+    "accuracy": 0.9811,
+    "cost": 47.24,
+    "efficiency": 0.02077,
+    "acc_std": 0.0018,
+    "repetitions": [
+      0.9811,
+      0.9788,
+      0.9814,
+      0.9802,
+      0.9843
+    ]
+  },
+  "no_ppo": {
+    "label": "w/o PPO (random mode)",
+    "accuracy": 0.9654,
+    "cost": 41.6,
+    "efficiency": 0.02321,
+    "acc_std": 0.0023,
+    "repetitions": [
+      0.9636,
+      0.9628,
+      0.9647,
+      0.9671,
+      0.9691
+    ]
+  },
+  "no_dqn": {
+    "label": "w/o DQN (fixed n=3)",
+    "accuracy": 0.9628,
+    "cost": 58.08,
+    "efficiency": 0.01658,
+    "acc_std": 0.0024,
+    "repetitions": [
+      0.9619,
+      0.9602,
+      0.9635,
+      0.9612,
+      0.9671
+    ]
+  },
+  "no_new_features": {
+    "label": "w/o New Features (22-dim)",
+    "accuracy": 0.9755,
+    "cost": 47.24,
+    "efficiency": 0.02065,
+    "acc_std": 0.0022,
+    "repetitions": [
+      0.9756,
+      0.9725,
+      0.9761,
+      0.9742,
+      0.9792
+    ]
+  },
+  "no_ta_expansion": {
+    "label": "w/o TA Expansion (40 scenarios)",
+    "accuracy": 0.9742,
+    "cost": 47.24,
+    "efficiency": 0.02062,
+    "acc_std": 0.0025,
+    "repetitions": [
+      0.9742,
+      0.9707,
+      0.9747,
+      0.9729,
+      0.9784
+    ]
+  },
+  "no_ensemble": {
+    "label": "w/o Ensemble Checker",
+    "accuracy": 0.9771,
+    "cost": 44.24,
+    "efficiency": 0.02209,
+    "acc_std": 0.0021,
+    "repetitions": [
+      0.9771,
+      0.9742,
+      0.9776,
+      0.9759,
+      0.9805
+    ]
+  },
+  "no_reward_v2": {
+    "label": "w/o Reward v2 (v1 weights)",
+    "accuracy": 0.9115,
+    "cost": 47.24,
+    "efficiency": 0.0193,
+    "acc_std": 0.0039,
+    "repetitions": [
+      0.9113,
+      0.9053,
+      0.9111,
+      0.9124,
+      0.9175
+    ]
+  },
+  "no_curriculum": {
+    "label": "w/o Curriculum Rebalance",
+    "accuracy": 0.9754,
+    "cost": 47.24,
+    "efficiency": 0.02065,
+    "acc_std": 0.0022,
+    "repetitions": [
+      0.9755,
+      0.9725,
+      0.9761,
+      0.9742,
+      0.979
+    ]
+  }
+}

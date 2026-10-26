@@ -1,0 +1,42 @@
+name: no_new_features
+description: >
+  New 6 features (positions 23-28, 0-indexed 22-27) zeroed out.
+  Encoder still receives 33-dim vector for compatibility,
+  but the 6 new positions carry no information.
+
+ppo:
+  active: true
+  checkpoint: rl_policies/checkpoints/ppo_v2.zip
+
+dqn:
+  active: true
+  checkpoint: rl_policies/checkpoints/dqn_v2.zip
+  min_rounds: 2
+  confidence_threshold: 0.85
+  force_continue_on_critical: true
+
+features:
+  dim: 33
+  mask_new: true     # positions 22-27 (0-indexed) forced to 0.0
+
+ta_scenarios:
+  count: 60
+  mask_above: null
+
+ensemble:
+  active: true
+  complexity_threshold: 0.8
+  budget_threshold: 15
+  top_k_scenarios: 5
+
+reward:
+  version: v2
+  alpha: 0.7
+  beta: 0.3
+  critical_weight: 20
+  high_weight: 8
+  missed_critical_penalty: 0.15
+  missed_high_penalty: 0.05
+
+curriculum:
+  stages: [30, 90, 150]
