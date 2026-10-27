@@ -8,18 +8,29 @@
       "severity": "medium",
       "location": "unknown",
       "description": "Known unchecked_low_level_calls from SmartBugs Labeled (proc_gasless_send)"
+    }
+  ],
+  "tool_findings": [
+    {
+      "type": "integer_overflow",
+      "severity": "medium",
+      "location": "unknown",
+      "description": "Reported by static analysis tools (unverified)",
+      "tools": [
+        "confuzzius",
+        "conkas",
+        "oyente"
+      ]
     },
     {
       "type": "reentrancy",
       "severity": "medium",
       "location": "unknown",
-      "description": "Confirmed by static analysis tools"
-    },
-    {
-      "type": "integer_overflow",
-      "severity": "medium",
-      "location": "unknown",
-      "description": "Confirmed by static analysis tools"
+      "description": "Reported by static analysis tools (unverified)",
+      "tools": [
+        "conkas",
+        "sfuzz"
+      ]
     }
   ]
 }

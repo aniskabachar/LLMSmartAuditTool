@@ -9,5 +9,6 @@
       "location": "unknown",
       "description": "Known reentrancy from SmartBugs Labeled (proc_reentrancy)"
     }
-  ]
+  ],
+  "tool_findings": []
 }

@@ -9,5 +9,6 @@
       "location": "unknown",
       "description": "Known access_control from SmartBugs Labeled (proc_unsafe_delegatecall)"
     }
-  ]
+  ],
+  "tool_findings": []
 }

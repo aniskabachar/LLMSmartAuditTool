@@ -1,0 +1,109 @@
+{
+  "trained_at": "2026-10-27T08:03:10+00:00",
+  "procedure": "rl_policies ModeSelector.train / StoppingPolicy.train (same as run_rl_audit.py --train)",
+  "training_data": "synthetic simulation (evaluation/benchmark_datasets.py generate_synthetic_dataset); no LLM calls",
+  "seed": 42,
+  "synthetic_contracts": 1000,
+  "timesteps_per_policy": 50000,
+  "train_seconds": {
+    "mode_selector": 1055.9,
+    "total": 1857.7
+  },
+  "mode_selector": {
+    "path": "models/mode_selector/mode_selector.zip",
+    "sha256": "3693df4b41197672",
+    "config": {
+      "learning_rate": 0.0003,
+      "batch_size": 64,
+      "n_steps": 2048,
+      "n_epochs": 10,
+      "gamma": 0.99,
+      "gae_lambda": 0.95,
+      "clip_range": 0.2,
+      "ent_coef": 0.01,
+      "vf_coef": 0.5,
+      "max_grad_norm": 0.5,
+      "total_timesteps": 50000
+    },
+    "train_summary": {
+      "timesteps": 50000,
+      "model_path": "C:\\sca-llm\\models\\mode_selector\\mode_selector.zip",
+      "config": {
+        "learning_rate": 0.0003,
+        "batch_size": 64,
+        "n_steps": 2048,
+        "n_epochs": 10,
+        "gamma": 0.99,
+        "gae_lambda": 0.95,
+        "clip_range": 0.2,
+        "ent_coef": 0.01,
+        "vf_coef": 0.5,
+        "max_grad_norm": 0.5,
+        "total_timesteps": 50000
+      }
+    }
+  },
+  "stopping_policy": {
+    "path": "models/stopping_policy/stopping_policy.zip",
+    "sha256": "68215aa3513aa388",
+    "config": {
+      "learning_rate": 0.0001,
+      "buffer_size": 50000,
+      "learning_starts": 1000,
+      "batch_size": 64,
+      "gamma": 0.99,
+      "train_freq": 4,
+      "gradient_steps": 1,
+      "target_update_interval": 1000,
+      "exploration_fraction": 0.2,
+      "exploration_initial_eps": 1.0,
+      "exploration_final_eps": 0.05,
+      "total_timesteps": 50000
+    },
+    "train_summary": {
+      "timesteps": 50000,
+      "model_path": "C:\\sca-llm\\models\\stopping_policy\\stopping_policy.zip",
+      "config": {
+        "learning_rate": 0.0001,
+        "buffer_size": 50000,
+        "learning_starts": 1000,
+        "batch_size": 64,
+        "gamma": 0.99,
+        "train_freq": 4,
+        "gradient_steps": 1,
+        "target_update_interval": 1000,
+        "exploration_fraction": 0.2,
+        "exploration_initial_eps": 1.0,
+        "exploration_final_eps": 0.05,
+        "total_timesteps": 50000
+      }
+    }
+  },
+  "check": {
+    "synthetic_test_mode_counts": {
+      "BA": 113,
+      "TA": 37
+    },
+    "real_test_split_mode_counts": {
+      "easy": {
+        "BA": 11,
+        "TA": 1
+      },
+      "medium": {
+        "BA": 13,
+        "TA": 6
+      },
+      "hard": {
+        "BA": 6,
+        "TA": 3
+      }
+    }
+  },
+  "versions": {
+    "python": "3.14.3",
+    "torch": "2.14.1",
+    "stable-baselines3": "2.9.2",
+    "gymnasium": "1.4.0",
+    "numpy": "2.5.4"
+  }
+}

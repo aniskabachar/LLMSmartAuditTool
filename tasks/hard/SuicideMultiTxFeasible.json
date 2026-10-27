@@ -9,5 +9,6 @@
       "location": "unknown",
       "description": "Known selfdestruct from SmartBugs Labeled (proc_unsafe_suicide)"
     }
-  ]
+  ],
+  "tool_findings": []
 }

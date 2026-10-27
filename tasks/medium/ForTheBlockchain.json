@@ -8,12 +8,17 @@
       "severity": "medium",
       "location": "unknown",
       "description": "Known front_running from SmartBugs Labeled (proc_TOD)"
-    },
+    }
+  ],
+  "tool_findings": [
     {
       "type": "reentrancy",
       "severity": "medium",
       "location": "unknown",
-      "description": "Confirmed by static analysis tools"
+      "description": "Reported by static analysis tools (unverified)",
+      "tools": [
+        "conkas"
+      ]
     }
   ]
 }

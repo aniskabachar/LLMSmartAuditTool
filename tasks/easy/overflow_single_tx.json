@@ -9,5 +9,6 @@
       "location": "unknown",
       "description": "Known integer_overflow from SmartBugs Labeled (proc_arithmetic)"
     }
-  ]
+  ],
+  "tool_findings": []
 }

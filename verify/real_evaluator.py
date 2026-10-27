@@ -3,22 +3,37 @@ verify/real_evaluator.py
 
 Replaces test_system_simple.py accuracy computation.
 Real accuracy = precision/recall against SmartBugs ground truth labels.
-Uses Groq LLaMA to actually read and analyse Solidity contracts.
+Uses a Groq-hosted LLM to actually read and analyse Solidity contracts.
+
+The prompt is identical for every tier: the tier is derived from the
+ground-truth category, so telling the model the tier would leak the label.
 """
 
 from __future__ import annotations
-import sys, os, json, random
+import sys, os, json
 sys.path.insert(0, str(__import__("pathlib").Path(__file__).parent.parent))
 
 from pathlib import Path
 from dotenv import load_dotenv
 load_dotenv()
 
-from groq import Groq
 from auditor.models import Action, DetectedVulnerability, VulnerabilityType, Severity
-from auditor.grader import grade
+from verify.eval_common import (
+    SAMPLE_SEED, load_contracts, select_contracts, contract_record, summarize, sha256,
+)
 
-client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+_client = None
+
+
+def get_client():
+    """Create the Groq client on first use so grading works without a key."""
+    global _client
+    if _client is None:
+        if not os.getenv("GROQ_API_KEY"):
+            raise RuntimeError("GROQ_API_KEY not set. Add it to .env.")
+        from groq import Groq
+        _client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+    return _client
 
 SYSTEM_PROMPT = """You are a precise Solidity smart contract security auditor.
 Find ONLY vulnerabilities CLEARLY present in the code.
@@ -40,17 +55,21 @@ Respond ONLY in this exact JSON format with no extra text:
 
 VALID_TYPES = {t.value for t in VulnerabilityType}
 
-HINTS = {
-    "easy":   "This contract has ONE main vulnerability. Find only that one.",
-    "medium": "This contract has 1-2 vulnerabilities. Find them precisely.",
-    "hard":   "Multiple complex vulnerabilities may be present. Be thorough but precise."
-}
+MODEL       = "openai/gpt-oss-120b"   # 20b doesn't follow JSON format well
+TEMPERATURE = 0.1
+MAX_TOKENS  = 600                     # reduced to stay within TPM limit
+USER_PREFIX = "Contract to audit:\n\n"
 
-MODELS = {
-    "easy":   "openai/gpt-oss-120b",
-    "medium": "openai/gpt-oss-120b",
-    "hard":   "openai/gpt-oss-120b",   # 20b doesn't follow JSON format well
-}
+
+def config() -> dict:
+    """Evaluator settings recorded alongside results."""
+    return {
+        "evaluator":   "basic",
+        "model":       MODEL,
+        "temperature": TEMPERATURE,
+        "max_tokens":  MAX_TOKENS,
+        "prompt_hash": sha256(SYSTEM_PROMPT, USER_PREFIX),
+    }
 
 
 def truncate(code: str, max_chars: int = 6000) -> str:
@@ -155,10 +174,10 @@ def _normalize_action(parsed: dict) -> Action:
     return Action(vulnerabilities=vulns)
 
 
-def audit_contract(contract_code: str, difficulty: str) -> Action:
+def audit_contract(contract_code: str) -> tuple[Action, list[str], str | None]:
     """
     Runs real Groq LLM agent on one contract.
-    Returns Action with detected vulnerabilities.
+    Returns (Action, raw responses, error message or None).
     Includes exponential backoff retry on rate limit (429).
     """
     import time as _time
@@ -166,26 +185,24 @@ def audit_contract(contract_code: str, difficulty: str) -> Action:
     max_retries = 4
     for attempt in range(max_retries):
         try:
-            response = client.chat.completions.create(
-                model    = MODELS[difficulty],
+            response = get_client().chat.completions.create(
+                model    = MODEL,
                 messages = [
                     {"role": "system", "content": SYSTEM_PROMPT},
                     {"role": "user",
-                     "content": f"{HINTS[difficulty]}\n\nContract to audit:\n\n{truncate(contract_code)}"},
+                     "content": f"{USER_PREFIX}{truncate(contract_code)}"},
                 ],
-                temperature = 0.1,
-                max_tokens  = 600,   # reduced to stay within TPM limit
+                temperature = TEMPERATURE,
+                max_tokens  = MAX_TOKENS,
             )
-            raw    = response.choices[0].message.content
+            raw    = response.choices[0].message.content or ""
             parsed = _parse_llm_response(raw)
             # Polite inter-call delay to stay within 8000 TPM free tier
             _time.sleep(8)
-            return _normalize_action(parsed)
+            return _normalize_action(parsed), [raw], None
 
-        except json.JSONDecodeError as e:
-            print(f"    JSON parse error: {e}")
-            _time.sleep(8)
-            return Action(vulnerabilities=[])
+        except RuntimeError:
+            raise   # missing API key: abort the run instead of scoring zeros
 
         except Exception as e:
             err_str = str(e)
@@ -199,99 +216,55 @@ def audit_contract(contract_code: str, difficulty: str) -> Action:
                 continue
             print(f"    LLM error: {e}")
             _time.sleep(5)
-            return Action(vulnerabilities=[])
+            return Action(vulnerabilities=[]), [], f"llm_error: {err_str[:300]}"
 
     print(f"    Max retries exceeded")
-    return Action(vulnerabilities=[])
+    return Action(vulnerabilities=[]), [], "max_retries_exceeded"
 
 
 def evaluate_difficulty(
     difficulty: str,
-    n: int = 30,
-    split_file: str | None = None,
+    n: int | None = None,
+    seed: int = SAMPLE_SEED,
     use_test_split: bool = True,
+    labels: str = "curated",
 ) -> dict:
     """
-    Evaluates real LLM agent on n contracts from tasks/{difficulty}/
+    Evaluates real LLM agent on contracts from tasks/{difficulty}/
 
     Parameters
     ----------
     difficulty      : "easy" | "medium" | "hard"
-    n               : number of contracts to evaluate
-    split_file      : path to split JSON (if None, uses all available)
-    use_test_split  : if True and split_file given, use test split only
+    n               : number of contracts (None = the whole test split)
+    seed            : seed for sub-sampling when n is smaller than the split
+    use_test_split  : if True, only held-out test contracts are evaluated
+    labels          : "curated" (category labels) or "all" (+ tool findings)
 
     Returns
     -------
     dict with avg_score, avg_precision, avg_recall, per-contract details
     """
-    task_dir  = Path(f"tasks/{difficulty}")
-    sol_files = sorted(task_dir.glob("*.sol"))
+    sample = select_contracts(load_contracts(difficulty, use_test_split), n, seed)
+    print(f"  Evaluating {len(sample)} contracts "
+          f"({'test split' if use_test_split else 'all'})")
 
-    if not sol_files:
-        raise FileNotFoundError(
-            f"No .sol files found in tasks/{difficulty}/\n"
-            f"Run:  py scripts/fetch_smartbugs.py  first."
-        )
-
-    # Honour train/test split if provided
-    if split_file and use_test_split:
-        try:
-            split_data = json.loads(Path(split_file).read_text())
-            test_stems = set(split_data.get("test", []))
-            sol_files  = [f for f in sol_files if f.stem in test_stems]
-            print(f"  Using test split: {len(sol_files)} contracts")
-        except Exception as e:
-            print(f"  [WARN] Could not load split {split_file}: {e}. Using all.")
-
-    sample = random.sample(sol_files, min(n, len(sol_files)))
-    scores, details = [], []
-
+    details = []
     for i, sol_path in enumerate(sample):
-        gt_path = sol_path.with_suffix(".json")
-        if not gt_path.exists():
-            print(f"  [{i+1}/{len(sample)}] {sol_path.name} — SKIP (no GT)")
-            continue
-
-        ground_truth  = json.loads(gt_path.read_text(encoding="utf-8"))
         contract_code = sol_path.read_text(encoding="utf-8", errors="replace")
 
         print(f"  [{i+1}/{len(sample)}] {sol_path.name} ... ", end="", flush=True)
 
-        action       = audit_contract(contract_code, difficulty)
-        grade_result = grade(action, ground_truth)
+        action, raw, error = audit_contract(contract_code)
+        record = contract_record(sol_path, action, raw, error, labels=labels)
+        details.append(record)
 
-        scores.append(grade_result["score"])
-        details.append({
-            "contract":        sol_path.name,
-            "score":           grade_result["score"],
-            "precision":       grade_result["precision"],
-            "recall":          grade_result["recall"],
-            "f1":              grade_result["f1"],
-            "true_positives":  grade_result["true_positives"],
-            "false_positives": grade_result["false_positives"],
-            "missed_bugs":     grade_result["missed_bugs"],
-            "found_types":     grade_result["found_types"],
-            "expected_types":  grade_result["expected_types"],
-        })
+        print(f"score={record['score']:.3f}  "
+              f"TP={record['true_positives']}  "
+              f"FP={record['false_positives']}  "
+              f"miss={record['missed_bugs']}"
+              + (f"  [{error}]" if error else ""))
 
-        print(f"score={grade_result['score']:.3f}  "
-              f"TP={grade_result['true_positives']}  "
-              f"FP={grade_result['false_positives']}  "
-              f"miss={grade_result['missed_bugs']}")
-
-    if not scores:
-        return {"difficulty": difficulty, "error": "no contracts evaluated"}
-
-    return {
-        "difficulty":    difficulty,
-        "n_contracts":   len(details),
-        "avg_score":     round(sum(scores) / len(scores), 4),
-        "avg_precision": round(sum(d["precision"] for d in details) / len(details), 4),
-        "avg_recall":    round(sum(d["recall"]    for d in details) / len(details), 4),
-        "avg_f1":        round(sum(d["f1"]        for d in details) / len(details), 4),
-        "details":       details,
-    }
+    return summarize(difficulty, details)
 
 
 if __name__ == "__main__":
@@ -299,11 +272,13 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--difficulty", default="easy",
                         choices=["easy","medium","hard"])
-    parser.add_argument("--n", type=int, default=10)
+    parser.add_argument("--n", type=int, default=None,
+                        help="Contracts to evaluate (default: whole test split)")
+    parser.add_argument("--seed", type=int, default=SAMPLE_SEED)
     args = parser.parse_args()
 
-    print(f"\nReal LLM evaluation: {args.difficulty} tier, {args.n} contracts")
-    result = evaluate_difficulty(args.difficulty, n=args.n)
+    print(f"\nReal LLM evaluation: {args.difficulty} tier")
+    result = evaluate_difficulty(args.difficulty, n=args.n, seed=args.seed)
     print(f"\nResult: score={result['avg_score']}  "
           f"P={result['avg_precision']}  R={result['avg_recall']}  "
           f"F1={result['avg_f1']}")

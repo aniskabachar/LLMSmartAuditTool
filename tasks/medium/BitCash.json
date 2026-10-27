@@ -8,24 +8,26 @@
       "severity": "medium",
       "location": "unknown",
       "description": "Known front_running from SmartBugs Labeled (proc_TOD)"
-    },
+    }
+  ],
+  "tool_findings": [
     {
-      "type": "tx_origin",
+      "type": "integer_overflow",
       "severity": "medium",
       "location": "unknown",
-      "description": "Confirmed by static analysis tools"
+      "description": "Reported by static analysis tools (unverified)",
+      "tools": [
+        "conkas"
+      ]
     },
     {
       "type": "reentrancy",
       "severity": "medium",
       "location": "unknown",
-      "description": "Confirmed by static analysis tools"
-    },
-    {
-      "type": "integer_overflow",
-      "severity": "medium",
-      "location": "unknown",
-      "description": "Confirmed by static analysis tools"
+      "description": "Reported by static analysis tools (unverified)",
+      "tools": [
+        "conkas"
+      ]
     }
   ]
 }

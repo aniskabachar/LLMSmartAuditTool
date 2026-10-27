@@ -17,6 +17,8 @@ from typing import Optional
 from pathlib import Path
 import json
 
+from auditor.models import Action
+
 app = FastAPI(
     title="LLM SmartAudit — Real Evaluation API",
     version="2.0",
@@ -38,9 +40,12 @@ def root():
         "contracts_available": contracts,
         "total": sum(contracts.values()),
         "endpoints": [
-            "GET /evaluate/real/{difficulty}?n=10",
-            "GET /evaluate/random/{difficulty}?n=20",
-            "GET /evaluate/split/{difficulty}",
+            "POST /reset",
+            "POST /step",
+            "GET /state",
+            "GET /evaluate/real/{difficulty}?n=&seed=42&labels=curated",
+            "GET /evaluate/random/{difficulty}?n=&seed=7777&labels=curated",
+            "POST /evaluate/split/{difficulty}",
             "GET /results",
         ]
     }
@@ -60,6 +65,64 @@ def dataset_info():
     return info
 
 
+# ── Audit environment: reset / step / state ──────────────────────────────────
+
+class ResetRequest(BaseModel):
+    difficulty:    str           = "easy"
+    split:         str           = "test"      # train | test | all
+    labels:        str           = "curated"   # curated | all
+    seed:          Optional[int] = None
+    contract:      Optional[str] = None        # serve a specific contract
+    with_features: bool          = False       # include RL contract features
+
+
+_env = None   # one shared environment session per server process
+
+
+@app.post("/reset")
+def env_reset(req: Optional[ResetRequest] = None):
+    """Start an episode: returns the next contract's source (labels hidden)."""
+    global _env
+    from auditor.environment import AuditEnvironment
+    req = req or ResetRequest()
+    try:
+        if _env is None:
+            _env = AuditEnvironment(req.difficulty, req.split, req.labels,
+                                    req.seed or 0, req.with_features)
+        _env.with_features = req.with_features
+        obs, info = _env.reset(seed=req.seed, options={
+            "difficulty": req.difficulty, "split": req.split,
+            "labels": req.labels, "contract": req.contract,
+        })
+    except (ValueError, KeyError) as e:
+        raise HTTPException(400, str(e))
+    except FileNotFoundError as e:
+        raise HTTPException(404, str(e))
+    return {"observation": obs, "info": info}
+
+
+@app.post("/step")
+def env_step(action: Action):
+    """Submit findings for the current contract; reward = grader score."""
+    if _env is None:
+        raise HTTPException(409, "Call POST /reset first")
+    try:
+        obs, reward, terminated, truncated, info = _env.step(action)
+    except RuntimeError as e:
+        raise HTTPException(409, str(e))
+    obs.pop("source_code", None)   # already sent by /reset
+    return {"observation": obs, "reward": reward, "terminated": terminated,
+            "truncated": truncated, "info": info}
+
+
+@app.get("/state")
+def env_state():
+    """Current episode and running mean reward."""
+    if _env is None:
+        raise HTTPException(409, "Call POST /reset first")
+    return _env.state()
+
+
 # ── Create splits ─────────────────────────────────────────────────────────────
 
 @app.post("/evaluate/split/{difficulty}")
@@ -75,21 +138,21 @@ def create_split(difficulty: str, test_ratio: float = 0.2):
 # ── Random baseline ───────────────────────────────────────────────────────────
 
 @app.get("/evaluate/random/{difficulty}")
-def random_baseline(difficulty: str, n: int = 20):
+def random_baseline(difficulty: str, n: Optional[int] = None, seed: int = 7777,
+                    labels: str = "curated"):
     """
-    Runs a completely random agent on real SmartBugs contracts.
-    Proves discriminative floor is genuinely low (< 0.20).
+    Runs a completely random agent on the held-out test split.
+    n omitted = whole test split. Proves discriminative floor is genuinely low (< 0.20).
+    labels: curated (dataset category labels) | all (+ static-tool findings)
     """
     if difficulty not in ("easy", "medium", "hard"):
         raise HTTPException(400, "difficulty must be easy|medium|hard")
+    if labels not in ("curated", "all"):
+        raise HTTPException(400, "labels must be curated|all")
     try:
         from verify.random_baseline_real import run_random_baseline
-        split_file = f"verify/splits/{difficulty}_split.json"
-        result = run_random_baseline(
-            difficulty, n=n,
-            split_file=split_file if Path(split_file).exists() else None,
-        )
-        return result
+        return run_random_baseline(difficulty, n=n, seed=seed, use_test_split=True,
+                                   labels=labels)
     except FileNotFoundError as e:
         raise HTTPException(404, str(e))
 
@@ -97,15 +160,19 @@ def random_baseline(difficulty: str, n: int = 20):
 # ── Real LLM evaluation ───────────────────────────────────────────────────────
 
 @app.get("/evaluate/real/{difficulty}")
-def real_evaluation(difficulty: str, n: int = 10):
+def real_evaluation(difficulty: str, n: Optional[int] = None, seed: int = 42,
+                    labels: str = "curated"):
     """
-    Runs real Groq LLM evaluation on actual SmartBugs contracts.
-    Returns true precision/recall/F1 scores.
+    Runs real Groq LLM evaluation on the held-out test split.
+    n omitted = whole test split. Returns true precision/recall/F1 scores.
+    labels: curated (dataset category labels) | all (+ static-tool findings)
 
     NOTE: This makes real Groq API calls (costs tokens).
     """
     if difficulty not in ("easy", "medium", "hard"):
         raise HTTPException(400, "difficulty must be easy|medium|hard")
+    if labels not in ("curated", "all"):
+        raise HTTPException(400, "labels must be curated|all")
 
     groq_key = os.getenv("GROQ_API_KEY")
     if not groq_key:
@@ -113,23 +180,21 @@ def real_evaluation(difficulty: str, n: int = 10):
 
     try:
         from verify.real_evaluator import evaluate_difficulty
-        split_file = f"verify/splits/{difficulty}_split.json"
-        result = evaluate_difficulty(
-            difficulty, n=n,
-            split_file=split_file if Path(split_file).exists() else None,
-            use_test_split=True,
-        )
+        result = evaluate_difficulty(difficulty, n=n, seed=seed, use_test_split=True,
+                                     labels=labels)
         # Don't return full per-contract details in API response (too large)
         return {
             "difficulty":    result["difficulty"],
+            "labels":        labels,
             "n_contracts":   result["n_contracts"],
+            "n_errors":      result.get("n_errors", 0),
             "avg_score":     result["avg_score"],
             "avg_precision": result["avg_precision"],
             "avg_recall":    result["avg_recall"],
             "avg_f1":        result.get("avg_f1", 0.0),
         }
     except FileNotFoundError as e:
-        raise HTTPException(404, f"{e}\nRun: py scripts/fetch_smartbugs.py")
+        raise HTTPException(404, str(e))
     except Exception as e:
         raise HTTPException(500, str(e))
 

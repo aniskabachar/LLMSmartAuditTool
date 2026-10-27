@@ -50,8 +50,16 @@ class GroundTruthVuln(BaseModel):
     description: str = ""
 
 
+class ToolFinding(GroundTruthVuln):
+    """A vulnerability type reported by static/dynamic analysis tools (unverified)."""
+    tools: List[str] = Field(default_factory=list)
+
+
 class GroundTruth(BaseModel):
     contract:        str
     source:          str = "SmartBugs"
     category:        str = ""
+    # Curated label(s) from the dataset category — what the grader scores by default
     vulnerabilities: List[GroundTruthVuln] = Field(default_factory=list)
+    # Extra types reported by analysis tools — kept for reference, scored only with labels="all"
+    tool_findings:   List[ToolFinding]     = Field(default_factory=list)

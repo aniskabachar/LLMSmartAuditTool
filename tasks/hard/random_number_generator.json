@@ -9,5 +9,6 @@
       "location": "unknown",
       "description": "Known bad_randomness from SmartBugs Labeled (proc_bad_randomness)"
     }
-  ]
+  ],
+  "tool_findings": []
 }

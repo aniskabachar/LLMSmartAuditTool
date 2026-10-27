@@ -8,24 +8,36 @@
       "severity": "high",
       "location": "unknown",
       "description": "Known access_control from SmartBugs Labeled (proc_unsafe_delegatecall)"
-    },
+    }
+  ],
+  "tool_findings": [
     {
-      "type": "timestamp_dependence",
+      "type": "integer_overflow",
       "severity": "medium",
       "location": "unknown",
-      "description": "Confirmed by static analysis tools"
+      "description": "Reported by static analysis tools (unverified)",
+      "tools": [
+        "oyente",
+        "sfuzz"
+      ]
     },
     {
       "type": "reentrancy",
       "severity": "medium",
       "location": "unknown",
-      "description": "Confirmed by static analysis tools"
+      "description": "Reported by static analysis tools (unverified)",
+      "tools": [
+        "sfuzz"
+      ]
     },
     {
-      "type": "integer_overflow",
+      "type": "timestamp_dependence",
       "severity": "medium",
       "location": "unknown",
-      "description": "Confirmed by static analysis tools"
+      "description": "Reported by static analysis tools (unverified)",
+      "tools": [
+        "conkas"
+      ]
     }
   ]
 }

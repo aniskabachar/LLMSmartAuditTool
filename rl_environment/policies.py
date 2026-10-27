@@ -344,7 +344,7 @@ class RLAuditOrchestrator:
         action, _ = self.mode_selector.predict(obs, deterministic=True)
         
         mode_map = {0: AuditMode.BA, 1: AuditMode.TA, 2: AuditMode.HYBRID}
-        return mode_map[int(action)]
+        return mode_map[int(np.asarray(action).item())]
     
     def predict_stopping(self, current_state: AuditState) -> bool:
         """Predict whether to stop consensus rounds"""
@@ -355,7 +355,7 @@ class RLAuditOrchestrator:
         obs = current_state.to_vector().reshape(1, -1)
         action, _ = self.stopping_policy.predict(obs, deterministic=True)
         
-        return bool(action)  # True = stop, False = continue
+        return bool(np.asarray(action).item())  # True = stop, False = continue
     
     def evaluate_policies(self, n_episodes: int = 100) -> Dict[str, Any]:
         """Evaluate trained policies on test episodes"""

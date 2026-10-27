@@ -8,18 +8,27 @@
       "severity": "high",
       "location": "unknown",
       "description": "Known bad_randomness from SmartBugs Labeled (proc_bad_randomness)"
+    }
+  ],
+  "tool_findings": [
+    {
+      "type": "integer_overflow",
+      "severity": "medium",
+      "location": "unknown",
+      "description": "Reported by static analysis tools (unverified)",
+      "tools": [
+        "conkas",
+        "oyente"
+      ]
     },
     {
       "type": "reentrancy",
       "severity": "medium",
       "location": "unknown",
-      "description": "Confirmed by static analysis tools"
-    },
-    {
-      "type": "integer_overflow",
-      "severity": "medium",
-      "location": "unknown",
-      "description": "Confirmed by static analysis tools"
+      "description": "Reported by static analysis tools (unverified)",
+      "tools": [
+        "conkas"
+      ]
     }
   ]
 }

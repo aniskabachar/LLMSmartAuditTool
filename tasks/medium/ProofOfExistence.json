@@ -9,5 +9,6 @@
       "location": "unknown",
       "description": "Known front_running from SmartBugs Labeled (proc_TOD)"
     }
-  ]
+  ],
+  "tool_findings": []
 }

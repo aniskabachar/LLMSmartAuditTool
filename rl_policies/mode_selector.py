@@ -41,7 +41,7 @@ import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
-from rl_environment.rl_architecture import ContractFeatures, AuditMode, AuditState
+from rl_environment.rl_architecture import ContractFeatures, AuditMode, AuditState, STATE_DIM
 # from evaluation.benchmark_datasets import ContractSample, DatasetSplit
 
 @dataclass
@@ -88,10 +88,12 @@ class ContractComplexityEncoder(BaseFeaturesExtractor):
         self.residual_proj2 = nn.Linear(128, 256)
         self.residual_proj3 = nn.Linear(256, features_dim)
         
-        # Attention mechanism with increased heads for better representation
+        # Attention mechanism. embed_dim must be divisible by num_heads: the
+        # earlier 12-head setting could not be constructed with features_dim=256
+        # (torch raises), so the encoder uses 8 heads as described in the paper.
         self.attention = nn.MultiheadAttention(
             embed_dim=features_dim,
-            num_heads=12,  # Increased from 8
+            num_heads=8,
             dropout=0.1,
             batch_first=True
         )
@@ -148,12 +150,21 @@ class ModeSelectorPolicy(ActorCriticPolicy):
         # Set custom feature extractor
         kwargs['features_extractor_class'] = ContractComplexityEncoder
         kwargs['features_extractor_kwargs'] = {'features_dim': 256}
-        
+        # No shared/separate MLP after the encoder: the custom heads below take
+        # the 256-dim encoding directly (SB3's default net_arch outputs 64 dims)
+        kwargs['net_arch'] = []
+
         super().__init__(observation_space, action_space, lr_schedule, **kwargs)
-        
+
         # Override policy networks for mode selection
         self._build_custom_networks()
-        
+
+        # super().__init__ built the optimizer before the custom heads existed;
+        # recreate it so the new action/value networks are actually trained
+        self.optimizer = self.optimizer_class(
+            self.parameters(), lr=lr_schedule(1), **self.optimizer_kwargs
+        )
+
     def _build_custom_networks(self):
         """Build custom actor and critic networks"""
         
@@ -264,9 +275,9 @@ class ModeSelectionEnvironment(gym.Env):
         self.accuracy_model = accuracy_model or self._get_default_accuracy_model()
         
         # Define spaces
-        # State: 27-dimensional (22 contract features + 5 temporal/cost features)
+        # State: 28 contract features + 5 temporal/cost features (AuditState.to_vector)
         self.observation_space = gym.spaces.Box(
-            low=0.0, high=1.0, shape=(27,), dtype=np.float32
+            low=0.0, high=1.0, shape=(STATE_DIM,), dtype=np.float32
         )
         
         # Action: 3 discrete modes {BA: 0, TA: 1, HYBRID: 2}
@@ -664,7 +675,8 @@ class ModeSelector:
         
         # Map action to mode
         mode_map = {0: AuditMode.BA, 1: AuditMode.TA, 2: AuditMode.HYBRID}
-        selected_mode = mode_map[int(action)]
+        action = int(np.asarray(action).item())  # predict returns a 1-element array
+        selected_mode = mode_map[action]
         
         # Get confidence score (based on action probability)
         with torch.no_grad():
@@ -672,7 +684,7 @@ class ModeSelector:
             features = self.policy.policy.extract_features(obs_tensor)
             action_logits = self.policy.policy.action_net(features)
             action_probs = F.softmax(action_logits, dim=1)
-            confidence = float(action_probs[0, int(action)].item())
+            confidence = float(action_probs[0, action].item())
         
         return selected_mode, confidence
     
