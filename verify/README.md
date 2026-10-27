@@ -41,7 +41,8 @@ efficiency (score per 1k tokens) are real.
 
 `--evaluator rl` needs trained policies at `models/mode_selector/mode_selector.zip`
 and `models/stopping_policy/stopping_policy.zip` (or `RL_MODE_MODEL` /
-`RL_STOP_MODEL`). Train with `py run_rl_audit.py --train`. RL mode never falls back
+`RL_STOP_MODEL`). Train with `py training/train_policies.py` (CPU, ~25 min, no API key;
+settings and model hashes go to `models/training_info.json`). RL mode never falls back
 to a heuristic.
 
 ## Reproduce

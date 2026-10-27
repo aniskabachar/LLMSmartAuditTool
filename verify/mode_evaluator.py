@@ -253,7 +253,7 @@ class RLPolicies:
         if missing:
             raise FileNotFoundError(
                 "Trained RL policies not found: " + ", ".join(missing) + ". Train them first "
-                "(py run_rl_audit.py --train) or set RL_MODE_MODEL / RL_STOP_MODEL. "
+                "(py training/train_policies.py) or set RL_MODE_MODEL / RL_STOP_MODEL. "
                 "RL mode does not fall back to a heuristic.")
         try:
             from stable_baselines3 import PPO, DQN

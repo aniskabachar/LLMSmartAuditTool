@@ -32,3 +32,6 @@ test_all_equations.*
 temp_check.pdf
 final_check.pdf
 page_*.png
+
+# RL training logs (models/*.zip and training_info.json are kept)
+models/**/tensorboard/
