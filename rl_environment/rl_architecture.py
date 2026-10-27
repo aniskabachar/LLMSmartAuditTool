@@ -21,6 +21,11 @@ from enum import Enum
 import json
 import os
 
+# RL state layout: ContractFeatures.to_vector() + AuditState temporal features
+CONTRACT_FEATURE_DIM = 28
+TEMPORAL_FEATURE_DIM = 5
+STATE_DIM            = CONTRACT_FEATURE_DIM + TEMPORAL_FEATURE_DIM   # 33
+
 class AuditMode(Enum):
     """Audit mode enumeration"""
     BA = "SmartContractBA"          # Broad Analysis (Thought-Reasoning)
@@ -192,7 +197,7 @@ class SmartContractAuditEnv(gym.Env):
         }
         
         # Define observation and action spaces
-        state_dim = 28 + 5  # 28 contract features + 5 temporal features (expanded from 22+5)
+        state_dim = STATE_DIM  # 28 contract features + 5 temporal features (expanded from 22+5)
         self.observation_space = gym.spaces.Box(
             low=0.0, high=1.0, shape=(state_dim,), dtype=np.float32
         )

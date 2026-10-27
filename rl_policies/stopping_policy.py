@@ -42,7 +42,7 @@ import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
-from rl_environment.rl_architecture import ContractFeatures, AuditState
+from rl_environment.rl_architecture import ContractFeatures, AuditState, STATE_DIM, TEMPORAL_FEATURE_DIM
 from evaluation.benchmark_datasets import ContractSample, DatasetSplit
 
 @dataclass
@@ -75,17 +75,18 @@ class ConsensusStateEncoder(BaseFeaturesExtractor):
     def __init__(self, observation_space: gym.Space, features_dim: int = 256):
         super().__init__(observation_space, features_dim)
         
-        input_dim = observation_space.shape[0]  # 27 features
+        input_dim = observation_space.shape[0]  # 33 = 28 contract + 5 temporal
+        self.n_contract = input_dim - TEMPORAL_FEATURE_DIM
         
         # Separate encoders for different feature types
         self.contract_encoder = nn.Sequential(
-            nn.Linear(22, 64),  # First 22 features are contract characteristics
+            nn.Linear(self.n_contract, 64),  # Contract characteristics
             nn.ReLU(),
             nn.Dropout(0.1)
         )
         
         self.temporal_encoder = nn.Sequential(
-            nn.Linear(5, 32),   # Last 5 features are temporal/progress
+            nn.Linear(TEMPORAL_FEATURE_DIM, 32),   # Last 5 features are temporal/progress
             nn.ReLU(),
             nn.Dropout(0.1)
         )
@@ -115,8 +116,8 @@ class ConsensusStateEncoder(BaseFeaturesExtractor):
         batch_size = observations.shape[0]
         
         # Split features
-        contract_features = observations[:, :22]
-        temporal_features = observations[:, 22:]
+        contract_features = observations[:, :self.n_contract]
+        temporal_features = observations[:, self.n_contract:]
         
         # Encode contract features (static)
         contract_encoded = self.contract_encoder(contract_features)
@@ -213,7 +214,7 @@ class ConsensusEnvironment(gym.Env):
         
         # Define spaces
         self.observation_space = gym.spaces.Box(
-            low=0.0, high=1.0, shape=(27,), dtype=np.float32
+            low=0.0, high=1.0, shape=(STATE_DIM,), dtype=np.float32
         )
         self.action_space = gym.spaces.Discrete(2)  # CONTINUE=0, STOP=1
         
@@ -595,7 +596,7 @@ class StoppingPolicy:
         action, _ = self.policy.predict(obs, deterministic=deterministic)
         
         # action: 0=CONTINUE, 1=STOP
-        should_stop = bool(action)
+        should_stop = bool(np.asarray(action).item())
         
         # Get confidence (Q-value difference)
         with torch.no_grad():
