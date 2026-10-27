@@ -1,0 +1,11 @@
+# Extra dependencies for --evaluator rl (trained PPO/DQN policies)
+# and for training them; install on top of verify/requirements.txt
+numpy
+pandas
+requests
+torch
+stable-baselines3
+gymnasium
+tensorboard
+tqdm
+rich

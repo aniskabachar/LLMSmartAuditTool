@@ -13,7 +13,7 @@ calling the LLM again.
 """
 
 from __future__ import annotations
-import hashlib, json, platform, random, subprocess
+import collections, hashlib, json, platform, random, subprocess
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -45,6 +45,13 @@ def load_contracts(difficulty: str, use_test_split: bool = True) -> list[Path]:
     use_test_split=True  -> only the held-out test split (raises if missing)
     use_test_split=False -> every labelled contract in tasks/{difficulty}/
     """
+    return contracts_for(difficulty, "test" if use_test_split else "all")
+
+
+def contracts_for(difficulty: str, part: str = "test") -> list[Path]:
+    """Labelled contracts for a tier: part = "train" | "test" | "all"."""
+    if part not in ("train", "test", "all"):
+        raise ValueError(f"part must be train|test|all, got {part!r}")
     task_dir  = ROOT / "tasks" / difficulty
     sol_files = sorted(f for f in task_dir.glob("*.sol")
                        if f.with_suffix(".json").exists())
@@ -53,7 +60,7 @@ def load_contracts(difficulty: str, use_test_split: bool = True) -> list[Path]:
             f"No labelled .sol files in tasks/{difficulty}/. "
             f"Run: py scripts/fetch_smartbugs.py"
         )
-    if not use_test_split:
+    if part == "all":
         return sol_files
 
     sp = split_path(difficulty)
@@ -61,15 +68,15 @@ def load_contracts(difficulty: str, use_test_split: bool = True) -> list[Path]:
         raise FileNotFoundError(
             f"Missing {sp.relative_to(ROOT)}. Run: py verify/split_dataset.py"
         )
-    test_stems = set(json.loads(sp.read_text(encoding="utf-8"))["test"])
-    test_files = [f for f in sol_files if f.stem in test_stems]
-    missing    = test_stems - {f.stem for f in test_files}
+    stems   = set(json.loads(sp.read_text(encoding="utf-8"))[part])
+    files   = [f for f in sol_files if f.stem in stems]
+    missing = stems - {f.stem for f in files}
     if missing:
         raise FileNotFoundError(
-            f"{len(missing)} test-split contracts missing from tasks/{difficulty}/: "
+            f"{len(missing)} {part}-split contracts missing from tasks/{difficulty}/: "
             f"{sorted(missing)[:3]}..."
         )
-    return test_files
+    return files
 
 
 def select_contracts(paths: list[Path], n: int | None = None,
@@ -82,8 +89,12 @@ def select_contracts(paths: list[Path], n: int | None = None,
 
 
 def contract_record(sol_path: Path, action: Action, raw: list[str],
-                    error: str | None = None, labels: str = "curated") -> dict:
-    """Grade one contract and keep everything needed to re-grade it later."""
+                    error: str | None = None, labels: str = "curated",
+                    audit: dict | None = None) -> dict:
+    """
+    Grade one contract and keep everything needed to re-grade it later.
+    `audit` holds evaluator-specific details (mode, rounds, token usage).
+    """
     gt     = json.loads(sol_path.with_suffix(".json").read_text(encoding="utf-8"))
     result = grade(action, gt, labels=labels)
     return {
@@ -100,6 +111,7 @@ def contract_record(sol_path: Path, action: Action, raw: list[str],
         "action":          action.model_dump(mode="json"),
         "raw_responses":   raw,
         "error":           error,
+        **({"audit": audit} if audit else {}),
     }
 
 
@@ -109,7 +121,7 @@ def summarize(difficulty: str, details: list[dict]) -> dict:
         return {"difficulty": difficulty, "n_contracts": 0, "error": "no contracts evaluated"}
     n = len(details)
     mean = lambda key: round(sum(d[key] for d in details) / n, 4)
-    return {
+    summary = {
         "difficulty":    difficulty,
         "n_contracts":   n,
         "n_errors":      sum(1 for d in details if d.get("error")),
@@ -117,8 +129,19 @@ def summarize(difficulty: str, details: list[dict]) -> dict:
         "avg_precision": mean("precision"),
         "avg_recall":    mean("recall"),
         "avg_f1":        mean("f1"),
-        "details":       details,
     }
+    audits = [d["audit"] for d in details if "audit" in d]
+    if len(audits) == n:
+        amean = lambda key: round(sum(a[key] for a in audits) / n, 4)
+        summary.update({
+            "avg_tokens":   amean("tokens"),
+            "avg_cost_usd": round(sum(a["cost_usd"] for a in audits) / n, 6),
+            "avg_rounds":   amean("rounds"),
+            "avg_calls":    amean("llm_calls"),
+            "mode_counts":  dict(sorted(collections.Counter(a["mode"] for a in audits).items())),
+        })
+    summary["details"] = details
+    return summary
 
 
 def sha256(*parts: str) -> str:

@@ -17,6 +17,8 @@ from typing import Optional
 from pathlib import Path
 import json
 
+from auditor.models import Action
+
 app = FastAPI(
     title="LLM SmartAudit — Real Evaluation API",
     version="2.0",
@@ -38,6 +40,9 @@ def root():
         "contracts_available": contracts,
         "total": sum(contracts.values()),
         "endpoints": [
+            "POST /reset",
+            "POST /step",
+            "GET /state",
             "GET /evaluate/real/{difficulty}?n=&seed=42&labels=curated",
             "GET /evaluate/random/{difficulty}?n=&seed=7777&labels=curated",
             "POST /evaluate/split/{difficulty}",
@@ -58,6 +63,64 @@ def dataset_info():
         jsons = list(p.glob("*.json")) if p.exists() else []
         info[t] = {"sol_files": len(sols), "ground_truth": len(jsons)}
     return info
+
+
+# ── Audit environment: reset / step / state ──────────────────────────────────
+
+class ResetRequest(BaseModel):
+    difficulty:    str           = "easy"
+    split:         str           = "test"      # train | test | all
+    labels:        str           = "curated"   # curated | all
+    seed:          Optional[int] = None
+    contract:      Optional[str] = None        # serve a specific contract
+    with_features: bool          = False       # include RL contract features
+
+
+_env = None   # one shared environment session per server process
+
+
+@app.post("/reset")
+def env_reset(req: Optional[ResetRequest] = None):
+    """Start an episode: returns the next contract's source (labels hidden)."""
+    global _env
+    from auditor.environment import AuditEnvironment
+    req = req or ResetRequest()
+    try:
+        if _env is None:
+            _env = AuditEnvironment(req.difficulty, req.split, req.labels,
+                                    req.seed or 0, req.with_features)
+        _env.with_features = req.with_features
+        obs, info = _env.reset(seed=req.seed, options={
+            "difficulty": req.difficulty, "split": req.split,
+            "labels": req.labels, "contract": req.contract,
+        })
+    except (ValueError, KeyError) as e:
+        raise HTTPException(400, str(e))
+    except FileNotFoundError as e:
+        raise HTTPException(404, str(e))
+    return {"observation": obs, "info": info}
+
+
+@app.post("/step")
+def env_step(action: Action):
+    """Submit findings for the current contract; reward = grader score."""
+    if _env is None:
+        raise HTTPException(409, "Call POST /reset first")
+    try:
+        obs, reward, terminated, truncated, info = _env.step(action)
+    except RuntimeError as e:
+        raise HTTPException(409, str(e))
+    obs.pop("source_code", None)   # already sent by /reset
+    return {"observation": obs, "reward": reward, "terminated": terminated,
+            "truncated": truncated, "info": info}
+
+
+@app.get("/state")
+def env_state():
+    """Current episode and running mean reward."""
+    if _env is None:
+        raise HTTPException(409, "Call POST /reset first")
+    return _env.state()
 
 
 # ── Create splits ─────────────────────────────────────────────────────────────

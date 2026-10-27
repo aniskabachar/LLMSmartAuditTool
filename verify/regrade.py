@@ -69,7 +69,7 @@ def regrade(data: dict, labels: str | None = None) -> tuple[dict, list[str], lis
                 leaks.append(f"{tier}/{d['contract']}: not in held-out test split")
             details.append(contract_record(sol_path, Action(**d["action"]),
                                            d.get("raw_responses", []), d.get("error"),
-                                           labels=labels))
+                                           labels=labels, audit=d.get("audit")))
         new_results[tier] = summarize(tier, details)
 
     new_random = {

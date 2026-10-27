@@ -16,6 +16,8 @@ the stored findings and the ground truth, without calling the LLM.
 Run:
     py verify/run_real_evaluation.py                   # whole test split, basic evaluator
     py verify/run_real_evaluation.py --evaluator cot   # chain-of-thought evaluator
+    py verify/run_real_evaluation.py --evaluator ba    # real audit modes: ba|ta|hybrid|rl
+    py verify/compare_results.py                       # table across all saved runs
     py verify/run_real_evaluation.py --tier easy       # one tier only
     py verify/run_real_evaluation.py --n 5             # seeded 5-contract subsample/tier
 """
@@ -30,10 +32,13 @@ from verify.eval_common import ROOT, TIERS, SAMPLE_SEED, split_path, rel, run_me
 
 RANDOM_SEED   = 7777
 RANDOM_TRIALS = 100
+EVALUATORS    = ("basic", "cot", "ba", "ta", "hybrid", "rl")
 DEFAULT_OUT   = {
     "basic": "verify/results/real_evaluation.json",
     "cot":   "verify/results/real_evaluation_cot.json",
+    **{m: f"verify/results/real_evaluation_{m}.json" for m in ("ba", "ta", "hybrid", "rl")},
 }
+COST_KEYS     = ("avg_tokens", "avg_cost_usd", "avg_rounds", "avg_calls", "mode_counts")
 
 
 def _need_download() -> bool:
@@ -117,7 +122,11 @@ def build_summary(random_scores: dict, real_scores: dict, tiers: list[str]) -> t
             "gap":          round(llm["avg_score"] - rand, 4),
             "n_contracts":  llm["n_contracts"],
             "n_errors":     llm["n_errors"],
+            **{k: llm[k] for k in COST_KEYS if k in llm},
         }
+        if "avg_tokens" in llm:
+            rows[level]["score_per_1k_tokens"] = round(
+                1000 * llm["avg_score"] / llm["avg_tokens"], 4) if llm["avg_tokens"] else 0.0
 
     details = [d for level in tiers for d in real_scores[level]["details"]]
     n_total = sum(r["n_contracts"] for r in rows.values())
@@ -132,6 +141,14 @@ def build_summary(random_scores: dict, real_scores: dict, tiers: list[str]) -> t
     }
     overall["macro_gap_vs_random"] = round(overall["macro_avg_score"]
                                            - overall["macro_random_score"], 4)
+    audits = [d["audit"] for d in details if "audit" in d]
+    if audits and len(audits) == n_total:
+        overall["micro_avg_tokens"]   = round(sum(a["tokens"] for a in audits) / n_total, 2)
+        overall["micro_avg_cost_usd"] = round(sum(a["cost_usd"] for a in audits) / n_total, 6)
+        overall["micro_avg_rounds"]   = round(sum(a["rounds"] for a in audits) / n_total, 4)
+        overall["score_per_1k_tokens"] = (
+            round(1000 * overall["micro_avg_score"] / overall["micro_avg_tokens"], 4)
+            if overall["micro_avg_tokens"] else 0.0)
     return rows, overall
 
 
@@ -148,6 +165,14 @@ def step5_report(rows: dict, overall: dict):
               f"{r['f1']:>7.4f} {r['gap']:>+8.4f}")
     print(f"\n  Overall (macro) score: {overall['macro_avg_score']:.4f}   "
           f"(micro over {overall['n_contracts']} contracts: {overall['micro_avg_score']:.4f})")
+    if "micro_avg_tokens" in overall:
+        modes = {}
+        for r in rows.values():
+            for m, c in r.get("mode_counts", {}).items():
+                modes[m] = modes.get(m, 0) + c
+        print(f"  Cost: {overall['micro_avg_tokens']:.0f} tokens/contract  "
+              f"(${overall['micro_avg_cost_usd']:.5f})  rounds={overall['micro_avg_rounds']:.2f}  "
+              f"score/1k tokens={overall['score_per_1k_tokens']:.4f}  modes={modes}")
     if overall["n_errors"]:
         print(f"  [WARN] {overall['n_errors']} contracts hit LLM errors and scored 0 — "
               f"rerun before reporting.")
@@ -155,8 +180,10 @@ def step5_report(rows: dict, overall: dict):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--evaluator", default="basic", choices=["basic", "cot"],
-                        help="basic = single-shot JSON prompt; cot = chain-of-thought")
+    parser.add_argument("--evaluator", default="basic", choices=list(EVALUATORS),
+                        help="basic = single-shot JSON prompt; cot = chain-of-thought; "
+                             "ba|ta|hybrid = real audit modes with n=3 consensus rounds; "
+                             "rl = trained PPO mode selector + DQN stopping policy")
     parser.add_argument("--n",    type=int, default=None,
                         help="Contracts per tier (default: whole test split)")
     parser.add_argument("--seed", type=int, default=SAMPLE_SEED,
@@ -175,10 +202,15 @@ def main():
     tiers = list(TIERS) if args.tier == "all" else [args.tier]
     if args.evaluator == "basic":
         from verify import real_evaluator as ev
-        evaluate = ev.evaluate_difficulty
-    else:
+        evaluate, ev_config = ev.evaluate_difficulty, ev.config()
+    elif args.evaluator == "cot":
         from verify import improved_evaluator as ev
-        evaluate = ev.evaluate_improved
+        evaluate, ev_config = ev.evaluate_improved, ev.config()
+    else:
+        import functools
+        from verify import mode_evaluator as ev
+        evaluate  = functools.partial(ev.evaluate_mode, mode=args.evaluator)
+        ev_config = ev.config(args.evaluator)
 
     if not args.skip_download:
         step1_download()
@@ -193,7 +225,7 @@ def main():
     out.parent.mkdir(exist_ok=True, parents=True)
     out.write_text(json.dumps({
         "metadata": run_metadata(
-            **ev.config(),
+            **ev_config,
             tiers         = tiers,
             labels        = args.labels,
             n             = args.n,
