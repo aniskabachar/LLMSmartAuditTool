@@ -227,6 +227,7 @@ def evaluate_difficulty(
     n: int | None = None,
     seed: int = SAMPLE_SEED,
     use_test_split: bool = True,
+    labels: str = "curated",
 ) -> dict:
     """
     Evaluates real LLM agent on contracts from tasks/{difficulty}/
@@ -237,6 +238,7 @@ def evaluate_difficulty(
     n               : number of contracts (None = the whole test split)
     seed            : seed for sub-sampling when n is smaller than the split
     use_test_split  : if True, only held-out test contracts are evaluated
+    labels          : "curated" (category labels) or "all" (+ tool findings)
 
     Returns
     -------
@@ -253,7 +255,7 @@ def evaluate_difficulty(
         print(f"  [{i+1}/{len(sample)}] {sol_path.name} ... ", end="", flush=True)
 
         action, raw, error = audit_contract(contract_code)
-        record = contract_record(sol_path, action, raw, error)
+        record = contract_record(sol_path, action, raw, error, labels=labels)
         details.append(record)
 
         print(f"score={record['score']:.3f}  "

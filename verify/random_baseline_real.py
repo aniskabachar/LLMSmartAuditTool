@@ -48,6 +48,7 @@ def run_random_baseline(
     seed: int = 7777,
     use_test_split: bool = True,
     trials: int = 100,
+    labels: str = "curated",
 ) -> dict:
     """
     Run random agent on real SmartBugs contracts.
@@ -59,6 +60,7 @@ def run_random_baseline(
     use_test_split : if True, only held-out test contracts are scored
     trials         : random reports drawn per contract; scores are averaged
                      so the floor estimate is stable on small test splits
+    labels         : "curated" (category labels) or "all" (+ tool findings)
 
     Returns
     -------
@@ -71,7 +73,7 @@ def run_random_baseline(
     for sol_path in sample:
         ground_truth = json.loads(sol_path.with_suffix(".json").read_text(encoding="utf-8"))
         for _ in range(trials):
-            result = grade(random_action(rng, max_bugs=3), ground_truth)
+            result = grade(random_action(rng, max_bugs=3), ground_truth, labels=labels)
             scores.append(result["score"])
             precisions.append(result["precision"])
             recalls.append(result["recall"])
@@ -83,6 +85,7 @@ def run_random_baseline(
         "trials":        trials,
         "seed":          seed,
         "test_split":    use_test_split,
+        "labels":        labels,
         "avg_score":     mean(scores),
         "avg_precision": mean(precisions),
         "avg_recall":    mean(recalls),

@@ -8,18 +8,27 @@
       "severity": "medium",
       "location": "unknown",
       "description": "Known timestamp_dependence from SmartBugs Labeled (proc_time_manipulation)"
+    }
+  ],
+  "tool_findings": [
+    {
+      "type": "integer_overflow",
+      "severity": "medium",
+      "location": "unknown",
+      "description": "Reported by static analysis tools (unverified)",
+      "tools": [
+        "confuzzius",
+        "conkas"
+      ]
     },
     {
       "type": "reentrancy",
       "severity": "medium",
       "location": "unknown",
-      "description": "Confirmed by static analysis tools"
-    },
-    {
-      "type": "integer_overflow",
-      "severity": "medium",
-      "location": "unknown",
-      "description": "Confirmed by static analysis tools"
+      "description": "Reported by static analysis tools (unverified)",
+      "tools": [
+        "conkas"
+      ]
     }
   ]
 }

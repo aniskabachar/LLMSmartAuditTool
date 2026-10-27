@@ -25,6 +25,7 @@ import json, sys, argparse
 sys.path.insert(0, str(__import__("pathlib").Path(__file__).parent.parent))
 
 from pathlib import Path
+from auditor.grader import LABEL_SETS
 from verify.eval_common import ROOT, TIERS, SAMPLE_SEED, split_path, rel, run_metadata
 
 RANDOM_SEED   = 7777
@@ -72,7 +73,7 @@ def step2_split(tiers: list[str]) -> dict:
 
 
 def step3_random_baseline(tiers: list[str], n: int | None,
-                          seed: int, trials: int) -> dict:
+                          seed: int, trials: int, labels: str) -> dict:
     print("\n" + "=" * 55)
     print("STEP 3: Random agent baseline (floor check, test split)")
     print("=" * 55)
@@ -80,14 +81,16 @@ def step3_random_baseline(tiers: list[str], n: int | None,
     from verify.random_baseline_real import run_random_baseline
     results = {}
     for level in tiers:
-        r = run_random_baseline(level, n=n, seed=seed, use_test_split=True, trials=trials)
+        r = run_random_baseline(level, n=n, seed=seed, use_test_split=True,
+                                trials=trials, labels=labels)
         results[level] = r
         print(f"  {level:<8}: score={r['avg_score']:.4f}  "
               f"P={r['avg_precision']:.4f}  R={r['avg_recall']:.4f}")
     return results
 
 
-def step4_real_llm(evaluate, tiers: list[str], n: int | None, seed: int) -> dict:
+def step4_real_llm(evaluate, tiers: list[str], n: int | None, seed: int,
+                   labels: str) -> dict:
     print("\n" + "=" * 55)
     print("STEP 4: Real LLM evaluation (test split)")
     print("=" * 55)
@@ -95,7 +98,7 @@ def step4_real_llm(evaluate, tiers: list[str], n: int | None, seed: int) -> dict
     results = {}
     for level in tiers:
         print(f"\n  --- {level.upper()} ---")
-        results[level] = evaluate(level, n=n, seed=seed, use_test_split=True)
+        results[level] = evaluate(level, n=n, seed=seed, use_test_split=True, labels=labels)
     return results
 
 
@@ -161,6 +164,9 @@ def main():
     parser.add_argument("--tier", default="all",
                         choices=["all", *TIERS],
                         help="Which tier to evaluate (default: all)")
+    parser.add_argument("--labels", default="curated", choices=list(LABEL_SETS),
+                        help="curated = dataset category labels only (default); "
+                             "all = also static-tool findings")
     parser.add_argument("--out",  default=None,
                         help="Results file (default depends on --evaluator)")
     parser.add_argument("--skip-download", action="store_true")
@@ -178,8 +184,8 @@ def main():
         step1_download()
 
     splits = step2_split(tiers)
-    rand   = step3_random_baseline(tiers, args.n, RANDOM_SEED, RANDOM_TRIALS)
-    real   = step4_real_llm(evaluate, tiers, args.n, args.seed)
+    rand   = step3_random_baseline(tiers, args.n, RANDOM_SEED, RANDOM_TRIALS, args.labels)
+    real   = step4_real_llm(evaluate, tiers, args.n, args.seed, args.labels)
     rows, overall = build_summary(rand, real, tiers)
     step5_report(rows, overall)
 
@@ -189,6 +195,7 @@ def main():
         "metadata": run_metadata(
             **ev.config(),
             tiers         = tiers,
+            labels        = args.labels,
             n             = args.n,
             sample_seed   = args.seed,
             random_seed   = RANDOM_SEED,

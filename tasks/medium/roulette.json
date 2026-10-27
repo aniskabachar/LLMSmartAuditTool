@@ -9,5 +9,6 @@
       "location": "unknown",
       "description": "Known timestamp_dependence from SmartBugs Labeled (proc_time_manipulation)"
     }
-  ]
+  ],
+  "tool_findings": []
 }

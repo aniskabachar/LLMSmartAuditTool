@@ -368,7 +368,8 @@ Reason through each check, then end with the JSON result."""
 # ── Evaluation runner ─────────────────────────────────────────────────────────
 
 def evaluate_improved(difficulty: str, n: int | None = None,
-                      seed: int = SAMPLE_SEED, use_test_split: bool = True) -> dict:
+                      seed: int = SAMPLE_SEED, use_test_split: bool = True,
+                      labels: str = "curated") -> dict:
     """Evaluate the CoT agent on the test split (all of it when n is None)."""
     sample = select_contracts(load_contracts(difficulty, use_test_split), n, seed)
     print(f"  Evaluating {len(sample)} contracts "
@@ -381,7 +382,7 @@ def evaluate_improved(difficulty: str, n: int | None = None,
         print(f"  [{i+1}/{len(sample)}] {sol_path.name} ... ", end="", flush=True)
 
         action, raws, error = audit_with_cot(code)
-        record = contract_record(sol_path, action, raws, error)
+        record = contract_record(sol_path, action, raws, error, labels=labels)
         details.append(record)
 
         found = ",".join(record["found_types"]) or "(none)"

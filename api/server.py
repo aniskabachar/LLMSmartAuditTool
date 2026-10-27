@@ -38,8 +38,8 @@ def root():
         "contracts_available": contracts,
         "total": sum(contracts.values()),
         "endpoints": [
-            "GET /evaluate/real/{difficulty}?n=&seed=42",
-            "GET /evaluate/random/{difficulty}?n=&seed=7777",
+            "GET /evaluate/real/{difficulty}?n=&seed=42&labels=curated",
+            "GET /evaluate/random/{difficulty}?n=&seed=7777&labels=curated",
             "POST /evaluate/split/{difficulty}",
             "GET /results",
         ]
@@ -75,16 +75,21 @@ def create_split(difficulty: str, test_ratio: float = 0.2):
 # ── Random baseline ───────────────────────────────────────────────────────────
 
 @app.get("/evaluate/random/{difficulty}")
-def random_baseline(difficulty: str, n: Optional[int] = None, seed: int = 7777):
+def random_baseline(difficulty: str, n: Optional[int] = None, seed: int = 7777,
+                    labels: str = "curated"):
     """
     Runs a completely random agent on the held-out test split.
     n omitted = whole test split. Proves discriminative floor is genuinely low (< 0.20).
+    labels: curated (dataset category labels) | all (+ static-tool findings)
     """
     if difficulty not in ("easy", "medium", "hard"):
         raise HTTPException(400, "difficulty must be easy|medium|hard")
+    if labels not in ("curated", "all"):
+        raise HTTPException(400, "labels must be curated|all")
     try:
         from verify.random_baseline_real import run_random_baseline
-        return run_random_baseline(difficulty, n=n, seed=seed, use_test_split=True)
+        return run_random_baseline(difficulty, n=n, seed=seed, use_test_split=True,
+                                   labels=labels)
     except FileNotFoundError as e:
         raise HTTPException(404, str(e))
 
@@ -92,15 +97,19 @@ def random_baseline(difficulty: str, n: Optional[int] = None, seed: int = 7777):
 # ── Real LLM evaluation ───────────────────────────────────────────────────────
 
 @app.get("/evaluate/real/{difficulty}")
-def real_evaluation(difficulty: str, n: Optional[int] = None, seed: int = 42):
+def real_evaluation(difficulty: str, n: Optional[int] = None, seed: int = 42,
+                    labels: str = "curated"):
     """
     Runs real Groq LLM evaluation on the held-out test split.
     n omitted = whole test split. Returns true precision/recall/F1 scores.
+    labels: curated (dataset category labels) | all (+ static-tool findings)
 
     NOTE: This makes real Groq API calls (costs tokens).
     """
     if difficulty not in ("easy", "medium", "hard"):
         raise HTTPException(400, "difficulty must be easy|medium|hard")
+    if labels not in ("curated", "all"):
+        raise HTTPException(400, "labels must be curated|all")
 
     groq_key = os.getenv("GROQ_API_KEY")
     if not groq_key:
@@ -108,10 +117,12 @@ def real_evaluation(difficulty: str, n: Optional[int] = None, seed: int = 42):
 
     try:
         from verify.real_evaluator import evaluate_difficulty
-        result = evaluate_difficulty(difficulty, n=n, seed=seed, use_test_split=True)
+        result = evaluate_difficulty(difficulty, n=n, seed=seed, use_test_split=True,
+                                     labels=labels)
         # Don't return full per-contract details in API response (too large)
         return {
             "difficulty":    result["difficulty"],
+            "labels":        labels,
             "n_contracts":   result["n_contracts"],
             "n_errors":      result.get("n_errors", 0),
             "avg_score":     result["avg_score"],

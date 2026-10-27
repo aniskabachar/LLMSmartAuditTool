@@ -8,18 +8,28 @@
       "severity": "high",
       "location": "unknown",
       "description": "Known selfdestruct from SmartBugs Labeled (proc_unsafe_suicide)"
+    }
+  ],
+  "tool_findings": [
+    {
+      "type": "integer_overflow",
+      "severity": "medium",
+      "location": "unknown",
+      "description": "Reported by static analysis tools (unverified)",
+      "tools": [
+        "confuzzius",
+        "oyente",
+        "sfuzz"
+      ]
     },
     {
       "type": "reentrancy",
       "severity": "medium",
       "location": "unknown",
-      "description": "Confirmed by static analysis tools"
-    },
-    {
-      "type": "integer_overflow",
-      "severity": "medium",
-      "location": "unknown",
-      "description": "Confirmed by static analysis tools"
+      "description": "Reported by static analysis tools (unverified)",
+      "tools": [
+        "confuzzius"
+      ]
     }
   ]
 }

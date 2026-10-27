@@ -8,12 +8,17 @@
       "severity": "medium",
       "location": "unknown",
       "description": "Known tx_origin from SmartBugs Labeled (proc_tx_origin)"
-    },
+    }
+  ],
+  "tool_findings": [
     {
       "type": "reentrancy",
       "severity": "medium",
       "location": "unknown",
-      "description": "Confirmed by static analysis tools"
+      "description": "Reported by static analysis tools (unverified)",
+      "tools": [
+        "conkas"
+      ]
     }
   ]
 }

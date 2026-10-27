@@ -8,18 +8,26 @@
       "severity": "high",
       "location": "unknown",
       "description": "Known reentrancy from SmartBugs Labeled (proc_reentrancy)"
+    }
+  ],
+  "tool_findings": [
+    {
+      "type": "integer_overflow",
+      "severity": "medium",
+      "location": "unknown",
+      "description": "Reported by static analysis tools (unverified)",
+      "tools": [
+        "conkas"
+      ]
     },
     {
       "type": "unchecked_low_level_calls",
       "severity": "medium",
       "location": "unknown",
-      "description": "Confirmed by static analysis tools"
-    },
-    {
-      "type": "integer_overflow",
-      "severity": "medium",
-      "location": "unknown",
-      "description": "Confirmed by static analysis tools"
+      "description": "Reported by static analysis tools (unverified)",
+      "tools": [
+        "confuzzius"
+      ]
     }
   ]
 }

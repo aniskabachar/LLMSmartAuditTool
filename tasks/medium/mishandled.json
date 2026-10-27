@@ -9,5 +9,6 @@
       "location": "unknown",
       "description": "Known unchecked_low_level_calls from SmartBugs Labeled (proc_unchecked_send)"
     }
-  ]
+  ],
+  "tool_findings": []
 }

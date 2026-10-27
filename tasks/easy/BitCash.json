@@ -8,18 +8,7 @@
       "severity": "medium",
       "location": "unknown",
       "description": "Known tx_origin from SmartBugs Labeled (proc_tx_origin)"
-    },
-    {
-      "type": "reentrancy",
-      "severity": "medium",
-      "location": "unknown",
-      "description": "Confirmed by static analysis tools"
-    },
-    {
-      "type": "integer_overflow",
-      "severity": "medium",
-      "location": "unknown",
-      "description": "Confirmed by static analysis tools"
     }
-  ]
+  ],
+  "tool_findings": []
 }

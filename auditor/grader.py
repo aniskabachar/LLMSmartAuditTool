@@ -11,6 +11,11 @@ Matching logic:
 Score = 0.6 * recall + 0.4 * precision
   (weighted toward recall because missing bugs is worse than false alarms
    in a security context)
+
+Label sets:
+  - "curated" (default): only the dataset's category label(s), `vulnerabilities`
+  - "all"              : curated labels plus `tool_findings` reported by
+                         static-analysis tools (unverified, may contain FPs)
 """
 from __future__ import annotations
 from typing import Union
@@ -41,7 +46,11 @@ def _normalize_type(vuln_type: str) -> str:
     return t
 
 
-def grade(action: Action, ground_truth: Union[dict, GroundTruth]) -> dict:
+LABEL_SETS = ("curated", "all")
+
+
+def grade(action: Action, ground_truth: Union[dict, GroundTruth],
+          labels: str = "curated") -> dict:
     """
     Grade an agent's Action against ground truth.
 
@@ -49,6 +58,7 @@ def grade(action: Action, ground_truth: Union[dict, GroundTruth]) -> dict:
     ----------
     action       : Action with .vulnerabilities list
     ground_truth : dict (raw JSON) or GroundTruth pydantic model
+    labels       : "curated" (category labels only) or "all" (+ tool findings)
 
     Returns
     -------
@@ -57,13 +67,16 @@ def grade(action: Action, ground_truth: Union[dict, GroundTruth]) -> dict:
         true_positives, false_positives, missed_bugs,
         found_types, expected_types
     """
+    if labels not in LABEL_SETS:
+        raise ValueError(f"labels must be one of {LABEL_SETS}, got {labels!r}")
     if isinstance(ground_truth, dict):
         gt = GroundTruth(**ground_truth)
     else:
         gt = ground_truth
 
     # Build expected type set (normalised)
-    expected_types = {_normalize_type(v.type) for v in gt.vulnerabilities}
+    expected_vulns = gt.vulnerabilities + (gt.tool_findings if labels == "all" else [])
+    expected_types = {_normalize_type(v.type) for v in expected_vulns}
 
     # Build found type set (normalised)
     found_types = {_normalize_type(v.type) for v in action.vulnerabilities}
@@ -98,9 +111,10 @@ def grade(action: Action, ground_truth: Union[dict, GroundTruth]) -> dict:
     }
 
 
-def grade_from_files(sol_path: Path, gt_path: Path, action: Action) -> dict:
+def grade_from_files(sol_path: Path, gt_path: Path, action: Action,
+                     labels: str = "curated") -> dict:
     """Convenience wrapper that loads ground truth from disk."""
     ground_truth = json.loads(gt_path.read_text(encoding="utf-8"))
-    result = grade(action, ground_truth)
+    result = grade(action, ground_truth, labels=labels)
     result["contract"] = sol_path.name
     return result

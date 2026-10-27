@@ -82,10 +82,10 @@ def select_contracts(paths: list[Path], n: int | None = None,
 
 
 def contract_record(sol_path: Path, action: Action, raw: list[str],
-                    error: str | None = None) -> dict:
+                    error: str | None = None, labels: str = "curated") -> dict:
     """Grade one contract and keep everything needed to re-grade it later."""
     gt     = json.loads(sol_path.with_suffix(".json").read_text(encoding="utf-8"))
-    result = grade(action, gt)
+    result = grade(action, gt, labels=labels)
     return {
         "contract":        sol_path.name,
         "score":           result["score"],

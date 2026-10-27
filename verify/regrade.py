@@ -13,8 +13,13 @@ Exits 0 if everything matches the file, 1 otherwise.
 Use --write to rewrite the file with the recomputed numbers (e.g. after a
 ground-truth or grader fix) instead of failing.
 
+Grades with the label set recorded in the file ("curated" if absent).
+--labels all|curated re-scores the stored findings against another label
+set; save that with --out (no LLM calls needed).
+
 Run:
     py verify/regrade.py verify/results/real_evaluation.json
+    py verify/regrade.py verify/results/real_evaluation.json --labels all         --out verify/results/real_evaluation_all_labels.json
 """
 
 from __future__ import annotations
@@ -23,6 +28,7 @@ sys.path.insert(0, str(__import__("pathlib").Path(__file__).parent.parent))
 
 from pathlib import Path
 from auditor.models import Action
+from auditor.grader import LABEL_SETS
 from verify.eval_common import ROOT, contract_record, summarize, split_path, rel
 from verify.random_baseline_real import run_random_baseline
 from verify.run_real_evaluation import build_summary
@@ -40,11 +46,12 @@ def _diff(path: str, old, new, out: list[str]):
         out.append(f"{path}: file={old!r} recomputed={new!r}")
 
 
-def regrade(data: dict) -> tuple[dict, list[str], list[str]]:
+def regrade(data: dict, labels: str | None = None) -> tuple[dict, list[str], list[str]]:
     """Return (recomputed results document, number differences, test-split leaks)."""
     problems: list[str] = []
     leaks:    list[str] = []
     meta    = data.get("metadata", {})
+    labels  = labels or meta.get("labels", "curated")
     results = data.get("results")
     if not results or not all(r.get("details") and all("action" in d for d in r["details"])
                               for r in results.values()):
@@ -61,17 +68,19 @@ def regrade(data: dict) -> tuple[dict, list[str], list[str]]:
             if sol_path.stem not in test_stems:
                 leaks.append(f"{tier}/{d['contract']}: not in held-out test split")
             details.append(contract_record(sol_path, Action(**d["action"]),
-                                           d.get("raw_responses", []), d.get("error")))
+                                           d.get("raw_responses", []), d.get("error"),
+                                           labels=labels))
         new_results[tier] = summarize(tier, details)
 
     new_random = {
         tier: run_random_baseline(tier, n=meta.get("n"), seed=meta["random_seed"],
-                                  use_test_split=True, trials=meta["random_trials"])
+                                  use_test_split=True, trials=meta["random_trials"],
+                                  labels=labels)
         for tier in tiers
     }
     rows, overall = build_summary(new_random, new_results, tiers)
 
-    new_data = {**data, "random_baseline": new_random, "summary": rows,
+    new_data = {**data, "metadata": {**meta, "labels": labels}, "random_baseline": new_random, "summary": rows,
                 "overall": overall, "results": new_results}
     for key in ("results", "random_baseline", "summary", "overall"):
         _diff(key, data.get(key), new_data[key], problems)
@@ -84,6 +93,10 @@ def main():
                         default="verify/results/real_evaluation.json")
     parser.add_argument("--write", action="store_true",
                         help="Rewrite the file with recomputed numbers")
+    parser.add_argument("--labels", choices=list(LABEL_SETS), default=None,
+                        help="Label set to grade with (default: the one in the file)")
+    parser.add_argument("--out", default=None,
+                        help="Write the recomputed results here instead of in place")
     args = parser.parse_args()
 
     path = Path(args.results_file)
@@ -92,15 +105,19 @@ def main():
     data = json.loads(path.read_text(encoding="utf-8"))
 
     try:
-        new_data, problems, leaks = regrade(data)
+        new_data, problems, leaks = regrade(data, args.labels)
     except ValueError as e:
         print(f"[FAIL] {path.name}: {e}")
         sys.exit(1)
 
-    meta = data.get("metadata", {})
+    meta     = data.get("metadata", {})
+    rescored = new_data["metadata"]["labels"] != meta.get("labels", "curated")
+    out      = Path(args.out) if args.out else (path if args.write else None)
     print(f"Results file : {rel(path)}")
     print(f"Evaluator    : {meta.get('evaluator')}  model={meta.get('model')}  "
           f"prompt={meta.get('prompt_hash')}  commit={meta.get('git_commit')}")
+    print(f"Labels       : {new_data['metadata']['labels']}"
+          + (f"  (file was graded with {meta.get('labels', 'curated')})" if rescored else ""))
     for tier, r in new_data["summary"].items():
         print(f"  {tier:<8} n={r['n_contracts']:<3} score={r['llm_score']:.4f}  "
               f"P={r['precision']:.4f}  R={r['recall']:.4f}  F1={r['f1']:.4f}  "
@@ -111,16 +128,18 @@ def main():
         for p in leaks:
             print(f"  - {p}")
         sys.exit(1)
-    if not problems:
+    if rescored:
+        print("[RESCORED] Stored findings graded against a different label set.")
+    elif not problems:
         print("[PASS] All numbers reproduce from stored findings + ground truth.")
-        return
-    print(f"[{'UPDATED' if args.write else 'FAIL'}] {len(problems)} difference(s):")
-    for p in problems[:50]:
-        print(f"  - {p}")
-    if args.write:
-        path.write_text(json.dumps(new_data, indent=2), encoding="utf-8")
-        print(f"  Rewrote {rel(path)}")
     else:
+        print(f"[{'UPDATED' if out else 'FAIL'}] {len(problems)} difference(s):")
+        for p in problems[:50]:
+            print(f"  - {p}")
+    if out and (rescored or problems):
+        out.write_text(json.dumps(new_data, indent=2), encoding="utf-8")
+        print(f"  Wrote {rel(out)}")
+    elif problems and not rescored:
         sys.exit(1)
 
 

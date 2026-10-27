@@ -19,8 +19,12 @@ The Labeled/ folder already contains categorised .sol files:
   proc_safecontract/      -> (no vuln — clean contracts)
   proc_code3rena/         -> mixed (skip for now)
 
-Also maps traditional_tools_results.csv findings per contract
-for multi-label ground truth where available.
+The curated category label goes in `vulnerabilities` (what the grader
+scores by default). Types reported by the tools in
+traditional_tools_results.csv go in `tool_findings`: they are unverified
+and only scored with labels="all". Tool results are matched by category
+folder AND file name, since the same file name (e.g. BitCash.sol) occurs
+in several folders with different code.
 
 Run:
     py verify/build_ground_truth_from_existing.py
@@ -32,9 +36,10 @@ from pathlib import Path
 
 csv.field_size_limit(10_000_000)
 
-LABELED_DIR = Path("evaluation/benchmark/Labeled")
-TOOLS_CSV   = Path("evaluation/LabeledResult/traditional_tools_results.csv")
-TASKS_DIR   = Path("tasks")
+ROOT        = Path(__file__).resolve().parent.parent
+LABELED_DIR = ROOT / "evaluation" / "benchmark" / "Labeled"
+TOOLS_CSV   = ROOT / "evaluation" / "LabeledResult" / "traditional_tools_results.csv"
+TASKS_DIR   = ROOT / "tasks"
 
 # Category folder -> (difficulty, vuln_type, severity)
 CATEGORY_MAP = {
@@ -72,29 +77,52 @@ TOOL_VULN_MAP = {
 }
 
 
-def load_tool_findings() -> dict[str, set[str]]:
-    """Load per-basename set of confirmed vulnerability types from tool CSV."""
-    findings: dict[str, set[str]] = {}
+ToolIndex = dict[tuple[str, str], dict[str, set[str]]]
+
+
+def load_tool_findings() -> ToolIndex:
+    """
+    Load tool findings from the CSV, keyed by (category folder, file name).
+    Value maps normalised vulnerability type -> set of tool ids reporting it.
+    """
+    findings: ToolIndex = {}
     if not TOOLS_CSV.exists():
-        print(f"  [WARN] {TOOLS_CSV} not found — using category-only GT")
+        print(f"  [WARN] {TOOLS_CSV} not found — no tool findings")
         return findings
 
     with open(TOOLS_CSV, encoding="utf-8", errors="replace") as f:
         for row in csv.DictReader(f):
-            basename = Path(row.get("basename", "")).name
+            path     = Path(row.get("filename", ""))
+            key      = (path.parent.name, path.name)
             raw_findings = row.get("findings", "{}")
             # Parse set-like string: {Integer_Overflow, Reentrancy}
             raw_findings = raw_findings.strip("{} ").strip()
             if not raw_findings:
                 continue
-            types = {t.strip() for t in raw_findings.split(",") if t.strip()}
-            normalised = {TOOL_VULN_MAP.get(t, "other") for t in types
-                         if t not in ("", "other")}
-            if normalised:
-                findings.setdefault(basename, set()).update(normalised)
+            for t in (t.strip() for t in raw_findings.split(",")):
+                vtype = TOOL_VULN_MAP.get(t, "other")
+                if t and vtype != "other":
+                    findings.setdefault(key, {}).setdefault(vtype, set()).add(row["toolid"])
 
-    print(f"  Loaded tool findings for {len(findings)} unique contracts")
+    print(f"  Loaded tool findings for {len(findings)} contracts")
     return findings
+
+
+def tool_findings_for(category: str, filename: str, curated_type: str,
+                      index: ToolIndex) -> list[dict]:
+    """Tool-reported types for one Labeled contract, excluding its curated type."""
+    folder = category.removeprefix("proc_")   # proc_TOD -> TOD (CSV folder name)
+    return [
+        {
+            "type":        vtype,
+            "severity":    "medium",
+            "location":    "unknown",
+            "description": "Reported by static analysis tools (unverified)",
+            "tools":       sorted(tools),
+        }
+        for vtype, tools in sorted(index.get((folder, filename), {}).items())
+        if vtype != curated_type
+    ]
 
 
 def build():
@@ -128,7 +156,7 @@ def build():
             # Copy .sol
             shutil.copy2(sol_path, dest_sol)
 
-            # Build ground truth — start with category label
+            # Curated ground truth = category label only
             vulns = [{
                 "type":        vuln_type,
                 "severity":    severity,
@@ -136,22 +164,13 @@ def build():
                 "description": f"Known {vuln_type} from SmartBugs Labeled ({cat_name})"
             }]
 
-            # Enrich with confirmed tool findings if available
-            extra = tool_findings.get(sol_path.name, set())
-            for extra_type in extra:
-                if extra_type != vuln_type and extra_type != "other":
-                    vulns.append({
-                        "type":        extra_type,
-                        "severity":    "medium",
-                        "location":    "unknown",
-                        "description": f"Confirmed by static analysis tools"
-                    })
-
             gt = {
                 "contract":        sol_path.name,
                 "source":          f"SmartBugs Labeled / {cat_name}",
                 "category":        cat_name,
                 "vulnerabilities": vulns,
+                "tool_findings":   tool_findings_for(cat_name, sol_path.name,
+                                                     vuln_type, tool_findings),
             }
             dest_json.write_text(json.dumps(gt, indent=2), encoding="utf-8")
             stats[difficulty] += 1

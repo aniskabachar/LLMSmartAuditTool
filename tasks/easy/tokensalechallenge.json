@@ -8,12 +8,17 @@
       "severity": "medium",
       "location": "unknown",
       "description": "Known integer_overflow from SmartBugs Labeled (proc_arithmetic)"
-    },
+    }
+  ],
+  "tool_findings": [
     {
       "type": "reentrancy",
       "severity": "medium",
       "location": "unknown",
-      "description": "Confirmed by static analysis tools"
+      "description": "Reported by static analysis tools (unverified)",
+      "tools": [
+        "conkas"
+      ]
     }
   ]
 }
