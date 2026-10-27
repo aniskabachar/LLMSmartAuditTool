@@ -1,0 +1,13 @@
+{
+  "contract": "Ownable.sol",
+  "source": "SmartBugs Labeled / proc_gasless_send",
+  "category": "proc_gasless_send",
+  "vulnerabilities": [
+    {
+      "type": "unchecked_low_level_calls",
+      "severity": "medium",
+      "location": "unknown",
+      "description": "Known unchecked_low_level_calls from SmartBugs Labeled (proc_gasless_send)"
+    }
+  ]
+}

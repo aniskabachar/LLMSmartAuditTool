@@ -1,0 +1,13 @@
+{
+  "contract": "wallet_sucide.sol",
+  "source": "SmartBugs Labeled / proc_unsafe_suicide",
+  "category": "proc_unsafe_suicide",
+  "vulnerabilities": [
+    {
+      "type": "selfdestruct",
+      "severity": "high",
+      "location": "unknown",
+      "description": "Known selfdestruct from SmartBugs Labeled (proc_unsafe_suicide)"
+    }
+  ]
+}

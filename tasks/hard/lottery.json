@@ -1,0 +1,31 @@
+{
+  "contract": "lottery.sol",
+  "source": "SmartBugs Labeled / proc_bad_randomness",
+  "category": "proc_bad_randomness",
+  "vulnerabilities": [
+    {
+      "type": "bad_randomness",
+      "severity": "high",
+      "location": "unknown",
+      "description": "Known bad_randomness from SmartBugs Labeled (proc_bad_randomness)"
+    },
+    {
+      "type": "unchecked_low_level_calls",
+      "severity": "medium",
+      "location": "unknown",
+      "description": "Confirmed by static analysis tools"
+    },
+    {
+      "type": "reentrancy",
+      "severity": "medium",
+      "location": "unknown",
+      "description": "Confirmed by static analysis tools"
+    },
+    {
+      "type": "integer_overflow",
+      "severity": "medium",
+      "location": "unknown",
+      "description": "Confirmed by static analysis tools"
+    }
+  ]
+}

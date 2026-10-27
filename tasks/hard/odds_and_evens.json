@@ -1,0 +1,13 @@
+{
+  "contract": "odds_and_evens.sol",
+  "source": "SmartBugs Curated",
+  "category": "front_running",
+  "vulnerabilities": [
+    {
+      "type": "front_running",
+      "severity": "medium",
+      "location": "unknown",
+      "description": "Known front_running vulnerability from SmartBugs Curated dataset"
+    }
+  ]
+}

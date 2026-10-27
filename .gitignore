@@ -8,3 +8,27 @@
 .venv/
 env/
 venv/
+
+# API keys
+.env
+*.env
+
+# Scratch equation rendering and test artifacts
+test_*.docx
+test_*.pdf
+test_*.png
+test_clean_page.*
+test_math.*
+test_mml2omml.*
+test_native_omml.*
+test_omath_render.*
+test_page_num.*
+test_pg_out.*
+test_pg_restart.*
+test_word_eq.*
+test_eq_omml_full.*
+test_all_eqs.*
+test_all_equations.*
+temp_check.pdf
+final_check.pdf
+page_*.png

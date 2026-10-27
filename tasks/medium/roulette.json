@@ -1,0 +1,13 @@
+{
+  "contract": "roulette.sol",
+  "source": "SmartBugs Labeled / proc_time_manipulation",
+  "category": "proc_time_manipulation",
+  "vulnerabilities": [
+    {
+      "type": "timestamp_dependence",
+      "severity": "medium",
+      "location": "unknown",
+      "description": "Known timestamp_dependence from SmartBugs Labeled (proc_time_manipulation)"
+    }
+  ]
+}

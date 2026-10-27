@@ -1,0 +1,31 @@
+{
+  "contract": "ether_lotto.sol",
+  "source": "SmartBugs Labeled / proc_time_manipulation",
+  "category": "proc_time_manipulation",
+  "vulnerabilities": [
+    {
+      "type": "timestamp_dependence",
+      "severity": "medium",
+      "location": "unknown",
+      "description": "Known timestamp_dependence from SmartBugs Labeled (proc_time_manipulation)"
+    },
+    {
+      "type": "unchecked_low_level_calls",
+      "severity": "medium",
+      "location": "unknown",
+      "description": "Confirmed by static analysis tools"
+    },
+    {
+      "type": "reentrancy",
+      "severity": "medium",
+      "location": "unknown",
+      "description": "Confirmed by static analysis tools"
+    },
+    {
+      "type": "integer_overflow",
+      "severity": "medium",
+      "location": "unknown",
+      "description": "Confirmed by static analysis tools"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "contract": "name_registrar.sol",
+  "source": "SmartBugs Curated",
+  "category": "other",
+  "vulnerabilities": [
+    {
+      "type": "other",
+      "severity": "low",
+      "location": "unknown",
+      "description": "Known other vulnerability from SmartBugs Curated dataset"
+    }
+  ]
+}

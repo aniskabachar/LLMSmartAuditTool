@@ -1,0 +1,13 @@
+{
+  "contract": "short_address_example.sol",
+  "source": "SmartBugs Curated",
+  "category": "short_addresses",
+  "vulnerabilities": [
+    {
+      "type": "other",
+      "severity": "low",
+      "location": "unknown",
+      "description": "Known other vulnerability from SmartBugs Curated dataset"
+    }
+  ]
+}

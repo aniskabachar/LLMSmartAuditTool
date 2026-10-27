@@ -1,0 +1,13 @@
+{
+  "contract": "random_number_generator.sol",
+  "source": "SmartBugs Labeled / proc_bad_randomness",
+  "category": "proc_bad_randomness",
+  "vulnerabilities": [
+    {
+      "type": "bad_randomness",
+      "severity": "high",
+      "location": "unknown",
+      "description": "Known bad_randomness from SmartBugs Labeled (proc_bad_randomness)"
+    }
+  ]
+}

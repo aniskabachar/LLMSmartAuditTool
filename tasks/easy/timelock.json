@@ -1,0 +1,13 @@
+{
+  "contract": "timelock.sol",
+  "source": "SmartBugs Curated",
+  "category": "arithmetic",
+  "vulnerabilities": [
+    {
+      "type": "integer_overflow",
+      "severity": "medium",
+      "location": "unknown",
+      "description": "Known integer_overflow vulnerability from SmartBugs Curated dataset"
+    }
+  ]
+}

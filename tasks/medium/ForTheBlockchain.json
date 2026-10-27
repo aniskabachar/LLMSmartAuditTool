@@ -1,0 +1,19 @@
+{
+  "contract": "ForTheBlockchain.sol",
+  "source": "SmartBugs Labeled / proc_TOD",
+  "category": "proc_TOD",
+  "vulnerabilities": [
+    {
+      "type": "front_running",
+      "severity": "medium",
+      "location": "unknown",
+      "description": "Known front_running from SmartBugs Labeled (proc_TOD)"
+    },
+    {
+      "type": "reentrancy",
+      "severity": "medium",
+      "location": "unknown",
+      "description": "Confirmed by static analysis tools"
+    }
+  ]
+}

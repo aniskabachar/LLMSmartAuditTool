@@ -1,0 +1,13 @@
+{
+  "contract": "0x39cfd754c85023648bf003bea2dd498c5612abfa.sol",
+  "source": "SmartBugs Curated",
+  "category": "unchecked_low_level_calls",
+  "vulnerabilities": [
+    {
+      "type": "unchecked_low_level_calls",
+      "severity": "medium",
+      "location": "unknown",
+      "description": "Known unchecked_low_level_calls vulnerability from SmartBugs Curated dataset"
+    }
+  ]
+}

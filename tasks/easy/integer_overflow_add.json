@@ -1,0 +1,13 @@
+{
+  "contract": "integer_overflow_add.sol",
+  "source": "SmartBugs Labeled / proc_arithmetic",
+  "category": "proc_arithmetic",
+  "vulnerabilities": [
+    {
+      "type": "integer_overflow",
+      "severity": "medium",
+      "location": "unknown",
+      "description": "Known integer_overflow from SmartBugs Labeled (proc_arithmetic)"
+    }
+  ]
+}

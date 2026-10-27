@@ -1,0 +1,13 @@
+{
+  "contract": "multi_delegatecall.sol",
+  "source": "SmartBugs Labeled / proc_unsafe_delegatecall",
+  "category": "proc_unsafe_delegatecall",
+  "vulnerabilities": [
+    {
+      "type": "access_control",
+      "severity": "high",
+      "location": "unknown",
+      "description": "Known access_control from SmartBugs Labeled (proc_unsafe_delegatecall)"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "contract": "ERC20Basic.sol",
+  "source": "SmartBugs Labeled / proc_unsafe_suicide",
+  "category": "proc_unsafe_suicide",
+  "vulnerabilities": [
+    {
+      "type": "selfdestruct",
+      "severity": "high",
+      "location": "unknown",
+      "description": "Known selfdestruct from SmartBugs Labeled (proc_unsafe_suicide)"
+    },
+    {
+      "type": "integer_overflow",
+      "severity": "medium",
+      "location": "unknown",
+      "description": "Confirmed by static analysis tools"
+    }
+  ]
+}

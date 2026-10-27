@@ -1,0 +1,13 @@
+{
+  "contract": "spank_chain_payment.sol",
+  "source": "SmartBugs Curated",
+  "category": "reentrancy",
+  "vulnerabilities": [
+    {
+      "type": "reentrancy",
+      "severity": "high",
+      "location": "unknown",
+      "description": "Known reentrancy vulnerability from SmartBugs Curated dataset"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "contract": "0x93c32845fae42c83a70e5f06214c8433665c2ab5.sol",
+  "source": "SmartBugs Curated",
+  "category": "reentrancy",
+  "vulnerabilities": [
+    {
+      "type": "reentrancy",
+      "severity": "high",
+      "location": "unknown",
+      "description": "Known reentrancy vulnerability from SmartBugs Curated dataset"
+    }
+  ]
+}

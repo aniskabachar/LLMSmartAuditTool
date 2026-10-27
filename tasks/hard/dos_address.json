@@ -1,0 +1,13 @@
+{
+  "contract": "dos_address.sol",
+  "source": "SmartBugs Curated",
+  "category": "denial_of_service",
+  "vulnerabilities": [
+    {
+      "type": "denial_of_service",
+      "severity": "medium",
+      "location": "unknown",
+      "description": "Known denial_of_service vulnerability from SmartBugs Curated dataset"
+    }
+  ]
+}

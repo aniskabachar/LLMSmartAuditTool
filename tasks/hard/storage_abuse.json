@@ -1,0 +1,31 @@
+{
+  "contract": "storage_abuse.sol",
+  "source": "SmartBugs Labeled / proc_unsafe_delegatecall",
+  "category": "proc_unsafe_delegatecall",
+  "vulnerabilities": [
+    {
+      "type": "access_control",
+      "severity": "high",
+      "location": "unknown",
+      "description": "Known access_control from SmartBugs Labeled (proc_unsafe_delegatecall)"
+    },
+    {
+      "type": "timestamp_dependence",
+      "severity": "medium",
+      "location": "unknown",
+      "description": "Confirmed by static analysis tools"
+    },
+    {
+      "type": "reentrancy",
+      "severity": "medium",
+      "location": "unknown",
+      "description": "Confirmed by static analysis tools"
+    },
+    {
+      "type": "integer_overflow",
+      "severity": "medium",
+      "location": "unknown",
+      "description": "Confirmed by static analysis tools"
+    }
+  ]
+}

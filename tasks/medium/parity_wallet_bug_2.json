@@ -1,0 +1,13 @@
+{
+  "contract": "parity_wallet_bug_2.sol",
+  "source": "SmartBugs Curated",
+  "category": "access_control",
+  "vulnerabilities": [
+    {
+      "type": "access_control",
+      "severity": "high",
+      "location": "unknown",
+      "description": "Known access_control vulnerability from SmartBugs Curated dataset"
+    }
+  ]
+}

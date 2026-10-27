@@ -1,0 +1,90 @@
+{
+  "evaluation_date": "2026-10-26",
+  "model": "openai/gpt-oss-120b (via Groq)",
+  "dataset": "SmartBugs Curated + evaluation/benchmark/Labeled",
+  "split": "80/20 train/test (seed=42)",
+  "ground_truth_source": "Category labels + traditional_tools_results.csv (220 contracts tool-confirmed)",
+
+  "results": {
+    "easy": {
+      "n_contracts": 12,
+      "avg_score":     0.9417,
+      "avg_precision": 1.0000,
+      "avg_recall":    0.9028,
+      "avg_f1":        0.9306,
+      "random_floor":  0.1778,
+      "gap":           0.7639,
+      "categories": ["reentrancy", "integer_overflow", "tx_origin"]
+    },
+    "medium": {
+      "n_contracts": 12,
+      "avg_score":     0.5333,
+      "avg_precision": 0.4583,
+      "avg_recall":    0.5833,
+      "avg_f1":        0.5000,
+      "random_floor":  0.0991,
+      "gap":           0.4342,
+      "categories": ["access_control", "unchecked_low_level_calls", "timestamp_dependence", "front_running"]
+    },
+    "hard": {
+      "n_contracts": 9,
+      "avg_score":     0.3556,
+      "avg_precision": 0.3056,
+      "avg_recall":    0.3889,
+      "avg_f1":        0.3333,
+      "random_floor":  0.0000,
+      "gap":           0.3556,
+      "categories": ["bad_randomness", "selfdestruct", "access_control (delegatecall)"]
+    }
+  },
+
+  "overall": {
+    "n_contracts": 33,
+    "avg_score":     0.6102,
+    "avg_f1":        0.5880,
+    "random_floor":  0.0765,
+    "gap_vs_random": 0.5337
+  },
+
+  "per_contract": {
+    "easy": [
+      {"contract": "0xb93430ce38ac4a6bb47fb1fc085ea669353fd89e.sol", "score": 1.0, "tp": 1, "fp": 0, "miss": 0},
+      {"contract": "0x23a91059fdc9579a9fbd0edc5f2ea0bfdb70deb4.sol", "score": 1.0, "tp": 1, "fp": 0, "miss": 0},
+      {"contract": "ProofofExistence.sol",                           "score": 1.0, "tp": 1, "fp": 0, "miss": 0},
+      {"contract": "TAMC.sol",                                        "score": 0.6, "tp": 1, "fp": 0, "miss": 2},
+      {"contract": "0x7b368c4e805c3870b6c49a3f1f49f69af8662cf3.sol", "score": 1.0, "tp": 1, "fp": 0, "miss": 0},
+      {"contract": "reentrancy_dao.sol",                              "score": 0.7, "tp": 1, "fp": 0, "miss": 1},
+      {"contract": "0x7a8721a9d64c74da899424c1b52acbf58ddc9782.sol", "score": 1.0, "tp": 1, "fp": 0, "miss": 0},
+      {"contract": "0x7541b76cb60f4c60af330c208b0623b7f54bf615.sol", "score": 1.0, "tp": 1, "fp": 0, "miss": 0},
+      {"contract": "0xbe4041d55db380c5ae9d4a9b9703f1ed4e7e3888.sol", "score": 1.0, "tp": 1, "fp": 0, "miss": 0},
+      {"contract": "0xb5e1b1ee15c6fa0e48fce100125569d430f1bd12.sol", "score": 1.0, "tp": 1, "fp": 0, "miss": 0},
+      {"contract": "overflow_simple_add.sol",                         "score": 1.0, "tp": 1, "fp": 0, "miss": 0},
+      {"contract": "integer_overflow_mul.sol",                        "score": 1.0, "tp": 1, "fp": 0, "miss": 0}
+    ],
+    "medium": [
+      {"contract": "multiowned_vulnerable.sol",                        "score": 1.0,  "tp": 1, "fp": 0, "miss": 0},
+      {"contract": "0xb0510d68f210b7db66e8c7c814f22680f2b8d1d6.sol", "score": 1.0,  "tp": 1, "fp": 0, "miss": 0},
+      {"contract": "0x39cfd754c85023648bf003bea2dd498c5612abfa.sol", "score": 0.0,  "tp": 0, "fp": 0, "miss": 1},
+      {"contract": "0x70f9eddb3931491aab1aeafbc1e7f1ca2a012db4.sol", "score": 1.0,  "tp": 1, "fp": 0, "miss": 0},
+      {"contract": "wallet_02_refund_nosub.sol",                       "score": 0.0,  "tp": 0, "fp": 1, "miss": 1},
+      {"contract": "0x524960d55174d912768678d8c606b4d50b79d7b1.sol", "score": 1.0,  "tp": 1, "fp": 0, "miss": 0},
+      {"contract": "wallet_04_confused_sign.sol",                      "score": 0.8,  "tp": 1, "fp": 1, "miss": 0},
+      {"contract": "0x5aa88d2901c68fda244f1d0584400368d2c8e739.sol", "score": 0.8,  "tp": 1, "fp": 1, "miss": 0},
+      {"contract": "0xbebbfe5b549f5db6e6c78ca97cac19d1fb03082c.sol", "score": 0.0,  "tp": 0, "fp": 0, "miss": 1},
+      {"contract": "0x2972d548497286d18e92b5fa1f8f9139e5653fd2.sol", "score": 0.8,  "tp": 1, "fp": 1, "miss": 0},
+      {"contract": "parity_wallet_bug_2.sol",                          "score": 0.0,  "tp": 0, "fp": 0, "miss": 1},
+      {"contract": "rubixi.sol",                                        "score": 0.0,  "tp": 0, "fp": 0, "miss": 1}
+    ],
+    "hard": [
+      {"contract": "eth_tx_order_dependence_minimal.sol", "score": 1.0,  "tp": 1, "fp": 0, "miss": 0},
+      {"contract": "BankOfEther.sol",                     "score": 0.4,  "tp": 1, "fp": 3, "miss": 1},
+      {"contract": "ERC20Basic.sol",                      "score": 0.0,  "tp": 0, "fp": 0, "miss": 2},
+      {"contract": "EthRoulette.sol",                     "score": 0.0,  "tp": 0, "fp": 0, "miss": 1},
+      {"contract": "crypto_roulette.sol",                 "score": 0.0,  "tp": 0, "fp": 0, "miss": 1},
+      {"contract": "bug_3.sol",                           "score": 0.8,  "tp": 1, "fp": 1, "miss": 0},
+      {"contract": "short_address_example.sol",           "score": 0.0,  "tp": 0, "fp": 0, "miss": 1},
+      {"contract": "Delegation.sol",                      "score": 1.0,  "tp": 1, "fp": 0, "miss": 0},
+      {"contract": "SuicideMultiTxInfeasible.sol",        "score": 0.0,  "tp": 0, "fp": 0, "miss": 1}
+    ]
+  }
+}

@@ -1,0 +1,571 @@
+{
+  "easy": {
+    "difficulty": "easy",
+    "n_contracts": 12,
+    "avg_score": 0.7722,
+    "avg_precision": 0.5555,
+    "avg_recall": 0.9167,
+    "avg_f1": 0.6667,
+    "details": [
+      {
+        "score": 0.7333,
+        "precision": 0.3333,
+        "recall": 1.0,
+        "f1": 0.5,
+        "true_positives": 1,
+        "false_positives": 2,
+        "missed_bugs": 0,
+        "found_types": [
+          "integer_overflow",
+          "reentrancy",
+          "tx_origin"
+        ],
+        "expected_types": [
+          "reentrancy"
+        ],
+        "contract": "0x7a8721a9d64c74da899424c1b52acbf58ddc9782.sol"
+      },
+      {
+        "score": 0.8,
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1": 0.6667,
+        "true_positives": 1,
+        "false_positives": 1,
+        "missed_bugs": 0,
+        "found_types": [
+          "integer_overflow",
+          "reentrancy"
+        ],
+        "expected_types": [
+          "reentrancy"
+        ],
+        "contract": "0xb5e1b1ee15c6fa0e48fce100125569d430f1bd12.sol"
+      },
+      {
+        "score": 0.8,
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1": 0.6667,
+        "true_positives": 1,
+        "false_positives": 1,
+        "missed_bugs": 0,
+        "found_types": [
+          "integer_overflow",
+          "reentrancy"
+        ],
+        "expected_types": [
+          "reentrancy"
+        ],
+        "contract": "0x7b368c4e805c3870b6c49a3f1f49f69af8662cf3.sol"
+      },
+      {
+        "score": 0.8,
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1": 0.6667,
+        "true_positives": 1,
+        "false_positives": 1,
+        "missed_bugs": 0,
+        "found_types": [
+          "integer_overflow",
+          "reentrancy"
+        ],
+        "expected_types": [
+          "reentrancy"
+        ],
+        "contract": "0x23a91059fdc9579a9fbd0edc5f2ea0bfdb70deb4.sol"
+      },
+      {
+        "score": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "true_positives": 1,
+        "false_positives": 0,
+        "missed_bugs": 0,
+        "found_types": [
+          "integer_overflow"
+        ],
+        "expected_types": [
+          "integer_overflow"
+        ],
+        "contract": "integer_overflow_mul.sol"
+      },
+      {
+        "score": 0.8,
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1": 0.6667,
+        "true_positives": 1,
+        "false_positives": 1,
+        "missed_bugs": 0,
+        "found_types": [
+          "integer_overflow",
+          "reentrancy"
+        ],
+        "expected_types": [
+          "reentrancy"
+        ],
+        "contract": "0xb93430ce38ac4a6bb47fb1fc085ea669353fd89e.sol"
+      },
+      {
+        "score": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "true_positives": 0,
+        "false_positives": 0,
+        "missed_bugs": 3,
+        "found_types": [],
+        "expected_types": [
+          "integer_overflow",
+          "reentrancy",
+          "tx_origin"
+        ],
+        "contract": "TAMC.sol"
+      },
+      {
+        "score": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "true_positives": 1,
+        "false_positives": 0,
+        "missed_bugs": 0,
+        "found_types": [
+          "integer_overflow"
+        ],
+        "expected_types": [
+          "integer_overflow"
+        ],
+        "contract": "overflow_simple_add.sol"
+      },
+      {
+        "score": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "true_positives": 2,
+        "false_positives": 0,
+        "missed_bugs": 0,
+        "found_types": [
+          "integer_overflow",
+          "reentrancy"
+        ],
+        "expected_types": [
+          "integer_overflow",
+          "reentrancy"
+        ],
+        "contract": "reentrancy_dao.sol"
+      },
+      {
+        "score": 0.8,
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1": 0.6667,
+        "true_positives": 1,
+        "false_positives": 1,
+        "missed_bugs": 0,
+        "found_types": [
+          "tx_origin",
+          "unchecked_low_level_calls"
+        ],
+        "expected_types": [
+          "tx_origin"
+        ],
+        "contract": "ProofofExistence.sol"
+      },
+      {
+        "score": 0.7333,
+        "precision": 0.3333,
+        "recall": 1.0,
+        "f1": 0.5,
+        "true_positives": 1,
+        "false_positives": 2,
+        "missed_bugs": 0,
+        "found_types": [
+          "access_control",
+          "integer_overflow",
+          "reentrancy"
+        ],
+        "expected_types": [
+          "reentrancy"
+        ],
+        "contract": "0xbe4041d55db380c5ae9d4a9b9703f1ed4e7e3888.sol"
+      },
+      {
+        "score": 0.8,
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1": 0.6667,
+        "true_positives": 1,
+        "false_positives": 1,
+        "missed_bugs": 0,
+        "found_types": [
+          "integer_overflow",
+          "reentrancy"
+        ],
+        "expected_types": [
+          "reentrancy"
+        ],
+        "contract": "0x7541b76cb60f4c60af330c208b0623b7f54bf615.sol"
+      }
+    ]
+  },
+  "medium": {
+    "difficulty": "medium",
+    "n_contracts": 12,
+    "avg_score": 0.4333,
+    "avg_precision": 0.3333,
+    "avg_recall": 0.5,
+    "avg_f1": 0.3889,
+    "details": [
+      {
+        "score": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "true_positives": 1,
+        "false_positives": 0,
+        "missed_bugs": 0,
+        "found_types": [
+          "access_control"
+        ],
+        "expected_types": [
+          "access_control"
+        ],
+        "contract": "wallet_04_confused_sign.sol"
+      },
+      {
+        "score": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "true_positives": 0,
+        "false_positives": 0,
+        "missed_bugs": 4,
+        "found_types": [],
+        "expected_types": [
+          "integer_overflow",
+          "reentrancy",
+          "timestamp_dependence",
+          "unchecked_low_level_calls"
+        ],
+        "contract": "king_of_the_ether_throne.sol"
+      },
+      {
+        "score": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "true_positives": 0,
+        "false_positives": 0,
+        "missed_bugs": 1,
+        "found_types": [],
+        "expected_types": [
+          "access_control"
+        ],
+        "contract": "rubixi.sol"
+      },
+      {
+        "score": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "true_positives": 0,
+        "false_positives": 0,
+        "missed_bugs": 3,
+        "found_types": [],
+        "expected_types": [
+          "front_running",
+          "integer_overflow",
+          "reentrancy"
+        ],
+        "contract": "FindThisHash.sol"
+      },
+      {
+        "score": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "true_positives": 1,
+        "false_positives": 0,
+        "missed_bugs": 0,
+        "found_types": [
+          "unchecked_low_level_calls"
+        ],
+        "expected_types": [
+          "unchecked_low_level_calls"
+        ],
+        "contract": "0x70f9eddb3931491aab1aeafbc1e7f1ca2a012db4.sol"
+      },
+      {
+        "score": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "true_positives": 0,
+        "false_positives": 0,
+        "missed_bugs": 1,
+        "found_types": [],
+        "expected_types": [
+          "front_running"
+        ],
+        "contract": "ProofOfExistence.sol"
+      },
+      {
+        "score": 0.8,
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1": 0.6667,
+        "true_positives": 1,
+        "false_positives": 1,
+        "missed_bugs": 0,
+        "found_types": [
+          "integer_overflow",
+          "unchecked_low_level_calls"
+        ],
+        "expected_types": [
+          "unchecked_low_level_calls"
+        ],
+        "contract": "0x610495793564aed0f9c7fc48dc4c7c9151d34fd6.sol"
+      },
+      {
+        "score": 0.8,
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1": 0.6667,
+        "true_positives": 1,
+        "false_positives": 1,
+        "missed_bugs": 0,
+        "found_types": [
+          "denial_of_service",
+          "unchecked_low_level_calls"
+        ],
+        "expected_types": [
+          "unchecked_low_level_calls"
+        ],
+        "contract": "0xa46edd6a9a93feec36576ee5048146870ea2c3ae.sol"
+      },
+      {
+        "score": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "true_positives": 0,
+        "false_positives": 0,
+        "missed_bugs": 1,
+        "found_types": [],
+        "expected_types": [
+          "unchecked_low_level_calls"
+        ],
+        "contract": "0xbebbfe5b549f5db6e6c78ca97cac19d1fb03082c.sol"
+      },
+      {
+        "score": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "true_positives": 0,
+        "false_positives": 0,
+        "missed_bugs": 1,
+        "found_types": [],
+        "expected_types": [
+          "unchecked_low_level_calls"
+        ],
+        "contract": "0x39cfd754c85023648bf003bea2dd498c5612abfa.sol"
+      },
+      {
+        "score": 0.8,
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1": 0.6667,
+        "true_positives": 1,
+        "false_positives": 1,
+        "missed_bugs": 0,
+        "found_types": [
+          "access_control",
+          "unchecked_low_level_calls"
+        ],
+        "expected_types": [
+          "unchecked_low_level_calls"
+        ],
+        "contract": "0xb0510d68f210b7db66e8c7c814f22680f2b8d1d6.sol"
+      },
+      {
+        "score": 0.8,
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1": 0.6667,
+        "true_positives": 1,
+        "false_positives": 1,
+        "missed_bugs": 0,
+        "found_types": [
+          "integer_overflow",
+          "unchecked_low_level_calls"
+        ],
+        "expected_types": [
+          "unchecked_low_level_calls"
+        ],
+        "contract": "0x5aa88d2901c68fda244f1d0584400368d2c8e739.sol"
+      }
+    ]
+  },
+  "hard": {
+    "difficulty": "hard",
+    "n_contracts": 9,
+    "avg_score": 0.2481,
+    "avg_precision": 0.2037,
+    "avg_recall": 0.2778,
+    "avg_f1": 0.2222,
+    "details": [
+      {
+        "score": 0.7333,
+        "precision": 0.3333,
+        "recall": 1.0,
+        "f1": 0.5,
+        "true_positives": 1,
+        "false_positives": 2,
+        "missed_bugs": 0,
+        "found_types": [
+          "integer_overflow",
+          "other",
+          "tx_origin"
+        ],
+        "expected_types": [
+          "other"
+        ],
+        "contract": "short_address_example.sol"
+      },
+      {
+        "score": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "true_positives": 1,
+        "false_positives": 0,
+        "missed_bugs": 0,
+        "found_types": [
+          "access_control"
+        ],
+        "expected_types": [
+          "access_control"
+        ],
+        "contract": "Delegation.sol"
+      },
+      {
+        "score": 0.5,
+        "precision": 0.5,
+        "recall": 0.5,
+        "f1": 0.5,
+        "true_positives": 1,
+        "false_positives": 1,
+        "missed_bugs": 1,
+        "found_types": [
+          "integer_overflow",
+          "tx_origin"
+        ],
+        "expected_types": [
+          "selfdestruct",
+          "tx_origin"
+        ],
+        "contract": "BankOfEther.sol"
+      },
+      {
+        "score": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "true_positives": 0,
+        "false_positives": 1,
+        "missed_bugs": 2,
+        "found_types": [
+          "access_control"
+        ],
+        "expected_types": [
+          "integer_overflow",
+          "selfdestruct"
+        ],
+        "contract": "ERC20Basic.sol"
+      },
+      {
+        "score": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "true_positives": 0,
+        "false_positives": 2,
+        "missed_bugs": 1,
+        "found_types": [
+          "bad_randomness",
+          "uninitialized_storage"
+        ],
+        "expected_types": [
+          "other"
+        ],
+        "contract": "crypto_roulette.sol"
+      },
+      {
+        "score": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "true_positives": 0,
+        "false_positives": 1,
+        "missed_bugs": 1,
+        "found_types": [
+          "integer_overflow"
+        ],
+        "expected_types": [
+          "selfdestruct"
+        ],
+        "contract": "bug_3.sol"
+      },
+      {
+        "score": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "true_positives": 0,
+        "false_positives": 0,
+        "missed_bugs": 1,
+        "found_types": [],
+        "expected_types": [
+          "front_running"
+        ],
+        "contract": "eth_tx_order_dependence_minimal.sol"
+      },
+      {
+        "score": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "true_positives": 0,
+        "false_positives": 0,
+        "missed_bugs": 1,
+        "found_types": [],
+        "expected_types": [
+          "selfdestruct"
+        ],
+        "contract": "EthRoulette.sol"
+      },
+      {
+        "score": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "true_positives": 0,
+        "false_positives": 1,
+        "missed_bugs": 1,
+        "found_types": [
+          "access_control"
+        ],
+        "expected_types": [
+          "selfdestruct"
+        ],
+        "contract": "SuicideMultiTxInfeasible.sol"
+      }
+    ]
+  }
+}

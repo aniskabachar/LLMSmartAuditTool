@@ -1,0 +1,25 @@
+{
+  "contract": "0xf70d589d76eebdd7c12cc5eec99f8f6fa4233b9e.sol",
+  "source": "SmartBugs Labeled / proc_unchecked_send",
+  "category": "proc_unchecked_send",
+  "vulnerabilities": [
+    {
+      "type": "unchecked_low_level_calls",
+      "severity": "medium",
+      "location": "unknown",
+      "description": "Known unchecked_low_level_calls from SmartBugs Labeled (proc_unchecked_send)"
+    },
+    {
+      "type": "reentrancy",
+      "severity": "medium",
+      "location": "unknown",
+      "description": "Confirmed by static analysis tools"
+    },
+    {
+      "type": "integer_overflow",
+      "severity": "medium",
+      "location": "unknown",
+      "description": "Confirmed by static analysis tools"
+    }
+  ]
+}

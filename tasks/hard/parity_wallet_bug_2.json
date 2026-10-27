@@ -1,0 +1,25 @@
+{
+  "contract": "parity_wallet_bug_2.sol",
+  "source": "SmartBugs Labeled / proc_unsafe_suicide",
+  "category": "proc_unsafe_suicide",
+  "vulnerabilities": [
+    {
+      "type": "selfdestruct",
+      "severity": "high",
+      "location": "unknown",
+      "description": "Known selfdestruct from SmartBugs Labeled (proc_unsafe_suicide)"
+    },
+    {
+      "type": "reentrancy",
+      "severity": "medium",
+      "location": "unknown",
+      "description": "Confirmed by static analysis tools"
+    },
+    {
+      "type": "integer_overflow",
+      "severity": "medium",
+      "location": "unknown",
+      "description": "Confirmed by static analysis tools"
+    }
+  ]
+}

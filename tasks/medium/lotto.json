@@ -1,0 +1,19 @@
+{
+  "contract": "lotto.sol",
+  "source": "SmartBugs Labeled / proc_unchecked_send",
+  "category": "proc_unchecked_send",
+  "vulnerabilities": [
+    {
+      "type": "unchecked_low_level_calls",
+      "severity": "medium",
+      "location": "unknown",
+      "description": "Known unchecked_low_level_calls from SmartBugs Labeled (proc_unchecked_send)"
+    },
+    {
+      "type": "reentrancy",
+      "severity": "medium",
+      "location": "unknown",
+      "description": "Confirmed by static analysis tools"
+    }
+  ]
+}

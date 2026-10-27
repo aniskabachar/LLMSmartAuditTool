@@ -1,0 +1,14 @@
+{
+  "full_v2_acc_simulation": 0.9792932494613021,
+  "worst_agent_acc_simulation": 0.8209359860039991,
+  "holdout_acc": 0.9795714541295547,
+  "verdict": "INFLATED \u2014 simulation is parametric not empirical",
+  "test_results": {
+    "T1 Data Leakage": "FAIL \u2014 no train/test split exists",
+    "T2 Random Baseline": "FAIL \u2014 worst agent acc=0.821 > 0.80. Simulation floor is too high; metric not discriminative.",
+    "T3 Tier Difficulty": "FAIL \u2014 all tiers identical, contracts not actually tiered",
+    "T4 Circularity Audit": "FAIL \u2014 accuracy is parametric, not empirical. No ground truth.",
+    "T5 Holdout Eval": "EXPECTED \u2014 no drop because accuracy is deterministic given complexity/risk values, not seed-dependent detection",
+    "T6 Real Analyzer": "PASS \u2014 real analyzer shows increasing complexity across tiers"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "contract": "etherbank.sol",
+  "source": "SmartBugs Labeled / proc_reentrancy",
+  "category": "proc_reentrancy",
+  "vulnerabilities": [
+    {
+      "type": "reentrancy",
+      "severity": "high",
+      "location": "unknown",
+      "description": "Known reentrancy from SmartBugs Labeled (proc_reentrancy)"
+    }
+  ]
+}

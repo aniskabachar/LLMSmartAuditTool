@@ -1,0 +1,13 @@
+{
+  "contract": "ProofofExistence.sol",
+  "source": "SmartBugs Labeled / proc_tx_origin",
+  "category": "proc_tx_origin",
+  "vulnerabilities": [
+    {
+      "type": "tx_origin",
+      "severity": "medium",
+      "location": "unknown",
+      "description": "Known tx_origin from SmartBugs Labeled (proc_tx_origin)"
+    }
+  ]
+}

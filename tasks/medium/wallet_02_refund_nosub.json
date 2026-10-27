@@ -1,0 +1,13 @@
+{
+  "contract": "wallet_02_refund_nosub.sol",
+  "source": "SmartBugs Curated",
+  "category": "access_control",
+  "vulnerabilities": [
+    {
+      "type": "access_control",
+      "severity": "high",
+      "location": "unknown",
+      "description": "Known access_control vulnerability from SmartBugs Curated dataset"
+    }
+  ]
+}

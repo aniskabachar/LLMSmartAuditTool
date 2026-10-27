@@ -1,0 +1,25 @@
+{
+  "contract": "reentrancy_insecure.sol",
+  "source": "SmartBugs Labeled / proc_reentrancy",
+  "category": "proc_reentrancy",
+  "vulnerabilities": [
+    {
+      "type": "reentrancy",
+      "severity": "high",
+      "location": "unknown",
+      "description": "Known reentrancy from SmartBugs Labeled (proc_reentrancy)"
+    },
+    {
+      "type": "unchecked_low_level_calls",
+      "severity": "medium",
+      "location": "unknown",
+      "description": "Confirmed by static analysis tools"
+    },
+    {
+      "type": "integer_overflow",
+      "severity": "medium",
+      "location": "unknown",
+      "description": "Confirmed by static analysis tools"
+    }
+  ]
+}
