@@ -38,9 +38,9 @@ def root():
         "contracts_available": contracts,
         "total": sum(contracts.values()),
         "endpoints": [
-            "GET /evaluate/real/{difficulty}?n=10",
-            "GET /evaluate/random/{difficulty}?n=20",
-            "GET /evaluate/split/{difficulty}",
+            "GET /evaluate/real/{difficulty}?n=&seed=42",
+            "GET /evaluate/random/{difficulty}?n=&seed=7777",
+            "POST /evaluate/split/{difficulty}",
             "GET /results",
         ]
     }
@@ -75,21 +75,16 @@ def create_split(difficulty: str, test_ratio: float = 0.2):
 # ── Random baseline ───────────────────────────────────────────────────────────
 
 @app.get("/evaluate/random/{difficulty}")
-def random_baseline(difficulty: str, n: int = 20):
+def random_baseline(difficulty: str, n: Optional[int] = None, seed: int = 7777):
     """
-    Runs a completely random agent on real SmartBugs contracts.
-    Proves discriminative floor is genuinely low (< 0.20).
+    Runs a completely random agent on the held-out test split.
+    n omitted = whole test split. Proves discriminative floor is genuinely low (< 0.20).
     """
     if difficulty not in ("easy", "medium", "hard"):
         raise HTTPException(400, "difficulty must be easy|medium|hard")
     try:
         from verify.random_baseline_real import run_random_baseline
-        split_file = f"verify/splits/{difficulty}_split.json"
-        result = run_random_baseline(
-            difficulty, n=n,
-            split_file=split_file if Path(split_file).exists() else None,
-        )
-        return result
+        return run_random_baseline(difficulty, n=n, seed=seed, use_test_split=True)
     except FileNotFoundError as e:
         raise HTTPException(404, str(e))
 
@@ -97,10 +92,10 @@ def random_baseline(difficulty: str, n: int = 20):
 # ── Real LLM evaluation ───────────────────────────────────────────────────────
 
 @app.get("/evaluate/real/{difficulty}")
-def real_evaluation(difficulty: str, n: int = 10):
+def real_evaluation(difficulty: str, n: Optional[int] = None, seed: int = 42):
     """
-    Runs real Groq LLM evaluation on actual SmartBugs contracts.
-    Returns true precision/recall/F1 scores.
+    Runs real Groq LLM evaluation on the held-out test split.
+    n omitted = whole test split. Returns true precision/recall/F1 scores.
 
     NOTE: This makes real Groq API calls (costs tokens).
     """
@@ -113,23 +108,19 @@ def real_evaluation(difficulty: str, n: int = 10):
 
     try:
         from verify.real_evaluator import evaluate_difficulty
-        split_file = f"verify/splits/{difficulty}_split.json"
-        result = evaluate_difficulty(
-            difficulty, n=n,
-            split_file=split_file if Path(split_file).exists() else None,
-            use_test_split=True,
-        )
+        result = evaluate_difficulty(difficulty, n=n, seed=seed, use_test_split=True)
         # Don't return full per-contract details in API response (too large)
         return {
             "difficulty":    result["difficulty"],
             "n_contracts":   result["n_contracts"],
+            "n_errors":      result.get("n_errors", 0),
             "avg_score":     result["avg_score"],
             "avg_precision": result["avg_precision"],
             "avg_recall":    result["avg_recall"],
             "avg_f1":        result.get("avg_f1", 0.0),
         }
     except FileNotFoundError as e:
-        raise HTTPException(404, f"{e}\nRun: py scripts/fetch_smartbugs.py")
+        raise HTTPException(404, str(e))
     except Exception as e:
         raise HTTPException(500, str(e))
 

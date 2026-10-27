@@ -8,26 +8,32 @@ Upgraded evaluation pipeline targeting higher accuracy through:
   4. Larger context window (less truncation)
   5. Few-shot examples embedded in prompt
 
+The prompt (system prompt, few-shot examples, checklist) is identical for
+every tier: tiers are derived from ground-truth categories, so tier-specific
+hints or examples would leak the label.
+
 Run:
-    py verify/improved_evaluator.py --difficulty easy --n 12
+    py verify/improved_evaluator.py --difficulty easy
     py verify/improved_evaluator.py --all
 """
 
 from __future__ import annotations
-import sys, json, random, time
+import sys, json, time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from dotenv import load_dotenv
 load_dotenv()
-import os
-from groq import Groq
 from auditor.models import Action, DetectedVulnerability, VulnerabilityType, Severity
-from auditor.grader import grade
+from verify.eval_common import (
+    SAMPLE_SEED, TIERS, load_contracts, select_contracts, contract_record,
+    summarize, sha256, run_metadata,
+)
+from verify.real_evaluator import get_client
 
-client = Groq(api_key=os.getenv("GROQ_API_KEY"))
-MODEL  = "openai/gpt-oss-120b"
+MODEL       = "openai/gpt-oss-120b"
+TEMPERATURE = 0.05
 
 # ── Prompts ───────────────────────────────────────────────────────────────────
 
@@ -97,9 +103,9 @@ Then output ONLY valid JSON at the end (no text after the JSON block):
 
 If no vulnerability found, output: {"vulnerabilities": []}"""
 
-# Few-shot examples embedded in user message
-FEW_SHOT = {
-    "easy": """Example 1 — REENTRANCY (the ONLY vuln in this contract):
+# Few-shot examples embedded in user message (same for every contract)
+FEW_SHOT_EXAMPLES = {
+    "reentrancy_overflow": """Example 1 — REENTRANCY (the ONLY vuln in this contract):
 ```solidity
 pragma solidity ^0.5.0;   // <-- 0.5+ means NO integer overflow concern
 contract EtherStore {
@@ -133,7 +139,7 @@ IMPORTANT RULE: Only report a vulnerability if you see CLEAR CODE EVIDENCE for i
 Do NOT add integer_overflow to reentrancy contracts unless arithmetic is also vulnerable.
 Do NOT add reentrancy to overflow contracts unless there is also an external call.""",
 
-    "medium": """Example — UNCHECKED LOW-LEVEL CALL:
+    "calls_access_control": """Example — UNCHECKED LOW-LEVEL CALL:
 ```solidity
 function withdraw() public {
     msg.sender.call{value: balance[msg.sender]}("");  // return value ignored!
@@ -152,7 +158,7 @@ contract Owned {
 ```
 Correct output: {"vulnerabilities": [{"type": "access_control", "location": "Owned() / kill()", "severity": "critical", "explanation": "Function name matches contract name but is not a constructor in 0.4.22+ - anyone can call it and become owner"}]}""",
 
-    "hard": """Example — BAD RANDOMNESS:
+    "randomness_front_running": """Example — BAD RANDOMNESS:
 ```solidity
 function pickWinner() public {
     uint winner = uint(keccak256(block.timestamp, block.difficulty)) % players.length;
@@ -172,11 +178,30 @@ function solve(bytes32 answer) public {
 Correct output: {"vulnerabilities": [{"type": "front_running", "location": "solve()", "severity": "medium", "explanation": "Solution visible in mempool before mining - attackers can copy and submit with higher gas"}]}"""
 }
 
-HINTS = {
-    "easy":   "This is a SIMPLE contract with ONE main vulnerability. Use the examples above as guidance.",
-    "medium": "This is a MEDIUM complexity contract. Check for: incorrect constructor names (pre-0.5.0), unchecked calls, access control issues.",
-    "hard":   "This is a COMPLEX contract. Carefully check: (1) Does it use block.timestamp/blockhash for randomness? (2) Is selfdestruct accessible? (3) Are there delegatecall issues?"
-}
+FEW_SHOT = "\n\n".join(FEW_SHOT_EXAMPLES.values())
+
+COT_CHECKLIST = """Analyse this Solidity contract step by step:
+1. Check the Solidity version (pragma) — important for overflow and constructor rules
+2. Look for external calls and state update order (reentrancy)
+3. Look for block.timestamp / blockhash used for randomness (bad_randomness)
+4. Look for unchecked .call() / .send() return values
+5. Look for missing access control on critical functions
+6. Look for wrong constructor names (pre-0.5.0)
+7. Look for selfdestruct reachable by anyone, and delegatecall to untrusted targets
+8. Summarise all vulnerabilities found"""
+
+FOLLOWUP_PROMPT = "Based on your analysis above, provide ONLY the JSON result now. No additional text."
+
+
+def config() -> dict:
+    """Evaluator settings recorded alongside results."""
+    return {
+        "evaluator":   "cot",
+        "model":       MODEL,
+        "temperature": TEMPERATURE,
+        "max_tokens":  {"cot": 1000, "followup": 400},
+        "prompt_hash": sha256(SYSTEM_PROMPT, FEW_SHOT, COT_CHECKLIST, FOLLOWUP_PROMPT),
+    }
 
 VALID_TYPES = {t.value for t in VulnerabilityType}
 
@@ -259,16 +284,18 @@ def _normalise(parsed: dict) -> Action:
 
 # ── Core auditor ──────────────────────────────────────────────────────────────
 
-def _call_llm(messages: list, max_tokens: int = 900) -> str:
-    """Single LLM call with rate-limit retry."""
+def _call_llm(messages: list, max_tokens: int = 900) -> tuple[str, str | None]:
+    """Single LLM call with rate-limit retry. Returns (text, error or None)."""
     for attempt in range(5):
         try:
-            r = client.chat.completions.create(
+            r = get_client().chat.completions.create(
                 model=MODEL, messages=messages,
-                temperature=0.05, max_tokens=max_tokens,
+                temperature=TEMPERATURE, max_tokens=max_tokens,
             )
             time.sleep(9)   # stay within 8000 TPM free tier
-            return r.choices[0].message.content or ""
+            return r.choices[0].message.content or "", None
+        except RuntimeError:
+            raise   # missing API key: abort the run instead of scoring zeros
         except Exception as e:
             err = str(e)
             if "429" in err or "rate_limit" in err:
@@ -279,36 +306,25 @@ def _call_llm(messages: list, max_tokens: int = 900) -> str:
                 time.sleep(wait)
             else:
                 print(f"    [LLM error] {err[:120]}")
-                return ""
-    return ""
+                return "", f"llm_error: {err[:300]}"
+    return "", "max_retries_exceeded"
 
 
-def audit_with_cot(code: str, difficulty: str) -> Action:
+def audit_with_cot(code: str) -> tuple[Action, list[str], str | None]:
     """
     Two-stage audit:
       Stage 1 — CoT reasoning: ask model to reason through the contract
       Stage 2 — JSON extraction: force structured output from the reasoning
+    Returns (Action, raw responses, error message or None).
     """
     # Truncate intelligently: keep pragma + first N chars + last N chars
     if len(code) > 7000:
         code = code[:3500] + "\n\n// ...truncated...\n\n" + code[-3500:]
 
-    few_shot   = FEW_SHOT[difficulty]
-    hint       = HINTS[difficulty]
-
     # ── Stage 1: Chain-of-thought analysis ───────────────────────────────────
-    cot_prompt = f"""{few_shot}
+    cot_prompt = f"""{FEW_SHOT}
 
-{hint}
-
-Analyse this Solidity contract step by step:
-1. Check the Solidity version (pragma) — important for overflow and constructor rules
-2. Look for external calls and state update order (reentrancy)
-3. Look for block.timestamp / blockhash used for randomness (bad_randomness)
-4. Look for unchecked .call() / .send() return values
-5. Look for missing access control on critical functions
-6. Look for wrong constructor names (pre-0.5.0)
-7. Summarise all vulnerabilities found
+{COT_CHECKLIST}
 
 CONTRACT:
 ```solidity
@@ -317,13 +333,15 @@ CONTRACT:
 
 Reason through each check, then end with the JSON result."""
 
-    raw_cot = _call_llm([
+    raw_cot, error = _call_llm([
         {"role": "system", "content": SYSTEM_PROMPT},
         {"role": "user",   "content": cot_prompt},
     ], max_tokens=1000)
 
     if not raw_cot:
-        return Action(vulnerabilities=[])
+        return Action(vulnerabilities=[]), [], error or "empty_response"
+
+    raws = [raw_cot]
 
     # ── Stage 2: If CoT didn't produce clean JSON, force extraction ──────────
     action = _normalise(_parse_response(raw_cot))
@@ -331,108 +349,81 @@ Reason through each check, then end with the JSON result."""
     # If we found nothing but the reasoning mentions vulnerability keywords,
     # do a targeted follow-up pass to get structured output
     if not action.vulnerabilities and len(raw_cot) > 100:
-        followup = _call_llm([
+        followup, error = _call_llm([
             {"role": "system",    "content": SYSTEM_PROMPT},
             {"role": "user",      "content": cot_prompt},
             {"role": "assistant", "content": raw_cot},
-            {"role": "user",
-             "content": "Based on your analysis above, provide ONLY the JSON result now. No additional text."},
+            {"role": "user",      "content": FOLLOWUP_PROMPT},
         ], max_tokens=400)
 
         if followup:
+            raws.append(followup)
             action = _normalise(_parse_response(followup))
+        else:
+            return action, raws, error
 
-    return action
+    return action, raws, None
 
 
 # ── Evaluation runner ─────────────────────────────────────────────────────────
 
-def evaluate_improved(difficulty: str, n: int = 12) -> dict:
-    task_dir   = Path(f"tasks/{difficulty}")
-    split_path = Path(f"verify/splits/{difficulty}_split.json")
+def evaluate_improved(difficulty: str, n: int | None = None,
+                      seed: int = SAMPLE_SEED, use_test_split: bool = True) -> dict:
+    """Evaluate the CoT agent on the test split (all of it when n is None)."""
+    sample = select_contracts(load_contracts(difficulty, use_test_split), n, seed)
+    print(f"  Evaluating {len(sample)} contracts "
+          f"({'test split' if use_test_split else 'all'})")
 
-    sol_files = sorted(task_dir.glob("*.sol"))
-    if split_path.exists():
-        test_stems = set(json.loads(split_path.read_text()).get("test", []))
-        sol_files  = [f for f in sol_files if f.stem in test_stems]
-        print(f"  Test split: {len(sol_files)} contracts")
-
-    sample = random.sample(sol_files, min(n, len(sol_files)))
-    scores, details = [], []
-
+    details = []
     for i, sol_path in enumerate(sample):
-        gt_path = sol_path.with_suffix(".json")
-        if not gt_path.exists():
-            continue
-
-        gt   = json.loads(gt_path.read_text(encoding="utf-8"))
         code = sol_path.read_text(encoding="utf-8", errors="replace")
 
         print(f"  [{i+1}/{len(sample)}] {sol_path.name} ... ", end="", flush=True)
 
-        action = audit_with_cot(code, difficulty)
-        result = grade(action, gt)
+        action, raws, error = audit_with_cot(code)
+        record = contract_record(sol_path, action, raws, error)
+        details.append(record)
 
-        scores.append(result["score"])
-        details.append({**result, "contract": sol_path.name})
+        found = ",".join(record["found_types"]) or "(none)"
+        expct = ",".join(record["expected_types"]) or "(none)"
+        print(f"score={record['score']:.3f}  "
+              f"found=[{found}]  expected=[{expct}]"
+              + (f"  [{error}]" if error else ""))
 
-        found = ",".join(result["found_types"]) or "(none)"
-        expct = ",".join(result["expected_types"]) or "(none)"
-        print(f"score={result['score']:.3f}  "
-              f"found=[{found}]  expected=[{expct}]")
-
-    if not scores:
-        return {"difficulty": difficulty, "error": "no results"}
-
-    return {
-        "difficulty":    difficulty,
-        "n_contracts":   len(details),
-        "avg_score":     round(sum(scores)/len(scores), 4),
-        "avg_precision": round(sum(d["precision"] for d in details)/len(details), 4),
-        "avg_recall":    round(sum(d["recall"]    for d in details)/len(details), 4),
-        "avg_f1":        round(sum(d["f1"]        for d in details)/len(details), 4),
-        "details":       details,
-    }
+    return summarize(difficulty, details)
 
 
 # ── Main ──────────────────────────────────────────────────────────────────────
 
-def print_comparison(tier: str, old: float, new: float):
-    delta = new - old
-    arrow = "+" if delta >= 0 else ""
-    bar   = "#" * int(new * 30)
-    print(f"  {tier:<8}  old={old:.3f}  new={new:.3f}  delta={arrow}{delta:.3f}  [{bar}]")
-
-
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument("--difficulty", default=None, choices=["easy","medium","hard"])
+    parser.add_argument("--difficulty", default=None, choices=list(TIERS))
     parser.add_argument("--all",  action="store_true")
-    parser.add_argument("--n",    type=int, default=12)
+    parser.add_argument("--n",    type=int, default=None,
+                        help="Contracts per tier (default: whole test split)")
+    parser.add_argument("--seed", type=int, default=SAMPLE_SEED)
     args = parser.parse_args()
 
-    PREVIOUS = {"easy": 0.9417, "medium": 0.5333, "hard": 0.3556}
-
-    tiers = (["easy","medium","hard"] if args.all
+    tiers = (list(TIERS) if args.all
              else ([args.difficulty] if args.difficulty else ["easy"]))
 
     all_results = {}
     for tier in tiers:
         print(f"\n{'='*60}")
-        print(f"  IMPROVED EVALUATION: {tier.upper()} ({args.n} contracts)")
+        print(f"  IMPROVED EVALUATION: {tier.upper()}")
         print(f"{'='*60}")
-        result = evaluate_improved(tier, n=args.n)
-        all_results[tier] = result
+        all_results[tier] = evaluate_improved(tier, n=args.n, seed=args.seed)
 
     print(f"\n\n{'='*60}")
-    print("  COMPARISON: OLD vs IMPROVED")
-    print(f"{'='*60}")
-    for tier in tiers:
-        if tier in all_results and "avg_score" in all_results[tier]:
-            print_comparison(tier, PREVIOUS[tier], all_results[tier]["avg_score"])
+    for tier, r in all_results.items():
+        print(f"  {tier:<8}  score={r['avg_score']:.3f}  P={r['avg_precision']:.3f}  "
+              f"R={r['avg_recall']:.3f}  F1={r['avg_f1']:.3f}  n={r['n_contracts']}")
 
     # Save
     out = Path("verify/results/improved_evaluation.json")
-    out.write_text(json.dumps(all_results, indent=2))
+    out.write_text(json.dumps({
+        "metadata": run_metadata(**config(), n=args.n, sample_seed=args.seed),
+        "results":  all_results,
+    }, indent=2))
     print(f"\n  Saved => {out}")

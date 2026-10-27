@@ -10,31 +10,31 @@ no information from the contract code.
 """
 
 from __future__ import annotations
-import json, random, sys, os
+import json, random, sys
 sys.path.insert(0, str(__import__("pathlib").Path(__file__).parent.parent))
 
-from pathlib import Path
 from auditor.models import (
     Action, DetectedVulnerability, VulnerabilityType, Severity
 )
 from auditor.grader import grade
+from verify.eval_common import load_contracts, select_contracts
 
 VULN_TYPES = list(VulnerabilityType)
 SEVERITIES = list(Severity)
 
 
-def random_action(max_bugs: int = 3) -> Action:
+def random_action(rng: random.Random, max_bugs: int = 3) -> Action:
     """
     Generates a completely random audit report.
     Number of reported bugs: 0 to max_bugs (uniform).
     Types and severities: uniform random.
     """
-    n = random.randint(0, max_bugs)
+    n = rng.randint(0, max_bugs)
     vulns = [
         DetectedVulnerability(
-            type        = random.choice(VULN_TYPES),
+            type        = rng.choice(VULN_TYPES),
             location    = "unknown",
-            severity    = random.choice(SEVERITIES),
+            severity    = rng.choice(SEVERITIES),
             explanation = "random agent",
         )
         for _ in range(n)
@@ -44,61 +44,48 @@ def random_action(max_bugs: int = 3) -> Action:
 
 def run_random_baseline(
     difficulty: str,
-    n: int = 30,
+    n: int | None = None,
     seed: int = 7777,
-    split_file: str | None = None,
-    use_test_split: bool = False,
+    use_test_split: bool = True,
+    trials: int = 100,
 ) -> dict:
     """
-    Run random agent on n real SmartBugs contracts.
+    Run random agent on real SmartBugs contracts.
+
+    Parameters
+    ----------
+    n              : number of contracts (None = the whole test split)
+    seed           : seeds both contract sub-sampling and the random agent
+    use_test_split : if True, only held-out test contracts are scored
+    trials         : random reports drawn per contract; scores are averaged
+                     so the floor estimate is stable on small test splits
 
     Returns
     -------
-    dict with avg_score, avg_precision, avg_recall and per-contract details
+    dict with avg_score, avg_precision, avg_recall
     """
-    random.seed(seed)
-    task_dir  = Path(f"tasks/{difficulty}")
-    sol_files = sorted(task_dir.glob("*.sol"))
-
-    if not sol_files:
-        raise FileNotFoundError(
-            f"No .sol files in tasks/{difficulty}/. "
-            f"Run: py scripts/fetch_smartbugs.py"
-        )
-
-    # Optional: restrict to test split
-    if split_file and use_test_split:
-        try:
-            split_data = json.loads(Path(split_file).read_text())
-            test_stems = set(split_data.get("test", []))
-            sol_files  = [f for f in sol_files if f.stem in test_stems]
-        except Exception as e:
-            print(f"  [WARN] split load failed: {e}")
-
-    sample  = random.sample(sol_files, min(n, len(sol_files)))
+    sample = select_contracts(load_contracts(difficulty, use_test_split), n, seed)
+    rng    = random.Random(seed)
     scores, precisions, recalls = [], [], []
 
     for sol_path in sample:
-        gt_path = sol_path.with_suffix(".json")
-        if not gt_path.exists():
-            continue
-        ground_truth = json.loads(gt_path.read_text(encoding="utf-8"))
-        action       = random_action(max_bugs=3)
-        result       = grade(action, ground_truth)
-        scores.append(result["score"])
-        precisions.append(result["precision"])
-        recalls.append(result["recall"])
+        ground_truth = json.loads(sol_path.with_suffix(".json").read_text(encoding="utf-8"))
+        for _ in range(trials):
+            result = grade(random_action(rng, max_bugs=3), ground_truth)
+            scores.append(result["score"])
+            precisions.append(result["precision"])
+            recalls.append(result["recall"])
 
-    avg_score = round(sum(scores) / len(scores), 4) if scores else 0.0
-    avg_prec  = round(sum(precisions) / len(precisions), 4) if precisions else 0.0
-    avg_rec   = round(sum(recalls)    / len(recalls),    4) if recalls    else 0.0
-
+    mean = lambda xs: round(sum(xs) / len(xs), 4) if xs else 0.0
     return {
         "difficulty":    difficulty,
-        "n_evaluated":   len(scores),
-        "avg_score":     avg_score,
-        "avg_precision": avg_prec,
-        "avg_recall":    avg_rec,
+        "n_evaluated":   len(sample),
+        "trials":        trials,
+        "seed":          seed,
+        "test_split":    use_test_split,
+        "avg_score":     mean(scores),
+        "avg_precision": mean(precisions),
+        "avg_recall":    mean(recalls),
     }
 
 
@@ -106,15 +93,16 @@ if __name__ == "__main__":
     print("=" * 50)
     print("RANDOM BASELINE ON REAL SMARTBUGS CONTRACTS")
     print("=" * 50)
-    print("(Random agent has no access to contract code)\n")
+    print("(Random agent has no access to contract code; test split only)\n")
 
     all_results = {}
     for level in ["easy", "medium", "hard"]:
         try:
-            r = run_random_baseline(level, n=30)
+            r = run_random_baseline(level)
             all_results[level] = r
             print(f"  {level:<8}: score={r['avg_score']:.4f}  "
-                  f"P={r['avg_precision']:.4f}  R={r['avg_recall']:.4f}")
+                  f"P={r['avg_precision']:.4f}  R={r['avg_recall']:.4f}  "
+                  f"(n={r['n_evaluated']} x {r['trials']} trials)")
         except FileNotFoundError as e:
             print(f"  {level}: SKIP — {e}")
 
