@@ -1,0 +1,1243 @@
+{
+  "metadata": {
+    "generated_at": "2026-10-28T07:59:50+00:00",
+    "git_commit": "035828b6855b270c5bf760daeb638f0037444d40-dirty",
+    "python": "3.14.3",
+    "split_seed": 42,
+    "evaluator": "rl",
+    "model": "llama-3.1-8b-instant",
+    "temperature": 0.1,
+    "max_tokens": 1000,
+    "max_code_chars": 6000,
+    "prompt_hash": "a3669b2a2342a966",
+    "ta_scenarios": 41,
+    "ta_batch": 8,
+    "price_per_m_tokens": {
+      "input": 0.15,
+      "output": 0.75
+    },
+    "rounds": {
+      "min": 2,
+      "max": 5
+    },
+    "features": "ContractAnalyzer regex (28 features)",
+    "mode_model": {
+      "path": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\models\\mode_selector\\mode_selector.zip",
+      "sha256": "edcfce9b45165d7b"
+    },
+    "stop_model": {
+      "path": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\models\\stopping_policy\\stopping_policy.zip",
+      "sha256": "6371fe873420eefe"
+    },
+    "tiers": [
+      "easy",
+      "medium",
+      "hard"
+    ],
+    "labels": "curated",
+    "n": 10,
+    "sample_seed": 42,
+    "random_seed": 7777,
+    "random_trials": 100,
+    "test_sets": {
+      "easy": [
+        "0x23a91059fdc9579a9fbd0edc5f2ea0bfdb70deb4",
+        "0x7541b76cb60f4c60af330c208b0623b7f54bf615",
+        "0x7a8721a9d64c74da899424c1b52acbf58ddc9782",
+        "0x7b368c4e805c3870b6c49a3f1f49f69af8662cf3",
+        "0xb5e1b1ee15c6fa0e48fce100125569d430f1bd12",
+        "0xb93430ce38ac4a6bb47fb1fc085ea669353fd89e",
+        "0xbe4041d55db380c5ae9d4a9b9703f1ed4e7e3888",
+        "ProofofExistence",
+        "TAMC",
+        "integer_overflow_mul",
+        "overflow_simple_add",
+        "reentrancy_dao"
+      ],
+      "medium": [
+        "0x2972d548497286d18e92b5fa1f8f9139e5653fd2",
+        "0x39cfd754c85023648bf003bea2dd498c5612abfa",
+        "0x524960d55174d912768678d8c606b4d50b79d7b1",
+        "0x5aa88d2901c68fda244f1d0584400368d2c8e739",
+        "0x610495793564aed0f9c7fc48dc4c7c9151d34fd6",
+        "0x70f9eddb3931491aab1aeafbc1e7f1ca2a012db4",
+        "0xa1fceeff3acc57d257b917e30c4df661401d6431",
+        "0xa46edd6a9a93feec36576ee5048146870ea2c3ae",
+        "0xb0510d68f210b7db66e8c7c814f22680f2b8d1d6",
+        "0xb37f18af15bafb869a065b61fc83cfc44ed9cc27",
+        "0xbebbfe5b549f5db6e6c78ca97cac19d1fb03082c",
+        "FindThisHash",
+        "ProofOfExistence",
+        "king_of_the_ether_throne",
+        "multiowned_vulnerable",
+        "parity_wallet_bug_2",
+        "rubixi",
+        "wallet_02_refund_nosub",
+        "wallet_04_confused_sign"
+      ],
+      "hard": [
+        "BankOfEther",
+        "Delegation",
+        "ERC20Basic",
+        "EthRoulette",
+        "SuicideMultiTxInfeasible",
+        "bug_3",
+        "crypto_roulette",
+        "eth_tx_order_dependence_minimal",
+        "short_address_example"
+      ]
+    }
+  },
+  "random_baseline": {
+    "easy": {
+      "difficulty": "easy",
+      "n_evaluated": 10,
+      "trials": 100,
+      "seed": 7777,
+      "test_split": true,
+      "labels": "curated",
+      "avg_score": 0.0985,
+      "avg_precision": 0.0678,
+      "avg_recall": 0.119
+    },
+    "medium": {
+      "difficulty": "medium",
+      "n_evaluated": 10,
+      "trials": 100,
+      "seed": 7777,
+      "test_split": true,
+      "labels": "curated",
+      "avg_score": 0.0944,
+      "avg_precision": 0.065,
+      "avg_recall": 0.114
+    },
+    "hard": {
+      "difficulty": "hard",
+      "n_evaluated": 9,
+      "trials": 100,
+      "seed": 7777,
+      "test_split": true,
+      "labels": "curated",
+      "avg_score": 0.105,
+      "avg_precision": 0.0693,
+      "avg_recall": 0.1289
+    }
+  },
+  "summary": {
+    "easy": {
+      "random_score": 0.0985,
+      "llm_score": 0.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "gap": -0.0985,
+      "n_contracts": 10,
+      "n_errors": 10,
+      "avg_tokens": 0.0,
+      "avg_cost_usd": 0.0,
+      "avg_rounds": 2.0,
+      "avg_calls": 6.0,
+      "mode_counts": {
+        "BA": 2,
+        "TA": 8
+      },
+      "score_per_1k_tokens": 0.0
+    },
+    "medium": {
+      "random_score": 0.0944,
+      "llm_score": 0.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "gap": -0.0944,
+      "n_contracts": 10,
+      "n_errors": 10,
+      "avg_tokens": 0.0,
+      "avg_cost_usd": 0.0,
+      "avg_rounds": 2.0,
+      "avg_calls": 4.5,
+      "mode_counts": {
+        "BA": 5,
+        "TA": 5
+      },
+      "score_per_1k_tokens": 0.0
+    },
+    "hard": {
+      "random_score": 0.105,
+      "llm_score": 0.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "gap": -0.105,
+      "n_contracts": 9,
+      "n_errors": 9,
+      "avg_tokens": 0.0,
+      "avg_cost_usd": 0.0,
+      "avg_rounds": 2.0,
+      "avg_calls": 3.6667,
+      "mode_counts": {
+        "BA": 6,
+        "TA": 3
+      },
+      "score_per_1k_tokens": 0.0
+    }
+  },
+  "overall": {
+    "n_contracts": 29,
+    "n_errors": 29,
+    "macro_avg_score": 0.0,
+    "micro_avg_score": 0.0,
+    "macro_avg_f1": 0.0,
+    "macro_random_score": 0.0993,
+    "macro_gap_vs_random": -0.0993,
+    "micro_avg_tokens": 0.0,
+    "micro_avg_cost_usd": 0.0,
+    "micro_avg_rounds": 2.0,
+    "score_per_1k_tokens": 0.0
+  },
+  "results": {
+    "easy": {
+      "difficulty": "easy",
+      "n_contracts": 10,
+      "n_errors": 10,
+      "avg_score": 0.0,
+      "avg_precision": 0.0,
+      "avg_recall": 0.0,
+      "avg_f1": 0.0,
+      "avg_tokens": 0.0,
+      "avg_cost_usd": 0.0,
+      "avg_rounds": 2.0,
+      "avg_calls": 6.0,
+      "mode_counts": {
+        "BA": 2,
+        "TA": 8
+      },
+      "details": [
+        {
+          "contract": "0x23a91059fdc9579a9fbd0edc5f2ea0bfdb70deb4.sol",
+          "score": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "true_positives": 0,
+          "false_positives": 0,
+          "missed_bugs": 1,
+          "found_types": [],
+          "expected_types": [
+            "reentrancy"
+          ],
+          "action": {
+            "vulnerabilities": []
+          },
+          "raw_responses": [],
+          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "audit": {
+            "mode": "TA",
+            "mode_source": "ppo",
+            "rounds": 2,
+            "stop_reason": "dqn_stop",
+            "confidences": [
+              0.0,
+              0.0
+            ],
+            "llm_calls": 7,
+            "prompt_tokens": 0,
+            "completion_tokens": 0,
+            "tokens": 0,
+            "cost_usd": 0.0
+          }
+        },
+        {
+          "contract": "0x7541b76cb60f4c60af330c208b0623b7f54bf615.sol",
+          "score": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "true_positives": 0,
+          "false_positives": 0,
+          "missed_bugs": 1,
+          "found_types": [],
+          "expected_types": [
+            "reentrancy"
+          ],
+          "action": {
+            "vulnerabilities": []
+          },
+          "raw_responses": [],
+          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "audit": {
+            "mode": "TA",
+            "mode_source": "ppo",
+            "rounds": 2,
+            "stop_reason": "dqn_stop",
+            "confidences": [
+              0.0,
+              0.0
+            ],
+            "llm_calls": 7,
+            "prompt_tokens": 0,
+            "completion_tokens": 0,
+            "tokens": 0,
+            "cost_usd": 0.0
+          }
+        },
+        {
+          "contract": "0x7a8721a9d64c74da899424c1b52acbf58ddc9782.sol",
+          "score": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "true_positives": 0,
+          "false_positives": 0,
+          "missed_bugs": 1,
+          "found_types": [],
+          "expected_types": [
+            "reentrancy"
+          ],
+          "action": {
+            "vulnerabilities": []
+          },
+          "raw_responses": [],
+          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "audit": {
+            "mode": "BA",
+            "mode_source": "ppo",
+            "rounds": 2,
+            "stop_reason": "dqn_stop",
+            "confidences": [
+              0.0,
+              0.0
+            ],
+            "llm_calls": 2,
+            "prompt_tokens": 0,
+            "completion_tokens": 0,
+            "tokens": 0,
+            "cost_usd": 0.0
+          }
+        },
+        {
+          "contract": "0x7b368c4e805c3870b6c49a3f1f49f69af8662cf3.sol",
+          "score": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "true_positives": 0,
+          "false_positives": 0,
+          "missed_bugs": 1,
+          "found_types": [],
+          "expected_types": [
+            "reentrancy"
+          ],
+          "action": {
+            "vulnerabilities": []
+          },
+          "raw_responses": [],
+          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "audit": {
+            "mode": "TA",
+            "mode_source": "ppo",
+            "rounds": 2,
+            "stop_reason": "dqn_stop",
+            "confidences": [
+              0.0,
+              0.0
+            ],
+            "llm_calls": 7,
+            "prompt_tokens": 0,
+            "completion_tokens": 0,
+            "tokens": 0,
+            "cost_usd": 0.0
+          }
+        },
+        {
+          "contract": "0xb5e1b1ee15c6fa0e48fce100125569d430f1bd12.sol",
+          "score": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "true_positives": 0,
+          "false_positives": 0,
+          "missed_bugs": 1,
+          "found_types": [],
+          "expected_types": [
+            "reentrancy"
+          ],
+          "action": {
+            "vulnerabilities": []
+          },
+          "raw_responses": [],
+          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "audit": {
+            "mode": "TA",
+            "mode_source": "ppo",
+            "rounds": 2,
+            "stop_reason": "dqn_stop",
+            "confidences": [
+              0.0,
+              0.0
+            ],
+            "llm_calls": 7,
+            "prompt_tokens": 0,
+            "completion_tokens": 0,
+            "tokens": 0,
+            "cost_usd": 0.0
+          }
+        },
+        {
+          "contract": "0xbe4041d55db380c5ae9d4a9b9703f1ed4e7e3888.sol",
+          "score": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "true_positives": 0,
+          "false_positives": 0,
+          "missed_bugs": 1,
+          "found_types": [],
+          "expected_types": [
+            "reentrancy"
+          ],
+          "action": {
+            "vulnerabilities": []
+          },
+          "raw_responses": [],
+          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "audit": {
+            "mode": "TA",
+            "mode_source": "ppo",
+            "rounds": 2,
+            "stop_reason": "dqn_stop",
+            "confidences": [
+              0.0,
+              0.0
+            ],
+            "llm_calls": 7,
+            "prompt_tokens": 0,
+            "completion_tokens": 0,
+            "tokens": 0,
+            "cost_usd": 0.0
+          }
+        },
+        {
+          "contract": "overflow_simple_add.sol",
+          "score": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "true_positives": 0,
+          "false_positives": 0,
+          "missed_bugs": 1,
+          "found_types": [],
+          "expected_types": [
+            "integer_overflow"
+          ],
+          "action": {
+            "vulnerabilities": []
+          },
+          "raw_responses": [],
+          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "audit": {
+            "mode": "BA",
+            "mode_source": "ppo",
+            "rounds": 2,
+            "stop_reason": "dqn_stop",
+            "confidences": [
+              0.0,
+              0.0
+            ],
+            "llm_calls": 2,
+            "prompt_tokens": 0,
+            "completion_tokens": 0,
+            "tokens": 0,
+            "cost_usd": 0.0
+          }
+        },
+        {
+          "contract": "ProofofExistence.sol",
+          "score": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "true_positives": 0,
+          "false_positives": 0,
+          "missed_bugs": 1,
+          "found_types": [],
+          "expected_types": [
+            "tx_origin"
+          ],
+          "action": {
+            "vulnerabilities": []
+          },
+          "raw_responses": [],
+          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "audit": {
+            "mode": "TA",
+            "mode_source": "ppo",
+            "rounds": 2,
+            "stop_reason": "dqn_stop",
+            "confidences": [
+              0.0,
+              0.0
+            ],
+            "llm_calls": 7,
+            "prompt_tokens": 0,
+            "completion_tokens": 0,
+            "tokens": 0,
+            "cost_usd": 0.0
+          }
+        },
+        {
+          "contract": "reentrancy_dao.sol",
+          "score": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "true_positives": 0,
+          "false_positives": 0,
+          "missed_bugs": 1,
+          "found_types": [],
+          "expected_types": [
+            "reentrancy"
+          ],
+          "action": {
+            "vulnerabilities": []
+          },
+          "raw_responses": [],
+          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "audit": {
+            "mode": "TA",
+            "mode_source": "ppo",
+            "rounds": 2,
+            "stop_reason": "dqn_stop",
+            "confidences": [
+              0.0,
+              0.0
+            ],
+            "llm_calls": 7,
+            "prompt_tokens": 0,
+            "completion_tokens": 0,
+            "tokens": 0,
+            "cost_usd": 0.0
+          }
+        },
+        {
+          "contract": "TAMC.sol",
+          "score": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "true_positives": 0,
+          "false_positives": 0,
+          "missed_bugs": 1,
+          "found_types": [],
+          "expected_types": [
+            "tx_origin"
+          ],
+          "action": {
+            "vulnerabilities": []
+          },
+          "raw_responses": [],
+          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "audit": {
+            "mode": "TA",
+            "mode_source": "ppo",
+            "rounds": 2,
+            "stop_reason": "dqn_stop",
+            "confidences": [
+              0.0,
+              0.0
+            ],
+            "llm_calls": 7,
+            "prompt_tokens": 0,
+            "completion_tokens": 0,
+            "tokens": 0,
+            "cost_usd": 0.0
+          }
+        }
+      ]
+    },
+    "medium": {
+      "difficulty": "medium",
+      "n_contracts": 10,
+      "n_errors": 10,
+      "avg_score": 0.0,
+      "avg_precision": 0.0,
+      "avg_recall": 0.0,
+      "avg_f1": 0.0,
+      "avg_tokens": 0.0,
+      "avg_cost_usd": 0.0,
+      "avg_rounds": 2.0,
+      "avg_calls": 4.5,
+      "mode_counts": {
+        "BA": 5,
+        "TA": 5
+      },
+      "details": [
+        {
+          "contract": "0x2972d548497286d18e92b5fa1f8f9139e5653fd2.sol",
+          "score": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "true_positives": 0,
+          "false_positives": 0,
+          "missed_bugs": 1,
+          "found_types": [],
+          "expected_types": [
+            "unchecked_low_level_calls"
+          ],
+          "action": {
+            "vulnerabilities": []
+          },
+          "raw_responses": [],
+          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "audit": {
+            "mode": "TA",
+            "mode_source": "ppo",
+            "rounds": 2,
+            "stop_reason": "dqn_stop",
+            "confidences": [
+              0.0,
+              0.0
+            ],
+            "llm_calls": 7,
+            "prompt_tokens": 0,
+            "completion_tokens": 0,
+            "tokens": 0,
+            "cost_usd": 0.0
+          }
+        },
+        {
+          "contract": "0x39cfd754c85023648bf003bea2dd498c5612abfa.sol",
+          "score": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "true_positives": 0,
+          "false_positives": 0,
+          "missed_bugs": 1,
+          "found_types": [],
+          "expected_types": [
+            "unchecked_low_level_calls"
+          ],
+          "action": {
+            "vulnerabilities": []
+          },
+          "raw_responses": [],
+          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "audit": {
+            "mode": "BA",
+            "mode_source": "ppo",
+            "rounds": 2,
+            "stop_reason": "dqn_stop",
+            "confidences": [
+              0.0,
+              0.0
+            ],
+            "llm_calls": 2,
+            "prompt_tokens": 0,
+            "completion_tokens": 0,
+            "tokens": 0,
+            "cost_usd": 0.0
+          }
+        },
+        {
+          "contract": "0x524960d55174d912768678d8c606b4d50b79d7b1.sol",
+          "score": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "true_positives": 0,
+          "false_positives": 0,
+          "missed_bugs": 1,
+          "found_types": [],
+          "expected_types": [
+            "unchecked_low_level_calls"
+          ],
+          "action": {
+            "vulnerabilities": []
+          },
+          "raw_responses": [],
+          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "audit": {
+            "mode": "TA",
+            "mode_source": "ppo",
+            "rounds": 2,
+            "stop_reason": "dqn_stop",
+            "confidences": [
+              0.0,
+              0.0
+            ],
+            "llm_calls": 7,
+            "prompt_tokens": 0,
+            "completion_tokens": 0,
+            "tokens": 0,
+            "cost_usd": 0.0
+          }
+        },
+        {
+          "contract": "0x5aa88d2901c68fda244f1d0584400368d2c8e739.sol",
+          "score": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "true_positives": 0,
+          "false_positives": 0,
+          "missed_bugs": 1,
+          "found_types": [],
+          "expected_types": [
+            "unchecked_low_level_calls"
+          ],
+          "action": {
+            "vulnerabilities": []
+          },
+          "raw_responses": [],
+          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "audit": {
+            "mode": "BA",
+            "mode_source": "ppo",
+            "rounds": 2,
+            "stop_reason": "dqn_stop",
+            "confidences": [
+              0.0,
+              0.0
+            ],
+            "llm_calls": 2,
+            "prompt_tokens": 0,
+            "completion_tokens": 0,
+            "tokens": 0,
+            "cost_usd": 0.0
+          }
+        },
+        {
+          "contract": "0xa46edd6a9a93feec36576ee5048146870ea2c3ae.sol",
+          "score": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "true_positives": 0,
+          "false_positives": 0,
+          "missed_bugs": 1,
+          "found_types": [],
+          "expected_types": [
+            "unchecked_low_level_calls"
+          ],
+          "action": {
+            "vulnerabilities": []
+          },
+          "raw_responses": [],
+          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "audit": {
+            "mode": "TA",
+            "mode_source": "ppo",
+            "rounds": 2,
+            "stop_reason": "dqn_stop",
+            "confidences": [
+              0.0,
+              0.0
+            ],
+            "llm_calls": 7,
+            "prompt_tokens": 0,
+            "completion_tokens": 0,
+            "tokens": 0,
+            "cost_usd": 0.0
+          }
+        },
+        {
+          "contract": "0xb0510d68f210b7db66e8c7c814f22680f2b8d1d6.sol",
+          "score": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "true_positives": 0,
+          "false_positives": 0,
+          "missed_bugs": 1,
+          "found_types": [],
+          "expected_types": [
+            "unchecked_low_level_calls"
+          ],
+          "action": {
+            "vulnerabilities": []
+          },
+          "raw_responses": [],
+          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "audit": {
+            "mode": "BA",
+            "mode_source": "ppo",
+            "rounds": 2,
+            "stop_reason": "dqn_stop",
+            "confidences": [
+              0.0,
+              0.0
+            ],
+            "llm_calls": 2,
+            "prompt_tokens": 0,
+            "completion_tokens": 0,
+            "tokens": 0,
+            "cost_usd": 0.0
+          }
+        },
+        {
+          "contract": "0xbebbfe5b549f5db6e6c78ca97cac19d1fb03082c.sol",
+          "score": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "true_positives": 0,
+          "false_positives": 0,
+          "missed_bugs": 1,
+          "found_types": [],
+          "expected_types": [
+            "unchecked_low_level_calls"
+          ],
+          "action": {
+            "vulnerabilities": []
+          },
+          "raw_responses": [],
+          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "audit": {
+            "mode": "BA",
+            "mode_source": "ppo",
+            "rounds": 2,
+            "stop_reason": "dqn_stop",
+            "confidences": [
+              0.0,
+              0.0
+            ],
+            "llm_calls": 2,
+            "prompt_tokens": 0,
+            "completion_tokens": 0,
+            "tokens": 0,
+            "cost_usd": 0.0
+          }
+        },
+        {
+          "contract": "FindThisHash.sol",
+          "score": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "true_positives": 0,
+          "false_positives": 0,
+          "missed_bugs": 1,
+          "found_types": [],
+          "expected_types": [
+            "front_running"
+          ],
+          "action": {
+            "vulnerabilities": []
+          },
+          "raw_responses": [],
+          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "audit": {
+            "mode": "TA",
+            "mode_source": "ppo",
+            "rounds": 2,
+            "stop_reason": "dqn_stop",
+            "confidences": [
+              0.0,
+              0.0
+            ],
+            "llm_calls": 7,
+            "prompt_tokens": 0,
+            "completion_tokens": 0,
+            "tokens": 0,
+            "cost_usd": 0.0
+          }
+        },
+        {
+          "contract": "rubixi.sol",
+          "score": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "true_positives": 0,
+          "false_positives": 0,
+          "missed_bugs": 1,
+          "found_types": [],
+          "expected_types": [
+            "access_control"
+          ],
+          "action": {
+            "vulnerabilities": []
+          },
+          "raw_responses": [],
+          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "audit": {
+            "mode": "BA",
+            "mode_source": "ppo",
+            "rounds": 2,
+            "stop_reason": "dqn_stop",
+            "confidences": [
+              0.0,
+              0.0
+            ],
+            "llm_calls": 2,
+            "prompt_tokens": 0,
+            "completion_tokens": 0,
+            "tokens": 0,
+            "cost_usd": 0.0
+          }
+        },
+        {
+          "contract": "wallet_04_confused_sign.sol",
+          "score": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "true_positives": 0,
+          "false_positives": 0,
+          "missed_bugs": 1,
+          "found_types": [],
+          "expected_types": [
+            "access_control"
+          ],
+          "action": {
+            "vulnerabilities": []
+          },
+          "raw_responses": [],
+          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "audit": {
+            "mode": "TA",
+            "mode_source": "ppo",
+            "rounds": 2,
+            "stop_reason": "dqn_stop",
+            "confidences": [
+              0.0,
+              0.0
+            ],
+            "llm_calls": 7,
+            "prompt_tokens": 0,
+            "completion_tokens": 0,
+            "tokens": 0,
+            "cost_usd": 0.0
+          }
+        }
+      ]
+    },
+    "hard": {
+      "difficulty": "hard",
+      "n_contracts": 9,
+      "n_errors": 9,
+      "avg_score": 0.0,
+      "avg_precision": 0.0,
+      "avg_recall": 0.0,
+      "avg_f1": 0.0,
+      "avg_tokens": 0.0,
+      "avg_cost_usd": 0.0,
+      "avg_rounds": 2.0,
+      "avg_calls": 3.6667,
+      "mode_counts": {
+        "BA": 6,
+        "TA": 3
+      },
+      "details": [
+        {
+          "contract": "BankOfEther.sol",
+          "score": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "true_positives": 0,
+          "false_positives": 0,
+          "missed_bugs": 1,
+          "found_types": [],
+          "expected_types": [
+            "selfdestruct"
+          ],
+          "action": {
+            "vulnerabilities": []
+          },
+          "raw_responses": [],
+          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "audit": {
+            "mode": "BA",
+            "mode_source": "ppo",
+            "rounds": 2,
+            "stop_reason": "dqn_stop",
+            "confidences": [
+              0.0,
+              0.0
+            ],
+            "llm_calls": 2,
+            "prompt_tokens": 0,
+            "completion_tokens": 0,
+            "tokens": 0,
+            "cost_usd": 0.0
+          }
+        },
+        {
+          "contract": "bug_3.sol",
+          "score": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "true_positives": 0,
+          "false_positives": 0,
+          "missed_bugs": 1,
+          "found_types": [],
+          "expected_types": [
+            "selfdestruct"
+          ],
+          "action": {
+            "vulnerabilities": []
+          },
+          "raw_responses": [],
+          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "audit": {
+            "mode": "BA",
+            "mode_source": "ppo",
+            "rounds": 2,
+            "stop_reason": "dqn_stop",
+            "confidences": [
+              0.0,
+              0.0
+            ],
+            "llm_calls": 2,
+            "prompt_tokens": 0,
+            "completion_tokens": 0,
+            "tokens": 0,
+            "cost_usd": 0.0
+          }
+        },
+        {
+          "contract": "crypto_roulette.sol",
+          "score": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "true_positives": 0,
+          "false_positives": 0,
+          "missed_bugs": 1,
+          "found_types": [],
+          "expected_types": [
+            "other"
+          ],
+          "action": {
+            "vulnerabilities": []
+          },
+          "raw_responses": [],
+          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "audit": {
+            "mode": "TA",
+            "mode_source": "ppo",
+            "rounds": 2,
+            "stop_reason": "dqn_stop",
+            "confidences": [
+              0.0,
+              0.0
+            ],
+            "llm_calls": 7,
+            "prompt_tokens": 0,
+            "completion_tokens": 0,
+            "tokens": 0,
+            "cost_usd": 0.0
+          }
+        },
+        {
+          "contract": "Delegation.sol",
+          "score": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "true_positives": 0,
+          "false_positives": 0,
+          "missed_bugs": 1,
+          "found_types": [],
+          "expected_types": [
+            "access_control"
+          ],
+          "action": {
+            "vulnerabilities": []
+          },
+          "raw_responses": [],
+          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "audit": {
+            "mode": "BA",
+            "mode_source": "ppo",
+            "rounds": 2,
+            "stop_reason": "dqn_stop",
+            "confidences": [
+              0.0,
+              0.0
+            ],
+            "llm_calls": 2,
+            "prompt_tokens": 0,
+            "completion_tokens": 0,
+            "tokens": 0,
+            "cost_usd": 0.0
+          }
+        },
+        {
+          "contract": "ERC20Basic.sol",
+          "score": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "true_positives": 0,
+          "false_positives": 0,
+          "missed_bugs": 1,
+          "found_types": [],
+          "expected_types": [
+            "selfdestruct"
+          ],
+          "action": {
+            "vulnerabilities": []
+          },
+          "raw_responses": [],
+          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "audit": {
+            "mode": "BA",
+            "mode_source": "ppo",
+            "rounds": 2,
+            "stop_reason": "dqn_stop",
+            "confidences": [
+              0.0,
+              0.0
+            ],
+            "llm_calls": 2,
+            "prompt_tokens": 0,
+            "completion_tokens": 0,
+            "tokens": 0,
+            "cost_usd": 0.0
+          }
+        },
+        {
+          "contract": "eth_tx_order_dependence_minimal.sol",
+          "score": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "true_positives": 0,
+          "false_positives": 0,
+          "missed_bugs": 1,
+          "found_types": [],
+          "expected_types": [
+            "front_running"
+          ],
+          "action": {
+            "vulnerabilities": []
+          },
+          "raw_responses": [],
+          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "audit": {
+            "mode": "BA",
+            "mode_source": "ppo",
+            "rounds": 2,
+            "stop_reason": "dqn_stop",
+            "confidences": [
+              0.0,
+              0.0
+            ],
+            "llm_calls": 2,
+            "prompt_tokens": 0,
+            "completion_tokens": 0,
+            "tokens": 0,
+            "cost_usd": 0.0
+          }
+        },
+        {
+          "contract": "EthRoulette.sol",
+          "score": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "true_positives": 0,
+          "false_positives": 0,
+          "missed_bugs": 1,
+          "found_types": [],
+          "expected_types": [
+            "selfdestruct"
+          ],
+          "action": {
+            "vulnerabilities": []
+          },
+          "raw_responses": [],
+          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "audit": {
+            "mode": "TA",
+            "mode_source": "ppo",
+            "rounds": 2,
+            "stop_reason": "dqn_stop",
+            "confidences": [
+              0.0,
+              0.0
+            ],
+            "llm_calls": 7,
+            "prompt_tokens": 0,
+            "completion_tokens": 0,
+            "tokens": 0,
+            "cost_usd": 0.0
+          }
+        },
+        {
+          "contract": "short_address_example.sol",
+          "score": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "true_positives": 0,
+          "false_positives": 0,
+          "missed_bugs": 1,
+          "found_types": [],
+          "expected_types": [
+            "other"
+          ],
+          "action": {
+            "vulnerabilities": []
+          },
+          "raw_responses": [],
+          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "audit": {
+            "mode": "TA",
+            "mode_source": "ppo",
+            "rounds": 2,
+            "stop_reason": "dqn_stop",
+            "confidences": [
+              0.0,
+              0.0
+            ],
+            "llm_calls": 7,
+            "prompt_tokens": 0,
+            "completion_tokens": 0,
+            "tokens": 0,
+            "cost_usd": 0.0
+          }
+        },
+        {
+          "contract": "SuicideMultiTxInfeasible.sol",
+          "score": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "true_positives": 0,
+          "false_positives": 0,
+          "missed_bugs": 1,
+          "found_types": [],
+          "expected_types": [
+            "selfdestruct"
+          ],
+          "action": {
+            "vulnerabilities": []
+          },
+          "raw_responses": [],
+          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "audit": {
+            "mode": "BA",
+            "mode_source": "ppo",
+            "rounds": 2,
+            "stop_reason": "dqn_stop",
+            "confidences": [
+              0.0,
+              0.0
+            ],
+            "llm_calls": 2,
+            "prompt_tokens": 0,
+            "completion_tokens": 0,
+            "tokens": 0,
+            "cost_usd": 0.0
+          }
+        }
+      ]
+    }
+  }
+}

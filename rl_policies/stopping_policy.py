@@ -547,7 +547,7 @@ class StoppingPolicy:
             exploration_initial_eps=self.config['exploration_initial_eps'],
             exploration_final_eps=self.config['exploration_final_eps'],
             verbose=1,
-            tensorboard_log=str(self.model_save_path / "tensorboard"),
+            tensorboard_log=None,  # Disabled to avoid tensorboard dependency
         )
         
         # Set up callbacks

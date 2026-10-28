@@ -88,12 +88,11 @@ class ContractComplexityEncoder(BaseFeaturesExtractor):
         self.residual_proj2 = nn.Linear(128, 256)
         self.residual_proj3 = nn.Linear(256, features_dim)
         
-        # Attention mechanism. embed_dim must be divisible by num_heads: the
-        # earlier 12-head setting could not be constructed with features_dim=256
-        # (torch raises), so the encoder uses 8 heads as described in the paper.
+        # Attention mechanism with 8 heads (256 features_dim divisible by 8)
+        # NOTE: 12 heads would require features_dim=264 or 240
         self.attention = nn.MultiheadAttention(
             embed_dim=features_dim,
-            num_heads=8,
+            num_heads=8,  # 8 heads works with features_dim=256
             dropout=0.1,
             batch_first=True
         )
@@ -616,7 +615,7 @@ class ModeSelector:
             vf_coef=self.config['vf_coef'],
             max_grad_norm=self.config['max_grad_norm'],
             verbose=1,
-            tensorboard_log=str(self.model_save_path / "tensorboard"),
+            tensorboard_log=None,  # Disabled to avoid tensorboard dependency
         )
         
         # Set up callbacks

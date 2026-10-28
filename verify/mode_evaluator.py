@@ -37,11 +37,11 @@ from verify.real_evaluator import get_client, truncate, _parse_llm_response, _no
 
 MODES = ("ba", "ta", "hybrid", "rl")
 
-MODEL          = "openai/gpt-oss-120b"
+MODEL          = "openai/gpt-oss-120b"  # Groq-hosted model
 TEMPERATURE    = 0.1
 MAX_TOKENS     = 1000
 MAX_CODE_CHARS = 6000
-CALL_DELAY     = 8      # seconds between calls, stays within the 8000 TPM free tier
+CALL_DELAY     = 2      # Rate limit mitigation: 2-second delay between calls
 TA_BATCH       = 8      # detector scenarios per TA call (41 scenarios -> 6 calls)
 
 FIXED_ROUNDS     = 3    # base system's fixed consensus cap (n=3)

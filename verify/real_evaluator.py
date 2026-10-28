@@ -55,7 +55,7 @@ Respond ONLY in this exact JSON format with no extra text:
 
 VALID_TYPES = {t.value for t in VulnerabilityType}
 
-MODEL       = "openai/gpt-oss-120b"   # 20b doesn't follow JSON format well
+MODEL       = "openai/gpt-oss-120b"  # Groq-hosted model that worked in smoke test
 TEMPERATURE = 0.1
 MAX_TOKENS  = 600                     # reduced to stay within TPM limit
 USER_PREFIX = "Contract to audit:\n\n"
@@ -197,8 +197,8 @@ def audit_contract(contract_code: str) -> tuple[Action, list[str], str | None]:
             )
             raw    = response.choices[0].message.content or ""
             parsed = _parse_llm_response(raw)
-            # Polite inter-call delay to stay within 8000 TPM free tier
-            _time.sleep(8)
+            # Rate limit mitigation: 2-second delay between calls
+            _time.sleep(2)
             return _normalize_action(parsed), [raw], None
 
         except RuntimeError:
