@@ -1,0 +1,48 @@
+{
+  "contract": "Unchecked-Send/buggy_31.sol",
+  "source": "SolidiFI benchmark (training pool)",
+  "category": "solidifi_uncheckedsend",
+  "vulnerabilities": [
+    {
+      "type": "unchecked_low_level_calls",
+      "severity": "medium",
+      "location": "30 injected lines",
+      "description": "Unchecked-Send bugs injected by SolidiFI at known lines"
+    }
+  ],
+  "lines": [
+    95,
+    96,
+    99,
+    100,
+    110,
+    111,
+    119,
+    120,
+    136,
+    137,
+    146,
+    147,
+    157,
+    158,
+    175,
+    176,
+    184,
+    185,
+    204,
+    205,
+    207,
+    208,
+    211,
+    212,
+    219,
+    220,
+    241,
+    242,
+    249,
+    250
+  ],
+  "origin": "SolidiFI-benchmark/buggy_contracts/Unchecked-Send/buggy_31.sol",
+  "max_jaccard_vs_test": 0.018,
+  "code_sha256": "36e7adf5b2ff3a27fcdde329dfdfd3ac66e47b6df4888d0fc3fcc78863a89a71"
+}

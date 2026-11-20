@@ -1,0 +1,129 @@
+{
+ "contract": "overflow_simple_add",
+ "origin": "tasks",
+ "tier": "easy",
+ "part": "test",
+ "source_path": "tasks/easy/overflow_simple_add.sol",
+ "backend": "groq",
+ "model": "openai/gpt-oss-120b",
+ "temperature": 0.1,
+ "max_tokens": 1000,
+ "max_code_chars": 6000,
+ "prompt_hash": "a3669b2a2342a966",
+ "n_ta_batches": 6,
+ "created_at": "2026-11-14T19:22:55+00:00",
+ "calls": {
+  "ba_r1": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"add(uint256) function (line 14)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract uses Solidity 0.4.25 which lacks built\u2011in overflow checks. The statement `balance += deposit;` can overflow the 256\u2011bit unsigned integer, wrapping `balance` to a lower value and breaking the intended accounting.\"\n    }\n  ],\n  \"confidence\": 0.99\n}",
+   "prompt_tokens": 393,
+   "completion_tokens": 249,
+   "finish_reason": "stop",
+   "at": "2026-11-14T19:22:56+00:00"
+  },
+  "ta_r1_b0": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"add function (balance += deposit)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract adds `deposit` to `balance` without using SafeMath or overflow checks. If `deposit` is large enough, `balance` can wrap around, leading to an incorrect balance state.\"\n    }\n  ],\n  \"confidence\": 0.99\n}",
+   "prompt_tokens": 1561,
+   "completion_tokens": 345,
+   "finish_reason": "stop",
+   "at": "2026-11-14T19:22:58+00:00"
+  },
+  "ta_r1_b1": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"function add (line 14)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The `add` function performs `balance += deposit` without using SafeMath or overflow checks. An attacker can supply a large `deposit` value that causes `balance` to wrap around, leading to incorrect state and potential loss of funds.\"\n    },\n    {\n      \"type\": \"access_control\",\n      \"location\": \"function add (line 14)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"`add` is a public function that modifies the contract's `balance` state variable. There is no access restriction (e.g., onlyOwner), allowing any address to arbitrarily increase the balance, which may be unintended.\"\n    }\n  ],\n  \"confidence\": 0.98\n}",
+   "prompt_tokens": 1462,
+   "completion_tokens": 677,
+   "finish_reason": "stop",
+   "at": "2026-11-14T19:23:59+00:00"
+  },
+  "ta_r1_b2": {
+   "raw": "{\n  \"vulnerabilities\": [],\n  \"confidence\": 0.99\n}",
+   "prompt_tokens": 1143,
+   "completion_tokens": 225,
+   "finish_reason": "stop",
+   "at": "2026-11-14T19:24:00+00:00"
+  },
+  "ta_r1_b3": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"add(uint256) function\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function adds an arbitrary deposit to the public balance without overflow checks, allowing the balance to wrap around if deposit is large enough.\"\n    }\n  ],\n  \"confidence\": 0.99\n}",
+   "prompt_tokens": 1086,
+   "completion_tokens": 631,
+   "finish_reason": "stop",
+   "at": "2026-11-14T19:24:02+00:00"
+  },
+  "ta_r1_b4": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"function add(uint256 deposit)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The add function performs unchecked addition on the public uint balance, which can overflow when deposit is large enough, allowing the balance to wrap around and be manipulated.\"\n    }\n  ],\n  \"confidence\": 0.99\n}",
+   "prompt_tokens": 1177,
+   "completion_tokens": 386,
+   "finish_reason": "stop",
+   "at": "2026-11-14T19:24:05+00:00"
+  },
+  "ta_r1_b5": {
+   "raw": "{\n  \"vulnerabilities\": [],\n  \"confidence\": 1.0\n}",
+   "prompt_tokens": 576,
+   "completion_tokens": 145,
+   "finish_reason": "stop",
+   "at": "2026-11-14T19:24:59+00:00"
+  },
+  "ba_r2": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"add(uint256) function (line 14)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract uses Solidity 0.4.25 which lacks built\u2011in overflow checks. The statement `balance += deposit;` can overflow the 256\u2011bit unsigned integer, wrapping `balance` to a lower value and breaking the intended accounting.\"\n    }\n  ],\n  \"confidence\": 0.98\n}",
+   "prompt_tokens": 486,
+   "completion_tokens": 319,
+   "finish_reason": "stop",
+   "at": "2026-11-14T19:25:00+00:00"
+  },
+  "ba_r3": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"add(uint256) function (line 14)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract uses Solidity 0.4.25 which lacks built\u2011in overflow checks. The statement `balance += deposit;` can overflow the 256\u2011bit unsigned integer, wrapping `balance` to a lower value and breaking the intended accounting.\"\n    }\n  ],\n  \"confidence\": 0.95\n}",
+   "prompt_tokens": 486,
+   "completion_tokens": 581,
+   "finish_reason": "stop",
+   "at": "2026-11-14T19:25:03+00:00"
+  },
+  "ba_r4": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"add(uint256) function (line 14)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract uses Solidity 0.4.25 which lacks built\u2011in overflow checks. The statement `balance += deposit;` can overflow the 256\u2011bit unsigned integer, wrapping `balance` to a lower value and breaking the intended accounting.\"\n    }\n  ],\n  \"confidence\": 0.95\n}",
+   "prompt_tokens": 486,
+   "completion_tokens": 392,
+   "finish_reason": "stop",
+   "at": "2026-11-14T19:25:04+00:00"
+  },
+  "ta_r2": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"add function (balance += deposit)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract uses Solidity 0.4.25 which does not have built\u2011in overflow checks. The statement `balance += deposit;` can overflow when `deposit` is large enough, causing `balance` to wrap around and corrupt the contract state.\"\n    }\n  ],\n  \"confidence\": 0.95\n}",
+   "prompt_tokens": 759,
+   "completion_tokens": 651,
+   "finish_reason": "stop",
+   "at": "2026-11-14T19:25:08+00:00"
+  },
+  "ta_r3": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"add function (balance += deposit)\",\n      \"severity\": \"high\",\n      \"explanation\": \"Solidity 0.4.25 does not perform automatic overflow checks. The statement `balance += deposit;` can overflow when `deposit` is large enough, causing `balance` to wrap around and corrupt the contract state.\"\n    }\n  ],\n  \"confidence\": 0.96\n}",
+   "prompt_tokens": 482,
+   "completion_tokens": 444,
+   "finish_reason": "stop",
+   "at": "2026-11-14T19:25:11+00:00"
+  },
+  "ta_r4": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"add function (balance += deposit)\",\n      \"severity\": \"high\",\n      \"explanation\": \"Solidity 0.4.25 does not include built\u2011in overflow checks. Adding a large `deposit` to `balance` can cause a wrap\u2011around, corrupting the contract's state.\"\n    }\n  ],\n  \"confidence\": 0.98\n}",
+   "prompt_tokens": 475,
+   "completion_tokens": 289,
+   "finish_reason": "stop",
+   "at": "2026-11-14T19:25:12+00:00"
+  },
+  "hybrid_r2": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"add(uint256) function (line 14)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract uses Solidity 0.4.25 which lacks built\u2011in overflow checks. The statement `balance += deposit;` performs unchecked addition on a uint256 and can overflow, wrapping `balance` to a lower value and breaking the intended accounting.\"\n    }\n  ],\n  \"confidence\": 0.98\n}",
+   "prompt_tokens": 852,
+   "completion_tokens": 585,
+   "finish_reason": "stop",
+   "at": "2026-11-14T19:26:01+00:00"
+  },
+  "hybrid_r3": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"add(uint256) function (line 14)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract uses Solidity 0.4.25 which lacks built\u2011in overflow checks. The statement `balance += deposit;` performs unchecked addition on a uint256 and can overflow, wrapping `balance` to a lower value and breaking the intended accounting.\"\n    }\n  ],\n  \"confidence\": 0.95\n}",
+   "prompt_tokens": 485,
+   "completion_tokens": 383,
+   "finish_reason": "stop",
+   "at": "2026-11-14T19:26:05+00:00"
+  },
+  "hybrid_r4": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"add(uint256) function (line 14)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract uses Solidity 0.4.25 which lacks built\u2011in overflow checks. The statement `balance += deposit;` performs unchecked addition on a uint256 and can overflow, wrapping `balance` to a lower value and breaking the intended accounting.\"\n    }\n  ],\n  \"confidence\": 0.95\n}",
+   "prompt_tokens": 485,
+   "completion_tokens": 364,
+   "finish_reason": "stop",
+   "at": "2026-11-14T19:26:06+00:00"
+  }
+ }
+}

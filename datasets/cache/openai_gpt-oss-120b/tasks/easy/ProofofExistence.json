@@ -1,0 +1,129 @@
+{
+ "contract": "ProofofExistence",
+ "origin": "tasks",
+ "tier": "easy",
+ "part": "test",
+ "source_path": "tasks/easy/ProofofExistence.sol",
+ "backend": "groq",
+ "model": "openai/gpt-oss-120b",
+ "temperature": 0.1,
+ "max_tokens": 1000,
+ "max_code_chars": 6000,
+ "prompt_hash": "a3669b2a2342a966",
+ "n_ta_batches": 6,
+ "created_at": "2026-11-14T18:55:10+00:00",
+ "calls": {
+  "ba_r1": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"functions bug_txorigin36, bug_txorigin40, transferTo_txorigin35, transferTo_txorigin27, transferTo_txorigin31, sendto_txorigin33, sendto_txorigin13, sendto_txorigin33 (all use tx.origin for authentication)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract relies on tx.origin for authorisation, which can be spoofed by a malicious contract that forwards calls, allowing an attacker to bypass the intended owner check.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"functions transferTo_txorigin35, transferTo_txorigin27, transferTo_txorigin31 (use to.call.value(amount) without checking the returned success flag)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Low\u2011level .call is used to transfer Ether without verifying the call's return value, which can cause silent failures and loss of funds, and also forwards all gas making the contract vulnerable to re\u2011entrancy if state changes were added later.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "prompt_tokens": 1349,
+   "completion_tokens": 913,
+   "finish_reason": "stop",
+   "at": "2026-11-14T18:55:54+00:00"
+  },
+  "ta_r1_b0": {
+   "raw": "",
+   "prompt_tokens": 2517,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T18:56:14+00:00"
+  },
+  "ta_r1_b1": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"tx_origin\",\n      \"location\": \"bug_txorigin36, bug_txorigin40, transferTo_txorigin35, transferTo_txorigin27, transferTo_txorigin31, sendto_txorigin33, sendto_txorigin13\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract uses `require(tx.origin == owner)` for authorization. `tx.origin` can be spoofed through intermediate",
+   "prompt_tokens": 2418,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T18:57:18+00:00"
+  },
+  "ta_r1_b2": {
+   "raw": "",
+   "prompt_tokens": 2099,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T18:57:20+00:00"
+  },
+  "ta_r1_b3": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"tx_origin\",\n      \"location\": \"bug_txorigin36\",\n      \"severity\": \"high\",\n      \"explanation\": \"Uses tx.origin for authentication, which can be spoofed via a malicious contract calling this function.\"\n    },\n    {\n      \"type\": \"tx",
+   "prompt_tokens": 2042,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T18:58:21+00:00"
+  },
+  "ta_r1_b4": {
+   "raw": "",
+   "prompt_tokens": 2133,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T18:58:24+00:00"
+  },
+  "ta_r1_b5": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"GetFileExistenceProof\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function iterates over fileExistenceProofs[dappBoxOrigin] with an unbounded for\u2011loop. An attacker can fill the array with many entries, causing the loop to exceed the block gas limit and make the function unusable, resulting in a DoS.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"getQRCode\",\n      \"severity\": \"high\",\n      \"explanation\": \"Similar to GetFileExistenceProof, this function loops over a dynamic array without a bound, allowing an attacker to cause gas exhaustion and block the function.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"searchExistenceProoUsngQRf\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function also contains an unbounded loop over a user\u2011controlled array, which can be exploited to exhaust gas and deny service.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"sendto_txorigin13 / sendto_txorigin33\",\n      \"severity\": \"medium\",\n      \"explanation\": \"These functions use `receiver.transfer(amount)`. If the receiver is a contract with a fallback that requires more than 2300 gas, the transfer will revert, causing the whole transaction to fail and enabling a DoS against callers.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "prompt_tokens": 1532,
+   "completion_tokens": 713,
+   "finish_reason": "stop",
+   "at": "2026-11-14T18:59:25+00:00"
+  },
+  "ba_r2": {
+   "raw": "",
+   "prompt_tokens": 1580,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T18:59:30+00:00"
+  },
+  "ba_r3": {
+   "raw": "",
+   "prompt_tokens": 1580,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T18:59:34+00:00"
+  },
+  "ba_r4": {
+   "raw": "",
+   "prompt_tokens": 1580,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T19:00:34+00:00"
+  },
+  "ta_r2": {
+   "raw": "",
+   "prompt_tokens": 1701,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T19:00:42+00:00"
+  },
+  "ta_r3": {
+   "raw": "",
+   "prompt_tokens": 1701,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T19:01:38+00:00"
+  },
+  "ta_r4": {
+   "raw": "",
+   "prompt_tokens": 1701,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T19:01:47+00:00"
+  },
+  "hybrid_r2": {
+   "raw": "",
+   "prompt_tokens": 1932,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T19:02:41+00:00"
+  },
+  "hybrid_r3": {
+   "raw": "",
+   "prompt_tokens": 1932,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T19:02:52+00:00"
+  },
+  "hybrid_r4": {
+   "raw": "",
+   "prompt_tokens": 1932,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T19:03:44+00:00"
+  }
+ }
+}

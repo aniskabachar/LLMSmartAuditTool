@@ -1,0 +1,129 @@
+{
+ "contract": "theRun",
+ "origin": "tasks",
+ "tier": "hard",
+ "part": "train",
+ "source_path": "tasks/hard/theRun.sol",
+ "backend": "groq",
+ "model": "openai/gpt-oss-120b",
+ "temperature": 0.1,
+ "max_tokens": 1000,
+ "max_code_chars": 6000,
+ "prompt_hash": "a3669b2a2342a966",
+ "n_ta_batches": 6,
+ "created_at": "2026-11-18T06:09:38+00:00",
+ "calls": {
+  "ba_r1": {
+   "raw": "",
+   "prompt_tokens": 1147,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:09:46+00:00"
+  },
+  "ta_r1_b0": {
+   "raw": "",
+   "prompt_tokens": 2315,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:10:41+00:00"
+  },
+  "ta_r1_b1": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"function Participate \u2013 while (Balance > players[Payout_id].payout) loop\",\n      \"severity\": \"high\",\n      \"explanation\": \"The loop can iterate over an unbounded number of players in a single transaction, potentially consuming all gas and causing the transaction to fail, leading to a denial\u2011of\u2011service condition.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"function Participate \u2013 players[Payout_id].addr.send(Last_Payout) and msg.sender.send(...) calls\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract uses .send() without checking its return value, so failed Ether transfers are silently ignored, which can lock funds and enable a DoS attack on payouts.\"\n    },\n    {\n      \"type\": \"other\",\n      \"location\": \"function PlayerInfo",
+   "prompt_tokens": 2216,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:10:49+00:00"
+  },
+  "ta_r1_b2": {
+   "raw": "",
+   "prompt_tokens": 1897,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:11:43+00:00"
+  },
+  "ta_r1_b3": {
+   "raw": "",
+   "prompt_tokens": 1840,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:11:52+00:00"
+  },
+  "ta_r1_b4": {
+   "raw": "",
+   "prompt_tokens": 1931,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:12:47+00:00"
+  },
+  "ta_r1_b5": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"fallback function (function())\",\n      \"severity\": \"high\",\n      \"explanation\": \"The fallback function is not marked payable, so any transaction that sends ether to the contract will revert. Since the contract relies on the fallback to receive deposits (init()), this prevents users from participating and effectively denies service.\"\n    },\n    {\n      \"type\": \"denial",
+   "prompt_tokens": 1330,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:12:55+00:00"
+  },
+  "ba_r2": {
+   "raw": "",
+   "prompt_tokens": 1146,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:12:58+00:00"
+  },
+  "ba_r3": {
+   "raw": "",
+   "prompt_tokens": 1146,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:13:51+00:00"
+  },
+  "ba_r4": {
+   "raw": "",
+   "prompt_tokens": 1146,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:13:58+00:00"
+  },
+  "ta_r2": {
+   "raw": "",
+   "prompt_tokens": 1188,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:14:01+00:00"
+  },
+  "ta_r3": {
+   "raw": "",
+   "prompt_tokens": 1188,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:14:54+00:00"
+  },
+  "ta_r4": {
+   "raw": "",
+   "prompt_tokens": 1188,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:15:00+00:00"
+  },
+  "hybrid_r2": {
+   "raw": "",
+   "prompt_tokens": 1188,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:15:04+00:00"
+  },
+  "hybrid_r3": {
+   "raw": "",
+   "prompt_tokens": 1188,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:15:57+00:00"
+  },
+  "hybrid_r4": {
+   "raw": "",
+   "prompt_tokens": 1188,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:16:04+00:00"
+  }
+ }
+}

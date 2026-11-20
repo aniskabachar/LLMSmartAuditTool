@@ -1,11 +1,11 @@
 {
   "metadata": {
-    "generated_at": "2026-10-28T07:59:50+00:00",
-    "git_commit": "035828b6855b270c5bf760daeb638f0037444d40-dirty",
+    "generated_at": "2026-10-29T06:24:35+00:00",
+    "git_commit": "3e421a7993f84844bd5c0ee11301259bf32699c0-dirty",
     "python": "3.14.3",
     "split_seed": 42,
     "evaluator": "rl",
-    "model": "llama-3.1-8b-instant",
+    "model": "openai/gpt-oss-120b",
     "temperature": 0.1,
     "max_tokens": 1000,
     "max_code_chars": 6000,
@@ -126,86 +126,86 @@
   "summary": {
     "easy": {
       "random_score": 0.0985,
-      "llm_score": 0.0,
-      "precision": 0.0,
-      "recall": 0.0,
-      "f1": 0.0,
-      "gap": -0.0985,
+      "llm_score": 0.27,
+      "precision": 0.225,
+      "recall": 0.3,
+      "f1": 0.24,
+      "gap": 0.1715,
       "n_contracts": 10,
-      "n_errors": 10,
-      "avg_tokens": 0.0,
-      "avg_cost_usd": 0.0,
+      "n_errors": 8,
+      "avg_tokens": 2020.6,
+      "avg_cost_usd": 0.000777,
       "avg_rounds": 2.0,
       "avg_calls": 6.0,
       "mode_counts": {
         "BA": 2,
         "TA": 8
       },
-      "score_per_1k_tokens": 0.0
+      "score_per_1k_tokens": 0.1336
     },
     "medium": {
       "random_score": 0.0944,
-      "llm_score": 0.0,
-      "precision": 0.0,
-      "recall": 0.0,
-      "f1": 0.0,
-      "gap": -0.0944,
+      "llm_score": 0.44,
+      "precision": 0.35,
+      "recall": 0.5,
+      "f1": 0.4,
+      "gap": 0.3456,
       "n_contracts": 10,
       "n_errors": 10,
-      "avg_tokens": 0.0,
-      "avg_cost_usd": 0.0,
+      "avg_tokens": 1625.2,
+      "avg_cost_usd": 0.000731,
       "avg_rounds": 2.0,
       "avg_calls": 4.5,
       "mode_counts": {
         "BA": 5,
         "TA": 5
       },
-      "score_per_1k_tokens": 0.0
+      "score_per_1k_tokens": 0.2707
     },
     "hard": {
       "random_score": 0.105,
-      "llm_score": 0.0,
-      "precision": 0.0,
-      "recall": 0.0,
-      "f1": 0.0,
-      "gap": -0.105,
+      "llm_score": 0.1111,
+      "precision": 0.1111,
+      "recall": 0.1111,
+      "f1": 0.1111,
+      "gap": 0.0061,
       "n_contracts": 9,
       "n_errors": 9,
-      "avg_tokens": 0.0,
-      "avg_cost_usd": 0.0,
+      "avg_tokens": 134.5556,
+      "avg_cost_usd": 6.6e-05,
       "avg_rounds": 2.0,
       "avg_calls": 3.6667,
       "mode_counts": {
         "BA": 6,
         "TA": 3
       },
-      "score_per_1k_tokens": 0.0
+      "score_per_1k_tokens": 0.8257
     }
   },
   "overall": {
     "n_contracts": 29,
-    "n_errors": 29,
-    "macro_avg_score": 0.0,
-    "micro_avg_score": 0.0,
-    "macro_avg_f1": 0.0,
+    "n_errors": 27,
+    "macro_avg_score": 0.2737,
+    "micro_avg_score": 0.2793,
+    "macro_avg_f1": 0.2504,
     "macro_random_score": 0.0993,
-    "macro_gap_vs_random": -0.0993,
-    "micro_avg_tokens": 0.0,
-    "micro_avg_cost_usd": 0.0,
+    "macro_gap_vs_random": 0.1744,
+    "micro_avg_tokens": 1298.93,
+    "micro_avg_cost_usd": 0.00054,
     "micro_avg_rounds": 2.0,
-    "score_per_1k_tokens": 0.0
+    "score_per_1k_tokens": 0.215
   },
   "results": {
     "easy": {
       "difficulty": "easy",
       "n_contracts": 10,
-      "n_errors": 10,
-      "avg_score": 0.0,
-      "avg_precision": 0.0,
-      "avg_recall": 0.0,
-      "avg_f1": 0.0,
-      "avg_tokens": 0.0,
-      "avg_cost_usd": 0.0,
+      "n_errors": 8,
+      "avg_score": 0.27,
+      "avg_precision": 0.225,
+      "avg_recall": 0.3,
+      "avg_f1": 0.24,
+      "avg_tokens": 2020.6,
+      "avg_cost_usd": 0.000777,
       "avg_rounds": 2.0,
       "avg_calls": 6.0,
       "mode_counts": {
@@ -230,7 +230,7 @@
             "vulnerabilities": []
           },
           "raw_responses": [],
-          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "error": "max_retries_exceeded",
           "audit": {
             "mode": "TA",
             "mode_source": "ppo",
@@ -264,7 +264,7 @@
             "vulnerabilities": []
           },
           "raw_responses": [],
-          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "error": "max_retries_exceeded",
           "audit": {
             "mode": "TA",
             "mode_source": "ppo",
@@ -298,7 +298,7 @@
             "vulnerabilities": []
           },
           "raw_responses": [],
-          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "error": "llm_error: Connection error.",
           "audit": {
             "mode": "BA",
             "mode_source": "ppo",
@@ -332,7 +332,7 @@
             "vulnerabilities": []
           },
           "raw_responses": [],
-          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "error": "llm_error: Connection error.",
           "audit": {
             "mode": "TA",
             "mode_source": "ppo",
@@ -366,7 +366,7 @@
             "vulnerabilities": []
           },
           "raw_responses": [],
-          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "error": "llm_error: Connection error.",
           "audit": {
             "mode": "TA",
             "mode_source": "ppo",
@@ -385,70 +385,124 @@
         },
         {
           "contract": "0xbe4041d55db380c5ae9d4a9b9703f1ed4e7e3888.sol",
-          "score": 0.0,
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1": 0.0,
-          "true_positives": 0,
-          "false_positives": 0,
-          "missed_bugs": 1,
-          "found_types": [],
+          "score": 0.7,
+          "precision": 0.25,
+          "recall": 1.0,
+          "f1": 0.4,
+          "true_positives": 1,
+          "false_positives": 3,
+          "missed_bugs": 0,
+          "found_types": [
+            "access_control",
+            "integer_overflow",
+            "other",
+            "reentrancy"
+          ],
           "expected_types": [
             "reentrancy"
           ],
           "action": {
-            "vulnerabilities": []
+            "vulnerabilities": [
+              {
+                "type": "reentrancy",
+                "location": "inferred from prose",
+                "severity": "medium",
+                "explanation": "extracted from model response"
+              },
+              {
+                "type": "integer_overflow",
+                "location": "inferred from prose",
+                "severity": "medium",
+                "explanation": "extracted from model response"
+              },
+              {
+                "type": "reentrancy",
+                "location": "Collect function",
+                "severity": "high",
+                "explanation": "The contract sends Ether to the caller using `msg.sender.call.value(_am)()` before updating the caller's balance, allowing a malicious contract to re-enter `Collect` and drain funds."
+              },
+              {
+                "type": "access_control",
+                "location": "SetMinSum, SetLogFile, Initialized functions",
+                "severity": "medium",
+                "explanation": "These functions can be called by any address without restriction, enabling an attacker to set arbitrary `MinSum` or `LogFile` values before the contract is initialized, potentially compromising contract behavior."
+              },
+              {
+                "type": "other",
+                "location": "SetLogFile function",
+                "severity": "low",
+                "explanation": "The function does not validate that the supplied `_log` address is non\u2011zero, so an attacker could set an invalid Log contract address, causing loss of logging functionality."
+              }
+            ]
           },
-          "raw_responses": [],
-          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "raw_responses": [
+            "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"Collect function (msg.sender.call.value(_am)())\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract sends Ether to the caller using a low\u2011level call before updating the caller's balance, allowing a malicious contract to re\u2011enter Collect and withdraw funds repeatedly.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"Put function (acc.balance += msg.value)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Balance is increased with a plain addition without SafeMath checks; a large enough msg",
+            "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"Collect function\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract sends Ether to the caller using `msg.sender.call.value(_am)()` before updating the caller's balance, allowing a malicious contract to re-enter `Collect` and drain funds.\"\n    },\n    {\n      \"type\": \"access_control\",\n      \"location\": \"SetMinSum, SetLogFile, Initialized functions\",\n      \"severity\": \"medium\",\n      \"explanation\": \"These functions can be called by any address without restriction, enabling an attacker to set arbitrary `MinSum` or `LogFile` values before the contract is initialized, potentially compromising contract behavior.\"\n    }\n  ],\n  \"confidence\": 0.95\n}",
+            "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"Collect function\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract sends ether to msg.sender via a low\u2011level call before updating the user's balance, allowing a malicious contract to re\u2011enter Collect and withdraw more funds than it should.\"\n    },\n    {\n      \"type\": \"access_control\",\n      \"location\": \"SetMinSum, SetLogFile, Initialized functions\",\n      \"severity\": \"medium\",\n      \"explanation\": \"These critical configuration functions are public and lack any access restriction, so any address can set the minimum sum, the log contract address, or lock the contract, leading to centralization and potential abuse.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+            "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"Collect function\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function sends ether with `msg.sender.call.value(_am)()` before updating the user's balance, enabling a re\u2011entrant call to Collect that can drain funds.\"\n    },\n    {\n      \"type\": \"access_control\",\n      \"location\": \"SetMinSum, SetLogFile, Initialized functions\",\n      \"severity\": \"medium\",\n      \"explanation\": \"These functions are public and have no access restrictions, allowing any address to set the minimum sum, log contract address, or mark the contract as initialized before proper setup.\"\n    },\n    {\n      \"type\": \"other\",\n      \"location\": \"SetLogFile function\",\n      \"severity\": \"low\",\n      \"explanation\": \"The function does not validate that the supplied `_log` address is non\u2011zero, so an attacker could set an invalid Log contract address, causing loss of logging functionality.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+            "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"Put function (calls LogFile"
+          ],
+          "error": null,
           "audit": {
             "mode": "TA",
             "mode_source": "ppo",
             "rounds": 2,
             "stop_reason": "dqn_stop",
             "confidences": [
-              0.0,
-              0.0
+              0.9633,
+              0.9633
             ],
             "llm_calls": 7,
-            "prompt_tokens": 0,
-            "completion_tokens": 0,
-            "tokens": 0,
-            "cost_usd": 0.0
+            "prompt_tokens": 10283,
+            "completion_tokens": 6765,
+            "tokens": 17048,
+            "cost_usd": 0.006616
           }
         },
         {
           "contract": "overflow_simple_add.sol",
-          "score": 0.0,
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1": 0.0,
-          "true_positives": 0,
+          "score": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "true_positives": 1,
           "false_positives": 0,
-          "missed_bugs": 1,
-          "found_types": [],
+          "missed_bugs": 0,
+          "found_types": [
+            "integer_overflow"
+          ],
           "expected_types": [
             "integer_overflow"
           ],
           "action": {
-            "vulnerabilities": []
+            "vulnerabilities": [
+              {
+                "type": "integer_overflow",
+                "location": "add(uint256) function (line 14)",
+                "severity": "high",
+                "explanation": "The contract uses Solidity 0.4.25 which lacks built\u2011in overflow checks. The statement `balance += deposit;` can overflow the 256\u2011bit unsigned integer, wrapping `balance` to a lower value and breaking the intended accounting."
+              }
+            ]
           },
-          "raw_responses": [],
-          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "raw_responses": [
+            "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"add(uint256) function (line 14)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract uses Solidity 0.4.25 which lacks built\u2011in overflow checks. The statement `balance += deposit;` can overflow the 256\u2011bit unsigned integer, wrapping `balance` to a lower value and breaking the intended accounting.\"\n    }\n  ],\n  \"confidence\": 0.99\n}",
+            "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"add(uint256) function (line 14)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract uses Solidity 0.4.25 which lacks built\u2011in overflow checks. The statement `balance += deposit;` can overflow the 256\u2011bit unsigned integer, wrapping `balance` to a lower value and breaking the intended accounting.\"\n    }\n  ],\n  \"confidence\": 0.98\n}"
+          ],
+          "error": null,
           "audit": {
             "mode": "BA",
             "mode_source": "ppo",
             "rounds": 2,
             "stop_reason": "dqn_stop",
             "confidences": [
-              0.0,
-              0.0
+              0.99,
+              0.98
             ],
             "llm_calls": 2,
-            "prompt_tokens": 0,
-            "completion_tokens": 0,
-            "tokens": 0,
-            "cost_usd": 0.0
+            "prompt_tokens": 879,
+            "completion_tokens": 569,
+            "tokens": 1448,
+            "cost_usd": 0.000559
           }
         },
         {
@@ -468,7 +522,7 @@
             "vulnerabilities": []
           },
           "raw_responses": [],
-          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "error": "max_retries_exceeded",
           "audit": {
             "mode": "TA",
             "mode_source": "ppo",
@@ -487,36 +541,47 @@
         },
         {
           "contract": "reentrancy_dao.sol",
-          "score": 0.0,
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1": 0.0,
-          "true_positives": 0,
+          "score": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "true_positives": 1,
           "false_positives": 0,
-          "missed_bugs": 1,
-          "found_types": [],
+          "missed_bugs": 0,
+          "found_types": [
+            "reentrancy"
+          ],
           "expected_types": [
             "reentrancy"
           ],
           "action": {
-            "vulnerabilities": []
+            "vulnerabilities": [
+              {
+                "type": "reentrancy",
+                "location": "withdrawAll",
+                "severity": "high",
+                "explanation": "The function withdrawAll uses msg.sender.call.value(oCredit)() to send Ether before updating the user's credit balance, enabling a re\u2011entrancy attack where the caller can recursively call withdrawAll and drain funds."
+              }
+            ]
           },
-          "raw_responses": [],
-          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "raw_responses": [
+            "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"withdrawAll\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function withdrawAll uses msg.sender.call.value(oCredit)() to send Ether before updating the user's credit balance, enabling a re\u2011entrancy attack where the caller can recursively call withdrawAll and drain funds.\"\n    }\n  ],\n  \"confidence\": 0.97\n}"
+          ],
+          "error": "max_retries_exceeded",
           "audit": {
             "mode": "TA",
             "mode_source": "ppo",
             "rounds": 2,
             "stop_reason": "dqn_stop",
             "confidences": [
-              0.0,
-              0.0
+              0.97,
+              0.97
             ],
             "llm_calls": 7,
-            "prompt_tokens": 0,
-            "completion_tokens": 0,
-            "tokens": 0,
-            "cost_usd": 0.0
+            "prompt_tokens": 1147,
+            "completion_tokens": 563,
+            "tokens": 1710,
+            "cost_usd": 0.000594
           }
         },
         {
@@ -536,7 +601,7 @@
             "vulnerabilities": []
           },
           "raw_responses": [],
-          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "error": "llm_error: Connection error.",
           "audit": {
             "mode": "TA",
             "mode_source": "ppo",
@@ -559,12 +624,12 @@
       "difficulty": "medium",
       "n_contracts": 10,
       "n_errors": 10,
-      "avg_score": 0.0,
-      "avg_precision": 0.0,
-      "avg_recall": 0.0,
-      "avg_f1": 0.0,
-      "avg_tokens": 0.0,
-      "avg_cost_usd": 0.0,
+      "avg_score": 0.44,
+      "avg_precision": 0.35,
+      "avg_recall": 0.5,
+      "avg_f1": 0.4,
+      "avg_tokens": 1625.2,
+      "avg_cost_usd": 0.000731,
       "avg_rounds": 2.0,
       "avg_calls": 4.5,
       "mode_counts": {
@@ -574,36 +639,54 @@
       "details": [
         {
           "contract": "0x2972d548497286d18e92b5fa1f8f9139e5653fd2.sol",
-          "score": 0.0,
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1": 0.0,
-          "true_positives": 0,
-          "false_positives": 0,
-          "missed_bugs": 1,
-          "found_types": [],
+          "score": 0.8,
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.6667,
+          "true_positives": 1,
+          "false_positives": 1,
+          "missed_bugs": 0,
+          "found_types": [
+            "denial_of_service",
+            "unchecked_low_level_calls"
+          ],
           "expected_types": [
             "unchecked_low_level_calls"
           ],
           "action": {
-            "vulnerabilities": []
+            "vulnerabilities": [
+              {
+                "type": "unchecked_low_level_calls",
+                "location": "transfer() function, line with caddress.call(id,from,_tos[i],v[i])",
+                "severity": "high",
+                "explanation": "The low\u2011level call is made without checking its return value, allowing failures to go unnoticed and potentially enabling reentrancy or other unexpected behavior."
+              },
+              {
+                "type": "denial_of_service",
+                "location": "transfer() function, for\u2011loop iterating over _tos array",
+                "severity": "medium",
+                "explanation": "The loop iterates over a user\u2011controlled array without a bound, so an attacker can supply a very large array causing the transaction to run out of gas and block execution."
+              }
+            ]
           },
-          "raw_responses": [],
-          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "raw_responses": [
+            "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"transfer() function, line with caddress.call(id,from,_tos[i],v[i])\",\n      \"severity\": \"high\",\n      \"explanation\": \"The low\u2011level call is made without checking its return value, allowing failures to go unnoticed and potentially enabling reentrancy or other unexpected behavior.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"transfer() function, for\u2011loop iterating over _tos array\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The loop iterates over a user\u2011controlled array without a bound, so an attacker can supply a very large array causing the transaction to run out of gas and block execution.\"\n    }\n  ],\n  \"confidence\": 0.97\n}"
+          ],
+          "error": "llm_error: Connection error.",
           "audit": {
             "mode": "TA",
             "mode_source": "ppo",
             "rounds": 2,
             "stop_reason": "dqn_stop",
             "confidences": [
-              0.0,
-              0.0
+              0.97,
+              0.97
             ],
             "llm_calls": 7,
-            "prompt_tokens": 0,
-            "completion_tokens": 0,
-            "tokens": 0,
-            "cost_usd": 0.0
+            "prompt_tokens": 620,
+            "completion_tokens": 515,
+            "tokens": 1135,
+            "cost_usd": 0.000479
           }
         },
         {
@@ -623,7 +706,7 @@
             "vulnerabilities": []
           },
           "raw_responses": [],
-          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "error": "max_retries_exceeded",
           "audit": {
             "mode": "BA",
             "mode_source": "ppo",
@@ -634,10 +717,10 @@
               0.0
             ],
             "llm_calls": 2,
-            "prompt_tokens": 0,
-            "completion_tokens": 0,
-            "tokens": 0,
-            "cost_usd": 0.0
+            "prompt_tokens": 756,
+            "completion_tokens": 1000,
+            "tokens": 1756,
+            "cost_usd": 0.000863
           }
         },
         {
@@ -647,99 +730,140 @@
           "recall": 0.0,
           "f1": 0.0,
           "true_positives": 0,
-          "false_positives": 0,
+          "false_positives": 1,
           "missed_bugs": 1,
-          "found_types": [],
+          "found_types": [
+            "denial_of_service"
+          ],
           "expected_types": [
             "unchecked_low_level_calls"
           ],
           "action": {
-            "vulnerabilities": []
+            "vulnerabilities": [
+              {
+                "type": "denial_of_service",
+                "location": "transfer() - contract_address.call(\"register\", \"CentraToken\")",
+                "severity": "medium",
+                "explanation": "The contract makes an external low\u2011level call without checking its return value. If the called contract reverts or consumes excessive gas, this call can fail and potentially block or disrupt the intended flow, constituting a DoS risk."
+              }
+            ]
           },
-          "raw_responses": [],
-          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "raw_responses": [
+            "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"transfer() - contract_address.call(\\\"register\\\", \\\"CentraToken\\\")\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The contract makes an external low\u2011level call without checking its return value. If the called contract reverts or consumes excessive gas, this call can fail and potentially block or disrupt the intended flow, constituting a DoS risk.\"\n    }\n  ],\n  \"confidence\": 0.9\n}"
+          ],
+          "error": "max_retries_exceeded",
           "audit": {
             "mode": "TA",
             "mode_source": "ppo",
             "rounds": 2,
             "stop_reason": "dqn_stop",
             "confidences": [
-              0.0,
-              0.0
+              0.9,
+              0.9
             ],
             "llm_calls": 7,
-            "prompt_tokens": 0,
-            "completion_tokens": 0,
-            "tokens": 0,
-            "cost_usd": 0.0
+            "prompt_tokens": 685,
+            "completion_tokens": 738,
+            "tokens": 1423,
+            "cost_usd": 0.000656
           }
         },
         {
           "contract": "0x5aa88d2901c68fda244f1d0584400368d2c8e739.sol",
-          "score": 0.0,
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1": 0.0,
-          "true_positives": 0,
-          "false_positives": 0,
-          "missed_bugs": 1,
-          "found_types": [],
+          "score": 0.8,
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.6667,
+          "true_positives": 1,
+          "false_positives": 1,
+          "missed_bugs": 0,
+          "found_types": [
+            "integer_overflow",
+            "unchecked_low_level_calls"
+          ],
           "expected_types": [
             "unchecked_low_level_calls"
           ],
           "action": {
-            "vulnerabilities": []
+            "vulnerabilities": [
+              {
+                "type": "unchecked_low_level_calls",
+                "location": "function Command(address adr,bytes data)",
+                "severity": "high",
+                "explanation": "The contract uses `adr.call.value(msg.value)(data)` without checking the return value or limiting gas. This unchecked low\u2011level call can execute arbitrary code in the target contract, potentially leading to re\u2011entrancy attacks or loss of funds."
+              },
+              {
+                "type": "integer_overflow",
+                "location": "function multiplicate(address adr)",
+                "severity": "low",
+                "explanation": "The expression `this.balance + msg.value` is performed with unchecked arithmetic in Solidity 0.4.18. If the sum exceeds 2^256\u20111 it will overflow silently, causing an incorrect transfer amount."
+              }
+            ]
           },
-          "raw_responses": [],
-          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "raw_responses": [
+            "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"function Command(address adr,bytes data)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract uses `adr.call.value(msg.value)(data)` without checking the return value or limiting gas. This unchecked low\u2011level call can execute arbitrary code in the target contract, potentially leading to re\u2011entrancy attacks or loss of funds.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"function multiplicate(address adr)\",\n      \"severity\": \"low\",\n      \"explanation\": \"The expression `this.balance + msg.value` is performed with unchecked arithmetic in Solidity 0.4.18. If the sum exceeds 2^256\u20111 it will overflow silently, causing an incorrect transfer amount.\"\n    }\n  ],\n  \"confidence\": 0.92\n}"
+          ],
+          "error": "max_retries_exceeded",
           "audit": {
             "mode": "BA",
             "mode_source": "ppo",
             "rounds": 2,
             "stop_reason": "dqn_stop",
             "confidences": [
-              0.0,
-              0.0
+              0.92,
+              0.92
             ],
             "llm_calls": 2,
-            "prompt_tokens": 0,
-            "completion_tokens": 0,
-            "tokens": 0,
-            "cost_usd": 0.0
+            "prompt_tokens": 476,
+            "completion_tokens": 966,
+            "tokens": 1442,
+            "cost_usd": 0.000796
           }
         },
         {
           "contract": "0xa46edd6a9a93feec36576ee5048146870ea2c3ae.sol",
-          "score": 0.0,
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1": 0.0,
-          "true_positives": 0,
+          "score": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "true_positives": 1,
           "false_positives": 0,
-          "missed_bugs": 1,
-          "found_types": [],
+          "missed_bugs": 0,
+          "found_types": [
+            "unchecked_low_level_calls"
+          ],
           "expected_types": [
             "unchecked_low_level_calls"
           ],
           "action": {
-            "vulnerabilities": []
+            "vulnerabilities": [
+              {
+                "type": "unchecked_low_level_calls",
+                "location": "function transfer",
+                "severity": "high",
+                "explanation": "The contract uses a low\u2011level call (caddress.call(...)) inside a loop without checking the returned success flag or handling failures, allowing silent failures and potential re\u2011entrancy issues."
+              }
+            ]
           },
-          "raw_responses": [],
-          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "raw_responses": [
+            "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"function transfer\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract uses a low\u2011level call (caddress.call(...)) inside a loop without checking the returned success flag or handling failures, allowing silent failures and potential re\u2011entrancy attacks.\"\n    }\n  ],\n  \"confidence\": 0.99\n}",
+            "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"function transfer\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract uses a low\u2011level call (caddress.call(...)) inside a loop without checking the returned success flag or handling failures, allowing silent failures and potential re\u2011entrancy issues.\"\n    }\n  ],\n  \"confidence\": 0.9\n}"
+          ],
+          "error": "max_retries_exceeded",
           "audit": {
             "mode": "TA",
             "mode_source": "ppo",
             "rounds": 2,
             "stop_reason": "dqn_stop",
             "confidences": [
-              0.0,
-              0.0
+              0.99,
+              0.9
             ],
             "llm_calls": 7,
-            "prompt_tokens": 0,
-            "completion_tokens": 0,
-            "tokens": 0,
-            "cost_usd": 0.0
+            "prompt_tokens": 1644,
+            "completion_tokens": 1094,
+            "tokens": 2738,
+            "cost_usd": 0.001067
           }
         },
         {
@@ -759,7 +883,7 @@
             "vulnerabilities": []
           },
           "raw_responses": [],
-          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "error": "max_retries_exceeded",
           "audit": {
             "mode": "BA",
             "mode_source": "ppo",
@@ -793,7 +917,7 @@
             "vulnerabilities": []
           },
           "raw_responses": [],
-          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "error": "max_retries_exceeded",
           "audit": {
             "mode": "BA",
             "mode_source": "ppo",
@@ -804,44 +928,56 @@
               0.0
             ],
             "llm_calls": 2,
-            "prompt_tokens": 0,
-            "completion_tokens": 0,
-            "tokens": 0,
-            "cost_usd": 0.0
+            "prompt_tokens": 550,
+            "completion_tokens": 1000,
+            "tokens": 1550,
+            "cost_usd": 0.000833
           }
         },
         {
           "contract": "FindThisHash.sol",
-          "score": 0.0,
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1": 0.0,
-          "true_positives": 0,
+          "score": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "true_positives": 1,
           "false_positives": 0,
-          "missed_bugs": 1,
-          "found_types": [],
+          "missed_bugs": 0,
+          "found_types": [
+            "front_running"
+          ],
           "expected_types": [
             "front_running"
           ],
           "action": {
-            "vulnerabilities": []
+            "vulnerabilities": [
+              {
+                "type": "front_running",
+                "location": "function solve(string solution)",
+                "severity": "high",
+                "explanation": "The solution string is passed as a cleartext argument in the transaction data. An observer can read the preimage before the transaction is mined and submit their own transaction with a higher gas price to claim the 1000\u202fether reward, effectively front\u2011running the original caller."
+              }
+            ]
           },
-          "raw_responses": [],
-          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "raw_responses": [
+            "{\n  \"vulnerabilities\": [],\n  \"confidence\": 0.99\n}",
+            "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"front_running\",\n      \"location\": \"function solve(string solution)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The solution string is passed as a cleartext argument in the transaction data. An observer can read the preimage before the transaction is mined and submit their own transaction with a higher gas price to claim the 1000\u202fether reward, effectively front\u2011running the original caller.\"\n    }\n  ],\n  \"confidence\": 0.95\n}"
+          ],
+          "error": "max_retries_exceeded",
           "audit": {
             "mode": "TA",
             "mode_source": "ppo",
             "rounds": 2,
             "stop_reason": "dqn_stop",
             "confidences": [
-              0.0,
-              0.0
+              0.99,
+              0.95
             ],
             "llm_calls": 7,
-            "prompt_tokens": 0,
-            "completion_tokens": 0,
-            "tokens": 0,
-            "cost_usd": 0.0
+            "prompt_tokens": 1480,
+            "completion_tokens": 1109,
+            "tokens": 2589,
+            "cost_usd": 0.001054
           }
         },
         {
@@ -861,7 +997,7 @@
             "vulnerabilities": []
           },
           "raw_responses": [],
-          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "error": "max_retries_exceeded",
           "audit": {
             "mode": "BA",
             "mode_source": "ppo",
@@ -880,36 +1016,55 @@
         },
         {
           "contract": "wallet_04_confused_sign.sol",
-          "score": 0.0,
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1": 0.0,
-          "true_positives": 0,
-          "false_positives": 0,
-          "missed_bugs": 1,
-          "found_types": [],
+          "score": 0.8,
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.6667,
+          "true_positives": 1,
+          "false_positives": 1,
+          "missed_bugs": 0,
+          "found_types": [
+            "access_control",
+            "integer_overflow"
+          ],
           "expected_types": [
             "access_control"
           ],
           "action": {
-            "vulnerabilities": []
+            "vulnerabilities": [
+              {
+                "type": "access_control",
+                "location": "withdraw(uint256 amount) function",
+                "severity": "critical",
+                "explanation": "The require statement uses `amount >= balances[msg.sender]` instead of `amount <= balances[msg.sender]`. This allows any caller to withdraw any amount of Ether regardless of their actual balance, breaking the intended access control."
+              },
+              {
+                "type": "integer_overflow",
+                "location": "withdraw(uint256 amount) function",
+                "severity": "high",
+                "explanation": "Because the balance check is wrong, callers can pass an `amount` larger than their stored balance. After the transfer, the contract executes `balances[msg.sender] -= amount;` which underflows the unsigned integer, wrapping to a huge value and corrupting the accounting."
+              }
+            ]
           },
-          "raw_responses": [],
-          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "raw_responses": [
+            "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"withdraw(uint256 amount) function\",\n      \"severity\": \"critical\",\n      \"explanation\": \"The require statement uses `amount >= balances[msg.sender]` instead of `amount <= balances[msg.sender]`, allowing any caller to withdraw arbitrary amounts regardless of their actual balance. This missing/incorrect balance check constitutes an access control flaw.\"\n    }\n  ],\n  \"confidence\": 0.95\n}",
+            "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"withdraw(uint256 amount) function\",\n      \"severity\": \"critical\",\n      \"explanation\": \"The require statement uses `amount >= balances[msg.sender]` instead of `amount <= balances[msg.sender]`. This allows any caller to withdraw any amount of Ether regardless of their actual balance, breaking the intended access control.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"withdraw(uint256 amount) function\",\n      \"severity\": \"high\",\n      \"explanation\": \"Because the balance check is wrong, callers can pass an `amount` larger than their stored balance. After the transfer, the contract executes `balances[msg.sender] -= amount;` which underflows the unsigned integer, wrapping to a huge value and corrupting the accounting.\"\n    }\n  ],\n  \"confidence\": 0.97\n}"
+          ],
+          "error": "max_retries_exceeded",
           "audit": {
             "mode": "TA",
             "mode_source": "ppo",
             "rounds": 2,
             "stop_reason": "dqn_stop",
             "confidences": [
-              0.0,
-              0.0
+              0.95,
+              0.97
             ],
             "llm_calls": 7,
-            "prompt_tokens": 0,
-            "completion_tokens": 0,
-            "tokens": 0,
-            "cost_usd": 0.0
+            "prompt_tokens": 1926,
+            "completion_tokens": 1693,
+            "tokens": 3619,
+            "cost_usd": 0.001559
           }
         }
       ]
@@ -918,12 +1073,12 @@
       "difficulty": "hard",
       "n_contracts": 9,
       "n_errors": 9,
-      "avg_score": 0.0,
-      "avg_precision": 0.0,
-      "avg_recall": 0.0,
-      "avg_f1": 0.0,
-      "avg_tokens": 0.0,
-      "avg_cost_usd": 0.0,
+      "avg_score": 0.1111,
+      "avg_precision": 0.1111,
+      "avg_recall": 0.1111,
+      "avg_f1": 0.1111,
+      "avg_tokens": 134.5556,
+      "avg_cost_usd": 6.6e-05,
       "avg_rounds": 2.0,
       "avg_calls": 3.6667,
       "mode_counts": {
@@ -948,7 +1103,7 @@
             "vulnerabilities": []
           },
           "raw_responses": [],
-          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "error": "max_retries_exceeded",
           "audit": {
             "mode": "BA",
             "mode_source": "ppo",
@@ -967,36 +1122,47 @@
         },
         {
           "contract": "bug_3.sol",
-          "score": 0.0,
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1": 0.0,
-          "true_positives": 0,
+          "score": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "true_positives": 1,
           "false_positives": 0,
-          "missed_bugs": 1,
-          "found_types": [],
+          "missed_bugs": 0,
+          "found_types": [
+            "selfdestruct"
+          ],
           "expected_types": [
             "selfdestruct"
           ],
           "action": {
-            "vulnerabilities": []
+            "vulnerabilities": [
+              {
+                "type": "selfdestruct",
+                "location": "kill() function",
+                "severity": "low",
+                "explanation": "The public kill() function allows the contract owner to call selfdestruct (suicide), which permanently destroys the contract and transfers any ether balance to the owner. If the owner key is compromised, an attacker could destroy the contract."
+              }
+            ]
           },
-          "raw_responses": [],
-          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "raw_responses": [
+            "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"selfdestruct\",\n      \"location\": \"kill() function\",\n      \"severity\": \"low\",\n      \"explanation\": \"The public kill() function allows the contract owner to call selfdestruct (suicide), which permanently destroys the contract and transfers any ether balance to the owner. If the owner key is compromised, an attacker could destroy the contract.\"\n    }\n  ],\n  \"confidence\": 0.7\n}"
+          ],
+          "error": "max_retries_exceeded",
           "audit": {
             "mode": "BA",
             "mode_source": "ppo",
             "rounds": 2,
             "stop_reason": "dqn_stop",
             "confidences": [
-              0.0,
-              0.0
+              0.7,
+              0.7
             ],
             "llm_calls": 2,
-            "prompt_tokens": 0,
-            "completion_tokens": 0,
-            "tokens": 0,
-            "cost_usd": 0.0
+            "prompt_tokens": 530,
+            "completion_tokens": 681,
+            "tokens": 1211,
+            "cost_usd": 0.00059
           }
         },
         {
@@ -1016,7 +1182,7 @@
             "vulnerabilities": []
           },
           "raw_responses": [],
-          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "error": "llm_error: Connection error.",
           "audit": {
             "mode": "TA",
             "mode_source": "ppo",
@@ -1050,7 +1216,7 @@
             "vulnerabilities": []
           },
           "raw_responses": [],
-          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "error": "llm_error: Connection error.",
           "audit": {
             "mode": "BA",
             "mode_source": "ppo",
@@ -1084,7 +1250,7 @@
             "vulnerabilities": []
           },
           "raw_responses": [],
-          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "error": "llm_error: Connection error.",
           "audit": {
             "mode": "BA",
             "mode_source": "ppo",
@@ -1118,7 +1284,7 @@
             "vulnerabilities": []
           },
           "raw_responses": [],
-          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "error": "llm_error: Connection error.",
           "audit": {
             "mode": "BA",
             "mode_source": "ppo",
@@ -1152,7 +1318,7 @@
             "vulnerabilities": []
           },
           "raw_responses": [],
-          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "error": "llm_error: Connection error.",
           "audit": {
             "mode": "TA",
             "mode_source": "ppo",
@@ -1186,7 +1352,7 @@
             "vulnerabilities": []
           },
           "raw_responses": [],
-          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "error": "llm_error: Connection error.",
           "audit": {
             "mode": "TA",
             "mode_source": "ppo",
@@ -1220,7 +1386,7 @@
             "vulnerabilities": []
           },
           "raw_responses": [],
-          "error": "llm_error: Error code: 404 - {'error': {'message': 'The model `llama-3.1-8b-instant` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+          "error": "llm_error: Connection error.",
           "audit": {
             "mode": "BA",
             "mode_source": "ppo",

@@ -1,0 +1,19 @@
+{
+  "contract": "reentrancy_bonus.sol",
+  "source": "SmartBugs Curated (extra, training pool)",
+  "category": "reentrancy",
+  "vulnerabilities": [
+    {
+      "type": "reentrancy",
+      "severity": "high",
+      "location": "lines 28",
+      "description": "Known reentrancy vulnerability from SmartBugs Curated (dataset/reentrancy/reentrancy_bonus.sol)"
+    }
+  ],
+  "lines": [
+    28
+  ],
+  "origin": "smartbugs-curated/dataset/reentrancy/reentrancy_bonus.sol",
+  "max_jaccard_vs_test": 0.038,
+  "code_sha256": "18af336f2a18e5ea1aa224f236874f55b0272d59b25a8b7a8ef34d2564480d7c"
+}

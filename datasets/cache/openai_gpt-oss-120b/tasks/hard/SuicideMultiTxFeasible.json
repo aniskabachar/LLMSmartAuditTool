@@ -1,0 +1,52 @@
+{
+ "contract": "SuicideMultiTxFeasible",
+ "origin": "tasks",
+ "tier": "hard",
+ "part": "train",
+ "source_path": "tasks/hard/SuicideMultiTxFeasible.sol",
+ "backend": "groq",
+ "model": "openai/gpt-oss-120b",
+ "temperature": 0.1,
+ "max_tokens": 1000,
+ "max_code_chars": 6000,
+ "prompt_hash": "a3669b2a2342a966",
+ "n_ta_batches": 6,
+ "created_at": "2026-11-18T06:24:07+00:00",
+ "calls": {
+  "ba_r1": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"run(uint256 input)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The `run` function is public and contains a `selfdestruct` call that can be triggered by any caller after `init` has been called. There is no access restriction, allowing any external account to destroy the contract and withdraw its balance.\"\n    }\n  ],\n  \"confidence\": 0.95\n}",
+   "prompt_tokens": 363,
+   "completion_tokens": 379,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:24:08+00:00"
+  },
+  "ta_r1_b0": {
+   "raw": "{\n  \"vulnerabilities\": [],\n  \"confidence\": 0.99\n}",
+   "prompt_tokens": 1531,
+   "completion_tokens": 581,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:24:20+00:00"
+  },
+  "ta_r1_b1": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"selfdestruct\",\n      \"location\": \"function run(uint256 input)\",\n      \"severity\": \"critical\",\n      \"explanation\": \"The `selfdestruct(msg.sender)` call is not protected by any access control. Any user can call `run` after `init` has been executed (which anyone can also call), causing the contract to be destroyed and its remaining ether sent to the caller.\"\n    },\n    {\n      \"type\": \"access_control\",\n      \"location\": \"function run(uint256 input)\",\n      \"severity\": \"high\",\n      \"explanation\": \"`run` lacks any `onlyOwner` or similar modifier, allowing unrestricted execution by any address. This permits unauthorized users to trigger destructive behavior and any other future state\u2011changing logic added to the function.\"\n    }\n  ],\n  \"confidence\": 0.99\n}",
+   "prompt_tokens": 1432,
+   "completion_tokens": 701,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:25:14+00:00"
+  },
+  "ta_r1_b2": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"run(uint256) function\",\n      \"severity\": \"high\",\n      \"explanation\": \"The run function can be called by any address after init() is called, and it triggers selfdestruct(msg.sender) without any access restriction. There is no owner variable or onlyOwner modifier, allowing unauthorized users to destroy the contract.\"\n    }\n  ],\n  \"confidence\": 0.85\n}",
+   "prompt_tokens": 1113,
+   "completion_tokens": 873,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:25:16+00:00"
+  },
+  "ta_r1_b3": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"selfdestruct\",\n      \"location\": \"run(uint256 input)\",\n      \"severity\": \"critical\",\n      \"explanation\": \"The run function allows any caller to trigger selfdestruct after initialization, with no access control, enabling arbitrary destruction of the contract.\"\n    }\n  ],\n  \"confidence\": 0.98\n}",
+   "prompt_tokens": 1056,
+   "completion_tokens": 614,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:25:24+00:00"
+  }
+ }
+}

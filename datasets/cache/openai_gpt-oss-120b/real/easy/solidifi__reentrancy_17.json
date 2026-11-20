@@ -1,0 +1,129 @@
+{
+ "contract": "solidifi__reentrancy_17",
+ "origin": "real",
+ "tier": "easy",
+ "part": "train",
+ "source_path": "datasets/real/easy/solidifi__reentrancy_17.sol",
+ "backend": "groq",
+ "model": "openai/gpt-oss-120b",
+ "temperature": 0.1,
+ "max_tokens": 1000,
+ "max_code_chars": 6000,
+ "prompt_hash": "a3669b2a2342a966",
+ "n_ta_batches": 6,
+ "created_at": "2026-11-18T06:31:41+00:00",
+ "calls": {
+  "ba_r1": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"withdrawBalance_re_ent40\",\n      \"severity\": \"high\",\n      \"explanation\": \"Uses",
+   "prompt_tokens": 1817,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:31:43+00:00"
+  },
+  "ta_r1_b0": {
+   "raw": "",
+   "prompt_tokens": 2985,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:32:46+00:00"
+  },
+  "ta_r1_b1": {
+   "raw": "",
+   "prompt_tokens": 2886,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:33:48+00:00"
+  },
+  "ta_r1_b2": {
+   "raw": "{\n  \"vulnerabilities\": [],\n  \"confidence\": 0.9\n}",
+   "prompt_tokens": 2567,
+   "completion_tokens": 828,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:34:51+00:00"
+  },
+  "ta_r1_b3": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"transferOwnership (onlyOwner)\",\n      \"severity\": \"high\",\n      \"explanation\": \"Only the current owner can call transferOwnership, centralizing control of contract ownership in a single address. If the owner address is compromised, the entire contract can be taken over.\"\n    },\n    {\n      \"type\": \"access_control\",\n      \"location\": \"freezeToken (onlyOwner)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The function that can freeze or unfreeze all token transfers is restricted to the owner only, creating a centralization risk where a single address can halt token activity.\"\n    },\n    {\n      \"type\": \"access_control\",\n      \"location\": \"burn (onlyOwner)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Only the owner can burn tokens from their own balance, giving a single address the power to reduce total supply arbitrarily.\"\n    }\n  ],\n  \"confidence\": 0.9\n}",
+   "prompt_tokens": 2510,
+   "completion_tokens": 732,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:34:55+00:00"
+  },
+  "ta_r1_b4": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"withdrawBalance_re_ent40 (and similar withdrawBalance_re_ent33) using low\u2011level call.value\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function sends ether to msg.sender via a low\u2011level call and only updates the stored balance after the call returns. This allows a malicious contract to re\u2011enter the function before the balance is cleared and potentially withdraw more than its stored amount.\"\n    },\n    {\n      \"type\": \"other\",\n      \"location\": \"Contract has no fallback or receive function\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The contract does not define a payable fallback/receive function, so any ether sent directly to the contract will be rejected and could be unintentionally lost by users.\"\n    }\n  ],\n  \"confidence\": 0.9\n}",
+   "prompt_tokens": 2601,
+   "completion_tokens": 944,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:35:54+00:00"
+  },
+  "ta_r1_b5": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"withdrawBalance_re_ent12()\",\n      \"severity\": \"high\",\n      \"explanation\": \"Uses `msg.sender.send(...)` and reverts on failure. If the recipient is a contract whose fallback consumes more than 2300 gas or reverts, the send will fail and the whole transaction reverts, blocking the user from withdrawing.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"bug_re_ent20()\",\n      \"severity\": \"high\",\n      \"explanation\": \"Calls `msg.sender.send(1 ether)` and reverts if the send fails. A malicious recipient can cause the send to fail, making the function unusable and potentially blocking further calls that rely on it.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"callme_re_ent35()\",\n      \"severity\": \"high\",\n      \"explanation\": \"Uses `msg.sender.send(10 ether)` with a revert on failure. A recipient that blocks the send (e.g., by reverting in its fallback) will cause the whole function to revert, leading to a DoS condition.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location",
+   "prompt_tokens": 2000,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:35:58+00:00"
+  },
+  "ba_r2": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"withdrawBalance_re_ent40() in owned contract\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function forwards all gas using `msg.sender.call.value(...)` before resetting the user's balance, allowing a malicious fallback to re\u2011enter and drain funds.\"\n    },\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"withdrawBalance_re_ent33() in owned contract\",\n      \"severity\": \"high\",\n      \"explanation\": \"Same pattern as above: external call via `call.value` is made before the balance is cleared, creating a classic re\u2011entrancy vulnerability.\"\n    },\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"bug_re_ent20() in owned contract\",\n      \"severity\": \"medium\",\n      \"explanation\": \"State variable `not_called_re_ent20` is updated after an external `send` call. Although `send` limits gas, best practice is to update state before the external call; a malicious contract could still exploit edge\u2011cases.\"\n    }\n  ],\n  \"confidence\": 0.85\n}",
+   "prompt_tokens": 1857,
+   "completion_tokens": 898,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:36:58+00:00"
+  },
+  "ba_r3": {
+   "raw": "",
+   "prompt_tokens": 2046,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:37:01+00:00"
+  },
+  "ba_r4": {
+   "raw": "",
+   "prompt_tokens": 2046,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:38:01+00:00"
+  },
+  "ta_r2": {
+   "raw": "",
+   "prompt_tokens": 2181,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:38:05+00:00"
+  },
+  "ta_r3": {
+   "raw": "",
+   "prompt_tokens": 2181,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:39:03+00:00"
+  },
+  "ta_r4": {
+   "raw": "",
+   "prompt_tokens": 2181,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:39:08+00:00"
+  },
+  "hybrid_r2": {
+   "raw": "",
+   "prompt_tokens": 2221,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:40:06+00:00"
+  },
+  "hybrid_r3": {
+   "raw": "",
+   "prompt_tokens": 2221,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:40:11+00:00"
+  },
+  "hybrid_r4": {
+   "raw": "",
+   "prompt_tokens": 2221,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:41:10+00:00"
+  }
+ }
+}

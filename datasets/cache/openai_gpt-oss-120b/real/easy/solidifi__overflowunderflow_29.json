@@ -1,0 +1,129 @@
+{
+ "contract": "solidifi__overflowunderflow_29",
+ "origin": "real",
+ "tier": "easy",
+ "part": "train",
+ "source_path": "datasets/real/easy/solidifi__overflowunderflow_29.sol",
+ "backend": "groq",
+ "model": "openai/gpt-oss-120b",
+ "temperature": 0.1,
+ "max_tokens": 1000,
+ "max_code_chars": 6000,
+ "prompt_hash": "a3669b2a2342a966",
+ "n_ta_batches": 6,
+ "created_at": "2026-11-18T06:21:17+00:00",
+ "calls": {
+  "ba_r1": {
+   "raw": "",
+   "prompt_tokens": 1766,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:21:20+00:00"
+  },
+  "ta_r1_b0": {
+   "raw": "",
+   "prompt_tokens": 2934,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:22:20+00:00"
+  },
+  "ta_r1_b1": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"other\",\n      \"location\": \"Contract lacks a user withdrawal function\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The contract provides a withdrawFunds function only for the contract owner, but there is no function that allows users who have deposited Ether or tokens to withdraw their funds. This omission can lock user assets in the contract, constituting a security and usability issue.\"\n    }\n  ],\n  \"confidence\": 0.85\n}",
+   "prompt_tokens": 2835,
+   "completion_tokens": 625,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:23:22+00:00"
+  },
+  "ta_r1_b2": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"function bug_intou7()\",\n      \"severity\": \"low\",\n      \"explanation\": \"Underflows uint8 variable vundflw by subtracting 10 from 0, causing wrap\u2011around.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"function bug_intou23()\",\n      \"severity\": \"low\",\n      \"explanation\": \"Underflows uint8 variable vundflw by subtracting 10 from 0.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"function transfer_intou14(address _to, uint _value)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Uses unchecked subtraction on balances_intou14[msg.sender] which can underflow, allowing balance manipulation.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"function bug_intou8(uint8 p_intou8)\",\n      \"severity\": \"low\",\n      \"explanation\": \"Adds p_intou8 to uint8 vundflw1 without overflow check, causing wrap\u2011around on overflow.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"function bug_intou39()\",\n      \"severity\": \"low\",\n      \"explanation\": \"Underflows uint8 variable vundflw by subtracting 10 from 0.\"\n    },\n    {\n      \"type\":",
+   "prompt_tokens": 2516,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:23:24+00:00"
+  },
+  "ta_r1_b3": {
+   "raw": "",
+   "prompt_tokens": 2459,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:24:25+00:00"
+  },
+  "ta_r1_b4": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"other\",\n      \"location\": \"Contract has no fallback or receive function\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The contract does not define a payable fallback or receive function. Any ether sent directly to the contract (e.g., by mistake) will be rejected and locked, causing loss of funds for the sender.\"\n    }\n  ],\n  \"confidence\": 0.95\n}",
+   "prompt_tokens": 2550,
+   "completion_tokens": 752,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:25:27+00:00"
+  },
+  "ta_r1_b5": {
+   "raw": "{\n  \"vulnerabilities\": [],\n  \"confidence\": 0.95\n}",
+   "prompt_tokens": 1949,
+   "completion_tokens": 806,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:25:29+00:00"
+  },
+  "ba_r2": {
+   "raw": "",
+   "prompt_tokens": 1765,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:26:30+00:00"
+  },
+  "ba_r3": {
+   "raw": "",
+   "prompt_tokens": 1765,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:26:32+00:00"
+  },
+  "ba_r4": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"increaseLockTime_intou33(uint _secondsToIncrease)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The function adds _secondsToIncrease to lockTime_intou33[msg.sender] without using SafeMath, allowing an unchecked overflow. An overflow can wrap the lock time to a low value, letting the caller bypass the time lock and repeatedly call withdraw_intou33 to drain ether.\"\n    },\n",
+   "prompt_tokens": 1765,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:27:33+00:00"
+  },
+  "ta_r2": {
+   "raw": "",
+   "prompt_tokens": 2006,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:27:36+00:00"
+  },
+  "ta_r3": {
+   "raw": "",
+   "prompt_tokens": 2006,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:28:36+00:00"
+  },
+  "ta_r4": {
+   "raw": "",
+   "prompt_tokens": 2006,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:28:39+00:00"
+  },
+  "hybrid_r2": {
+   "raw": "",
+   "prompt_tokens": 2006,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:29:38+00:00"
+  },
+  "hybrid_r3": {
+   "raw": "",
+   "prompt_tokens": 2006,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:29:42+00:00"
+  },
+  "hybrid_r4": {
+   "raw": "",
+   "prompt_tokens": 2006,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:30:41+00:00"
+  }
+ }
+}

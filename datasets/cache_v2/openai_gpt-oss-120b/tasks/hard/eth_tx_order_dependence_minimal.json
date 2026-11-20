@@ -1,0 +1,88 @@
+{
+ "contract": "eth_tx_order_dependence_minimal",
+ "origin": "tasks",
+ "tier": "hard",
+ "part": "test",
+ "source_path": "tasks/hard/eth_tx_order_dependence_minimal.sol",
+ "backend": "groq",
+ "model": "openai/gpt-oss-120b",
+ "temperature": 0.1,
+ "max_tokens": 4000,
+ "reasoning_effort": "low",
+ "max_code_chars": 6000,
+ "prompt_hash": "a3669b2a2342a966",
+ "n_ta_batches": 6,
+ "created_at": "2026-11-18T08:48:46+00:00",
+ "calls": {
+  "ba_r1": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"front_running\",\n      \"location\": \"setReward\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The function transfers the previous reward to the owner before updating the reward amount, allowing an attacker to front-run the transaction and manipulate the reward value.\"\n    },\n    {\n      \"type\": \"front_running\",\n      \"location\": \"claimReward\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The reward amount is transferred to the caller before setting the claimed flag, enabling a front\u2011running attacker to call the function multiple times in the same block and drain the reward.\"\n    }\n  ],\n  \"confidence\": 0.9\n}",
+   "prompt_tokens": 489,
+   "completion_tokens": 223,
+   "finish_reason": "stop",
+   "at": "2026-11-18T08:49:03+00:00"
+  },
+  "ta_r1_b0": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"front_running\",\n      \"location\": \"setReward() function\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The function transfers the previous reward to the owner before updating the reward amount, allowing an attacker to front\u2011run the transaction and manipulate the reward value.\"\n    },\n    {\n      \"type\": \"front_running\",\n      \"location\": \"claimReward(uint256) function\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The function transfers the reward to the caller before marking the reward as claimed, enabling a front\u2011runner to call the function multiple times in the same block and drain the reward.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "prompt_tokens": 1657,
+   "completion_tokens": 318,
+   "finish_reason": "stop",
+   "at": "2026-11-18T08:49:04+00:00"
+  },
+  "ta_r1_b1": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"front_running\",\n      \"location\": \"function setReward()\",\n      \"severity\": \"high\",\n      \"explanation\": \"The reward amount is transferred to the owner before updating the reward state, allowing an attacker to front\u2011run the transaction and manipulate the reward value.\"\n    },\n    {\n      \"type\": \"front_running\",\n      \"location\": \"function claimReward(uint256 submission)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract transfers the reward to the caller before setting the claimed flag, enabling a front\u2011runner to call the function multiple times in the same block and drain the reward.\"\n    }\n  ],\n  \"confidence\": 0.9\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1558,
+   "completion_tokens": 248,
+   "provider": "groq",
+   "at": "2026-11-18T09:44:42+00:00"
+  },
+  "ta_r1_b2": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"front_running\",\n      \"location\": \"setReward()\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function transfers the previous reward to the owner before updating the reward with msg.value, allowing an attacker to front\u2011run the transaction and manipulate the reward amount.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1239,
+   "completion_tokens": 345,
+   "provider": "groq",
+   "at": "2026-11-18T09:44:43+00:00"
+  },
+  "ta_r1_b3": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"front_running\",\n      \"location\": \"setReward()\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The function transfers the previous reward to the owner before updating the reward amount, allowing an attacker to front-run the transaction and claim the old reward.\"\n    },\n    {\n      \"type\": \"front_running\",\n      \"location\": \"claimReward(uint256)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The reward is transferred to the caller before setting the claimed flag, enabling a front\u2011runner to call the function multiple times in the same block to drain the reward.\"\n    },\n    {\n      \"type\": \"access_control\",\n      \"location\": \"setReward()\",\n      \"severity\": \"high\",\n      \"explanation\": \"Only the owner can call setReward, centralizing control; if the owner address is compromised, the entire reward mechanism can be abused.\"\n    }\n  ],\n  \"confidence\": 0.9\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1182,
+   "completion_tokens": 378,
+   "provider": "groq",
+   "at": "2026-11-18T09:45:44+00:00"
+  },
+  "ta_r1_b4": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"front_running\",\n      \"location\": \"setReward\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The function transfers the previous reward to the owner before updating the reward amount, allowing an attacker to front-run the transaction and claim the old reward.\"\n    },\n    {\n      \"type\": \"front_running\",\n      \"location\": \"claimReward\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The function transfers the reward to the caller before setting claimed = true, enabling an attacker to front-run and cause multiple claims before the state is updated.\"\n    }\n  ],\n  \"confidence\": 0.99\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1273,
+   "completion_tokens": 194,
+   "provider": "groq",
+   "at": "2026-11-18T09:45:45+00:00"
+  },
+  "ta_r1_b5": {
+   "raw": "{\n  \"vulnerabilities\": [],\n  \"confidence\": 0.99\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 672,
+   "completion_tokens": 75,
+   "provider": "groq",
+   "at": "2026-11-18T09:45:45+00:00"
+  },
+  "ba_r2": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"front_running\",\n      \"location\": \"setReward\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The function transfers the previous reward to the owner before updating the reward amount, allowing an attacker to front\u2011run the transaction and manipulate the reward value.\"\n    },\n    {\n      \"type\": \"front_running\",\n      \"location\": \"claimReward\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The reward amount is transferred to the caller before setting the claimed flag, enabling a front\u2011running attacker to call the function multiple times in the same block and drain the reward.\"\n    }\n  ],\n  \"confidence\": 0.9\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 617,
+   "completion_tokens": 209,
+   "provider": "groq",
+   "at": "2026-11-18T09:46:45+00:00"
+  },
+  "ba_r3": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"front_running\",\n      \"location\": \"setReward\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The function transfers the previous reward to the owner before updating the reward amount, allowing an attacker to front\u2011run the transaction and manipulate the reward value.\"\n    },\n    {\n      \"type\": \"front_running\",\n      \"location\": \"claimReward\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The reward amount is transferred to the caller before setting the claimed flag, enabling a front\u2011running attacker to call the function multiple times in the same block and drain the reward.\"\n    }\n  ],\n  \"confidence\": 0.9\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 620,
+   "completion_tokens": 229,
+   "provider": "groq",
+   "at": "2026-11-18T09:46:46+00:00"
+  }
+ }
+}

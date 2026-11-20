@@ -1,0 +1,19 @@
+{
+  "contract": "0xec329ffc97d75fe03428ae155fc7793431487f63.sol",
+  "source": "SmartBugs Curated (extra, training pool)",
+  "category": "unchecked_low_level_calls",
+  "vulnerabilities": [
+    {
+      "type": "unchecked_low_level_calls",
+      "severity": "medium",
+      "location": "lines 30",
+      "description": "Known unchecked_low_level_calls vulnerability from SmartBugs Curated (dataset/unchecked_low_level_calls/0xec329ffc97d75fe03428ae155fc7793431487f63.sol)"
+    }
+  ],
+  "lines": [
+    30
+  ],
+  "origin": "smartbugs-curated/dataset/unchecked_low_level_calls/0xec329ffc97d75fe03428ae155fc7793431487f63.sol",
+  "max_jaccard_vs_test": 0.038,
+  "code_sha256": "0ba60210cb82c89ac5ce0cbba25fe9ec6b97121ee9b9a8401fa6dc3775417c1e"
+}

@@ -39,7 +39,8 @@ MODES = ("ba", "ta", "hybrid", "rl")
 
 MODEL          = "openai/gpt-oss-120b"  # Groq-hosted model
 TEMPERATURE    = 0.1
-MAX_TOKENS     = 1000
+MAX_TOKENS     = 4000   # gpt-oss reasons before answering; 1000 left ~43% of replies empty
+REASONING_EFFORT = "low"  # Groq gpt-oss: low / medium / high (hidden reasoning tokens)
 MAX_CODE_CHARS = 6000
 CALL_DELAY     = 2      # Rate limit mitigation: 2-second delay between calls
 TA_BATCH       = 8      # detector scenarios per TA call (41 scenarios -> 6 calls)
@@ -146,6 +147,7 @@ def _chat(system: str, user: str) -> tuple[str, int, int, str | None]:
         try:
             r = get_client().chat.completions.create(
                 model=MODEL, temperature=TEMPERATURE, max_tokens=MAX_TOKENS,
+                reasoning_effort=REASONING_EFFORT,
                 messages=[{"role": "system", "content": system},
                           {"role": "user",   "content": user}],
             )
@@ -392,6 +394,8 @@ def config(mode: str) -> dict:
         "model":          MODEL,
         "temperature":    TEMPERATURE,
         "max_tokens":     MAX_TOKENS,
+        "reasoning_effort": REASONING_EFFORT,
+        "comments_stripped": True,
         "max_code_chars": MAX_CODE_CHARS,
         "prompt_hash":    sha256(BA_SYSTEM, TA_SYSTEM, REVIEW_SYSTEM, *TA_BATCH_TEXTS),
         "ta_scenarios":   len(TA_SCENARIOS),

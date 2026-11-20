@@ -1,0 +1,241 @@
+===== 18-11-2026 21:20:24.34 ===== 
+69 contracts x 8 tools; lams [0.0, 0.01, 0.02, 0.05]; 5-fold x 3 repeats; 40,000 PPO steps per fold
+  lam=0     rep 0 fold 0: best-fixed=['maian', 'mythril', 'oyente', 'slither', 'smartcheck']  (173s)
+  lam=0     rep 0 fold 1: best-fixed=['maian', 'mythril', 'slither', 'smartcheck']  (299s)
+  lam=0     rep 0 fold 2: best-fixed=['maian', 'mythril', 'oyente', 'slither', 'smartcheck']  (401s)
+  lam=0     rep 0 fold 3: best-fixed=['maian', 'mythril', 'oyente', 'slither', 'smartcheck']  (542s)
+  lam=0     rep 0 fold 4: best-fixed=['maian', 'mythril', 'oyente', 'slither', 'smartcheck']  (695s)
+  lam=0.01  rep 0 fold 0: best-fixed=['mythril', 'oyente', 'slither', 'smartcheck']  (855s)
+  lam=0.01  rep 0 fold 1: best-fixed=['mythril', 'slither', 'smartcheck']  (1030s)
+  lam=0.01  rep 0 fold 2: best-fixed=['mythril', 'oyente', 'slither', 'smartcheck']  (1206s)
+  lam=0.01  rep 0 fold 3: best-fixed=['mythril', 'oyente', 'slither', 'smartcheck']  (1373s)
+  lam=0.01  rep 0 fold 4: best-fixed=['mythril', 'oyente', 'slither', 'smartcheck']  (1520s)
+  lam=0.02  rep 0 fold 0: best-fixed=['mythril', 'oyente', 'slither', 'smartcheck']  (1719s)
+  lam=0.02  rep 0 fold 1: best-fixed=['mythril', 'slither', 'smartcheck']  (2001s)
+  lam=0.02  rep 0 fold 2: best-fixed=['mythril', 'oyente', 'slither', 'smartcheck']  (2254s)
+  lam=0.02  rep 0 fold 3: best-fixed=['mythril', 'oyente', 'slither', 'smartcheck']  (2559s)
+  lam=0.02  rep 0 fold 4: best-fixed=['mythril', 'oyente', 'slither', 'smartcheck']  (2966s)
+  lam=0.02  rep 1 fold 0: best-fixed=['mythril', 'oyente', 'slither', 'smartcheck']  (3386s)
+  lam=0.02  rep 1 fold 1: best-fixed=['mythril', 'oyente', 'slither', 'smartcheck']  (3807s)
+  lam=0.02  rep 1 fold 2: best-fixed=['mythril', 'slither', 'smartcheck']  (4239s)
+  lam=0.02  rep 1 fold 3: best-fixed=['mythril', 'slither', 'smartcheck']  (4594s)
+  lam=0.02  rep 1 fold 4: best-fixed=['mythril', 'oyente', 'slither', 'smartcheck']  (4889s)
+  lam=0.02  rep 2 fold 0: best-fixed=['mythril', 'oyente', 'slither', 'smartcheck']  (5152s)
+  lam=0.02  rep 2 fold 1: best-fixed=['mythril', 'slither', 'smartcheck']  (5432s)
+  lam=0.02  rep 2 fold 2: best-fixed=['mythril', 'oyente', 'slither', 'smartcheck']  (5638s)
+  lam=0.02  rep 2 fold 3: best-fixed=['mythril', 'slither', 'smartcheck']  (5875s)
+  lam=0.02  rep 2 fold 4: best-fixed=['mythril', 'oyente', 'slither', 'smartcheck']  (6156s)
+  lam=0.05  rep 0 fold 0: best-fixed=['mythril', 'slither', 'smartcheck']  (6305s)
+  lam=0.05  rep 0 fold 1: best-fixed=['mythril', 'slither', 'smartcheck']  (6445s)
+  lam=0.05  rep 0 fold 2: best-fixed=['mythril', 'slither', 'smartcheck']  (6580s)
+  lam=0.05  rep 0 fold 3: best-fixed=['mythril', 'slither', 'smartcheck']  (6714s)
+  lam=0.05  rep 0 fold 4: best-fixed=['mythril', 'slither', 'smartcheck']  (6880s)
+C:\Users\anisk\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\numpy\_core\fromnumeric.py:3824: RuntimeWarning: Mean of empty slice
+  return _methods._mean(a, axis=axis, dtype=dtype,
+C:\Users\anisk\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\numpy\_core\_methods.py:142: RuntimeWarning: invalid value encountered in scalar divide
+  ret = ret.dtype.type(ret / rcount)
+Traceback (most recent call last):
+  File "C:\Users\anisk\OneDrive\Desktop\LLMSmartAuditTool-Multiagent\rl_tools\run.py", line 361, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\anisk\OneDrive\Desktop\LLMSmartAuditTool-Multiagent\rl_tools\run.py", line 301, in main
+    results = {lam: summarise(per_lam[lam], lam) for lam in args.lams}
+                    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\anisk\OneDrive\Desktop\LLMSmartAuditTool-Multiagent\rl_tools\run.py", line 297, in summarise
+    "tool_use_pct": {t: round(100 * use[t] / n_runs, 1) for t in tools},
+                              ~~~~~~~~~~~~~^~~~~~~~
+ZeroDivisionError: division by zero
+===== 19-11-2026  0:17:34.59 ===== 
+69 contracts x 8 tools; lams [0.0, 0.01, 0.02, 0.05]; 5-fold x 3 repeats; 40,000 PPO steps per fold
+  lam=0     rep 0 fold 0: best-fixed=['maian', 'mythril', 'oyente', 'slither', 'smartcheck']  (218s)
+  lam=0     rep 0 fold 1: best-fixed=['maian', 'mythril', 'slither', 'smartcheck']  (410s)
+  lam=0     rep 0 fold 2: best-fixed=['maian', 'mythril', 'oyente', 'slither', 'smartcheck']  (671s)
+  lam=0     rep 0 fold 3: best-fixed=['maian', 'mythril', 'oyente', 'slither', 'smartcheck']  (870s)
+  lam=0     rep 0 fold 4: best-fixed=['maian', 'mythril', 'oyente', 'slither', 'smartcheck']  (1013s)
+  lam=0.01  rep 0 fold 0: best-fixed=['mythril', 'oyente', 'slither', 'smartcheck']  (1155s)
+  lam=0.01  rep 0 fold 1: best-fixed=['mythril', 'slither', 'smartcheck']  (1288s)
+  lam=0.01  rep 0 fold 2: best-fixed=['mythril', 'oyente', 'slither', 'smartcheck']  (1434s)
+  lam=0.01  rep 0 fold 3: best-fixed=['mythril', 'oyente', 'slither', 'smartcheck']  (1569s)
+  lam=0.01  rep 0 fold 4: best-fixed=['mythril', 'oyente', 'slither', 'smartcheck']  (1707s)
+  lam=0.02  rep 0 fold 0: best-fixed=['mythril', 'oyente', 'slither', 'smartcheck']  (2009s)
+  lam=0.02  rep 0 fold 1: best-fixed=['mythril', 'slither', 'smartcheck']  (2294s)
+  lam=0.02  rep 0 fold 2: best-fixed=['mythril', 'oyente', 'slither', 'smartcheck']  (2574s)
+  lam=0.02  rep 0 fold 3: best-fixed=['mythril', 'oyente', 'slither', 'smartcheck']  (3028s)
+  lam=0.02  rep 0 fold 4: best-fixed=['mythril', 'oyente', 'slither', 'smartcheck']  (3328s)
+  lam=0.02  rep 1 fold 0: best-fixed=['mythril', 'oyente', 'slither', 'smartcheck']  (3561s)
+  lam=0.02  rep 1 fold 1: best-fixed=['mythril', 'oyente', 'slither', 'smartcheck']  (3802s)
+  lam=0.02  rep 1 fold 2: best-fixed=['mythril', 'slither', 'smartcheck']  (4013s)
+  lam=0.02  rep 1 fold 3: best-fixed=['mythril', 'slither', 'smartcheck']  (4248s)
+  lam=0.02  rep 1 fold 4: best-fixed=['mythril', 'oyente', 'slither', 'smartcheck']  (4460s)
+  lam=0.02  rep 2 fold 0: best-fixed=['mythril', 'oyente', 'slither', 'smartcheck']  (4647s)
+  lam=0.02  rep 2 fold 1: best-fixed=['mythril', 'slither', 'smartcheck']  (4833s)
+  lam=0.02  rep 2 fold 2: best-fixed=['mythril', 'oyente', 'slither', 'smartcheck']  (5141s)
+  lam=0.02  rep 2 fold 3: best-fixed=['mythril', 'slither', 'smartcheck']  (5458s)
+  lam=0.02  rep 2 fold 4: best-fixed=['mythril', 'oyente', 'slither', 'smartcheck']  (5805s)
+  lam=0.05  rep 0 fold 0: best-fixed=['mythril', 'slither', 'smartcheck']  (6001s)
+  lam=0.05  rep 0 fold 1: best-fixed=['mythril', 'slither', 'smartcheck']  (6145s)
+  lam=0.05  rep 0 fold 2: best-fixed=['mythril', 'slither', 'smartcheck']  (6289s)
+  lam=0.05  rep 0 fold 3: best-fixed=['mythril', 'slither', 'smartcheck']  (6411s)
+  lam=0.05  rep 0 fold 4: best-fixed=['mythril', 'slither', 'smartcheck']  (6570s)
+# Tool-selection RL on real static-analysis results
+
+- Data: real outputs and run times of 8 tools on the 69 SmartBugs curated contracts (https://github.com/smartbugs/smartbugs-results (Apache-2.0), Durieux et al. ICSE 2020).
+- PPO sees 4 compact contract features + tools run so far + categories they found.
+- Utility = score − λ·minutes of tool run time; λ = 0.02 at the main setting.
+- 5-fold stratified cross-validation × 3 repeats; every contract is scored by policies that never saw it. 95% bootstrap CIs over contracts.
+
+## Main result (λ = 0.02)
+
+| Method | Utility [95% CI] | Score [95% CI] | Precision | Recall | Minutes | Tools run |
+|---|---|---|---|---|---|---|
+| PPO | 0.479 [0.378, 0.578] | 0.498 [0.399, 0.593] | 0.405 | 0.560 | 0.97 | 2.29 |
+| PPO-static | 0.497 [0.394, 0.593] | 0.515 [0.414, 0.612] | 0.375 | 0.609 | 0.93 | 2.33 |
+| best-fixed | 0.513 [0.408, 0.609] | 0.549 [0.452, 0.640] | 0.373 | 0.667 | 1.80 | 3.66 |
+| greedy-cheapest | 0.513 [0.407, 0.610] | 0.568 [0.474, 0.658] | 0.377 | 0.696 | 2.74 | 4.94 |
+| all tools | 0.432 [0.312, 0.542] | 0.581 [0.489, 0.667] | 0.364 | 0.725 | 7.41 | 8.00 |
+| random | 0.359 [0.263, 0.450] | 0.441 [0.359, 0.521] | 0.306 | 0.531 | 4.11 | 4.60 |
+| honeybadger | 0.014 [-0.019, 0.060] | 0.029 [0.000, 0.072] | 0.029 | 0.029 | 0.77 | 1.00 |
+| maian | 0.042 [-0.030, 0.124] | 0.101 [0.043, 0.174] | 0.101 | 0.101 | 2.95 | 1.00 |
+| mythril | 0.417 [0.308, 0.525] | 0.441 [0.336, 0.545] | 0.343 | 0.507 | 1.21 | 1.00 |
+| osiris | 0.174 [0.092, 0.264] | 0.188 [0.108, 0.278] | 0.145 | 0.217 | 0.73 | 1.00 |
+| oyente | 0.249 [0.153, 0.348] | 0.261 [0.167, 0.359] | 0.217 | 0.290 | 0.60 | 1.00 |
+| securify | 0.104 [0.037, 0.182] | 0.124 [0.058, 0.201] | 0.093 | 0.145 | 1.00 | 1.00 |
+| slither | 0.239 [0.150, 0.333] | 0.240 [0.151, 0.334] | 0.187 | 0.275 | 0.05 | 1.00 |
+| smartcheck | 0.186 [0.103, 0.276] | 0.187 [0.105, 0.278] | 0.164 | 0.203 | 0.10 | 1.00 |
+| oracle | 0.665 [0.563, 0.762] | 0.672 [0.569, 0.769] | 0.594 | 0.725 | 0.34 | 0.72 |
+
+## Paired bootstrap: PPO minus method
+
+| Method | ΔUtility [95% CI] | p | ΔScore [95% CI] | p |
+|---|---|---|---|---|
+| PPO-static | -0.018 [-0.055, +0.018] | 0.822 | -0.017 [-0.055, +0.019] | 0.809 |
+| best-fixed | -0.034 [-0.081, +0.011] | 0.931 | -0.051 [-0.098, -0.009] | 0.992 |
+| greedy-cheapest | -0.034 [-0.088, +0.017] | 0.905 | -0.070 [-0.121, -0.024] | 0.999 |
+| all tools | +0.047 [-0.019, +0.114] | 0.083 | -0.082 [-0.140, -0.030] | 1.000 |
+| random | +0.120 [+0.051, +0.192] | 0.000 | +0.057 [-0.010, +0.126] | 0.048 |
+| honeybadger | +0.465 [+0.360, +0.568] | 0.000 | +0.469 [+0.365, +0.571] | 0.000 |
+| maian | +0.437 [+0.321, +0.548] | 0.000 | +0.397 [+0.282, +0.508] | 0.000 |
+| mythril | +0.062 [-0.007, +0.135] | 0.038 | +0.057 [-0.012, +0.128] | 0.052 |
+| osiris | +0.305 [+0.204, +0.405] | 0.000 | +0.310 [+0.211, +0.408] | 0.000 |
+| oyente | +0.230 [+0.135, +0.326] | 0.000 | +0.237 [+0.142, +0.333] | 0.000 |
+| securify | +0.375 [+0.266, +0.484] | 0.000 | +0.374 [+0.268, +0.480] | 0.000 |
+| slither | +0.240 [+0.135, +0.347] | 0.000 | +0.258 [+0.155, +0.364] | 0.000 |
+| smartcheck | +0.294 [+0.180, +0.408] | 0.000 | +0.311 [+0.199, +0.423] | 0.000 |
+| oracle | -0.186 [-0.248, -0.130] | 1.000 | -0.174 [-0.237, -0.116] | 1.000 |
+
+p = one-sided bootstrap probability that PPO is not better (small = PPO better).
+
+## Tools PPO runs (% of contracts)
+
+| honeybadger | maian | mythril | osiris | oyente | securify | slither | smartcheck |
+|---|---|---|---|---|---|---|---|
+| 12.1 | 10.1 | 66.7 | 6.3 | 20.3 | 2.9 | 73.9 | 36.7 |
+
+## λ sweep
+
+| λ | PPO utility | PPO score | PPO minutes | best-fixed utility | best-fixed score | best-fixed minutes | oracle utility |
+|---|---|---|---|---|---|---|---|
+| 0 | 0.540 | 0.540 | 2.80 | 0.568 | 0.568 | 4.79 | 0.673 |
+| 0.01 | 0.491 | 0.509 | 1.87 | 0.530 | 0.548 | 1.83 | 0.669 |
+| 0.02 | 0.479 | 0.498 | 0.97 | 0.513 | 0.549 | 1.80 | 0.665 |
+| 0.05 | 0.514 | 0.546 | 0.65 | 0.490 | 0.558 | 1.36 | 0.655 |
+
+Saved => verify\results\tools\20261119-020746  (109.6 min)
+===== 20-11-2026 11:33:57.38 ===== 
+69 contracts x 9 tools; lams [0.0, 0.01, 0.02, 0.05]; 5-fold x 3 repeats; 40,000 PPO steps per fold
+  lam=0     rep 0 fold 0: best-fixed=['maian', 'mythril', 'osiris', 'slither', 'llm_ba']  (119s)
+  lam=0     rep 0 fold 1: best-fixed=['honeybadger', 'maian', 'llm_ba']  (227s)
+  lam=0     rep 0 fold 2: best-fixed=['maian', 'mythril', 'osiris', 'slither', 'smartcheck', 'llm_ba']  (328s)
+  lam=0     rep 0 fold 3: best-fixed=['mythril', 'osiris', 'slither', 'smartcheck', 'llm_ba']  (434s)
+  lam=0     rep 0 fold 4: best-fixed=['maian', 'mythril', 'osiris', 'slither', 'smartcheck', 'llm_ba']  (533s)
+  lam=0.01  rep 0 fold 0: best-fixed=['mythril', 'osiris', 'slither', 'llm_ba']  (673s)
+  lam=0.01  rep 0 fold 1: best-fixed=['slither', 'llm_ba']  (786s)
+  lam=0.01  rep 0 fold 2: best-fixed=['slither', 'llm_ba']  (919s)
+  lam=0.01  rep 0 fold 3: best-fixed=['mythril', 'osiris', 'slither', 'smartcheck', 'llm_ba']  (1052s)
+  lam=0.01  rep 0 fold 4: best-fixed=['slither', 'llm_ba']  (1182s)
+  lam=0.02  rep 0 fold 0: best-fixed=['slither', 'llm_ba']  (1413s)
+  lam=0.02  rep 0 fold 1: best-fixed=['slither', 'llm_ba']  (1646s)
+  lam=0.02  rep 0 fold 2: best-fixed=['slither', 'llm_ba']  (1841s)
+  lam=0.02  rep 0 fold 3: best-fixed=['slither', 'llm_ba']  (2015s)
+  lam=0.02  rep 0 fold 4: best-fixed=['slither', 'llm_ba']  (2184s)
+  lam=0.02  rep 1 fold 0: best-fixed=['slither', 'llm_ba']  (2359s)
+  lam=0.02  rep 1 fold 1: best-fixed=['slither', 'llm_ba']  (2581s)
+  lam=0.02  rep 1 fold 2: best-fixed=['slither', 'llm_ba']  (2832s)
+  lam=0.02  rep 1 fold 3: best-fixed=['slither', 'llm_ba']  (3068s)
+  lam=0.02  rep 1 fold 4: best-fixed=['honeybadger', 'llm_ba']  (3293s)
+  lam=0.02  rep 2 fold 0: best-fixed=['slither', 'llm_ba']  (3550s)
+  lam=0.02  rep 2 fold 1: best-fixed=['slither', 'llm_ba']  (3763s)
+  lam=0.02  rep 2 fold 2: best-fixed=['slither', 'llm_ba']  (3961s)
+  lam=0.02  rep 2 fold 3: best-fixed=['slither', 'llm_ba']  (4314s)
+  lam=0.02  rep 2 fold 4: best-fixed=['slither', 'llm_ba']  (4598s)
+  lam=0.05  rep 0 fold 0: best-fixed=['slither', 'llm_ba']  (4702s)
+  lam=0.05  rep 0 fold 1: best-fixed=['slither', 'llm_ba']  (4824s)
+  lam=0.05  rep 0 fold 2: best-fixed=['slither', 'llm_ba']  (4947s)
+  lam=0.05  rep 0 fold 3: best-fixed=['slither', 'llm_ba']  (5048s)
+  lam=0.05  rep 0 fold 4: best-fixed=['slither', 'llm_ba']  (5152s)
+# Tool-selection RL on real static-analysis results
+
+- Data: real outputs and run times of 9 tools on the 69 SmartBugs curated contracts (https://github.com/smartbugs/smartbugs-results (Apache-2.0), Durieux et al. ICSE 2020).
+- PPO sees 4 compact contract features + tools run so far + categories they found.
+- Utility = score − λ·minutes of tool run time; λ = 0.02 at the main setting.
+- 5-fold stratified cross-validation × 3 repeats; every contract is scored by policies that never saw it. 95% bootstrap CIs over contracts.
+
+## Main result (λ = 0.02)
+
+| Method | Utility [95% CI] | Score [95% CI] | Precision | Recall | Minutes | Tools run |
+|---|---|---|---|---|---|---|
+| PPO | 0.646 [0.554, 0.731] | 0.658 [0.570, 0.742] | 0.486 | 0.773 | 0.64 | 1.60 |
+| PPO-static | 0.651 [0.562, 0.737] | 0.656 [0.567, 0.741] | 0.488 | 0.768 | 0.24 | 1.63 |
+| best-fixed | 0.685 [0.597, 0.768] | 0.688 [0.600, 0.771] | 0.517 | 0.802 | 0.15 | 2.00 |
+| greedy-cheapest | 0.692 [0.605, 0.774] | 0.694 [0.607, 0.776] | 0.518 | 0.812 | 0.09 | 2.00 |
+| all tools | 0.549 [0.459, 0.630] | 0.698 [0.632, 0.756] | 0.397 | 0.899 | 7.45 | 9.00 |
+| random | 0.414 [0.327, 0.496] | 0.507 [0.433, 0.578] | 0.326 | 0.628 | 4.65 | 5.12 |
+| honeybadger | 0.014 [-0.019, 0.060] | 0.029 [0.000, 0.072] | 0.029 | 0.029 | 0.77 | 1.00 |
+| maian | 0.042 [-0.030, 0.124] | 0.101 [0.043, 0.174] | 0.101 | 0.101 | 2.95 | 1.00 |
+| mythril | 0.417 [0.308, 0.525] | 0.441 [0.336, 0.545] | 0.343 | 0.507 | 1.21 | 1.00 |
+| osiris | 0.174 [0.092, 0.264] | 0.188 [0.108, 0.278] | 0.145 | 0.217 | 0.73 | 1.00 |
+| oyente | 0.249 [0.153, 0.348] | 0.261 [0.167, 0.359] | 0.217 | 0.290 | 0.60 | 1.00 |
+| securify | 0.104 [0.037, 0.182] | 0.124 [0.058, 0.201] | 0.093 | 0.145 | 1.00 | 1.00 |
+| slither | 0.239 [0.150, 0.333] | 0.240 [0.151, 0.334] | 0.187 | 0.275 | 0.05 | 1.00 |
+| smartcheck | 0.186 [0.103, 0.276] | 0.187 [0.105, 0.278] | 0.164 | 0.203 | 0.10 | 1.00 |
+| llm_ba | 0.664 [0.564, 0.760] | 0.665 [0.565, 0.760] | 0.554 | 0.739 | 0.04 | 1.00 |
+| oracle | 0.825 [0.750, 0.891] | 0.829 [0.754, 0.895] | 0.724 | 0.899 | 0.20 | 0.90 |
+
+## Paired bootstrap: PPO minus method
+
+| Method | ΔUtility [95% CI] | p | ΔScore [95% CI] | p |
+|---|---|---|---|---|
+| PPO-static | -0.006 [-0.031, +0.018] | 0.665 | +0.002 [-0.017, +0.024] | 0.432 |
+| best-fixed | -0.039 [-0.072, -0.012] | 0.999 | -0.029 [-0.055, -0.007] | 0.998 |
+| greedy-cheapest | -0.047 [-0.082, -0.017] | 1.000 | -0.036 [-0.065, -0.011] | 0.999 |
+| all tools | +0.097 [+0.020, +0.175] | 0.006 | -0.040 [-0.099, +0.013] | 0.922 |
+| random | +0.231 [+0.153, +0.313] | 0.000 | +0.151 [+0.077, +0.225] | 0.000 |
+| honeybadger | +0.632 [+0.525, +0.729] | 0.000 | +0.629 [+0.524, +0.727] | 0.000 |
+| maian | +0.603 [+0.495, +0.708] | 0.000 | +0.557 [+0.449, +0.660] | 0.000 |
+| mythril | +0.228 [+0.124, +0.337] | 0.000 | +0.217 [+0.115, +0.321] | 0.000 |
+| osiris | +0.472 [+0.363, +0.578] | 0.000 | +0.470 [+0.361, +0.574] | 0.000 |
+| oyente | +0.397 [+0.289, +0.503] | 0.000 | +0.397 [+0.290, +0.504] | 0.000 |
+| securify | +0.541 [+0.426, +0.652] | 0.000 | +0.534 [+0.420, +0.644] | 0.000 |
+| slither | +0.406 [+0.290, +0.520] | 0.000 | +0.418 [+0.303, +0.531] | 0.000 |
+| smartcheck | +0.460 [+0.346, +0.570] | 0.000 | +0.471 [+0.357, +0.580] | 0.000 |
+| llm_ba | -0.019 [-0.053, +0.013] | 0.872 | -0.007 [-0.032, +0.021] | 0.695 |
+| oracle | -0.179 [-0.242, -0.122] | 1.000 | -0.171 [-0.234, -0.113] | 1.000 |
+
+p = one-sided bootstrap probability that PPO is not better (small = PPO better).
+
+## Tools PPO runs (% of contracts)
+
+| honeybadger | maian | mythril | osiris | oyente | securify | slither | smartcheck | llm_ba |
+|---|---|---|---|---|---|---|---|---|
+| 3.9 | 2.4 | 19.8 | 1.9 | 1.9 | 0.0 | 23.7 | 8.7 | 97.6 |
+
+## λ sweep
+
+| λ | PPO utility | PPO score | PPO minutes | best-fixed utility | best-fixed score | best-fixed minutes | oracle utility |
+|---|---|---|---|---|---|---|---|
+| 0 | 0.685 | 0.685 | 1.67 | 0.672 | 0.672 | 3.78 | 0.829 |
+| 0.01 | 0.650 | 0.665 | 1.47 | 0.667 | 0.677 | 1.03 | 0.827 |
+| 0.02 | 0.646 | 0.658 | 0.64 | 0.685 | 0.688 | 0.15 | 0.825 |
+| 0.05 | 0.644 | 0.655 | 0.20 | 0.690 | 0.694 | 0.09 | 0.819 |
+
+Saved => verify\results\tools\20261120-130006  (85.9 min)

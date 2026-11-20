@@ -1,0 +1,6160 @@
+{
+ "source": "https://github.com/smartbugs/smartbugs-results (Apache-2.0), Durieux et al. ICSE 2020",
+ "source_commit": "f7b1728df62740f7e043f8f86645ad3a60465793",
+ "built_at": "2026-11-20T06:02:29+00:00",
+ "tools": [
+  "honeybadger",
+  "maian",
+  "mythril",
+  "osiris",
+  "oyente",
+  "securify",
+  "slither",
+  "smartcheck",
+  "llm_ba"
+ ],
+ "llm": "openai/gpt-oss-120b via Groq, BA round 1, v2 settings (rl_tools/collect_llm.py)",
+ "category_map": {
+  "access_control": "access_control",
+  "arithmetic": "integer_overflow",
+  "denial_service": "denial_of_service",
+  "denial_of_service": "denial_of_service",
+  "reentrancy": "reentrancy",
+  "unchecked_low_calls": "unchecked_low_level_calls",
+  "unchecked_low_level_calls": "unchecked_low_level_calls",
+  "bad_randomness": "bad_randomness",
+  "front_running": "front_running",
+  "time_manipulation": "timestamp_dependence",
+  "short_addresses": "other",
+  "Other": "other",
+  "other": "other"
+ },
+ "n_contracts": 69,
+ "contracts": {
+  "BECToken": {
+   "labels": [
+    "integer_overflow"
+   ],
+   "source": "tasks/easy/BECToken.sol",
+   "split_in_repo": "train",
+   "tier": "easy",
+   "features": [
+    0.0010000000474974513,
+    0.1599999964237213,
+    0.15000000596046448,
+    0.1666666716337204,
+    0.05000000074505806,
+    0.0,
+    0.10000000149011612,
+    0.2800000011920929,
+    0.6000000238418579,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.07000000029802322
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 199.94
+    },
+    "maian": {
+     "found": [],
+     "seconds": 434.01
+    },
+    "mythril": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 10.49
+    },
+    "osiris": {
+     "found": [],
+     "seconds": 523.18
+    },
+    "oyente": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 150.4
+    },
+    "securify": {
+     "found": [],
+     "seconds": 306.16
+    },
+    "slither": {
+     "found": [],
+     "seconds": 2.46
+    },
+    "smartcheck": {
+     "found": [
+      "denial_of_service"
+     ],
+     "seconds": 4.62
+    },
+    "llm_ba": {
+     "found": [
+      "access_control",
+      "integer_overflow"
+     ],
+     "seconds": 8.34,
+     "tokens": 1753
+    }
+   }
+  },
+  "ERC20": {
+   "labels": [
+    "front_running"
+   ],
+   "source": "tasks/hard/ERC20.sol",
+   "split_in_repo": "train",
+   "tier": "hard",
+   "features": [
+    0.0010000000474974513,
+    0.2199999988079071,
+    0.0,
+    0.06666667014360428,
+    0.0,
+    0.0,
+    0.0,
+    0.23999999463558197,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.019999999552965164
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 8.76
+    },
+    "maian": {
+     "found": [],
+     "seconds": 196.73
+    },
+    "mythril": {
+     "found": [],
+     "seconds": 4.09
+    },
+    "osiris": {
+     "found": [],
+     "seconds": 1.99
+    },
+    "oyente": {
+     "found": [],
+     "seconds": 10.65
+    },
+    "securify": {
+     "found": [],
+     "seconds": 60.36
+    },
+    "slither": {
+     "found": [],
+     "seconds": 3.35
+    },
+    "smartcheck": {
+     "found": [],
+     "seconds": 6.29
+    },
+    "llm_ba": {
+     "found": [
+      "other"
+     ],
+     "seconds": 7.98,
+     "tokens": 1161
+    }
+   }
+  },
+  "FibonacciBalance": {
+   "labels": [
+    "unchecked_low_level_calls"
+   ],
+   "source": "tasks/medium/FibonacciBalance.sol",
+   "split_in_repo": "train",
+   "tier": "medium",
+   "features": [
+    0.0010000000474974513,
+    0.10000000149011612,
+    0.0,
+    0.0,
+    0.15000000596046448,
+    0.0,
+    0.0,
+    0.03999999910593033,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    1.0,
+    1.0,
+    0.0,
+    0.0,
+    1.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.03999999910593033
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 4.46
+    },
+    "maian": {
+     "found": [],
+     "seconds": 99.69
+    },
+    "mythril": {
+     "found": [
+      "access_control",
+      "integer_overflow"
+     ],
+     "seconds": 12.25
+    },
+    "osiris": {
+     "found": [],
+     "seconds": 1.72
+    },
+    "oyente": {
+     "found": [],
+     "seconds": 2.51
+    },
+    "securify": {
+     "found": [],
+     "seconds": 62.64
+    },
+    "slither": {
+     "found": [
+      "access_control",
+      "other",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 2.64
+    },
+    "smartcheck": {
+     "found": [],
+     "seconds": 4.98
+    },
+    "llm_ba": {
+     "found": [
+      "access_control",
+      "denial_of_service",
+      "integer_overflow"
+     ],
+     "seconds": 8.84,
+     "tokens": 1213
+    }
+   }
+  },
+  "FindThisHash": {
+   "labels": [
+    "front_running"
+   ],
+   "source": "tasks/medium/FindThisHash.sol",
+   "split_in_repo": "test",
+   "tier": "medium",
+   "features": [
+    0.0010000000474974513,
+    0.019999999552965164,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.009999999776482582
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 72.0
+    },
+    "maian": {
+     "found": [],
+     "seconds": 132.41
+    },
+    "mythril": {
+     "found": [
+      "access_control",
+      "integer_overflow"
+     ],
+     "seconds": 47.27
+    },
+    "osiris": {
+     "found": [],
+     "seconds": 1.83
+    },
+    "oyente": {
+     "found": [],
+     "seconds": 3.61
+    },
+    "securify": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 10.87
+    },
+    "slither": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 3.01
+    },
+    "smartcheck": {
+     "found": [],
+     "seconds": 7.33
+    },
+    "llm_ba": {
+     "found": [],
+     "seconds": 8.03,
+     "tokens": 456
+    }
+   }
+  },
+  "arbitrary_location_write_simple": {
+   "labels": [
+    "access_control"
+   ],
+   "source": "tasks/medium/arbitrary_location_write_simple.sol",
+   "split_in_repo": "train",
+   "tier": "medium",
+   "features": [
+    0.0010000000474974513,
+    0.10000000149011612,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.05999999865889549,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.009999999776482582
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 5.88
+    },
+    "maian": {
+     "found": [],
+     "seconds": 200.31
+    },
+    "mythril": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 82.96
+    },
+    "osiris": {
+     "found": [],
+     "seconds": 2.28
+    },
+    "oyente": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 6.78
+    },
+    "securify": {
+     "found": [],
+     "seconds": 19.88
+    },
+    "slither": {
+     "found": [],
+     "seconds": 2.77
+    },
+    "smartcheck": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 5.61
+    },
+    "llm_ba": {
+     "found": [
+      "access_control",
+      "integer_overflow"
+     ],
+     "seconds": 8.05,
+     "tokens": 753
+    }
+   }
+  },
+  "auction": {
+   "labels": [
+    "denial_of_service"
+   ],
+   "source": "tasks/hard/auction.sol",
+   "split_in_repo": "train",
+   "tier": "hard",
+   "features": [
+    0.0010000000474974513,
+    0.019999999552965164,
+    0.0,
+    0.0,
+    0.05000000074505806,
+    0.0,
+    0.0,
+    0.05999999865889549,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.019999999552965164
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 4.17
+    },
+    "maian": {
+     "found": [],
+     "seconds": 68.26
+    },
+    "mythril": {
+     "found": [
+      "access_control",
+      "front_running"
+     ],
+     "seconds": 3.69
+    },
+    "osiris": {
+     "found": [],
+     "seconds": 3.12
+    },
+    "oyente": {
+     "found": [],
+     "seconds": 2.67
+    },
+    "securify": {
+     "found": [
+      "front_running"
+     ],
+     "seconds": 6.04
+    },
+    "slither": {
+     "found": [],
+     "seconds": 2.99
+    },
+    "smartcheck": {
+     "found": [
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 4.61
+    },
+    "llm_ba": {
+     "found": [
+      "denial_of_service"
+     ],
+     "seconds": 8.44,
+     "tokens": 799
+    }
+   }
+  },
+  "blackjack": {
+   "labels": [
+    "bad_randomness"
+   ],
+   "source": "tasks/hard/blackjack.sol",
+   "split_in_repo": "train",
+   "tier": "hard",
+   "features": [
+    0.0010000000474974513,
+    0.07999999821186066,
+    0.05000000074505806,
+    0.10000000149011612,
+    0.30000001192092896,
+    0.0,
+    0.20000000298023224,
+    0.4399999976158142,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.47999998927116394
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 304.66
+    },
+    "maian": {
+     "found": [
+      "other"
+     ],
+     "seconds": 1680.61
+    },
+    "mythril": {
+     "found": [],
+     "seconds": 4.52
+    },
+    "osiris": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 267.16
+    },
+    "oyente": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 21.54
+    },
+    "securify": {
+     "found": [
+      "reentrancy"
+     ],
+     "seconds": 383.35
+    },
+    "slither": {
+     "found": [],
+     "seconds": 3.39
+    },
+    "smartcheck": {
+     "found": [
+      "denial_of_service"
+     ],
+     "seconds": 5.65
+    },
+    "llm_ba": {
+     "found": [
+      "bad_randomness",
+      "integer_overflow"
+     ],
+     "seconds": 8.84,
+     "tokens": 2579
+    }
+   }
+  },
+  "crypto_roulette": {
+   "labels": [
+    "other"
+   ],
+   "source": "tasks/hard/crypto_roulette.sol",
+   "split_in_repo": "test",
+   "tier": "hard",
+   "features": [
+    0.0010000000474974513,
+    0.05999999865889549,
+    0.0,
+    0.0,
+    0.05000000074505806,
+    0.009999999776482582,
+    0.0,
+    0.05999999865889549,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.05000000074505806
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [
+      "other"
+     ],
+     "seconds": 5.63
+    },
+    "maian": {
+     "found": [],
+     "seconds": 159.88
+    },
+    "mythril": {
+     "found": [
+      "integer_overflow",
+      "other"
+     ],
+     "seconds": 12.0
+    },
+    "osiris": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 155.72
+    },
+    "oyente": {
+     "found": [
+      "integer_overflow",
+      "timestamp_dependence"
+     ],
+     "seconds": 6.31
+    },
+    "securify": {
+     "found": [
+      "front_running"
+     ],
+     "seconds": 70.55
+    },
+    "slither": {
+     "found": [
+      "access_control",
+      "other"
+     ],
+     "seconds": 3.24
+    },
+    "smartcheck": {
+     "found": [],
+     "seconds": 7.61
+    },
+    "llm_ba": {
+     "found": [
+      "bad_randomness",
+      "timestamp_dependence"
+     ],
+     "seconds": 8.7,
+     "tokens": 877
+    }
+   }
+  },
+  "dos_address": {
+   "labels": [
+    "denial_of_service"
+   ],
+   "source": "tasks/hard/dos_address.sol",
+   "split_in_repo": "train",
+   "tier": "hard",
+   "features": [
+    0.0010000000474974513,
+    0.07999999821186066,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.10000000149011612,
+    0.019999999552965164,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.029999999329447746
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 11.28
+    },
+    "maian": {
+     "found": [],
+     "seconds": 72.74
+    },
+    "mythril": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 15.59
+    },
+    "osiris": {
+     "found": [],
+     "seconds": 1.82
+    },
+    "oyente": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 81.45
+    },
+    "securify": {
+     "found": [],
+     "seconds": 1.65
+    },
+    "slither": {
+     "found": [],
+     "seconds": 2.42
+    },
+    "smartcheck": {
+     "found": [],
+     "seconds": 4.7
+    },
+    "llm_ba": {
+     "found": [],
+     "seconds": 7.97,
+     "tokens": 680
+    }
+   }
+  },
+  "dos_number": {
+   "labels": [
+    "denial_of_service"
+   ],
+   "source": "tasks/hard/dos_number.sol",
+   "split_in_repo": "train",
+   "tier": "hard",
+   "features": [
+    0.0010000000474974513,
+    0.10000000149011612,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.10000000149011612,
+    0.05999999865889549,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.029999999329447746
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 254.52
+    },
+    "maian": {
+     "found": [],
+     "seconds": 78.31
+    },
+    "mythril": {
+     "found": [
+      "integer_overflow",
+      "other"
+     ],
+     "seconds": 206.84
+    },
+    "osiris": {
+     "found": [],
+     "seconds": 1.83
+    },
+    "oyente": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 63.97
+    },
+    "securify": {
+     "found": [],
+     "seconds": 1.62
+    },
+    "slither": {
+     "found": [],
+     "seconds": 2.61
+    },
+    "smartcheck": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 5.06
+    },
+    "llm_ba": {
+     "found": [
+      "access_control",
+      "denial_of_service"
+     ],
+     "seconds": 8.67,
+     "tokens": 961
+    }
+   }
+  },
+  "dos_simple": {
+   "labels": [
+    "denial_of_service"
+   ],
+   "source": "tasks/hard/dos_simple.sol",
+   "split_in_repo": "train",
+   "tier": "hard",
+   "features": [
+    0.0010000000474974513,
+    0.019999999552965164,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.10000000149011612,
+    0.019999999552965164,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.029999999329447746
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 10.0
+    },
+    "maian": {
+     "found": [],
+     "seconds": 73.41
+    },
+    "mythril": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 6.73
+    },
+    "osiris": {
+     "found": [],
+     "seconds": 1.89
+    },
+    "oyente": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 64.25
+    },
+    "securify": {
+     "found": [],
+     "seconds": 1.6
+    },
+    "slither": {
+     "found": [],
+     "seconds": 2.8
+    },
+    "smartcheck": {
+     "found": [],
+     "seconds": 4.88
+    },
+    "llm_ba": {
+     "found": [],
+     "seconds": 1.15,
+     "tokens": 623
+    }
+   }
+  },
+  "eth_tx_order_dependence_minimal": {
+   "labels": [
+    "front_running"
+   ],
+   "source": "tasks/hard/eth_tx_order_dependence_minimal.sol",
+   "split_in_repo": "test",
+   "tier": "hard",
+   "features": [
+    0.0010000000474974513,
+    0.05999999865889549,
+    0.0,
+    0.0,
+    0.10000000149011612,
+    0.0,
+    0.0,
+    0.07999999821186066,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.009999999776482582
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 3.52
+    },
+    "maian": {
+     "found": [],
+     "seconds": 142.87
+    },
+    "mythril": {
+     "found": [
+      "access_control",
+      "front_running"
+     ],
+     "seconds": 4.87
+    },
+    "osiris": {
+     "found": [],
+     "seconds": 2.55
+    },
+    "oyente": {
+     "found": [],
+     "seconds": 3.44
+    },
+    "securify": {
+     "found": [
+      "front_running",
+      "reentrancy"
+     ],
+     "seconds": 63.02
+    },
+    "slither": {
+     "found": [],
+     "seconds": 2.9
+    },
+    "smartcheck": {
+     "found": [],
+     "seconds": 5.29
+    },
+    "llm_ba": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 0.9,
+     "tokens": 728
+    }
+   }
+  },
+  "ether_lotto": {
+   "labels": [
+    "timestamp_dependence"
+   ],
+   "source": "tasks/medium/ether_lotto.sol",
+   "split_in_repo": "train",
+   "tier": "medium",
+   "features": [
+    0.0010000000474974513,
+    0.03999999910593033,
+    0.0,
+    0.0,
+    0.10000000149011612,
+    0.0,
+    0.0,
+    0.019999999552965164,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.019999999552965164
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 3.67
+    },
+    "maian": {
+     "found": [],
+     "seconds": 97.0
+    },
+    "mythril": {
+     "found": [
+      "front_running",
+      "integer_overflow",
+      "other"
+     ],
+     "seconds": 5.72
+    },
+    "osiris": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 3.04
+    },
+    "oyente": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 3.58
+    },
+    "securify": {
+     "found": [
+      "access_control",
+      "front_running",
+      "reentrancy"
+     ],
+     "seconds": 14.37
+    },
+    "slither": {
+     "found": [
+      "access_control",
+      "other",
+      "timestamp_dependence"
+     ],
+     "seconds": 2.96
+    },
+    "smartcheck": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 5.62
+    },
+    "llm_ba": {
+     "found": [
+      "bad_randomness",
+      "integer_overflow"
+     ],
+     "seconds": 1.04,
+     "tokens": 725
+    }
+   }
+  },
+  "etheraffle": {
+   "labels": [
+    "bad_randomness"
+   ],
+   "source": "tasks/hard/etheraffle.sol",
+   "split_in_repo": "train",
+   "tier": "hard",
+   "features": [
+    0.0010000000474974513,
+    0.11999999731779099,
+    0.0,
+    0.10000000149011612,
+    0.30000001192092896,
+    0.0,
+    0.30000001192092896,
+    0.20000000298023224,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.1599999964237213
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 273.23
+    },
+    "maian": {
+     "found": [],
+     "seconds": 1804.41
+    },
+    "mythril": {
+     "found": [
+      "front_running",
+      "integer_overflow",
+      "other"
+     ],
+     "seconds": 171.34
+    },
+    "osiris": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 253.41
+    },
+    "oyente": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 253.26
+    },
+    "securify": {
+     "found": [
+      "front_running"
+     ],
+     "seconds": 63.45
+    },
+    "slither": {
+     "found": [
+      "denial_of_service"
+     ],
+     "seconds": 2.09
+    },
+    "smartcheck": {
+     "found": [
+      "denial_of_service",
+      "integer_overflow"
+     ],
+     "seconds": 4.49
+    },
+    "llm_ba": {
+     "found": [
+      "bad_randomness",
+      "front_running"
+     ],
+     "seconds": 1.29,
+     "tokens": 1475
+    }
+   }
+  },
+  "etherpot_lotto": {
+   "labels": [
+    "unchecked_low_level_calls"
+   ],
+   "source": "tasks/medium/etherpot_lotto.sol",
+   "split_in_repo": "train",
+   "tier": "medium",
+   "features": [
+    0.0010000000474974513,
+    0.019999999552965164,
+    0.0,
+    0.0,
+    0.10000000149011612,
+    0.0,
+    0.10000000149011612,
+    0.05999999865889549,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.10999999940395355
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 255.08
+    },
+    "maian": {
+     "found": [],
+     "seconds": 131.76
+    },
+    "mythril": {
+     "found": [
+      "integer_overflow",
+      "other",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 137.75
+    },
+    "osiris": {
+     "found": [
+      "denial_of_service",
+      "integer_overflow"
+     ],
+     "seconds": 253.27
+    },
+    "oyente": {
+     "found": [
+      "denial_of_service",
+      "integer_overflow"
+     ],
+     "seconds": 48.27
+    },
+    "securify": {
+     "found": [],
+     "seconds": 2.26
+    },
+    "slither": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 3.13
+    },
+    "smartcheck": {
+     "found": [
+      "denial_of_service",
+      "integer_overflow",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 8.63
+    },
+    "llm_ba": {
+     "found": [
+      "front_running",
+      "integer_overflow",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 3.99,
+     "tokens": 1605
+    }
+   }
+  },
+  "etherstore": {
+   "labels": [
+    "reentrancy"
+   ],
+   "source": "tasks/easy/etherstore.sol",
+   "split_in_repo": "train",
+   "tier": "easy",
+   "features": [
+    0.0010000000474974513,
+    0.03999999910593033,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.07999999821186066,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.009999999776482582
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 3.99
+    },
+    "maian": {
+     "found": [],
+     "seconds": 92.4
+    },
+    "mythril": {
+     "found": [
+      "integer_overflow",
+      "other",
+      "reentrancy"
+     ],
+     "seconds": 8.2
+    },
+    "osiris": {
+     "found": [
+      "integer_overflow",
+      "reentrancy",
+      "timestamp_dependence"
+     ],
+     "seconds": 3.02
+    },
+    "oyente": {
+     "found": [
+      "integer_overflow",
+      "reentrancy",
+      "timestamp_dependence"
+     ],
+     "seconds": 4.43
+    },
+    "securify": {
+     "found": [
+      "reentrancy"
+     ],
+     "seconds": 65.7
+    },
+    "slither": {
+     "found": [
+      "reentrancy",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 2.87
+    },
+    "smartcheck": {
+     "found": [
+      "reentrancy"
+     ],
+     "seconds": 5.31
+    },
+    "llm_ba": {
+     "found": [
+      "integer_overflow",
+      "reentrancy",
+      "timestamp_dependence"
+     ],
+     "seconds": 1.17,
+     "tokens": 889
+    }
+   }
+  },
+  "governmental_survey": {
+   "labels": [
+    "timestamp_dependence"
+   ],
+   "source": "tasks/medium/governmental_survey.sol",
+   "split_in_repo": "train",
+   "tier": "medium",
+   "features": [
+    0.0010000000474974513,
+    0.07999999821186066,
+    0.0,
+    0.0,
+    0.10000000149011612,
+    0.019999999552965164,
+    0.0,
+    0.019999999552965164,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.05999999865889549
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 5.15
+    },
+    "maian": {
+     "found": [],
+     "seconds": 143.12
+    },
+    "mythril": {
+     "found": [
+      "access_control",
+      "front_running",
+      "other",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 4.82
+    },
+    "osiris": {
+     "found": [
+      "denial_of_service",
+      "integer_overflow",
+      "timestamp_dependence"
+     ],
+     "seconds": 5.03
+    },
+    "oyente": {
+     "found": [
+      "denial_of_service",
+      "integer_overflow",
+      "timestamp_dependence"
+     ],
+     "seconds": 3.43
+    },
+    "securify": {
+     "found": [
+      "front_running",
+      "reentrancy",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 78.69
+    },
+    "slither": {
+     "found": [
+      "access_control",
+      "timestamp_dependence"
+     ],
+     "seconds": 2.95
+    },
+    "smartcheck": {
+     "found": [
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 5.96
+    },
+    "llm_ba": {
+     "found": [
+      "access_control",
+      "denial_of_service",
+      "integer_overflow",
+      "timestamp_dependence"
+     ],
+     "seconds": 1.5,
+     "tokens": 1127
+    }
+   }
+  },
+  "guess_the_random_number": {
+   "labels": [
+    "bad_randomness"
+   ],
+   "source": "tasks/hard/guess_the_random_number.sol",
+   "split_in_repo": "train",
+   "tier": "hard",
+   "features": [
+    0.0010000000474974513,
+    0.05999999865889549,
+    0.0,
+    0.0,
+    0.05000000074505806,
+    0.0,
+    0.0,
+    0.05999999865889549,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.019999999552965164
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 2.68
+    },
+    "maian": {
+     "found": [],
+     "seconds": 86.11
+    },
+    "mythril": {
+     "found": [],
+     "seconds": 4.43
+    },
+    "osiris": {
+     "found": [],
+     "seconds": 2.37
+    },
+    "oyente": {
+     "found": [],
+     "seconds": 2.3
+    },
+    "securify": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 7.81
+    },
+    "slither": {
+     "found": [
+      "access_control",
+      "other"
+     ],
+     "seconds": 3.52
+    },
+    "smartcheck": {
+     "found": [
+      "other"
+     ],
+     "seconds": 5.47
+    },
+    "llm_ba": {
+     "found": [
+      "bad_randomness"
+     ],
+     "seconds": 1.23,
+     "tokens": 762
+    }
+   }
+  },
+  "incorrect_constructor_name1": {
+   "labels": [
+    "access_control"
+   ],
+   "source": "tasks/medium/incorrect_constructor_name1.sol",
+   "split_in_repo": "train",
+   "tier": "medium",
+   "features": [
+    0.0010000000474974513,
+    0.019999999552965164,
+    0.0,
+    0.0,
+    0.05000000074505806,
+    0.009999999776482582,
+    0.0,
+    0.019999999552965164,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    1.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.009999999776482582
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 2.39
+    },
+    "maian": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 127.11
+    },
+    "mythril": {
+     "found": [
+      "access_control",
+      "front_running"
+     ],
+     "seconds": 62.07
+    },
+    "osiris": {
+     "found": [],
+     "seconds": 1.73
+    },
+    "oyente": {
+     "found": [],
+     "seconds": 3.05
+    },
+    "securify": {
+     "found": [
+      "front_running"
+     ],
+     "seconds": 8.56
+    },
+    "slither": {
+     "found": [],
+     "seconds": 3.17
+    },
+    "smartcheck": {
+     "found": [],
+     "seconds": 6.83
+    },
+    "llm_ba": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 1.19,
+     "tokens": 757
+    }
+   }
+  },
+  "incorrect_constructor_name2": {
+   "labels": [
+    "access_control"
+   ],
+   "source": "tasks/medium/incorrect_constructor_name2.sol",
+   "split_in_repo": "train",
+   "tier": "medium",
+   "features": [
+    0.0010000000474974513,
+    0.019999999552965164,
+    0.0,
+    0.0,
+    0.05000000074505806,
+    0.009999999776482582,
+    0.0,
+    0.019999999552965164,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    1.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.009999999776482582
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 2.48
+    },
+    "maian": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 90.56
+    },
+    "mythril": {
+     "found": [
+      "access_control",
+      "front_running"
+     ],
+     "seconds": 4.02
+    },
+    "osiris": {
+     "found": [],
+     "seconds": 1.98
+    },
+    "oyente": {
+     "found": [],
+     "seconds": 3.14
+    },
+    "securify": {
+     "found": [
+      "front_running"
+     ],
+     "seconds": 9.77
+    },
+    "slither": {
+     "found": [],
+     "seconds": 3.15
+    },
+    "smartcheck": {
+     "found": [],
+     "seconds": 5.6
+    },
+    "llm_ba": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 0.94,
+     "tokens": 621
+    }
+   }
+  },
+  "incorrect_constructor_name3": {
+   "labels": [
+    "access_control"
+   ],
+   "source": "tasks/medium/incorrect_constructor_name3.sol",
+   "split_in_repo": "train",
+   "tier": "medium",
+   "features": [
+    0.0010000000474974513,
+    0.03999999910593033,
+    0.0,
+    0.0,
+    0.05000000074505806,
+    0.009999999776482582,
+    0.0,
+    0.019999999552965164,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    1.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.009999999776482582
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 2.46
+    },
+    "maian": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 132.73
+    },
+    "mythril": {
+     "found": [
+      "access_control",
+      "front_running"
+     ],
+     "seconds": 4.56
+    },
+    "osiris": {
+     "found": [],
+     "seconds": 1.85
+    },
+    "oyente": {
+     "found": [],
+     "seconds": 3.15
+    },
+    "securify": {
+     "found": [
+      "front_running"
+     ],
+     "seconds": 14.11
+    },
+    "slither": {
+     "found": [],
+     "seconds": 6.3
+    },
+    "smartcheck": {
+     "found": [],
+     "seconds": 8.25
+    },
+    "llm_ba": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 1.02,
+     "tokens": 700
+    }
+   }
+  },
+  "integer_overflow_1": {
+   "labels": [
+    "integer_overflow"
+   ],
+   "source": "tasks/easy/integer_overflow_1.sol",
+   "split_in_repo": "train",
+   "tier": "easy",
+   "features": [
+    0.0010000000474974513,
+    0.019999999552965164,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.009999999776482582
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 2.03
+    },
+    "maian": {
+     "found": [],
+     "seconds": 107.64
+    },
+    "mythril": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 4.09
+    },
+    "osiris": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 2.14
+    },
+    "oyente": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 2.47
+    },
+    "securify": {
+     "found": [],
+     "seconds": 6.05
+    },
+    "slither": {
+     "found": [],
+     "seconds": 2.22
+    },
+    "smartcheck": {
+     "found": [
+      "other"
+     ],
+     "seconds": 4.33
+    },
+    "llm_ba": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 0.64,
+     "tokens": 516
+    }
+   }
+  },
+  "integer_overflow_add": {
+   "labels": [
+    "integer_overflow"
+   ],
+   "source": "tasks/easy/integer_overflow_add.sol",
+   "split_in_repo": "train",
+   "tier": "easy",
+   "features": [
+    0.0010000000474974513,
+    0.019999999552965164,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.009999999776482582
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 2.09
+    },
+    "maian": {
+     "found": [],
+     "seconds": 64.9
+    },
+    "mythril": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 4.43
+    },
+    "osiris": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 2.07
+    },
+    "oyente": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 2.42
+    },
+    "securify": {
+     "found": [],
+     "seconds": 5.48
+    },
+    "slither": {
+     "found": [],
+     "seconds": 2.6
+    },
+    "smartcheck": {
+     "found": [],
+     "seconds": 5.03
+    },
+    "llm_ba": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 0.66,
+     "tokens": 548
+    }
+   }
+  },
+  "integer_overflow_benign_1": {
+   "labels": [
+    "integer_overflow"
+   ],
+   "source": "tasks/easy/integer_overflow_benign_1.sol",
+   "split_in_repo": "train",
+   "tier": "easy",
+   "features": [
+    0.0010000000474974513,
+    0.019999999552965164,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.009999999776482582
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 2.1
+    },
+    "maian": {
+     "found": [],
+     "seconds": 100.51
+    },
+    "mythril": {
+     "found": [],
+     "seconds": 4.27
+    },
+    "osiris": {
+     "found": [],
+     "seconds": 2.03
+    },
+    "oyente": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 2.0
+    },
+    "securify": {
+     "found": [],
+     "seconds": 5.2
+    },
+    "slither": {
+     "found": [],
+     "seconds": 2.66
+    },
+    "smartcheck": {
+     "found": [],
+     "seconds": 5.27
+    },
+    "llm_ba": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 0.58,
+     "tokens": 519
+    }
+   }
+  },
+  "integer_overflow_mapping_sym_1": {
+   "labels": [
+    "integer_overflow"
+   ],
+   "source": "tasks/easy/integer_overflow_mapping_sym_1.sol",
+   "split_in_repo": "train",
+   "tier": "easy",
+   "features": [
+    0.0010000000474974513,
+    0.019999999552965164,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.009999999776482582
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 2.01
+    },
+    "maian": {
+     "found": [],
+     "seconds": 83.94
+    },
+    "mythril": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 3.53
+    },
+    "osiris": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 2.12
+    },
+    "oyente": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 2.25
+    },
+    "securify": {
+     "found": [],
+     "seconds": 9.16
+    },
+    "slither": {
+     "found": [],
+     "seconds": 2.39
+    },
+    "smartcheck": {
+     "found": [],
+     "seconds": 4.2
+    },
+    "llm_ba": {
+     "found": [
+      "access_control",
+      "integer_overflow"
+     ],
+     "seconds": 1.52,
+     "tokens": 637
+    }
+   }
+  },
+  "integer_overflow_minimal": {
+   "labels": [
+    "integer_overflow"
+   ],
+   "source": "tasks/easy/integer_overflow_minimal.sol",
+   "split_in_repo": "train",
+   "tier": "easy",
+   "features": [
+    0.0010000000474974513,
+    0.019999999552965164,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.009999999776482582
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 2.32
+    },
+    "maian": {
+     "found": [],
+     "seconds": 91.52
+    },
+    "mythril": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 3.99
+    },
+    "osiris": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 2.05
+    },
+    "oyente": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 2.03
+    },
+    "securify": {
+     "found": [],
+     "seconds": 5.51
+    },
+    "slither": {
+     "found": [],
+     "seconds": 2.41
+    },
+    "smartcheck": {
+     "found": [],
+     "seconds": 4.94
+    },
+    "llm_ba": {
+     "found": [
+      "access_control",
+      "integer_overflow"
+     ],
+     "seconds": 0.84,
+     "tokens": 606
+    }
+   }
+  },
+  "integer_overflow_mul": {
+   "labels": [
+    "integer_overflow"
+   ],
+   "source": "tasks/easy/integer_overflow_mul.sol",
+   "split_in_repo": "test",
+   "tier": "easy",
+   "features": [
+    0.0010000000474974513,
+    0.019999999552965164,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.009999999776482582
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 3.43
+    },
+    "maian": {
+     "found": [],
+     "seconds": 59.51
+    },
+    "mythril": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 12.35
+    },
+    "osiris": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 17.89
+    },
+    "oyente": {
+     "found": [],
+     "seconds": 3.23
+    },
+    "securify": {
+     "found": [],
+     "seconds": 5.48
+    },
+    "slither": {
+     "found": [],
+     "seconds": 2.48
+    },
+    "smartcheck": {
+     "found": [],
+     "seconds": 4.94
+    },
+    "llm_ba": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 0.83,
+     "tokens": 521
+    }
+   }
+  },
+  "integer_overflow_multitx_multifunc_feasible": {
+   "labels": [
+    "integer_overflow"
+   ],
+   "source": "tasks/easy/integer_overflow_multitx_multifunc_feasible.sol",
+   "split_in_repo": "train",
+   "tier": "easy",
+   "features": [
+    0.0010000000474974513,
+    0.03999999910593033,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.019999999552965164,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.019999999552965164
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 2.37
+    },
+    "maian": {
+     "found": [],
+     "seconds": 56.5
+    },
+    "mythril": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 4.46
+    },
+    "osiris": {
+     "found": [],
+     "seconds": 1.75
+    },
+    "oyente": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 2.0
+    },
+    "securify": {
+     "found": [],
+     "seconds": 6.91
+    },
+    "slither": {
+     "found": [],
+     "seconds": 2.53
+    },
+    "smartcheck": {
+     "found": [],
+     "seconds": 4.71
+    },
+    "llm_ba": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 0.91,
+     "tokens": 593
+    }
+   }
+  },
+  "integer_overflow_multitx_onefunc_feasible": {
+   "labels": [
+    "integer_overflow"
+   ],
+   "source": "tasks/easy/integer_overflow_multitx_onefunc_feasible.sol",
+   "split_in_repo": "train",
+   "tier": "easy",
+   "features": [
+    0.0010000000474974513,
+    0.019999999552965164,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.019999999552965164,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.019999999552965164
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 2.23
+    },
+    "maian": {
+     "found": [],
+     "seconds": 73.57
+    },
+    "mythril": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 4.27
+    },
+    "osiris": {
+     "found": [],
+     "seconds": 1.78
+    },
+    "oyente": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 2.06
+    },
+    "securify": {
+     "found": [],
+     "seconds": 6.33
+    },
+    "slither": {
+     "found": [],
+     "seconds": 2.67
+    },
+    "smartcheck": {
+     "found": [],
+     "seconds": 4.96
+    },
+    "llm_ba": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 1.15,
+     "tokens": 568
+    }
+   }
+  },
+  "king_of_the_ether_throne": {
+   "labels": [
+    "unchecked_low_level_calls"
+   ],
+   "source": "tasks/medium/king_of_the_ether_throne.sol",
+   "split_in_repo": "test",
+   "tier": "medium",
+   "features": [
+    0.0010000000474974513,
+    0.03999999910593033,
+    0.0,
+    0.03333333507180214,
+    0.20000000298023224,
+    0.0,
+    0.0,
+    0.20000000298023224,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.18000000715255737
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 263.35
+    },
+    "maian": {
+     "found": [],
+     "seconds": 199.36
+    },
+    "mythril": {
+     "found": [
+      "front_running",
+      "integer_overflow",
+      "other",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 894.92
+    },
+    "osiris": {
+     "found": [
+      "denial_of_service",
+      "integer_overflow"
+     ],
+     "seconds": 254.22
+    },
+    "oyente": {
+     "found": [
+      "denial_of_service",
+      "integer_overflow"
+     ],
+     "seconds": 117.88
+    },
+    "securify": {
+     "found": [
+      "front_running",
+      "reentrancy",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 60.2
+    },
+    "slither": {
+     "found": [
+      "timestamp_dependence"
+     ],
+     "seconds": 2.05
+    },
+    "smartcheck": {
+     "found": [
+      "integer_overflow",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 5.73
+    },
+    "llm_ba": {
+     "found": [
+      "integer_overflow",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 1.99,
+     "tokens": 1389
+    }
+   }
+  },
+  "list_dos": {
+   "labels": [
+    "denial_of_service"
+   ],
+   "source": "tasks/hard/list_dos.sol",
+   "split_in_repo": "train",
+   "tier": "hard",
+   "features": [
+    0.0010000000474974513,
+    0.1599999964237213,
+    0.0,
+    0.0,
+    0.3499999940395355,
+    0.009999999776482582,
+    0.20000000298023224,
+    0.10000000149011612,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.09000000357627869
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 117.66
+    },
+    "maian": {
+     "found": [],
+     "seconds": 127.12
+    },
+    "mythril": {
+     "found": [
+      "access_control",
+      "front_running",
+      "integer_overflow",
+      "other",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 76.82
+    },
+    "osiris": {
+     "found": [
+      "denial_of_service",
+      "integer_overflow",
+      "timestamp_dependence"
+     ],
+     "seconds": 252.24
+    },
+    "oyente": {
+     "found": [
+      "denial_of_service",
+      "integer_overflow",
+      "timestamp_dependence"
+     ],
+     "seconds": 197.08
+    },
+    "securify": {
+     "found": [],
+     "seconds": 2.14
+    },
+    "slither": {
+     "found": [
+      "timestamp_dependence"
+     ],
+     "seconds": 2.25
+    },
+    "smartcheck": {
+     "found": [
+      "other"
+     ],
+     "seconds": 5.49
+    },
+    "llm_ba": {
+     "found": [
+      "access_control",
+      "integer_overflow",
+      "other",
+      "reentrancy",
+      "timestamp_dependence",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 2.13,
+     "tokens": 1807
+    }
+   }
+  },
+  "lottery": {
+   "labels": [
+    "bad_randomness"
+   ],
+   "source": "tasks/hard/lottery.sol",
+   "split_in_repo": "train",
+   "tier": "hard",
+   "features": [
+    0.0010000000474974513,
+    0.07999999821186066,
+    0.0,
+    0.03333333507180214,
+    0.05000000074505806,
+    0.0,
+    0.10000000149011612,
+    0.05999999865889549,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.05999999865889549
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 5.79
+    },
+    "maian": {
+     "found": [],
+     "seconds": 86.87
+    },
+    "mythril": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 8.97
+    },
+    "osiris": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 255.19
+    },
+    "oyente": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 6.1
+    },
+    "securify": {
+     "found": [],
+     "seconds": 57.67
+    },
+    "slither": {
+     "found": [
+      "other"
+     ],
+     "seconds": 2.65
+    },
+    "smartcheck": {
+     "found": [
+      "denial_of_service",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 5.5
+    },
+    "llm_ba": {
+     "found": [
+      "bad_randomness"
+     ],
+     "seconds": 0.9,
+     "tokens": 774
+    }
+   }
+  },
+  "lotto": {
+   "labels": [
+    "unchecked_low_level_calls"
+   ],
+   "source": "tasks/medium/lotto.sol",
+   "split_in_repo": "train",
+   "tier": "medium",
+   "features": [
+    0.0010000000474974513,
+    0.03999999910593033,
+    0.0,
+    0.0,
+    0.10000000149011612,
+    0.009999999776482582,
+    0.0,
+    0.03999999910593033,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.009999999776482582
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 2.89
+    },
+    "maian": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 123.74
+    },
+    "mythril": {
+     "found": [
+      "access_control",
+      "front_running",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 4.36
+    },
+    "osiris": {
+     "found": [
+      "denial_of_service"
+     ],
+     "seconds": 2.32
+    },
+    "oyente": {
+     "found": [
+      "denial_of_service"
+     ],
+     "seconds": 2.37
+    },
+    "securify": {
+     "found": [
+      "front_running",
+      "reentrancy",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 60.58
+    },
+    "slither": {
+     "found": [
+      "access_control",
+      "other"
+     ],
+     "seconds": 2.77
+    },
+    "smartcheck": {
+     "found": [
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 5.48
+    },
+    "llm_ba": {
+     "found": [
+      "access_control",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 1.22,
+     "tokens": 777
+    }
+   }
+  },
+  "lucky_doubler": {
+   "labels": [
+    "bad_randomness"
+   ],
+   "source": "tasks/hard/lucky_doubler.sol",
+   "split_in_repo": "train",
+   "tier": "hard",
+   "features": [
+    0.0010000000474974513,
+    0.05999999865889549,
+    0.0,
+    0.0,
+    0.20000000298023224,
+    0.009999999776482582,
+    0.0,
+    0.10000000149011612,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.14000000059604645
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 61.03
+    },
+    "maian": {
+     "found": [],
+     "seconds": 171.68
+    },
+    "mythril": {
+     "found": [
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 62.12
+    },
+    "osiris": {
+     "found": [
+      "denial_of_service"
+     ],
+     "seconds": 4.15
+    },
+    "oyente": {
+     "found": [
+      "denial_of_service",
+      "integer_overflow"
+     ],
+     "seconds": 14.52
+    },
+    "securify": {
+     "found": [
+      "front_running",
+      "reentrancy",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 63.26
+    },
+    "slither": {
+     "found": [],
+     "seconds": 2.89
+    },
+    "smartcheck": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 5.37
+    },
+    "llm_ba": {
+     "found": [
+      "access_control",
+      "bad_randomness",
+      "reentrancy"
+     ],
+     "seconds": 1.58,
+     "tokens": 1695
+    }
+   }
+  },
+  "mapping_write": {
+   "labels": [
+    "access_control"
+   ],
+   "source": "tasks/medium/mapping_write.sol",
+   "split_in_repo": "train",
+   "tier": "medium",
+   "features": [
+    0.0010000000474974513,
+    0.05999999865889549,
+    0.0,
+    0.0,
+    0.05000000074505806,
+    0.0,
+    0.0,
+    0.03999999910593033,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.019999999552965164
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 87.27
+    },
+    "maian": {
+     "found": [],
+     "seconds": 166.83
+    },
+    "mythril": {
+     "found": [
+      "integer_overflow",
+      "other"
+     ],
+     "seconds": 101.21
+    },
+    "osiris": {
+     "found": [],
+     "seconds": 2.34
+    },
+    "oyente": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 6.46
+    },
+    "securify": {
+     "found": [
+      "front_running"
+     ],
+     "seconds": 63.99
+    },
+    "slither": {
+     "found": [
+      "other"
+     ],
+     "seconds": 2.73
+    },
+    "smartcheck": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 5.13
+    },
+    "llm_ba": {
+     "found": [],
+     "seconds": 1.06,
+     "tokens": 701
+    }
+   }
+  },
+  "modifier_reentrancy": {
+   "labels": [
+    "reentrancy"
+   ],
+   "source": "tasks/easy/modifier_reentrancy.sol",
+   "split_in_repo": "train",
+   "tier": "easy",
+   "features": [
+    0.0010000000474974513,
+    0.05999999865889549,
+    0.05000000074505806,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.05999999865889549,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.019999999552965164
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 8.97
+    },
+    "maian": {
+     "found": [],
+     "seconds": 144.46
+    },
+    "mythril": {
+     "found": [
+      "reentrancy"
+     ],
+     "seconds": 5.49
+    },
+    "osiris": {
+     "found": [],
+     "seconds": 1.84
+    },
+    "oyente": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 6.23
+    },
+    "securify": {
+     "found": [],
+     "seconds": 78.49
+    },
+    "slither": {
+     "found": [],
+     "seconds": 2.68
+    },
+    "smartcheck": {
+     "found": [],
+     "seconds": 5.81
+    },
+    "llm_ba": {
+     "found": [
+      "reentrancy"
+     ],
+     "seconds": 1.66,
+     "tokens": 858
+    }
+   }
+  },
+  "multiowned_vulnerable": {
+   "labels": [
+    "access_control"
+   ],
+   "source": "tasks/medium/multiowned_vulnerable.sol",
+   "split_in_repo": "test",
+   "tier": "medium",
+   "features": [
+    0.0010000000474974513,
+    0.03999999910593033,
+    0.05000000074505806,
+    0.0,
+    0.05000000074505806,
+    0.009999999776482582,
+    0.0,
+    0.05999999865889549,
+    0.10000000149011612,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.029999999329447746
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 5.12
+    },
+    "maian": {
+     "found": [],
+     "seconds": 169.77
+    },
+    "mythril": {
+     "found": [],
+     "seconds": 7.74
+    },
+    "osiris": {
+     "found": [],
+     "seconds": 1.75
+    },
+    "oyente": {
+     "found": [],
+     "seconds": 7.11
+    },
+    "securify": {
+     "found": [
+      "front_running"
+     ],
+     "seconds": 168.12
+    },
+    "slither": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 6.3
+    },
+    "smartcheck": {
+     "found": [],
+     "seconds": 8.25
+    },
+    "llm_ba": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 1.72,
+     "tokens": 799
+    }
+   }
+  },
+  "mycontract": {
+   "labels": [
+    "access_control"
+   ],
+   "source": "tasks/easy/mycontract.sol",
+   "split_in_repo": "train",
+   "tier": "easy",
+   "features": [
+    0.0010000000474974513,
+    0.03999999910593033,
+    0.0,
+    0.0,
+    0.05000000074505806,
+    0.0,
+    0.0,
+    0.019999999552965164,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.009999999776482582
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 2.31
+    },
+    "maian": {
+     "found": [],
+     "seconds": 166.15
+    },
+    "mythril": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 77.69
+    },
+    "osiris": {
+     "found": [],
+     "seconds": 2.26
+    },
+    "oyente": {
+     "found": [],
+     "seconds": 2.21
+    },
+    "securify": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 8.28
+    },
+    "slither": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 2.91
+    },
+    "smartcheck": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 6.16
+    },
+    "llm_ba": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 0.63,
+     "tokens": 547
+    }
+   }
+  },
+  "name_registrar": {
+   "labels": [
+    "other"
+   ],
+   "source": "tasks/hard/name_registrar.sol",
+   "split_in_repo": "train",
+   "tier": "hard",
+   "features": [
+    0.0010000000474974513,
+    0.019999999552965164,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.019999999552965164,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.009999999776482582
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 2.65
+    },
+    "maian": {
+     "found": [],
+     "seconds": 17.58
+    },
+    "mythril": {
+     "found": [],
+     "seconds": 12.64
+    },
+    "osiris": {
+     "found": [],
+     "seconds": 2.46
+    },
+    "oyente": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 3.28
+    },
+    "securify": {
+     "found": [],
+     "seconds": 2.84
+    },
+    "slither": {
+     "found": [
+      "other"
+     ],
+     "seconds": 2.99
+    },
+    "smartcheck": {
+     "found": [],
+     "seconds": 5.03
+    },
+    "llm_ba": {
+     "found": [
+      "other"
+     ],
+     "seconds": 1.66,
+     "tokens": 901
+    }
+   }
+  },
+  "odds_and_evens": {
+   "labels": [
+    "front_running"
+   ],
+   "source": "tasks/medium/odds_and_evens.sol",
+   "split_in_repo": "train",
+   "tier": "medium",
+   "features": [
+    0.0010000000474974513,
+    0.07999999821186066,
+    0.0,
+    0.0,
+    0.15000000596046448,
+    0.009999999776482582,
+    0.0,
+    0.019999999552965164,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.05000000074505806
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [
+      "other"
+     ],
+     "seconds": 4.37
+    },
+    "maian": {
+     "found": [],
+     "seconds": 92.78
+    },
+    "mythril": {
+     "found": [
+      "access_control",
+      "front_running",
+      "integer_overflow",
+      "other",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 7.51
+    },
+    "osiris": {
+     "found": [
+      "denial_of_service",
+      "integer_overflow"
+     ],
+     "seconds": 3.96
+    },
+    "oyente": {
+     "found": [
+      "denial_of_service",
+      "integer_overflow"
+     ],
+     "seconds": 3.42
+    },
+    "securify": {
+     "found": [
+      "access_control",
+      "front_running",
+      "reentrancy",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 124.13
+    },
+    "slither": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 3.0
+    },
+    "smartcheck": {
+     "found": [],
+     "seconds": 5.94
+    },
+    "llm_ba": {
+     "found": [
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 1.46,
+     "tokens": 967
+    }
+   }
+  },
+  "old_blockhash": {
+   "labels": [
+    "bad_randomness"
+   ],
+   "source": "tasks/hard/old_blockhash.sol",
+   "split_in_repo": "train",
+   "tier": "hard",
+   "features": [
+    0.0010000000474974513,
+    0.05999999865889549,
+    0.0,
+    0.0,
+    0.05000000074505806,
+    0.0,
+    0.0,
+    0.10000000149011612,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.019999999552965164
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 2.58
+    },
+    "maian": {
+     "found": [],
+     "seconds": 93.22
+    },
+    "mythril": {
+     "found": [
+      "integer_overflow",
+      "other"
+     ],
+     "seconds": 7.58
+    },
+    "osiris": {
+     "found": [],
+     "seconds": 1.86
+    },
+    "oyente": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 4.67
+    },
+    "securify": {
+     "found": [],
+     "seconds": 64.75
+    },
+    "slither": {
+     "found": [],
+     "seconds": 2.61
+    },
+    "smartcheck": {
+     "found": [],
+     "seconds": 5.42
+    },
+    "llm_ba": {
+     "found": [
+      "front_running",
+      "other"
+     ],
+     "seconds": 1.49,
+     "tokens": 972
+    }
+   }
+  },
+  "open_address_lottery": {
+   "labels": [
+    "other"
+   ],
+   "source": "tasks/hard/open_address_lottery.sol",
+   "split_in_repo": "train",
+   "tier": "hard",
+   "features": [
+    0.0010000000474974513,
+    0.10000000149011612,
+    0.0,
+    0.0,
+    0.05000000074505806,
+    0.019999999552965164,
+    0.0,
+    0.05999999865889549,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.07000000029802322
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [
+      "other"
+     ],
+     "seconds": 16.96
+    },
+    "maian": {
+     "found": [],
+     "seconds": 160.88
+    },
+    "mythril": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 29.45
+    },
+    "osiris": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 16.93
+    },
+    "oyente": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 25.2
+    },
+    "securify": {
+     "found": [],
+     "seconds": 58.55
+    },
+    "slither": {
+     "found": [
+      "other"
+     ],
+     "seconds": 3.03
+    },
+    "smartcheck": {
+     "found": [],
+     "seconds": 5.57
+    },
+    "llm_ba": {
+     "found": [
+      "bad_randomness",
+      "integer_overflow"
+     ],
+     "seconds": 1.27,
+     "tokens": 1159
+    }
+   }
+  },
+  "overflow_simple_add": {
+   "labels": [
+    "integer_overflow"
+   ],
+   "source": "tasks/easy/overflow_simple_add.sol",
+   "split_in_repo": "test",
+   "tier": "easy",
+   "features": [
+    0.0010000000474974513,
+    0.019999999552965164,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.009999999776482582
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 2.16
+    },
+    "maian": {
+     "found": [],
+     "seconds": 82.23
+    },
+    "mythril": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 4.36
+    },
+    "osiris": {
+     "found": [],
+     "seconds": 1.78
+    },
+    "oyente": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 2.41
+    },
+    "securify": {
+     "found": [],
+     "seconds": 1.47
+    },
+    "slither": {
+     "found": [],
+     "seconds": 2.46
+    },
+    "smartcheck": {
+     "found": [],
+     "seconds": 4.91
+    },
+    "llm_ba": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 0.58,
+     "tokens": 514
+    }
+   }
+  },
+  "overflow_single_tx": {
+   "labels": [
+    "integer_overflow"
+   ],
+   "source": "tasks/easy/overflow_single_tx.sol",
+   "split_in_repo": "train",
+   "tier": "easy",
+   "features": [
+    0.0010000000474974513,
+    0.11999999731779099,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.009999999776482582
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 4.43
+    },
+    "maian": {
+     "found": [],
+     "seconds": 59.56
+    },
+    "mythril": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 20.95
+    },
+    "osiris": {
+     "found": [],
+     "seconds": 1.86
+    },
+    "oyente": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 4.15
+    },
+    "securify": {
+     "found": [],
+     "seconds": 11.89
+    },
+    "slither": {
+     "found": [],
+     "seconds": 2.44
+    },
+    "smartcheck": {
+     "found": [],
+     "seconds": 4.9
+    },
+    "llm_ba": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 1.56,
+     "tokens": 917
+    }
+   }
+  },
+  "parity_wallet_bug_1": {
+   "labels": [
+    "access_control"
+   ],
+   "source": "tasks/medium/parity_wallet_bug_1.sol",
+   "split_in_repo": "train",
+   "tier": "medium",
+   "features": [
+    0.0010000000474974513,
+    0.3400000035762787,
+    0.05000000074505806,
+    0.3333333432674408,
+    0.15000000596046448,
+    0.0,
+    0.30000001192092896,
+    0.20000000298023224,
+    0.20000000298023224,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    1.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.5
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 2.21
+    },
+    "maian": {
+     "found": [],
+     "seconds": 38.77
+    },
+    "mythril": {
+     "found": [],
+     "seconds": 4.73
+    },
+    "osiris": {
+     "found": [],
+     "seconds": 2.39
+    },
+    "oyente": {
+     "found": [],
+     "seconds": 2.31
+    },
+    "securify": {
+     "found": [],
+     "seconds": 4.47
+    },
+    "slither": {
+     "found": [],
+     "seconds": 3.34
+    },
+    "smartcheck": {
+     "found": [
+      "denial_of_service",
+      "integer_overflow",
+      "other"
+     ],
+     "seconds": 6.98
+    },
+    "llm_ba": {
+     "found": [
+      "access_control",
+      "integer_overflow",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 1.88,
+     "tokens": 2674
+    }
+   }
+  },
+  "parity_wallet_bug_2": {
+   "labels": [
+    "access_control"
+   ],
+   "source": "tasks/medium/parity_wallet_bug_2.sol",
+   "split_in_repo": "test",
+   "tier": "medium",
+   "features": [
+    0.0010000000474974513,
+    0.25999999046325684,
+    0.05000000074505806,
+    0.3333333432674408,
+    0.0,
+    0.0,
+    0.30000001192092896,
+    0.20000000298023224,
+    0.10000000149011612,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.47999998927116394
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 259.26
+    },
+    "maian": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 266.26
+    },
+    "mythril": {
+     "found": [
+      "integer_overflow",
+      "other",
+      "reentrancy"
+     ],
+     "seconds": 345.9
+    },
+    "osiris": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 255.88
+    },
+    "oyente": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 252.78
+    },
+    "securify": {
+     "found": [],
+     "seconds": 315.93
+    },
+    "slither": {
+     "found": [
+      "other",
+      "reentrancy",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 3.91
+    },
+    "smartcheck": {
+     "found": [
+      "denial_of_service",
+      "integer_overflow",
+      "other"
+     ],
+     "seconds": 6.61
+    },
+    "llm_ba": {
+     "found": [
+      "access_control",
+      "integer_overflow",
+      "other",
+      "reentrancy"
+     ],
+     "seconds": 2.62,
+     "tokens": 2714
+    }
+   }
+  },
+  "phishable": {
+   "labels": [
+    "access_control"
+   ],
+   "source": "tasks/easy/phishable.sol",
+   "split_in_repo": "train",
+   "tier": "easy",
+   "features": [
+    0.0010000000474974513,
+    0.03999999910593033,
+    0.0,
+    0.0,
+    0.05000000074505806,
+    0.009999999776482582,
+    0.0,
+    0.019999999552965164,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.009999999776482582
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 2.38
+    },
+    "maian": {
+     "found": [],
+     "seconds": 118.61
+    },
+    "mythril": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 4.81
+    },
+    "osiris": {
+     "found": [],
+     "seconds": 2.02
+    },
+    "oyente": {
+     "found": [],
+     "seconds": 2.31
+    },
+    "securify": {
+     "found": [
+      "front_running"
+     ],
+     "seconds": 9.43
+    },
+    "slither": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 3.04
+    },
+    "smartcheck": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 6.07
+    },
+    "llm_ba": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 0.63,
+     "tokens": 554
+    }
+   }
+  },
+  "proxy": {
+   "labels": [
+    "access_control"
+   ],
+   "source": "tasks/medium/proxy.sol",
+   "split_in_repo": "train",
+   "tier": "medium",
+   "features": [
+    0.0010000000474974513,
+    0.03999999910593033,
+    0.0,
+    0.0,
+    0.05000000074505806,
+    0.0,
+    0.0,
+    0.019999999552965164,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.009999999776482582
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 10.0
+    },
+    "maian": {
+     "found": [],
+     "seconds": 120.15
+    },
+    "mythril": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 83.29
+    },
+    "osiris": {
+     "found": [],
+     "seconds": 1.71
+    },
+    "oyente": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 24.38
+    },
+    "securify": {
+     "found": [],
+     "seconds": 26.74
+    },
+    "slither": {
+     "found": [
+      "access_control",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 3.08
+    },
+    "smartcheck": {
+     "found": [],
+     "seconds": 6.78
+    },
+    "llm_ba": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 0.64,
+     "tokens": 552
+    }
+   }
+  },
+  "random_number_generator": {
+   "labels": [
+    "bad_randomness"
+   ],
+   "source": "tasks/hard/random_number_generator.sol",
+   "split_in_repo": "train",
+   "tier": "hard",
+   "features": [
+    0.0010000000474974513,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.009999999776482582
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 1.78
+    },
+    "maian": {
+     "found": [],
+     "seconds": 73.6
+    },
+    "mythril": {
+     "found": [],
+     "seconds": 3.5
+    },
+    "osiris": {
+     "found": [],
+     "seconds": 1.88
+    },
+    "oyente": {
+     "found": [],
+     "seconds": 1.9
+    },
+    "securify": {
+     "found": [],
+     "seconds": 2.32
+    },
+    "slither": {
+     "found": [],
+     "seconds": 2.53
+    },
+    "smartcheck": {
+     "found": [],
+     "seconds": 5.67
+    },
+    "llm_ba": {
+     "found": [
+      "bad_randomness",
+      "timestamp_dependence"
+     ],
+     "seconds": 1.25,
+     "tokens": 674
+    }
+   }
+  },
+  "reentrance": {
+   "labels": [
+    "reentrancy"
+   ],
+   "source": "tasks/easy/reentrance.sol",
+   "split_in_repo": "train",
+   "tier": "easy",
+   "features": [
+    0.0010000000474974513,
+    0.05999999865889549,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.019999999552965164,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.029999999329447746
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 2.68
+    },
+    "maian": {
+     "found": [],
+     "seconds": 110.63
+    },
+    "mythril": {
+     "found": [
+      "integer_overflow",
+      "reentrancy",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 7.25
+    },
+    "osiris": {
+     "found": [
+      "denial_of_service",
+      "integer_overflow",
+      "reentrancy"
+     ],
+     "seconds": 3.0
+    },
+    "oyente": {
+     "found": [
+      "denial_of_service",
+      "integer_overflow",
+      "reentrancy"
+     ],
+     "seconds": 4.05
+    },
+    "securify": {
+     "found": [
+      "reentrancy",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 14.88
+    },
+    "slither": {
+     "found": [
+      "reentrancy",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 3.04
+    },
+    "smartcheck": {
+     "found": [
+      "reentrancy"
+     ],
+     "seconds": 5.01
+    },
+    "llm_ba": {
+     "found": [
+      "integer_overflow",
+      "reentrancy"
+     ],
+     "seconds": 1.1,
+     "tokens": 714
+    }
+   }
+  },
+  "reentrancy_dao": {
+   "labels": [
+    "reentrancy"
+   ],
+   "source": "tasks/easy/reentrancy_dao.sol",
+   "split_in_repo": "test",
+   "tier": "easy",
+   "features": [
+    0.0010000000474974513,
+    0.03999999910593033,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.03999999910593033,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.019999999552965164
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 2.34
+    },
+    "maian": {
+     "found": [],
+     "seconds": 88.88
+    },
+    "mythril": {
+     "found": [
+      "integer_overflow",
+      "reentrancy"
+     ],
+     "seconds": 4.59
+    },
+    "osiris": {
+     "found": [
+      "denial_of_service",
+      "integer_overflow",
+      "reentrancy"
+     ],
+     "seconds": 2.32
+    },
+    "oyente": {
+     "found": [
+      "denial_of_service",
+      "integer_overflow",
+      "reentrancy"
+     ],
+     "seconds": 3.06
+    },
+    "securify": {
+     "found": [
+      "reentrancy"
+     ],
+     "seconds": 11.92
+    },
+    "slither": {
+     "found": [
+      "reentrancy",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 2.69
+    },
+    "smartcheck": {
+     "found": [
+      "reentrancy"
+     ],
+     "seconds": 5.48
+    },
+    "llm_ba": {
+     "found": [
+      "integer_overflow",
+      "reentrancy"
+     ],
+     "seconds": 1.12,
+     "tokens": 710
+    }
+   }
+  },
+  "reentrancy_simple": {
+   "labels": [
+    "reentrancy"
+   ],
+   "source": "tasks/easy/reentrancy_simple.sol",
+   "split_in_repo": "train",
+   "tier": "easy",
+   "features": [
+    0.0010000000474974513,
+    0.03999999910593033,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.019999999552965164
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 2.36
+    },
+    "maian": {
+     "found": [],
+     "seconds": 90.32
+    },
+    "mythril": {
+     "found": [
+      "access_control",
+      "integer_overflow",
+      "reentrancy"
+     ],
+     "seconds": 5.03
+    },
+    "osiris": {
+     "found": [
+      "integer_overflow",
+      "reentrancy"
+     ],
+     "seconds": 2.43
+    },
+    "oyente": {
+     "found": [
+      "integer_overflow",
+      "reentrancy"
+     ],
+     "seconds": 3.23
+    },
+    "securify": {
+     "found": [
+      "reentrancy"
+     ],
+     "seconds": 12.36
+    },
+    "slither": {
+     "found": [
+      "reentrancy",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 3.21
+    },
+    "smartcheck": {
+     "found": [
+      "reentrancy"
+     ],
+     "seconds": 5.92
+    },
+    "llm_ba": {
+     "found": [
+      "integer_overflow",
+      "reentrancy"
+     ],
+     "seconds": 1.01,
+     "tokens": 679
+    }
+   }
+  },
+  "roulette": {
+   "labels": [
+    "timestamp_dependence"
+   ],
+   "source": "tasks/medium/roulette.sol",
+   "split_in_repo": "train",
+   "tier": "medium",
+   "features": [
+    0.0010000000474974513,
+    0.019999999552965164,
+    0.0,
+    0.0,
+    0.05000000074505806,
+    0.009999999776482582,
+    0.0,
+    0.05999999865889549,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.019999999552965164
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 24.04
+    },
+    "maian": {
+     "found": [],
+     "seconds": 120.57
+    },
+    "mythril": {
+     "found": [],
+     "seconds": 112.63
+    },
+    "osiris": {
+     "found": [],
+     "seconds": 1.72
+    },
+    "oyente": {
+     "found": [],
+     "seconds": 34.27
+    },
+    "securify": {
+     "found": [],
+     "seconds": 1.86
+    },
+    "slither": {
+     "found": [
+      "access_control",
+      "other"
+     ],
+     "seconds": 2.7
+    },
+    "smartcheck": {
+     "found": [
+      "other",
+      "timestamp_dependence"
+     ],
+     "seconds": 5.72
+    },
+    "llm_ba": {
+     "found": [
+      "timestamp_dependence"
+     ],
+     "seconds": 0.96,
+     "tokens": 618
+    }
+   }
+  },
+  "rubixi": {
+   "labels": [
+    "access_control"
+   ],
+   "source": "tasks/medium/rubixi.sol",
+   "split_in_repo": "test",
+   "tier": "medium",
+   "features": [
+    0.0010000000474974513,
+    0.05999999865889549,
+    0.0,
+    0.0,
+    0.20000000298023224,
+    0.0,
+    0.10000000149011612,
+    0.03999999910593033,
+    0.5,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.17000000178813934
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 99.52
+    },
+    "maian": {
+     "found": [],
+     "seconds": 495.07
+    },
+    "mythril": {
+     "found": [
+      "access_control",
+      "front_running",
+      "integer_overflow",
+      "other",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 113.63
+    },
+    "osiris": {
+     "found": [
+      "denial_of_service",
+      "integer_overflow"
+     ],
+     "seconds": 94.26
+    },
+    "oyente": {
+     "found": [
+      "denial_of_service",
+      "integer_overflow"
+     ],
+     "seconds": 34.45
+    },
+    "securify": {
+     "found": [
+      "front_running",
+      "reentrancy",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 199.42
+    },
+    "slither": {
+     "found": [
+      "denial_of_service"
+     ],
+     "seconds": 6.31
+    },
+    "smartcheck": {
+     "found": [
+      "denial_of_service",
+      "integer_overflow",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 8.25
+    },
+    "llm_ba": {
+     "found": [
+      "access_control",
+      "denial_of_service",
+      "integer_overflow",
+      "other",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 2.63,
+     "tokens": 2160
+    }
+   }
+  },
+  "send_loop": {
+   "labels": [
+    "denial_of_service"
+   ],
+   "source": "tasks/hard/send_loop.sol",
+   "split_in_repo": "train",
+   "tier": "hard",
+   "features": [
+    0.0010000000474974513,
+    0.03999999910593033,
+    0.0,
+    0.0,
+    0.05000000074505806,
+    0.0,
+    0.10000000149011612,
+    0.019999999552965164,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.019999999552965164
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 1.66
+    },
+    "maian": {
+     "found": [],
+     "seconds": 4.92
+    },
+    "mythril": {
+     "found": [],
+     "seconds": 2.9
+    },
+    "osiris": {
+     "found": [],
+     "seconds": 1.83
+    },
+    "oyente": {
+     "found": [],
+     "seconds": 1.79
+    },
+    "securify": {
+     "found": [],
+     "seconds": 19.21
+    },
+    "slither": {
+     "found": [],
+     "seconds": 2.32
+    },
+    "smartcheck": {
+     "found": [
+      "denial_of_service",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 5.05
+    },
+    "llm_ba": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 1.06,
+     "tokens": 842
+    }
+   }
+  },
+  "short_address_example": {
+   "labels": [
+    "other"
+   ],
+   "source": "tasks/hard/short_address_example.sol",
+   "split_in_repo": "test",
+   "tier": "hard",
+   "features": [
+    0.0010000000474974513,
+    0.03999999910593033,
+    0.0,
+    0.03333333507180214,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.019999999552965164
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 2.67
+    },
+    "maian": {
+     "found": [],
+     "seconds": 68.73
+    },
+    "mythril": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 6.02
+    },
+    "osiris": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 2.94
+    },
+    "oyente": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 3.42
+    },
+    "securify": {
+     "found": [],
+     "seconds": 8.67
+    },
+    "slither": {
+     "found": [],
+     "seconds": 3.84
+    },
+    "smartcheck": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 4.88
+    },
+    "llm_ba": {
+     "found": [
+      "access_control",
+      "integer_overflow"
+     ],
+     "seconds": 1.3,
+     "tokens": 792
+    }
+   }
+  },
+  "simple_dao": {
+   "labels": [
+    "reentrancy"
+   ],
+   "source": "tasks/easy/simple_dao.sol",
+   "split_in_repo": "train",
+   "tier": "easy",
+   "features": [
+    0.0010000000474974513,
+    0.05999999865889549,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.019999999552965164,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.019999999552965164
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 2.61
+    },
+    "maian": {
+     "found": [],
+     "seconds": 67.36
+    },
+    "mythril": {
+     "found": [
+      "integer_overflow",
+      "reentrancy",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 7.12
+    },
+    "osiris": {
+     "found": [
+      "denial_of_service",
+      "integer_overflow",
+      "reentrancy"
+     ],
+     "seconds": 2.99
+    },
+    "oyente": {
+     "found": [
+      "denial_of_service",
+      "integer_overflow",
+      "reentrancy"
+     ],
+     "seconds": 4.02
+    },
+    "securify": {
+     "found": [
+      "reentrancy",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 15.03
+    },
+    "slither": {
+     "found": [
+      "reentrancy",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 3.06
+    },
+    "smartcheck": {
+     "found": [
+      "reentrancy"
+     ],
+     "seconds": 5.5
+    },
+    "llm_ba": {
+     "found": [
+      "integer_overflow",
+      "reentrancy",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 1.13,
+     "tokens": 748
+    }
+   }
+  },
+  "simple_suicide": {
+   "labels": [
+    "access_control"
+   ],
+   "source": "tasks/medium/simple_suicide.sol",
+   "split_in_repo": "train",
+   "tier": "medium",
+   "features": [
+    0.0010000000474974513,
+    0.019999999552965164,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.009999999776482582
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 1.97
+    },
+    "maian": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 106.86
+    },
+    "mythril": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 69.79
+    },
+    "osiris": {
+     "found": [],
+     "seconds": 2.03
+    },
+    "oyente": {
+     "found": [],
+     "seconds": 1.99
+    },
+    "securify": {
+     "found": [],
+     "seconds": 23.16
+    },
+    "slither": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 3.46
+    },
+    "smartcheck": {
+     "found": [],
+     "seconds": 5.77
+    },
+    "llm_ba": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 0.5,
+     "tokens": 481
+    }
+   }
+  },
+  "smart_billions": {
+   "labels": [
+    "bad_randomness"
+   ],
+   "source": "tasks/hard/smart_billions.sol",
+   "split_in_repo": "train",
+   "tier": "hard",
+   "features": [
+    0.0010000000474974513,
+    0.3799999952316284,
+    0.15000000596046448,
+    0.30000001192092896,
+    0.20000000298023224,
+    0.029999999329447746,
+    0.30000001192092896,
+    0.9399999976158142,
+    0.4000000059604645,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.7400000095367432
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 284.48
+    },
+    "maian": {
+     "found": [],
+     "seconds": 270.86
+    },
+    "mythril": {
+     "found": [],
+     "seconds": 1802.93
+    },
+    "osiris": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 259.85
+    },
+    "oyente": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 258.37
+    },
+    "securify": {
+     "found": [
+      "front_running",
+      "reentrancy"
+     ],
+     "seconds": 520.2
+    },
+    "slither": {
+     "found": [
+      "other"
+     ],
+     "seconds": 7.46
+    },
+    "smartcheck": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 7.98
+    },
+    "llm_ba": {
+     "found": [
+      "access_control",
+      "bad_randomness",
+      "denial_of_service"
+     ],
+     "seconds": 1.43,
+     "tokens": 2458
+    }
+   }
+  },
+  "spank_chain_payment": {
+   "labels": [
+    "reentrancy"
+   ],
+   "source": "tasks/easy/spank_chain_payment.sol",
+   "split_in_repo": "train",
+   "tier": "easy",
+   "features": [
+    0.0010000000474974513,
+    0.5799999833106995,
+    0.0,
+    0.3333333432674408,
+    0.550000011920929,
+    0.0,
+    0.5,
+    1.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.49000000953674316
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 417.88
+    },
+    "maian": {
+     "found": [
+      "other"
+     ],
+     "seconds": 809.81
+    },
+    "mythril": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 11.55
+    },
+    "osiris": {
+     "found": [],
+     "seconds": 2.96
+    },
+    "oyente": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 658.68
+    },
+    "securify": {
+     "found": [],
+     "seconds": 511.62
+    },
+    "slither": {
+     "found": [
+      "access_control",
+      "other",
+      "reentrancy",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 5.61
+    },
+    "smartcheck": {
+     "found": [
+      "denial_of_service"
+     ],
+     "seconds": 7.67
+    },
+    "llm_ba": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 1.05,
+     "tokens": 2016
+    }
+   }
+  },
+  "timed_crowdsale": {
+   "labels": [
+    "timestamp_dependence"
+   ],
+   "source": "tasks/medium/timed_crowdsale.sol",
+   "split_in_repo": "train",
+   "tier": "medium",
+   "features": [
+    0.0010000000474974513,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.009999999776482582
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 1.94
+    },
+    "maian": {
+     "found": [],
+     "seconds": 102.48
+    },
+    "mythril": {
+     "found": [],
+     "seconds": 77.23
+    },
+    "osiris": {
+     "found": [],
+     "seconds": 1.76
+    },
+    "oyente": {
+     "found": [],
+     "seconds": 1.98
+    },
+    "securify": {
+     "found": [],
+     "seconds": 1.56
+    },
+    "slither": {
+     "found": [
+      "timestamp_dependence"
+     ],
+     "seconds": 3.33
+    },
+    "smartcheck": {
+     "found": [],
+     "seconds": 5.92
+    },
+    "llm_ba": {
+     "found": [
+      "timestamp_dependence"
+     ],
+     "seconds": 0.81,
+     "tokens": 487
+    }
+   }
+  },
+  "timelock": {
+   "labels": [
+    "integer_overflow"
+   ],
+   "source": "tasks/easy/timelock.sol",
+   "split_in_repo": "train",
+   "tier": "easy",
+   "features": [
+    0.0010000000474974513,
+    0.05999999865889549,
+    0.0,
+    0.0,
+    0.05000000074505806,
+    0.0,
+    0.0,
+    0.03999999910593033,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.009999999776482582
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 2.9
+    },
+    "maian": {
+     "found": [],
+     "seconds": 61.58
+    },
+    "mythril": {
+     "found": [
+      "integer_overflow",
+      "other"
+     ],
+     "seconds": 7.59
+    },
+    "osiris": {
+     "found": [
+      "integer_overflow",
+      "timestamp_dependence"
+     ],
+     "seconds": 3.03
+    },
+    "oyente": {
+     "found": [
+      "integer_overflow",
+      "timestamp_dependence"
+     ],
+     "seconds": 5.12
+    },
+    "securify": {
+     "found": [],
+     "seconds": 68.2
+    },
+    "slither": {
+     "found": [],
+     "seconds": 2.68
+    },
+    "smartcheck": {
+     "found": [],
+     "seconds": 5.24
+    },
+    "llm_ba": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 0.91,
+     "tokens": 742
+    }
+   }
+  },
+  "token": {
+   "labels": [
+    "integer_overflow"
+   ],
+   "source": "tasks/easy/token.sol",
+   "split_in_repo": "train",
+   "tier": "easy",
+   "features": [
+    0.0010000000474974513,
+    0.03999999910593033,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.019999999552965164,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.009999999776482582
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 2.44
+    },
+    "maian": {
+     "found": [],
+     "seconds": 73.5
+    },
+    "mythril": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 5.36
+    },
+    "osiris": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 2.32
+    },
+    "oyente": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 3.23
+    },
+    "securify": {
+     "found": [],
+     "seconds": 13.44
+    },
+    "slither": {
+     "found": [],
+     "seconds": 2.31
+    },
+    "smartcheck": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 4.55
+    },
+    "llm_ba": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 0.74,
+     "tokens": 685
+    }
+   }
+  },
+  "tokensalechallenge": {
+   "labels": [
+    "integer_overflow"
+   ],
+   "source": "tasks/easy/tokensalechallenge.sol",
+   "split_in_repo": "train",
+   "tier": "easy",
+   "features": [
+    0.0010000000474974513,
+    0.07999999821186066,
+    0.0,
+    0.0,
+    0.05000000074505806,
+    0.0,
+    0.0,
+    0.05999999865889549,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.009999999776482582
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 5.28
+    },
+    "maian": {
+     "found": [],
+     "seconds": 54.31
+    },
+    "mythril": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 16.66
+    },
+    "osiris": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 18.64
+    },
+    "oyente": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 5.95
+    },
+    "securify": {
+     "found": [],
+     "seconds": 14.75
+    },
+    "slither": {
+     "found": [],
+     "seconds": 1.99
+    },
+    "smartcheck": {
+     "found": [],
+     "seconds": 4.95
+    },
+    "llm_ba": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 1.15,
+     "tokens": 895
+    }
+   }
+  },
+  "unchecked_return_value": {
+   "labels": [
+    "unchecked_low_level_calls"
+   ],
+   "source": "tasks/medium/unchecked_return_value.sol",
+   "split_in_repo": "train",
+   "tier": "medium",
+   "features": [
+    0.0010000000474974513,
+    0.03999999910593033,
+    0.0,
+    0.0,
+    0.10000000149011612,
+    0.0,
+    0.0,
+    0.019999999552965164,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.009999999776482582
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 2.06
+    },
+    "maian": {
+     "found": [],
+     "seconds": 125.08
+    },
+    "mythril": {
+     "found": [
+      "reentrancy",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 5.1
+    },
+    "osiris": {
+     "found": [],
+     "seconds": 1.68
+    },
+    "oyente": {
+     "found": [],
+     "seconds": 2.01
+    },
+    "securify": {
+     "found": [],
+     "seconds": 1.59
+    },
+    "slither": {
+     "found": [
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 3.97
+    },
+    "smartcheck": {
+     "found": [
+      "reentrancy",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 5.6
+    },
+    "llm_ba": {
+     "found": [
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 0.66,
+     "tokens": 559
+    }
+   }
+  },
+  "unprotected0": {
+   "labels": [
+    "access_control"
+   ],
+   "source": "tasks/medium/unprotected0.sol",
+   "split_in_repo": "train",
+   "tier": "medium",
+   "features": [
+    0.0010000000474974513,
+    0.03999999910593033,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.019999999552965164,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.009999999776482582
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 2.05
+    },
+    "maian": {
+     "found": [],
+     "seconds": 50.49
+    },
+    "mythril": {
+     "found": [],
+     "seconds": 62.34
+    },
+    "osiris": {
+     "found": [],
+     "seconds": 1.99
+    },
+    "oyente": {
+     "found": [],
+     "seconds": 2.03
+    },
+    "securify": {
+     "found": [],
+     "seconds": 5.23
+    },
+    "slither": {
+     "found": [],
+     "seconds": 3.11
+    },
+    "smartcheck": {
+     "found": [],
+     "seconds": 6.7
+    },
+    "llm_ba": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 0.71,
+     "tokens": 522
+    }
+   }
+  },
+  "wallet_02_refund_nosub": {
+   "labels": [
+    "access_control"
+   ],
+   "source": "tasks/medium/wallet_02_refund_nosub.sol",
+   "split_in_repo": "test",
+   "tier": "medium",
+   "features": [
+    0.0010000000474974513,
+    0.10000000149011612,
+    0.0,
+    0.0,
+    0.15000000596046448,
+    0.009999999776482582,
+    0.0,
+    0.03999999910593033,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.009999999776482582
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 4.93
+    },
+    "maian": {
+     "found": [],
+     "seconds": 121.54
+    },
+    "mythril": {
+     "found": [
+      "access_control",
+      "other"
+     ],
+     "seconds": 71.84
+    },
+    "osiris": {
+     "found": [],
+     "seconds": 1.77
+    },
+    "oyente": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 4.69
+    },
+    "securify": {
+     "found": [
+      "front_running",
+      "reentrancy"
+     ],
+     "seconds": 81.73
+    },
+    "slither": {
+     "found": [],
+     "seconds": 3.37
+    },
+    "smartcheck": {
+     "found": [],
+     "seconds": 5.02
+    },
+    "llm_ba": {
+     "found": [
+      "reentrancy"
+     ],
+     "seconds": 1.77,
+     "tokens": 948
+    }
+   }
+  },
+  "wallet_03_wrong_constructor": {
+   "labels": [
+    "access_control"
+   ],
+   "source": "tasks/medium/wallet_03_wrong_constructor.sol",
+   "split_in_repo": "train",
+   "tier": "medium",
+   "features": [
+    0.0010000000474974513,
+    0.07999999821186066,
+    0.0,
+    0.0,
+    0.10000000149011612,
+    0.009999999776482582,
+    0.0,
+    0.03999999910593033,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.009999999776482582
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 4.92
+    },
+    "maian": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 119.21
+    },
+    "mythril": {
+     "found": [
+      "access_control",
+      "other"
+     ],
+     "seconds": 6.18
+    },
+    "osiris": {
+     "found": [],
+     "seconds": 2.02
+    },
+    "oyente": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 4.47
+    },
+    "securify": {
+     "found": [
+      "front_running",
+      "reentrancy"
+     ],
+     "seconds": 66.45
+    },
+    "slither": {
+     "found": [],
+     "seconds": 3.14
+    },
+    "smartcheck": {
+     "found": [],
+     "seconds": 5.23
+    },
+    "llm_ba": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 1.08,
+     "tokens": 795
+    }
+   }
+  },
+  "wallet_04_confused_sign": {
+   "labels": [
+    "access_control"
+   ],
+   "source": "tasks/medium/wallet_04_confused_sign.sol",
+   "split_in_repo": "test",
+   "tier": "medium",
+   "features": [
+    0.0010000000474974513,
+    0.07999999821186066,
+    0.0,
+    0.0,
+    0.10000000149011612,
+    0.009999999776482582,
+    0.0,
+    0.03999999910593033,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.009999999776482582
+   ],
+   "tools": {
+    "honeybadger": {
+     "found": [],
+     "seconds": 4.56
+    },
+    "maian": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 125.65
+    },
+    "mythril": {
+     "found": [
+      "integer_overflow",
+      "other"
+     ],
+     "seconds": 6.23
+    },
+    "osiris": {
+     "found": [],
+     "seconds": 2.09
+    },
+    "oyente": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 4.65
+    },
+    "securify": {
+     "found": [
+      "front_running",
+      "reentrancy"
+     ],
+     "seconds": 69.37
+    },
+    "slither": {
+     "found": [],
+     "seconds": 3.48
+    },
+    "smartcheck": {
+     "found": [],
+     "seconds": 5.57
+    },
+    "llm_ba": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 1.2,
+     "tokens": 797
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,129 @@
+{
+ "contract": "king_of_the_ether_throne",
+ "origin": "tasks",
+ "tier": "medium",
+ "part": "test",
+ "source_path": "tasks/medium/king_of_the_ether_throne.sol",
+ "backend": "groq",
+ "model": "openai/gpt-oss-120b",
+ "temperature": 0.1,
+ "max_tokens": 1000,
+ "max_code_chars": 6000,
+ "prompt_hash": "a3669b2a2342a966",
+ "n_ta_batches": 6,
+ "created_at": "2026-11-16T07:41:08+00:00",
+ "calls": {
+  "ba_r1": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"claimThrone() \u2013 calculation of rawNewClaimPrice (currentClaimPrice * claimPriceAdjustNum)\",\n      \"severity\": \"critical\",\n      \"explanation\": \"The contract multiplies currentClaimPrice by claimPriceAdjustNum (3) without using SafeMath. With enough successive claims the multiplication can overflow 256\u2011bit uint, wrapping the price to a low value and allowing an attacker to claim the throne cheaply.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"claimThrone() \u2013 all .send calls (refund excess, compensation to previous monarch, wizard commission sweep)\",\n      \"severity\": \"medium\",\n      \"explanation\": \".send returns a boolean indicating success, but the contract ignores the return value. If the",
+   "prompt_tokens": 963,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-16T07:41:12+00:00"
+  },
+  "ta_r1_b0": {
+   "raw": "",
+   "prompt_tokens": 2131,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-16T07:42:11+00:00"
+  },
+  "ta_r1_b1": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"function claimThrone\",\n      \"severity\": \"critical\",\n      \"explanation\": \"currentClaimPrice is multiplied by claimPriceAdjustNum (3) without overflow checks. As the price grows exponentially, it can overflow uint256, resetting the price to a low value and allowing cheap usurpation of the throne.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"function claimThrone (multiple send calls)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The contract uses .send to refund excess payment, refund full payment when underpriced, and pay compensation to the previous monarch, but it does not check the returned boolean. If any send fails (e.g., recipient is a contract that rejects ether), funds are lost and the compensation may never be delivered, leading to potential denial\u2011of\u2011service and user fund loss.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"function claimThrone (compensation send)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Because the compensation to the previous monarch is sent via .send without handling failure, a malicious previous monarch can cause the send to fail repeatedly, effectively blocking the payout mechanism and discouraging participation.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "prompt_tokens": 2032,
+   "completion_tokens": 881,
+   "finish_reason": "stop",
+   "at": "2026-11-16T07:42:14+00:00"
+  },
+  "ta_r1_b2": {
+   "raw": "",
+   "prompt_tokens": 1713,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-16T07:43:16+00:00"
+  },
+  "ta_r1_b3": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"sweepCommission\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function is protected only by a single address (wizardAddress). This centralizes control and allows the owner to withdraw commissions, posing a risk if the address is compromised.\"\n    },\n    {\n      \"type\": \"access_control\",\n      \"location\": \"transferOwnership\",\n      \"severity\": \"high\",\n      \"explanation\": \"Ownership can be transferred solely by the current wizardAddress, giving a single entity full control over the contract without any multi\u2011sig or decentralised mechanism.\"\n    }\n  ],\n  \"confidence\": 0.95\n}",
+   "prompt_tokens": 1656,
+   "completion_tokens": 563,
+   "finish_reason": "stop",
+   "at": "2026-11-16T07:43:18+00:00"
+  },
+  "ta_r1_b4": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"other\",\n      \"location\": \"function claimThrone\",\n      \"severity\": \"medium\",\n      \"ex",
+   "prompt_tokens": 1747,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-16T07:44:19+00:00"
+  },
+  "ta_r1_b5": {
+   "raw": "{\n  \"vulnerabilities\": [],\n  \"confidence\": 1.0\n}",
+   "prompt_tokens": 1146,
+   "completion_tokens": 459,
+   "finish_reason": "stop",
+   "at": "2026-11-16T07:44:20+00:00"
+  },
+  "ba_r2": {
+   "raw": "",
+   "prompt_tokens": 1044,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-16T07:44:23+00:00"
+  },
+  "ba_r3": {
+   "raw": "",
+   "prompt_tokens": 1044,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-16T07:45:21+00:00"
+  },
+  "ba_r4": {
+   "raw": "",
+   "prompt_tokens": 1044,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-16T07:45:25+00:00"
+  },
+  "ta_r2": {
+   "raw": "",
+   "prompt_tokens": 1366,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-16T07:45:27+00:00"
+  },
+  "ta_r3": {
+   "raw": "",
+   "prompt_tokens": 1366,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-16T07:46:24+00:00"
+  },
+  "ta_r4": {
+   "raw": "",
+   "prompt_tokens": 1366,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-16T07:46:27+00:00"
+  },
+  "hybrid_r2": {
+   "raw": "",
+   "prompt_tokens": 1447,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-16T07:46:31+00:00"
+  },
+  "hybrid_r3": {
+   "raw": "",
+   "prompt_tokens": 1447,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-16T07:47:27+00:00"
+  },
+  "hybrid_r4": {
+   "raw": "",
+   "prompt_tokens": 1447,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T05:36:27+00:00"
+  }
+ }
+}

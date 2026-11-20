@@ -1,0 +1,129 @@
+{
+ "contract": "open_address_lottery",
+ "origin": "tasks",
+ "tier": "hard",
+ "part": "train",
+ "source_path": "tasks/hard/open_address_lottery.sol",
+ "backend": "groq",
+ "model": "openai/gpt-oss-120b",
+ "temperature": 0.1,
+ "max_tokens": 1000,
+ "max_code_chars": 6000,
+ "prompt_hash": "a3669b2a2342a966",
+ "n_ta_batches": 6,
+ "created_at": "2026-11-18T06:06:25+00:00",
+ "calls": {
+  "ba_r1": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"uninitialized_storage\",\n      \"location\": \"function forceReseed()\",\n      \"severity\": \"high\",\n      \"explanation\": \"The local variable `SeedComponents s;` is declared without a data location. In Solidity 0.4.19 this defaults to a storage pointer that is uninitialized, allowing the function to write to arbitrary storage slots and potentially overwrite critical contract state such as `owner` or `secretSeed`.\"\n    },\n    {\n      \"type\": \"other\",\n      \"location\": \"randomness generation in reseed() and luckyNumberOfAddress()\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The contract derives the winning number from block variables (coinbase, difficulty, gaslimit, timestamp) and a seed that can be set by the owner or automatically reseeded using predictable block data. Miners can influence these values, and participants can pre\u2011compute outcomes, making the lottery outcome manipulable and not truly random.\"\n    }\n  ],\n  \"confidence\": 0.9\n}",
+   "prompt_tokens": 1252,
+   "completion_tokens": 940,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:06:37+00:00"
+  },
+  "ta_r1_b0": {
+   "raw": "",
+   "prompt_tokens": 2420,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:08:34+00:00"
+  },
+  "ta_r1_b1": {
+   "raw": "",
+   "prompt_tokens": 2321,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:09:49+00:00"
+  },
+  "ta_r1_b2": {
+   "raw": "",
+   "prompt_tokens": 2002,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:11:05+00:00"
+  },
+  "ta_r1_b3": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"kill() and forceReseed() functions\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Critical functions are restricted to a single owner address, creating centralization risk; if the owner key is compromised, the attacker can self\u2011destruct the contract or arbitrarily reseed the random seed.\"\n    },\n    {\n      \"type\": \"uninitialized_storage\",\n      \"location\": \"forceReseed() function, variable `SeedComponents s;`\",\n      \"severity\": \"high\",\n      \"explanation\": \"The struct `s` is declared without a data location (`memory`), defaulting to an uninitialized storage pointer. Writing to its fields overwrites arbitrary storage slots, potentially corrupting contract state.\"\n    },\n    {\n      \"type\": \"other\",\n      \"location\": \"participate() function",
+   "prompt_tokens": 1945,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:12:07+00:00"
+  },
+  "ta_r1_b4": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"uninitialized_storage\",\n      \"location\": \"function forceReseed \u2013 declaration `SeedComponents s;` creates an uninitialized storage pointer\",\n      \"severity\": \"high\",\n      \"explanation\": \"The local variable `s` is a storage pointer that is never assigned to a valid storage location. Writing to its fields overwrites arbitrary storage slots, allowing the owner (or attacker) to corrupt contract state and potentially seize control.\"\n    }\n  ],\n  \"confidence\": 0.95\n}",
+   "prompt_tokens": 2036,
+   "completion_tokens": 679,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:13:10+00:00"
+  },
+  "ta_r1_b5": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"function participate() - msg.sender.transfer(win)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract uses `transfer` to send the jackpot. `transfer` forwards only 2300 gas and will revert if the recipient's fallback consumes more gas or reverts. A malicious winner can cause the transfer to fail, reverting the whole `participate` call and preventing the contract from paying out, effectively creating a denial\u2011of\u2011service condition for jackpot payouts.\"\n    }\n  ],\n  \"confidence\": 0.9\n}",
+   "prompt_tokens": 1435,
+   "completion_tokens": 883,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:13:20+00:00"
+  },
+  "ba_r2": {
+   "raw": "",
+   "prompt_tokens": 1456,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:13:36+00:00"
+  },
+  "ba_r3": {
+   "raw": "",
+   "prompt_tokens": 1456,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:14:17+00:00"
+  },
+  "ba_r4": {
+   "raw": "",
+   "prompt_tokens": 1456,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:14:32+00:00"
+  },
+  "ta_r2": {
+   "raw": "",
+   "prompt_tokens": 1466,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:14:41+00:00"
+  },
+  "ta_r3": {
+   "raw": "",
+   "prompt_tokens": 1466,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:15:26+00:00"
+  },
+  "ta_r4": {
+   "raw": "",
+   "prompt_tokens": 1466,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:15:43+00:00"
+  },
+  "hybrid_r2": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"uninitialized_storage\",\n      \"location\": \"function forceReseed()\",\n      \"severity\": \"high\",\n      \"explanation\": \"The local variable `SeedComponents s;` is declared without a data location, defaulting to a storage pointer that is uninitialized. Writing to its fields overwrites arbitrary storage slots (starting at slot 0), allowing the caller (owner) to corrupt critical state such as `owner`, `secretSeed`, or `lastReseed`.\"\n    },\n    {\n      \"type\": \"bad_randomness\",\n      \"location\": \"function reseed() and function luckyNumberOfAddress()\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The lottery\u2019s randomness relies on block variables (coinbase, difficulty, gaslimit, timestamp) and a seed that can be set by the owner. Miners can influence these values, and the owner can reseed at will, making the outcome predictable and manipulable.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"function participate() \u2013 `msg.sender.transfer(win)`\",\n      \"severity\": \"high\",\n      \"explanation\": \"`transfer` forwards only 2300 gas. A malicious winner whose fallback consumes more gas or reverts will cause the transfer to fail, reverting the entire `participate` call and preventing the contract from paying out, resulting in a DoS for jackpot payouts.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"function participate() \u2013 `uint win = msg.value * 7;`\",\n      \"severity\": \"low\",\n      \"explanation\": \"Multiplication of `msg.value` by 7 is unchecked in Solidity ",
+   "prompt_tokens": 1670,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:16:34+00:00"
+  },
+  "hybrid_r3": {
+   "raw": "",
+   "prompt_tokens": 1413,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:16:50+00:00"
+  },
+  "hybrid_r4": {
+   "raw": "",
+   "prompt_tokens": 1413,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:17:00+00:00"
+  }
+ }
+}

@@ -1,0 +1,129 @@
+{
+ "contract": "solidifi__tod_22",
+ "origin": "real",
+ "tier": "medium",
+ "part": "train",
+ "source_path": "datasets/real/medium/solidifi__tod_22.sol",
+ "backend": "groq",
+ "model": "openai/gpt-oss-120b",
+ "temperature": 0.1,
+ "max_tokens": 1000,
+ "max_code_chars": 6000,
+ "prompt_hash": "a3669b2a2342a966",
+ "n_ta_batches": 6,
+ "created_at": "2026-11-18T06:30:41+00:00",
+ "calls": {
+  "ba_r1": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"executeProposal() \u2013 arithmetic on quorum, yea, nay and minimum quorum calculation\",\n      \"severity\": \"high",
+   "prompt_tokens": 1710,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:30:44+00:00"
+  },
+  "ta_r1_b0": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"executeProposal function (quorum, yea, nay accumulation and quorum check)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Arithmetic operations (quorum += voteWeight, yea += voteWeight, nay += voteWeight, and quorum >= t.totalSupply().mul(minimumQuorum).div(100)) are performed without using SafeMath or explicit overflow checks, allowing potential overflow/underflow if vote weights or token supplies are large enough.\"\n    },\n    {\n      \"type\": \"timestamp_dependence\",\n      \"location\": \"executeProposal function (require(now > p.minExecutionDate))\",\n      \"severity\": \"low\",\n      \"explanation\": \"The function relies on block.timestamp (now) to determine if the proposal execution window has opened, which can be manipulated by miners within a reasonable range, potentially affecting proposal execution timing.\"\n    }\n  ],\n  \"confidence\": 0.93\n}",
+   "prompt_tokens": 2878,
+   "completion_tokens": 918,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:31:44+00:00"
+  },
+  "ta_r1_b1": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"function executeProposal (for loop over p.votes)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function iterates over an unbounded dynamic array `p.votes` using a `for` loop. If the votes array grows large, the loop can exceed the block gas limit, causing the transaction to run out of gas and making the proposal execution impossible, leading to a DoS condition.\"\n    },\n    {\n      \"type\": \"other\",\n      \"location\": \"function executeProposal (proposalHash verification with abi.encodePacked)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The contract builds `proposalHash` using `keccak256(abi.encodePacked(p.recipient, p.amount, transactionBytecode))`. Using `abi.encodePacked` with multiple dynamic/variable\u2011size inputs can lead to hash collisions if different inputs produce the same concatenated byte sequence, allowing an attacker to craft a different transaction that",
+   "prompt_tokens": 2779,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:32:49+00:00"
+  },
+  "ta_r1_b2": {
+   "raw": "{\n  \"vulnerabilities\": [],\n  \"confidence\": 1.0\n}",
+   "prompt_tokens": 2460,
+   "completion_tokens": 652,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:33:51+00:00"
+  },
+  "ta_r1_b3": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"transferOwnership (onlyOwner)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The function can only be executed by the single owner address, centralizing control over contract ownership. If the owner address is compromised, an attacker can transfer ownership and gain full control of the contract.\"\n    }\n  ],\n  \"confidence\": 0.95\n}",
+   "prompt_tokens": 2403,
+   "completion_tokens": 888,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:33:54+00:00"
+  },
+  "ta_r1_b4": {
+   "raw": "",
+   "prompt_tokens": 2494,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:34:56+00:00"
+  },
+  "ta_r1_b5": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"executeProposal() loop over p.votes\",\n      \"severity\": \"high\",\n      \"explanation\": \"The for\u2011loop iterates over the dynamic array p.votes without a bound. An attacker can submit many votes, making the loop exceed the block gas limit and cause the transaction to run out of gas, preventing any proposal from being executed.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"executeProposal() external call `(bool success, ) = p.recipient.call.value(p.amount)(transactionBytecode);`\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The proposal execution relies on a low\u2011level call to an arbitrary address. If the recipient contract reverts or consumes more than the provided gas, `success` will be false and the transaction reverts, allowing a malicious recipient to block the execution of any proposal.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"getReward_TOD11(), getReward_TOD1(), getReward_TOD39() and similar functions using `winner.transfer(msg.value)`\",\n      \"severity\": \"low\",\n      \"explanation\": \"These functions use `transfer` to send ether to a winner address. If the winner is a contract with a fallback that reverts or uses more than 2300 gas, the transfer will fail and the whole function will revert, potentially blocking reward claims.\"\n    }\n  ],\n  \"confidence\": 0.9\n}",
+   "prompt_tokens": 1893,
+   "completion_tokens": 890,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:34:58+00:00"
+  },
+  "ba_r2": {
+   "raw": "",
+   "prompt_tokens": 1750,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:35:59+00:00"
+  },
+  "ba_r3": {
+   "raw": "",
+   "prompt_tokens": 1750,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:36:02+00:00"
+  },
+  "ba_r4": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"claimReward_TOD24\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function transfers Ether to msg.sender before setting the claimed_TOD24 flag, allowing a malicious fallback to re-enter and claim the reward multiple times.\"\n    },\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"",
+   "prompt_tokens": 1750,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:37:02+00:00"
+  },
+  "ta_r2": {
+   "raw": "",
+   "prompt_tokens": 2278,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:37:05+00:00"
+  },
+  "ta_r3": {
+   "raw": "",
+   "prompt_tokens": 2278,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:38:06+00:00"
+  },
+  "ta_r4": {
+   "raw": "",
+   "prompt_tokens": 2278,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:38:09+00:00"
+  },
+  "hybrid_r2": {
+   "raw": "",
+   "prompt_tokens": 2318,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:39:10+00:00"
+  },
+  "hybrid_r3": {
+   "raw": "",
+   "prompt_tokens": 2318,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:39:13+00:00"
+  },
+  "hybrid_r4": {
+   "raw": "",
+   "prompt_tokens": 2318,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:40:13+00:00"
+  }
+ }
+}

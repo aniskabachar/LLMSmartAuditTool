@@ -1,0 +1,108 @@
+{
+ "contract": "solidifi__overflowunderflow_3",
+ "origin": "real",
+ "tier": "easy",
+ "part": "train",
+ "source_path": "datasets/real/easy/solidifi__overflowunderflow_3.sol",
+ "backend": "groq",
+ "model": "openai/gpt-oss-120b",
+ "temperature": 0.1,
+ "max_tokens": 1000,
+ "max_code_chars": 6000,
+ "prompt_hash": "a3669b2a2342a966",
+ "n_ta_batches": 6,
+ "created_at": "2026-11-18T06:12:47+00:00",
+ "calls": {
+  "ba_r1": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"increaseLockTime_intou13 / increaseLockTime_intou9 / increaseLockTime_intou25 / increaseLockTime_intou33\",\n      \"severity\": \"high\",\n      \"explanation\": \"Adds user\u2011provided seconds to a uint without overflow checks; a large value can wrap around and allow premature withdrawals.\"\n    },\n    {\n      \"type\": \"integer_underflow\",\n      \"location\": \"bug_intou27, bug_intou31, bug_intou19, bug_intou39\",\n      \"severity\": \"low\",\n      \"explanation\": \"Subtracts 10 from a uint8 initialized to 0, causing an underflow to 246; although state\u2011less, it demonstrates unsafe arithmetic.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"bug_intou20, bug_intou32, bug_intou8, bug_intou36, bug_intou40\",\n      \"severity\": \"low\",\n      \"explanation\": \"Adds a user\u2011provided uint8 to a zero\u2011initialized uint8, causing overflow when the input > 255",
+   "prompt_tokens": 2006,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:13:58+00:00"
+  },
+  "ta_r1_b0": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"increaseLockTime_intou13 (and similar increaseLockTime_intou9, increaseLockTime_intou25, increaseLockTime_intou33)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function adds _secondsToIncrease to lockTime_intouXX[msg.sender] using unchecked addition, which can overflow the uint storage variable and allow the lock time to wrap around, enabling immediate withdrawals",
+   "prompt_tokens": 3174,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:15:11+00:00"
+  },
+  "ta_r1_b1": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"bug_intou27() - uint8 underflow\",\n      \"severity\": \"high\",\n      \"explanation\": \"Subtracting 10 from a uint8 initialized to 0 causes an underflow, wrapping to 246, which can be exploited if the value is later used in logic.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"bug_intou31() - uint8 underflow\",\n      \"severity\": \"high\",\n      \"explanation\": \"Subtracting 10 from a uint8 initialized to 0 underflows, leading to unexpected large values.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"increaseLockTime_intou13(uint) - addition without overflow check\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Adding an arbitrary number of seconds to lockTime_intou13 can overflow the uint, allowing a user to bypass the time lock.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"increaseLockTime_intou9(uint) - addition without overflow check\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Same overflow risk as above for lockTime_intou9.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"increaseLockTime_int",
+   "prompt_tokens": 3075,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:16:13+00:00"
+  },
+  "ta_r1_b2": {
+   "raw": "{\n  \"vulnerabilities\": [],\n  \"confidence\": 0.9\n}",
+   "prompt_tokens": 2756,
+   "completion_tokens": 485,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:17:27+00:00"
+  },
+  "ta_r1_b3": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"bug_intou27 (underflow of uint8)\",\n      \"severity\": \"high\",\n      \"explanation\": \"Subtracting 10 from a uint8 initialized to 0 causes an underflow, wrapping to a large value.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"bug_intou31 (underflow of uint8)\",\n",
+   "prompt_tokens": 2699,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:18:34+00:00"
+  },
+  "ta_r1_b4": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"transfer_intou26 (and similar transfer_intou*)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function checks `require(balances_intou26[msg.sender] - _value >= 0)` which performs subtraction before the check, causing an underflow/overflow that can be exploited to create arbitrary token balances.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"increaseLockTime_intou13, increaseLockTime_intou9, increaseLockTime_intou25, increaseLockTime_intou33\",\n      \"severity\": \"medium\",\n      \"explanation\": \"These functions add `_secondsToIncrease` to a stored timestamp without overflow checks, allowing an attacker to overflow the lock time and bypass time\u2011based restrictions.\"\n    },\n    {\n      \"type\": \"other\",\n      \"location\": \"",
+   "prompt_tokens": 2790,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:19:37+00:00"
+  },
+  "ta_r1_b5": {
+   "raw": "{\n  \"vulnerabilities\": [],\n  \"confidence\": 0.9\n}",
+   "prompt_tokens": 2189,
+   "completion_tokens": 830,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:20:12+00:00"
+  },
+  "ba_r2": {
+   "raw": "",
+   "prompt_tokens": 2046,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:21:12+00:00"
+  },
+  "ba_r3": {
+   "raw": "",
+   "prompt_tokens": 2046,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:21:35+00:00"
+  },
+  "ba_r4": {
+   "raw": "",
+   "prompt_tokens": 2046,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:22:36+00:00"
+  },
+  "ta_r2": {
+   "raw": "",
+   "prompt_tokens": 2127,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:23:39+00:00"
+  },
+  "ta_r3": {
+   "raw": "",
+   "prompt_tokens": 2127,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:24:37+00:00"
+  },
+  "ta_r4": {
+   "raw": "",
+   "prompt_tokens": 2127,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:24:58+00:00"
+  }
+ }
+}

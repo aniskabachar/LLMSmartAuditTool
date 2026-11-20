@@ -1,0 +1,51 @@
+Loading train-pool cache ...
+Slither not available. Using regex-based analysis only.
+  train: 34 contracts fully cached (403 not yet)
+  lam=0       seed=0 full       modes={'BA': 23, 'TA': 5, 'HYBRID': 6} U_train=0.6539 (best fixed 0.5859, oracle 0.6559)  107.7s
+  lam=0       seed=1 full       modes={'BA': 19, 'TA': 9, 'HYBRID': 6} U_train=0.6539 (best fixed 0.5859, oracle 0.6559)  104.5s
+  lam=0       seed=2 full       modes={'BA': 23, 'TA': 6, 'HYBRID': 5} U_train=0.6539 (best fixed 0.5859, oracle 0.6559)  91.5s
+  lam=0       seed=3 full       modes={'BA': 20, 'TA': 9, 'HYBRID': 5} U_train=0.6304 (best fixed 0.5859, oracle 0.6559)  86.0s
+  lam=0       seed=4 full       modes={'BA': 20, 'TA': 7, 'HYBRID': 7} U_train=0.6539 (best fixed 0.5859, oracle 0.6559)  83.2s
+  lam=0.0025  seed=0 full       modes={'BA': 29, 'TA': 4, 'HYBRID': 1} U_train=0.6129 (best fixed 0.5648, oracle 0.6376)  83.4s
+  lam=0.0025  seed=1 full       modes={'BA': 27, 'TA': 4, 'HYBRID': 3} U_train=0.6387 (best fixed 0.5693, oracle 0.6421)  84.2s
+  lam=0.0025  seed=2 full       modes={'BA': 30, 'TA': 4, 'HYBRID': 0} U_train=0.5960 (best fixed 0.5698, oracle 0.6411)  116.4s
+  lam=0.0025  seed=3 full       modes={'BA': 28, 'TA': 4, 'HYBRID': 2} U_train=0.6174 (best fixed 0.5721, oracle 0.6429)  126.6s
+  lam=0.0025  seed=4 full       modes={'BA': 30, 'TA': 4, 'HYBRID': 0} U_train=0.5966 (best fixed 0.5706, oracle 0.6417)  111.5s
+  lam=0.005   seed=0 full       modes={'BA': 30, 'TA': 4, 'HYBRID': 0} U_train=0.5854 (best fixed 0.5606, oracle 0.6300)  94.5s
+  lam=0.005   seed=0 no_conv    modes={'BA': 31, 'TA': 3, 'HYBRID': 0} U_train=0.5796 (best fixed 0.5525, oracle 0.6222)  135.2s
+  lam=0.005   seed=0 fixed_stop modes={'BA': 24, 'TA': 0, 'HYBRID': 10} U_train=0.5414 (best fixed 0.4496, oracle 0.5572)  61.0s
+  lam=0.005   seed=0 feat22     modes={'BA': 30, 'TA': 4, 'HYBRID': 0} U_train=0.5870 (best fixed 0.5624, oracle 0.6317)  128.2s
+  lam=0.005   seed=1 full       modes={'BA': 30, 'TA': 4, 'HYBRID': 0} U_train=0.5799 (best fixed 0.5564, oracle 0.6242)  126.3s
+  lam=0.005   seed=1 no_conv    modes={'BA': 32, 'TA': 2, 'HYBRID': 0} U_train=0.5886 (best fixed 0.5607, oracle 0.6297)  115.0s
+  lam=0.005   seed=1 fixed_stop modes={'BA': 27, 'TA': 1, 'HYBRID': 6} U_train=0.5413 (best fixed 0.4496, oracle 0.5572)  55.9s
+  lam=0.005   seed=1 feat22     modes={'BA': 30, 'TA': 4, 'HYBRID': 0} U_train=0.5850 (best fixed 0.5628, oracle 0.6294)  97.1s
+  lam=0.005   seed=2 full       modes={'BA': 30, 'TA': 4, 'HYBRID': 0} U_train=0.5792 (best fixed 0.5545, oracle 0.6242)  107.5s
+  lam=0.005   seed=2 no_conv    modes={'BA': 29, 'TA': 5, 'HYBRID': 0} U_train=0.5822 (best fixed 0.5391, oracle 0.6275)  137.8s
+  lam=0.005   seed=2 fixed_stop modes={'BA': 27, 'TA': 0, 'HYBRID': 7} U_train=0.5409 (best fixed 0.4496, oracle 0.5572)  67.5s
+  lam=0.005   seed=2 feat22     modes={'BA': 30, 'TA': 4, 'HYBRID': 0} U_train=0.5889 (best fixed 0.5645, oracle 0.6337)  136.9s
+  lam=0.005   seed=3 full       modes={'BA': 30, 'TA': 4, 'HYBRID': 0} U_train=0.5886 (best fixed 0.5651, oracle 0.6324)  139.2s
+  lam=0.005   seed=3 no_conv    modes={'BA': 30, 'TA': 4, 'HYBRID': 0} U_train=0.5815 (best fixed 0.5568, oracle 0.6251)  127.3s
+  lam=0.005   seed=3 fixed_stop modes={'BA': 25, 'TA': 0, 'HYBRID': 9} U_train=0.5432 (best fixed 0.4496, oracle 0.5572)  63.9s
+  lam=0.005   seed=3 feat22     modes={'BA': 30, 'TA': 4, 'HYBRID': 0} U_train=0.5894 (best fixed 0.5668, oracle 0.6339)  120.7s
+  lam=0.005   seed=4 full       modes={'BA': 30, 'TA': 4, 'HYBRID': 0} U_train=0.5879 (best fixed 0.5629, oracle 0.6321)  130.9s
+  lam=0.005   seed=4 no_conv    modes={'BA': 32, 'TA': 2, 'HYBRID': 0} U_train=0.5940 (best fixed 0.5660, oracle 0.6350)  124.4s
+  lam=0.005   seed=4 fixed_stop modes={'BA': 27, 'TA': 0, 'HYBRID': 7} U_train=0.5409 (best fixed 0.4496, oracle 0.5572)  59.0s
+  lam=0.005   seed=4 feat22     modes={'BA': 32, 'TA': 2, 'HYBRID': 0} U_train=0.5800 (best fixed 0.5537, oracle 0.6224)  124.1s
+  lam=0.01    seed=0 full       modes={'BA': 33, 'TA': 1, 'HYBRID': 0} U_train=0.5704 (best fixed 0.5499, oracle 0.6105)  120.8s
+  lam=0.01    seed=1 full       modes={'BA': 33, 'TA': 1, 'HYBRID': 0} U_train=0.5721 (best fixed 0.5516, oracle 0.6123)  119.1s
+  lam=0.01    seed=2 full       modes={'BA': 32, 'TA': 2, 'HYBRID': 0} U_train=0.5504 (best fixed 0.5262, oracle 0.6038)  118.3s
+  lam=0.01    seed=3 full       modes={'BA': 33, 'TA': 1, 'HYBRID': 0} U_train=0.5752 (best fixed 0.5547, oracle 0.6144)  120.4s
+  lam=0.01    seed=4 full       modes={'BA': 32, 'TA': 2, 'HYBRID': 0} U_train=0.5733 (best fixed 0.5497, oracle 0.6103)  125.4s
+  lam=0.02    seed=0 full       modes={'BA': 33, 'TA': 1, 'HYBRID': 0} U_train=0.5455 (best fixed 0.5280, oracle 0.5744)  124.8s
+  lam=0.02    seed=1 full       modes={'BA': 33, 'TA': 1, 'HYBRID': 0} U_train=0.5465 (best fixed 0.5291, oracle 0.5754)  119.3s
+  lam=0.02    seed=2 full       modes={'BA': 33, 'TA': 1, 'HYBRID': 0} U_train=0.5278 (best fixed 0.5104, oracle 0.5679)  109.7s
+  lam=0.02    seed=3 full       modes={'BA': 33, 'TA': 1, 'HYBRID': 0} U_train=0.5413 (best fixed 0.5239, oracle 0.5702)  120.7s
+  lam=0.02    seed=4 full       modes={'BA': 33, 'TA': 1, 'HYBRID': 0} U_train=0.5465 (best fixed 0.5291, oracle 0.5754)  128.8s
+  lam=0.04    seed=0 full       modes={'BA': 33, 'TA': 1, 'HYBRID': 0} U_train=0.4920 (best fixed 0.4807, oracle 0.5047)  121.0s
+  lam=0.04    seed=1 full       modes={'BA': 33, 'TA': 1, 'HYBRID': 0} U_train=0.4920 (best fixed 0.4807, oracle 0.5047)  126.0s
+  lam=0.04    seed=2 full       modes={'BA': 33, 'TA': 1, 'HYBRID': 0} U_train=0.4920 (best fixed 0.4807, oracle 0.5047)  120.1s
+  lam=0.04    seed=3 full       modes={'BA': 33, 'TA': 1, 'HYBRID': 0} U_train=0.4920 (best fixed 0.4807, oracle 0.5047)  130.6s
+  lam=0.04    seed=4 full       modes={'BA': 33, 'TA': 1, 'HYBRID': 0} U_train=0.4920 (best fixed 0.4807, oracle 0.5047)  166.1s
+
+Saved 45 policy sets under models\offline\20261118-real34  (83.6 min)
+Next: py rl_offline/evaluate.py --tag 20261118-real34

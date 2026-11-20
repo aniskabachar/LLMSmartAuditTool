@@ -1,0 +1,129 @@
+{
+ "contract": "wallet_02_refund_nosub",
+ "origin": "tasks",
+ "tier": "medium",
+ "part": "test",
+ "source_path": "tasks/medium/wallet_02_refund_nosub.sol",
+ "backend": "groq",
+ "model": "openai/gpt-oss-120b",
+ "temperature": 0.1,
+ "max_tokens": 1000,
+ "max_code_chars": 6000,
+ "prompt_hash": "a3669b2a2342a966",
+ "n_ta_batches": 6,
+ "created_at": "2026-11-14T19:08:07+00:00",
+ "calls": {
+  "ba_r1": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"function refund()\",\n      \"severity\": \"high\",\n      \"explanation\": \"refund() transfers the caller's recorded balance but never resets balances[msg.sender] to zero, allowing any user to call refund repeatedly and drain the contract's Ether.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "prompt_tokens": 574,
+   "completion_tokens": 528,
+   "finish_reason": "stop",
+   "at": "2026-11-14T19:08:59+00:00"
+  },
+  "ta_r1_b0": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"function refund()\",\n      \"severity\": \"critical\",\n      \"explanation\": \"refund() transfers the caller's balance but never resets balances[msg.sender] to zero, allowing repeated calls to withdraw the same amount and drain the contract.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "prompt_tokens": 1742,
+   "completion_tokens": 836,
+   "finish_reason": "stop",
+   "at": "2026-11-14T19:09:04+00:00"
+  },
+  "ta_r1_b1": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"function refund()\",\n      \"severity\": \"critical\",\n      \"explanation\": \"The refund function transfers the caller's stored balance but never resets balances[msg.sender] to zero. This allows any user to call refund repeatedly and drain the contract's Ether, effectively a lack of proper authorization/state update.\"\n    }\n  ],\n  \"confidence\": 0.95\n}",
+   "prompt_tokens": 1643,
+   "completion_tokens": 983,
+   "finish_reason": "stop",
+   "at": "2026-11-14T19:09:13+00:00"
+  },
+  "ta_r1_b2": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"function refund()\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function transfers the caller's balance before resetting it, allowing a malicious contract to re-enter refund() via its fallback function and repeatedly withdraw the same amount.\"\n    },\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"function withdraw(uint256 amount)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function transfers Ether to msg.sender before updating the stored balance, enabling re\u2011entrancy attacks where the caller can recursively call withdraw() and drain more funds than authorized.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "prompt_tokens": 1324,
+   "completion_tokens": 735,
+   "finish_reason": "stop",
+   "at": "2026-11-14T19:10:10+00:00"
+  },
+  "ta_r1_b3": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"function migrateTo\",\n      \"severity\": \"high\",\n      \"explanation\": \"Only the creator address can call migrateTo, allowing a single centralized entity to move all contract funds without any multi\u2011signature or decentralized safeguard, creating a centralization risk.\"\n    },\n    {\n      \"type\": \"other\",\n      \"location\": \"function refund\",\n      \"",
+   "prompt_tokens": 1267,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T19:10:12+00:00"
+  },
+  "ta_r1_b4": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"function refund()\",\n      \"severity\": \"high\",\n      \"explanation\": \"refund() transfers the caller's balance but never resets balances[msg.sender] to zero, allowing repeated calls to drain the contract's funds.\"\n    },\n    {\n      \"type\": \"other\",\n      \"location\": \"contract lacks fallback function\",\n      \"severity\": \"low\",\n      \"explanation\": \"No payable fallback or receive function is defined, so any ether sent directly to the contract (e.g., via self-destruct or plain transfer) will be rejected and lost.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "prompt_tokens": 1358,
+   "completion_tokens": 781,
+   "finish_reason": "stop",
+   "at": "2026-11-14T19:10:15+00:00"
+  },
+  "ta_r1_b5": {
+   "raw": "{\n  \"vulnerabilities\": [],\n  \"confidence\": 1.0\n}",
+   "prompt_tokens": 757,
+   "completion_tokens": 343,
+   "finish_reason": "stop",
+   "at": "2026-11-14T19:11:12+00:00"
+  },
+  "ba_r2": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"other\",\n      \"location\": \"function refund()\",\n      \"severity\": \"high\",\n      \"explanation\": \"refund() transfers the caller's recorded balance but never resets balances[msg.sender] to zero, allowing any user to call refund repeatedly and drain the contract's Ether.\"\n    }\n  ],\n  \"confidence\": 0.95\n}",
+   "prompt_tokens": 638,
+   "completion_tokens": 505,
+   "finish_reason": "stop",
+   "at": "2026-11-14T19:11:13+00:00"
+  },
+  "ba_r3": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"other\",\n      \"location\": \"function refund()\",\n      \"severity\": \"high\",\n      \"explanation\": \"refund() transfers the caller's recorded balance but never resets balances[msg.sender] to zero, allowing any user to call refund repeatedly and drain the contract's Ether.\"\n    }\n  ],\n  \"confidence\": 0.95\n}",
+   "prompt_tokens": 637,
+   "completion_tokens": 868,
+   "finish_reason": "stop",
+   "at": "2026-11-14T19:11:15+00:00"
+  },
+  "ba_r4": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"other\",\n      \"location\": \"function refund()\",\n      \"severity\": \"high\",\n      \"explanation\": \"refund() transfers the caller's recorded balance but never resets balances[msg.sender] to zero, allowing any user to call refund repeatedly and drain the contract's Ether.\"\n    }\n  ],\n  \"confidence\": 0.95\n}",
+   "prompt_tokens": 637,
+   "completion_tokens": 738,
+   "finish_reason": "stop",
+   "at": "2026-11-14T19:11:18+00:00"
+  },
+  "ta_r2": {
+   "raw": "",
+   "prompt_tokens": 838,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T19:11:23+00:00"
+  },
+  "ta_r3": {
+   "raw": "",
+   "prompt_tokens": 838,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T19:12:16+00:00"
+  },
+  "ta_r4": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"other\",\n      \"location\": \"function refund()\",\n      \"severity\": \"critical\",\n      \"explanation\": \"refund() transfers the caller's recorded balance but never resets balances[msg.sender] to zero, allowing the caller to invoke refund() repeatedly and drain the contract's ether.\"\n    }\n  ],\n  \"confidence\": 0.9\n}",
+   "prompt_tokens": 838,
+   "completion_tokens": 960,
+   "finish_reason": "stop",
+   "at": "2026-11-14T19:12:19+00:00"
+  },
+  "hybrid_r2": {
+   "raw": "",
+   "prompt_tokens": 840,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T19:12:22+00:00"
+  },
+  "hybrid_r3": {
+   "raw": "",
+   "prompt_tokens": 840,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T19:12:26+00:00"
+  },
+  "hybrid_r4": {
+   "raw": "",
+   "prompt_tokens": 840,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T19:13:21+00:00"
+  }
+ }
+}

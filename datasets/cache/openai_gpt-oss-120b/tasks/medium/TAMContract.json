@@ -1,0 +1,129 @@
+{
+ "contract": "TAMContract",
+ "origin": "tasks",
+ "tier": "medium",
+ "part": "train",
+ "source_path": "tasks/medium/TAMContract.sol",
+ "backend": "groq",
+ "model": "openai/gpt-oss-120b",
+ "temperature": 0.1,
+ "max_tokens": 1000,
+ "max_code_chars": 6000,
+ "prompt_hash": "a3669b2a2342a966",
+ "n_ta_batches": 6,
+ "created_at": "2026-11-18T06:24:31+00:00",
+ "calls": {
+  "ba_r1": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"play_tmstmp35 / play_tmstmp27 / play_tmstmp31 (startTime + (5 * 1 days))\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The addition of an arbitrary startTime with a constant can overflow uint256 in Solidity 0.5.x, causing the equality check with block.timestamp to be bypassed and allowing an attacker to become the winner.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"transfer (balanceOf[to] += value)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract adds value to the recipient's balance without using SafeMath. If the recipient's balance is close to uint256 max, the addition can overflow, granting the attacker an inflated token balance.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"transferFrom (balanceOf[to] += value)\",\n      \"severity\": \"high\",\n      \"explanation\": \"Same as transfer: addition to the recipient's balance is unchecked and can overflow, leading to token balance manipulation.\"\n    },\n    {\n      \"type\": \"",
+   "prompt_tokens": 924,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:25:31+00:00"
+  },
+  "ta_r1_b0": {
+   "raw": "",
+   "prompt_tokens": 2092,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:25:34+00:00"
+  },
+  "ta_r1_b1": {
+   "raw": "",
+   "prompt_tokens": 1993,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:26:34+00:00"
+  },
+  "ta_r1_b2": {
+   "raw": "",
+   "prompt_tokens": 1674,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:26:37+00:00"
+  },
+  "ta_r1_b3": {
+   "raw": "{\n  \"vulnerabilities\": [],\n  \"confidence\": 0.95\n}",
+   "prompt_tokens": 1617,
+   "completion_tokens": 438,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:27:35+00:00"
+  },
+  "ta_r1_b4": {
+   "raw": "",
+   "prompt_tokens": 1708,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:27:39+00:00"
+  },
+  "ta_r1_b5": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"function bug_tmstmp40\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The function uses `msg.sender.transfer(address(this).balance)`, which sends Ether with a 2300 gas stipend. If `msg.sender` is a contract whose fallback/receive function requires more than 2300 gas, the transfer will revert, causing the entire `bug_tmstmp40` call to fail and potentially be blocked by an attacker.\"\n    }\n  ],\n  \"confidence\": 0.9\n}",
+   "prompt_tokens": 1107,
+   "completion_tokens": 515,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:27:41+00:00"
+  },
+  "ba_r2": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"timestamp_dependence\",\n      \"location\": \"play_tmstmp35, play_tmstmp27, play_tmstmp31, bug_tmstmp40\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Functions",
+   "prompt_tokens": 1045,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:28:39+00:00"
+  },
+  "ba_r3": {
+   "raw": "",
+   "prompt_tokens": 964,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:28:44+00:00"
+  },
+  "ba_r4": {
+   "raw": "",
+   "prompt_tokens": 964,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:28:47+00:00"
+  },
+  "ta_r2": {
+   "raw": "",
+   "prompt_tokens": 1032,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:29:42+00:00"
+  },
+  "ta_r3": {
+   "raw": "",
+   "prompt_tokens": 1032,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:29:47+00:00"
+  },
+  "ta_r4": {
+   "raw": "",
+   "prompt_tokens": 1032,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:29:51+00:00"
+  },
+  "hybrid_r2": {
+   "raw": "",
+   "prompt_tokens": 1153,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:30:46+00:00"
+  },
+  "hybrid_r3": {
+   "raw": "",
+   "prompt_tokens": 1153,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:30:50+00:00"
+  },
+  "hybrid_r4": {
+   "raw": "",
+   "prompt_tokens": 1153,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:30:55+00:00"
+  }
+ }
+}

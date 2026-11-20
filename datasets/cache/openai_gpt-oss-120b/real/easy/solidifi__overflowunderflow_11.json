@@ -1,0 +1,122 @@
+{
+ "contract": "solidifi__overflowunderflow_11",
+ "origin": "real",
+ "tier": "easy",
+ "part": "train",
+ "source_path": "datasets/real/easy/solidifi__overflowunderflow_11.sol",
+ "backend": "groq",
+ "model": "openai/gpt-oss-120b",
+ "temperature": 0.1,
+ "max_tokens": 1000,
+ "max_code_chars": 6000,
+ "prompt_hash": "a3669b2a2342a966",
+ "n_ta_batches": 6,
+ "created_at": "2026-11-18T06:30:55+00:00",
+ "calls": {
+  "ba_r1": {
+   "raw": "",
+   "prompt_tokens": 1689,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:31:49+00:00"
+  },
+  "ta_r1_b0": {
+   "raw": "",
+   "prompt_tokens": 2857,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:31:58+00:00"
+  },
+  "ta_r1_b1": {
+   "raw": "",
+   "prompt_tokens": 2758,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:33:01+00:00"
+  },
+  "ta_r1_b2": {
+   "raw": "{\n  \"vulnerabilities\": [],\n  \"confidence\": 0.95\n}",
+   "prompt_tokens": 2439,
+   "completion_tokens": 862,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:34:04+00:00"
+  },
+  "ta_r1_b3": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"transferAnyERC20Token\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function transferAnyERC20Token is restricted to onlyOwner, allowing the single owner to withdraw any ERC20 tokens accidentally sent to the contract. This centralizes control and poses a risk if the owner address is compromised.\"\n    }\n  ],\n  \"confidence\": 0.9\n}",
+   "prompt_tokens": 2382,
+   "completion_tokens": 800,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:34:06+00:00"
+  },
+  "ta_r1_b4": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"other\",\n      \"location\": \"transfer / transferFrom / approve functions\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The token functions do not validate that address parameters (e.g., `to`, `from`, `spender`) are non\u2011zero. Sending tokens to the zero address can permanently lock funds, and approving the zero address can lead to unintended allowance behavior.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "prompt_tokens": 2473,
+   "completion_tokens": 583,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:35:05+00:00"
+  },
+  "ta_r1_b5": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"approveAndCall\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The function makes an external call to ApproveAndCallFallBack(spender).receiveApproval(...) without handling failures. If the called contract reverts or runs out of gas, the entire transaction reverts, allowing a malicious spender to block approvals.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"transferAnyERC20Token\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The owner\u2011only function calls ERC20Interface(tokenAddress).transfer(...) without checking the return value or handling possible reverts. A malicious or faulty ERC20 token contract could cause the call to revert, preventing the owner from recovering accidentally sent tokens.\"\n    }\n  ],\n  \"confidence\": 0.9\n}",
+   "prompt_tokens": 1872,
+   "completion_tokens": 725,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:35:09+00:00"
+  },
+  "ba_r2": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"increaseLockTime_intou* functions (e.g., increaseLockTime_intou37, increaseLockTime_intou9, increaseLockTime_intou25, increaseLockTime_intou33)\",\n      \"severity\": \"high\",\n      \"explanation\": \"These public functions add an arbitrary number of seconds to a stored lockTime mapping without using SafeMath. An",
+   "prompt_tokens": 1688,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:36:08+00:00"
+  },
+  "ba_r3": {
+   "raw": "",
+   "prompt_tokens": 1729,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:36:12+00:00"
+  },
+  "ba_r4": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"increaseLockTime_intou37(uint _secondsToIncrease)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Adds _secondsToIncrease to lockTime_intou37[msg.sender] without overflow check; an attacker can overflow the timestamp, making the lock expire immediately and enabling premature withdrawals.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"increaseLockTime_intou9(uint _secondsToIncrease)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Same unchecked addition as above, allowing lockTime_intou9 to overflow and bypass the time lock.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"increaseLockTime_intou25(uint _secondsToIncrease)\",\n      \"severity\": \"medium\",\n",
+   "prompt_tokens": 1729,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:37:12+00:00"
+  },
+  "ta_r2": {
+   "raw": "",
+   "prompt_tokens": 2024,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:37:16+00:00"
+  },
+  "ta_r3": {
+   "raw": "",
+   "prompt_tokens": 2024,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:38:15+00:00"
+  },
+  "ta_r4": {
+   "raw": "",
+   "prompt_tokens": 2024,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:38:19+00:00"
+  },
+  "hybrid_r2": {
+   "raw": "",
+   "prompt_tokens": 2024,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:39:18+00:00"
+  },
+  "hybrid_r3": {
+   "raw": "",
+   "prompt_tokens": 2024,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:39:24+00:00"
+  }
+ }
+}

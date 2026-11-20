@@ -1,0 +1,129 @@
+{
+ "contract": "name_registrar",
+ "origin": "tasks",
+ "tier": "hard",
+ "part": "train",
+ "source_path": "tasks/hard/name_registrar.sol",
+ "backend": "groq",
+ "model": "openai/gpt-oss-120b",
+ "temperature": 0.1,
+ "max_tokens": 1000,
+ "max_code_chars": 6000,
+ "prompt_hash": "a3669b2a2342a966",
+ "n_ta_batches": 6,
+ "created_at": "2026-11-18T06:12:50+00:00",
+ "calls": {
+  "ba_r1": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"uninitialized_storage\",\n      \"location\": \"register function, line where `NameRecord newRecord;` is declared\",\n      \"severity\": \"high\",\n      \"explanation\": \"The struct variable is declared without a data location, defaulting to storage. It points to storage slot 0 (the `unlocked` variable). Assigning to its fields overwrites contract storage, allowing an attacker to modify `unlocked` and bypass the lock.\"\n    },\n    {\n      \"type\": \"access_control\",\n      \"location\": \"register function, after state changes before `require(unlocked)`\",\n      \"severity\": \"medium\",\n      \"explanation\": \"`require(unlocked)` is executed after the mappings are updated, so registrations can occur even when the contract is intended to be locked, enabling unauthorized name registrations.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "prompt_tokens": 523,
+   "completion_tokens": 778,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:12:52+00:00"
+  },
+  "ta_r1_b0": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"other\",\n      \"location\": \"function register - declaration of `NameRecord newRecord` without data location\",\n      \"severity\": \"high\",\n      \"explanation\": \"The struct variable `newRecord` is declared without specifying `memory` or `storage`. In Solidity 0.4.x this defaults to a storage pointer that is uninitialized, causing writes to arbitrary storage slots (e.g., overwriting `unlocked`). This can corrupt contract state and be exploited to lock/unlock the registrar.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "prompt_tokens": 1691,
+   "completion_tokens": 516,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:12:56+00:00"
+  },
+  "ta_r1_b1": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"uninitialized_storage\",\n      \"location\": \"function register\",\n      \"severity\": \"high\",\n      \"explanation\": \"The variable `NameRecord newRecord;` is declared without a data location, defaulting to a storage pointer that is uninitialized. Assigning to its fields writes to an arbitrary storage slot, potentially corrupting contract storage and allowing an attacker to overwrite critical state.\"\n    }\n  ],\n  \"confidence\": 0.98\n}",
+   "prompt_tokens": 1592,
+   "completion_tokens": 767,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:13:52+00:00"
+  },
+  "ta_r1_b2": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"other\",\n      \"location\": \"function register - declaration of `NameRecord newRecord`\",\n      \"severity\": \"high\",\n      \"explanation\": \"The struct variable `newRecord` is declared without a data location (`memory` or `storage`). In Solidity 0.4.15 this defaults to an uninitialized storage pointer, causing writes to arbitrary storage slots (starting at slot 0) and potentially corrupting contract state.\"\n    }\n  ],\n  \"confidence\": 0.98\n}",
+   "prompt_tokens": 1273,
+   "completion_tokens": 624,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:13:54+00:00"
+  },
+  "ta_r1_b3": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"uninitialized_storage\",\n      \"location\": \"register function (declaration of NameRecord newRecord)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The struct variable `newRecord` is declared without a data location, defaulting to a storage pointer that is uninitialized. Assigning to its fields writes to an arbitrary storage slot, potentially corrupting contract state and allowing attacker-controlled data to overwrite critical variables.\"\n    }\n  ],\n  \"confidence\": 0.95\n}",
+   "prompt_tokens": 1216,
+   "completion_tokens": 506,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:13:58+00:00"
+  },
+  "ta_r1_b4": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"uninitialized_storage\",\n      \"location\": \"function register (line 21)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The local variable `NameRecord newRecord;` is declared without a data location, defaulting to an uninitialized storage pointer. Assignments to `newRecord.name` and `newRecord.mappedAddress` write to storage slot 0, corrupting the `unlocked` state variable and allowing the attacker to set it to a non\u2011zero value, bypassing the `require(unlocked)` check.\"\n    },\n    {\n      \"type\": \"other\",\n     ",
+   "prompt_tokens": 1307,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:14:55+00:00"
+  },
+  "ta_r1_b5": {
+   "raw": "{\n  \"vulnerabilities\": [],\n  \"confidence\": 0.99\n}",
+   "prompt_tokens": 706,
+   "completion_tokens": 494,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:14:57+00:00"
+  },
+  "ba_r2": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"uninitialized_storage\",\n      \"location\": \"register function, line where `NameRecord newRecord;` is declared\",\n      \"severity\": \"high\",\n      \"explanation\": \"The struct variable is declared without a data location, defaulting to storage. It points to storage slot 0 (the `unlocked` variable). Assigning to its fields overwrites contract storage, allowing an attacker to modify `unlocked` and bypass the lock.\"\n    }\n  ],\n ",
+   "prompt_tokens": 693,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:15:02+00:00"
+  },
+  "ba_r3": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"uninitialized_storage\",\n      \"location\": \"function register\",\n      \"severity\": \"high\",\n      \"explanation\": \"The local variable `NameRecord newRecord;` is declared without a data location, defaulting to storage. It points to storage slot 0 (the first slot of the contract) and is uninitialized. Assigning to `newRecord.name` and `newRecord.mappedAddress` overwrites arbitrary storage slots, including the `unlocked` boolean, allowing an attacker to manipulate contract state and bypass the lock.\"\n    }\n  ],\n  \"confidence\": 0.95\n}",
+   "prompt_tokens": 522,
+   "completion_tokens": 976,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:15:04+00:00"
+  },
+  "ba_r4": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"uninitialized_storage\",\n      \"location\": \"function register\",\n      \"severity\": \"high\",\n      \"explanation\": \"The local variable `NameRecord newRecord",
+   "prompt_tokens": 639,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:15:59+00:00"
+  },
+  "ta_r2": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"uninitialized_storage\",\n      \"location\": \"function register - declaration of NameRecord newRecord\",\n      \"severity\": \"high\",\n      \"explanation\": \"In Solidity 0.4.15, a struct variable declared without an explicit data location defaults to a storage pointer. The variable `newRecord` is uninitialized, so assigning to its fields writes to arbitrary storage slots (starting at slot 0), which can overwrite critical state such as the `unlocked` boolean, allowing an attacker to manipulate contract behavior.\"\n    }\n  ],\n  \"confidence\": 0.95\n}",
+   "prompt_tokens": 905,
+   "completion_tokens": 946,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:16:03+00:00"
+  },
+  "ta_r3": {
+   "raw": "",
+   "prompt_tokens": 635,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:16:05+00:00"
+  },
+  "ta_r4": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"uninitialized_storage\",\n      \"location\": \"function register - declaration of NameRecord newRecord\",\n      \"severity\": \"high\",\n      \"explanation\": \"In Solidity 0.4.15, a struct variable declared without an explicit data location defaults to a storage pointer. The variable `newRecord` is uninitialized, so assigning to its fields writes to arbitrary storage slots (starting at slot 0), which can overwrite critical state such as the `unlocked` boolean and other storage, allowing an attacker to manipulate contract behavior.\"\n    }\n  ],\n  \"confidence\": 0.95\n}",
+   "prompt_tokens": 635,
+   "completion_tokens": 973,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:16:08+00:00"
+  },
+  "hybrid_r2": {
+   "raw": "",
+   "prompt_tokens": 1075,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:17:03+00:00"
+  },
+  "hybrid_r3": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"uninitialized_storage\",\n      \"location\": \"register function, declaration of `NameRecord newRecord`\",\n      \"severity\": \"high\",\n      \"explanation\": \"In Solidity 0.4.15 a struct variable without an explicit data location defaults to a storage pointer that is uninitialized. Assigning to `newRecord.name` and `newRecord.mappedAddress` writes to arbitrary storage slots starting at slot 0, overwriting the `unlocked` boolean. This allows an attacker to set `unlocked` to true and bypass the intended lock, compromising access control.\"\n    }\n  ],\n  \"confidence\": 0.95\n}",
+   "prompt_tokens": 1075,
+   "completion_tokens": 995,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:17:05+00:00"
+  },
+  "hybrid_r4": {
+   "raw": "",
+   "prompt_tokens": 648,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:17:08+00:00"
+  }
+ }
+}

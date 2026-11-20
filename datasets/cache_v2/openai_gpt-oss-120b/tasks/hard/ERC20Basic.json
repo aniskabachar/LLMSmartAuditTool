@@ -1,0 +1,71 @@
+{
+ "contract": "ERC20Basic",
+ "origin": "tasks",
+ "tier": "hard",
+ "part": "test",
+ "source_path": "tasks/hard/ERC20Basic.sol",
+ "backend": "groq",
+ "model": "openai/gpt-oss-120b",
+ "temperature": 0.1,
+ "max_tokens": 4000,
+ "reasoning_effort": "low",
+ "max_code_chars": 6000,
+ "prompt_hash": "a3669b2a2342a966",
+ "n_ta_batches": 6,
+ "created_at": "2026-11-18T08:55:10+00:00",
+ "calls": {
+  "ba_r1": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"other\",\n      \"location\": \"constructor EGC()\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The contract's constructor is named EGC instead of matching the contract name KAI, so it is never executed. As a result, the owner variable remains uninitialized (zero address) and totalSupply is never set, breaking ownership checks and token initialization.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "prompt_tokens": 1082,
+   "completion_tokens": 497,
+   "finish_reason": "stop",
+   "at": "2026-11-18T08:55:12+00:00"
+  },
+  "ta_r1_b0": {
+   "raw": "{\n  \"vulnerabilities\": [],\n  \"confidence\": 0.99\n}",
+   "prompt_tokens": 2250,
+   "completion_tokens": 203,
+   "finish_reason": "stop",
+   "at": "2026-11-18T08:56:13+00:00"
+  },
+  "ta_r1_b1": {
+   "raw": "{\n  \"vulnerabilities\": [],\n  \"confidence\": 0.99\n}",
+   "prompt_tokens": 2151,
+   "completion_tokens": 125,
+   "finish_reason": "stop",
+   "at": "2026-11-18T08:57:14+00:00"
+  },
+  "ta_r1_b2": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"function EGC()\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function EGC() is intended to be the contract constructor but uses outdated syntax (named after contract) while the contract name is KAI. In Solidity ^0.4.11 this does not act as a constructor and is a public function, allowing any user to call it and set owner, totalSupply and balances, leading to unauthorized initialization.\"\n    },\n    {\n      \"type\": \"access_control\",\n      \"location\": \"function EGC()\",\n      \"severity\": \"high\",\n      \"explanation\": \"The initialization function EGC() lacks any access restriction (e.g., onlyOwner), so it can be invoked by anyone to take ownership and allocate the total token supply, effectively enabling ownership hijacking.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1832,
+   "completion_tokens": 457,
+   "provider": "groq",
+   "at": "2026-11-18T09:44:42+00:00"
+  },
+  "ta_r1_b3": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"onlyOwner modifier and functions changeOwner, kill\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Critical functions are restricted to a single owner address, centralizing control and creating a single point of failure if the owner key is compromised.\"\n    }\n  ],\n  \"confidence\": 0.98\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1775,
+   "completion_tokens": 223,
+   "provider": "groq",
+   "at": "2026-11-18T09:45:43+00:00"
+  },
+  "ta_r1_b4": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"other\",\n      \"location\": \"approve function in StandardToken\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The contract allows approving an unlimited token amount (any uint value) to a spender, which can lead to token loss if the spender is malicious or the allowance is not cleared after use.\"\n    },\n    {\n      \"type\": \"other\",\n      \"location\": \"transfer function in BasicToken and transferFrom in StandardToken\",\n      \"severity\": \"low\",\n      \"explanation\": \"The functions do not validate that the destination address (_to) is not the zero address, allowing tokens to be irreversibly burned by transferring to address(0).\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1866,
+   "completion_tokens": 433,
+   "provider": "groq",
+   "at": "2026-11-18T09:46:45+00:00"
+  },
+  "ta_r1_b5": {
+   "raw": "{\n  \"vulnerabilities\": [],\n  \"confidence\": 0.99\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1265,
+   "completion_tokens": 89,
+   "provider": "groq",
+   "at": "2026-11-18T09:46:46+00:00"
+  }
+ }
+}

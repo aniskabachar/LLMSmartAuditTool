@@ -317,7 +317,9 @@ def audit_with_cot(code: str) -> tuple[Action, list[str], str | None]:
       Stage 2 — JSON extraction: force structured output from the reasoning
     Returns (Action, raw responses, error message or None).
     """
-    # Truncate intelligently: keep pragma + first N chars + last N chars
+    # Strip answer-revealing benchmark comments, then keep first N + last N chars
+    from verify.real_evaluator import strip_comments
+    code = strip_comments(code)
     if len(code) > 7000:
         code = code[:3500] + "\n\n// ...truncated...\n\n" + code[-3500:]
 

@@ -9,3 +9,6 @@ gymnasium
 tensorboard
 tqdm
 rich
+# rl_offline/ (offline training on cached real audits, baselines, plots)
+scikit-learn
+matplotlib

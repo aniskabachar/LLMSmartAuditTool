@@ -1,0 +1,129 @@
+{
+ "contract": "crypto_roulette",
+ "origin": "tasks",
+ "tier": "hard",
+ "part": "test",
+ "source_path": "tasks/hard/crypto_roulette.sol",
+ "backend": "groq",
+ "model": "openai/gpt-oss-120b",
+ "temperature": 0.1,
+ "max_tokens": 1000,
+ "max_code_chars": 6000,
+ "prompt_hash": "a3669b2a2342a966",
+ "n_ta_batches": 6,
+ "created_at": "2026-11-14T17:09:57+00:00",
+ "calls": {
+  "ba_r1": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"other\",\n      \"location\": \"play() function - uninitialized storage pointer\",\n      \"severity\": \"high\",\n      \"explanation\": \"The variable `Game game;` is a storage pointer that is never initialized. Assigning to `game.player` and `game.number` overwrites the contract's storage slots (slot 0 and 1), corrupting `secretNumber` and `lastPlayed`. An attacker can manipulate these values to force a win or bypass the kill timeout.\"\n    },\n    {\n      \"type\": \"bad_random",
+   "prompt_tokens": 709,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T17:10:00+00:00"
+  },
+  "ta_r1_b0": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"uninitialized_storage\",\n      \"location\": \"play() function \u2013 declaration of `Game game;` (uninitialized storage pointer)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The local variable `Game game;` defaults to a storage pointer without being initialized, allowing the function to write to arbitrary storage slots (e.g., overwriting ownerAddr) when fields are set and the struct is pushed, leading to ownership takeover.\"\n    },\n    {\n      \"type\": \"bad_randomness\",\n      \"location\": \"shuffle() internal function \u2013 `secretNumber = uint8(sha3(now, block.blockhash(block.number-1))) % 20 + 1;`\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The secret number is derived from `now` (block.timestamp) and the previous block hash, both of which can be influenced or predicted by miners, making the randomness predictable and allowing an attacker to guess the winning number.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "prompt_tokens": 1877,
+   "completion_tokens": 895,
+   "finish_reason": "stop",
+   "at": "2026-11-14T17:10:31+00:00"
+  },
+  "ta_r1_b1": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"uninitialized_storage\",\n      \"location\": \"play() function - declaration of `Game game`\",\n      \"severity\": \"high\",\n      \"explanation\": \"The local variable `Game game;` is declared without a data location, defaulting to an uninitialized storage pointer. Writing to its fields overwrites arbitrary storage slots, corrupting contract state (e.g., owner address, secret number) and enabling an attacker to manipulate the contract.\"\n    },\n    {\n      \"type\": \"other\",\n      \"location\": \"contract overall - missing withdrawal function\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The contract does not provide a dedicated withdrawal function for users to retrieve their deposited Ether if they lose. Funds can only be withdrawn by the winner via a direct transfer, leaving users without a secure, standard withdrawal mechanism.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "prompt_tokens": 1778,
+   "completion_tokens": 923,
+   "finish_reason": "stop",
+   "at": "2026-11-14T17:11:09+00:00"
+  },
+  "ta_r1_b2": {
+   "raw": "",
+   "prompt_tokens": 1459,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T17:11:44+00:00"
+  },
+  "ta_r1_b3": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"uninitialized_storage\",\n      \"location\": \"play() function - declaration of Game game\",\n      \"severity\": \"high\",\n      \"explanation\": \"The local variable `Game game;` is a storage pointer that is never initialized, causing writes to an arbitrary storage slot and potentially corrupting contract state.\"\n    },\n    {\n      \"type\": \"bad_randomness\",\n      \"location\": \"shuffle() internal function\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The secret number is derived from `now` and `block.blockhash`, both manipulable by miners, leading to predictable or manipulable randomness.\"\n   ",
+   "prompt_tokens": 1402,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T17:12:26+00:00"
+  },
+  "ta_r1_b4": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"uninitialized_storage\",\n      \"location\": \"function play - declaration of `Game game;` (uninitialized storage pointer)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The local variable `Game game;` defaults to a storage pointer referencing slot 0. Assigning to `game.player` and `game.number` overwrites critical contract state variables (e.g., `secretNumber`, `lastPlayed`), leading to state corruption and potential loss of contract functionality.\"\n    }\n  ],\n  \"confidence\": 0.99\n}",
+   "prompt_tokens": 1493,
+   "completion_tokens": 627,
+   "finish_reason": "stop",
+   "at": "2026-11-14T17:12:50+00:00"
+  },
+  "ta_r1_b5": {
+   "raw": "{\n  \"vulnerabilities\": [],\n  \"confidence\": 0.9\n}",
+   "prompt_tokens": 892,
+   "completion_tokens": 353,
+   "finish_reason": "stop",
+   "at": "2026-11-14T17:12:59+00:00"
+  },
+  "ba_r2": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"uninitialized_storage\",\n      \"location\": \"function play() line where Game game is declared\",\n      \"severity\": \"high\",\n      \"explanation\": \"The variable `Game game;` is declared without a data location, defaulting to a storage pointer that is uninitialized. Writing to its fields overwrites storage slot 0, corrupting contract state (e.g., secretNumber, ownerAddr) and allowing an attacker to manipulate contract behavior.\"\n    },\n    {\n      \"type\": \"bad_randomness\",\n      \"location\": \"function shuffle()\",\n      \"severity\": \"medium\",\n      \"explanation\": \"`shuffle()` derives `secretNumber` from `now` and `block.blockhash(block.number-1)`, both manipulable by miners and predictable by observers, making the \u201crandom\u201d number guessable and allowing the attacker to win the game.\"\n    },\n    {\n      \"type\": \"front_running\",\n      \"location\": \"function shuffle() and play()\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Because the secret number is based on publicly known block data, a miner or observer can compute the upcoming `secretNumber` before calling `play()`, enabling front\u2011running attacks to guarantee a win.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "prompt_tokens": 708,
+   "completion_tokens": 840,
+   "finish_reason": "stop",
+   "at": "2026-11-14T17:13:06+00:00"
+  },
+  "ba_r3": {
+   "raw": "",
+   "prompt_tokens": 971,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T17:14:10+00:00"
+  },
+  "ba_r4": {
+   "raw": "",
+   "prompt_tokens": 971,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T17:14:22+00:00"
+  },
+  "ta_r2": {
+   "raw": "",
+   "prompt_tokens": 1236,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T17:15:19+00:00"
+  },
+  "ta_r3": {
+   "raw": "",
+   "prompt_tokens": 1236,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T17:15:30+00:00"
+  },
+  "ta_r4": {
+   "raw": "",
+   "prompt_tokens": 1236,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T17:16:30+00:00"
+  },
+  "hybrid_r2": {
+   "raw": "",
+   "prompt_tokens": 1236,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T17:16:39+00:00"
+  },
+  "hybrid_r3": {
+   "raw": "",
+   "prompt_tokens": 1236,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T17:17:15+00:00"
+  },
+  "hybrid_r4": {
+   "raw": "",
+   "prompt_tokens": 1236,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T18:44:54+00:00"
+  }
+ }
+}

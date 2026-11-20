@@ -32,11 +32,11 @@ from verify.eval_common import ROOT, TIERS, SAMPLE_SEED, split_path, rel, run_me
 
 RANDOM_SEED   = 7777
 RANDOM_TRIALS = 100
-EVALUATORS    = ("basic", "cot", "ba", "ta", "hybrid", "rl")
+EVALUATORS    = ("basic", "cot", "ba", "ta", "hybrid", "rl", "rl2")
 DEFAULT_OUT   = {
     "basic": "verify/results/real_evaluation.json",
     "cot":   "verify/results/real_evaluation_cot.json",
-    **{m: f"verify/results/real_evaluation_{m}.json" for m in ("ba", "ta", "hybrid", "rl")},
+    **{m: f"verify/results/real_evaluation_{m}.json" for m in ("ba", "ta", "hybrid", "rl", "rl2")},
 }
 COST_KEYS     = ("avg_tokens", "avg_cost_usd", "avg_rounds", "avg_calls", "mode_counts")
 
@@ -206,6 +206,9 @@ def main():
     elif args.evaluator == "cot":
         from verify import improved_evaluator as ev
         evaluate, ev_config = ev.evaluate_improved, ev.config()
+    elif args.evaluator == "rl2":
+        from rl_offline import live as ev        # PPO+DQN trained offline on cached real audits
+        evaluate, ev_config = ev.evaluate, ev.config()
     else:
         import functools
         from verify import mode_evaluator as ev
@@ -222,6 +225,10 @@ def main():
     step5_report(rows, overall)
 
     out = ROOT / (args.out or DEFAULT_OUT[args.evaluator])
+    if out.exists() and not args.out:
+        # Never overwrite an earlier run: keep it and write this one next to it
+        from datetime import datetime
+        out = out.with_name(f"{out.stem}_{datetime.now().strftime('%Y%m%d-%H%M%S')}{out.suffix}")
     out.parent.mkdir(exist_ok=True, parents=True)
     out.write_text(json.dumps({
         "metadata": run_metadata(

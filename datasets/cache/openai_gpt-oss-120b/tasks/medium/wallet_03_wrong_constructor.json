@@ -1,0 +1,129 @@
+{
+ "contract": "wallet_03_wrong_constructor",
+ "origin": "tasks",
+ "tier": "medium",
+ "part": "train",
+ "source_path": "tasks/medium/wallet_03_wrong_constructor.sol",
+ "backend": "groq",
+ "model": "openai/gpt-oss-120b",
+ "temperature": 0.1,
+ "max_tokens": 1000,
+ "max_code_chars": 6000,
+ "prompt_hash": "a3669b2a2342a966",
+ "n_ta_batches": 6,
+ "created_at": "2026-11-18T06:04:30+00:00",
+ "calls": {
+  "ba_r1": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"initWallet function (public function used as constructor)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract's intended constructor is incorrectly defined as a public function `initWallet`. Anyone can call it at any time to set `creator` to their address, gaining owner privileges and allowing them to call `migrateTo` to transfer all contract funds.\"\n    }\n  ],\n  \"confidence\": 0.95\n}",
+   "prompt_tokens": 542,
+   "completion_tokens": 506,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:05:23+00:00"
+  },
+  "ta_r1_b0": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"function initWallet()\",\n      \"severity\": \"critical\",\n      \"explanation\": \"The contract's constructor is incorrectly named 'initWallet', allowing any user to call it and set themselves as 'creator'. This grants unauthorized access to privileged functions like migrateTo, enabling theft of all contract funds.\"\n    }\n  ],\n  \"confidence\": 0.99\n}",
+   "prompt_tokens": 1710,
+   "completion_tokens": 620,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:05:28+00:00"
+  },
+  "ta_r1_b1": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"function initWallet()\",\n      \"severity\": \"critical\",\n      \"explanation\": \"initWallet() can be called by anyone to set the creator address, allowing unauthorized users to become the contract owner and later call migrateTo() to transfer all funds.\"\n    }\n  ],\n  \"confidence\": 0.95\n}",
+   "prompt_tokens": 1611,
+   "completion_tokens": 525,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:05:31+00:00"
+  },
+  "ta_r1_b2": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"function initWallet() public (misdeclared constructor)\",\n      \"severity\": \"critical\",\n      \"explanation\": \"The function `initWallet` is intended to be the contract constructor but is declared as a regular public function. Anyone can call it at any time to set `creator` to themselves, gaining ownership rights and the ability to withdraw all funds via `withdraw` and `migrateTo`. This misdeclared constructor results in unrestricted ownership takeover.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "prompt_tokens": 1292,
+   "completion_tokens": 738,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:06:26+00:00"
+  },
+  "ta_r1_b3": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"function initWallet (lines 19-20)\",\n      \"severity\": \"high\",\n      \"explanation\": \"initWallet lacks any access restriction, allowing any address to set the 'creator' variable. This lets an attacker become the contract owner and later call migrateTo to transfer all funds, centralizing control in a single mutable address.\"\n    }\n  ],\n  \"confidence\": 0.99\n}",
+   "prompt_tokens": 1235,
+   "completion_tokens": 399,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:06:29+00:00"
+  },
+  "ta_r1_b4": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"initWallet function (lines 19-20)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function initWallet is publicly callable and sets the creator variable. Because the contract's constructor is missing, any user can call initWallet to become the creator and later withdraw all funds via migrateTo.\"\n    },\n    {\n      \"type\": \"fallback\",\n      \"location\": \"contract fallback function missing\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The contract does not define a payable fallback or receive function. Ether sent directly to the contract (e.g., via self\u2011destruct or plain transfer) will be rejected, potentially locking funds or causing transaction reverts.\"\n    },\n    {\n      \"type\": \"other\",\n      \"location\": \"migrateTo function address validation\",\n      \"severity\": \"low\",\n      \"explanation\": \"The migrateTo function does not validate that the destination address 'to' is non\u2011zero. Sending funds to address(0) would effectively burn them, representing a lack of input validation.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "prompt_tokens": 1326,
+   "completion_tokens": 818,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:06:34+00:00"
+  },
+  "ta_r1_b5": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"function migrateTo\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The function uses `to.transfer(this.balance)`. If `to` is a contract whose fallback function consumes more than 2300 gas or reverts, the transfer will fail and revert the whole transaction, preventing the creator from migrating funds and effectively causing a denial of service.\"\n    }\n  ],\n  \"confidence\": 0.9\n}",
+   "prompt_tokens": 725,
+   "completion_tokens": 567,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:06:35+00:00"
+  },
+  "ba_r2": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"initWallet function (public function used as constructor)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The intended constructor is incorrectly defined as a public function `initWallet`. Anyone can call it at any time to set `creator` to their address, gaining owner privileges and allowing them to call `migrateTo` to transfer all contract funds.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"withdraw function\",\n      \"severity\": \"medium\",\n      \"explanation\": \"`withdraw` uses `msg.sender.transfer(amount)`. If the recipient is a contract whose fallback/receive function requires more than 2300 gas or deliberately reverts, the transfer will fail and the whole transaction reverts, preventing the user (and potentially the contract) from withdrawing funds.\"\n    }\n  ],\n  \"confidence\": 0.9\n}",
+   "prompt_tokens": 631,
+   "completion_tokens": 988,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:07:28+00:00"
+  },
+  "ba_r3": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"initWallet function (public function used as constructor)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function `initWallet` is public and not restricted, allowing any address to call it at any time and set `creator` to themselves, thereby gaining owner privileges such as calling `migrateTo`.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"withdraw function\",\n      \"severity\": \"medium\",\n      \"explanation\": \"`withdraw",
+   "prompt_tokens": 719,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:07:32+00:00"
+  },
+  "ba_r4": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"function initWallet()\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function initWallet is public and can be called by anyone to set the 'creator' address, effectively allowing any attacker to become the contract owner and withdraw all funds via migrateTo.\"\n    }\n  ],\n  \"confidence\": 0.95\n}",
+   "prompt_tokens": 541,
+   "completion_tokens": 715,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:07:36+00:00"
+  },
+  "ta_r2": {
+   "raw": "",
+   "prompt_tokens": 1126,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:07:38+00:00"
+  },
+  "ta_r3": {
+   "raw": "",
+   "prompt_tokens": 1126,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:08:31+00:00"
+  },
+  "ta_r4": {
+   "raw": "",
+   "prompt_tokens": 1126,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:08:34+00:00"
+  },
+  "hybrid_r2": {
+   "raw": "",
+   "prompt_tokens": 1215,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:08:42+00:00"
+  },
+  "hybrid_r3": {
+   "raw": "",
+   "prompt_tokens": 1215,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:09:36+00:00"
+  },
+  "hybrid_r4": {
+   "raw": "",
+   "prompt_tokens": 1215,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:09:38+00:00"
+  }
+ }
+}

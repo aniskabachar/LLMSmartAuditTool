@@ -1,0 +1,129 @@
+{
+ "contract": "parity_wallet_bug_2",
+ "origin": "tasks",
+ "tier": "medium",
+ "part": "test",
+ "source_path": "tasks/medium/parity_wallet_bug_2.sol",
+ "backend": "groq",
+ "model": "openai/gpt-oss-120b",
+ "temperature": 0.1,
+ "max_tokens": 1000,
+ "max_code_chars": 6000,
+ "prompt_hash": "a3669b2a2342a966",
+ "n_ta_batches": 6,
+ "created_at": "2026-11-14T16:51:55+00:00",
+ "calls": {
+  "ba_r1": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"other\",\n      \"location\": \"function confirm(bytes32 _operation)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The condition `if (pending.ownersDone & ownerIndexBit == 0)` relies on operator precedence. `==` is evaluated before `&`, so the expression becomes `pending.ownersDone & (ownerIndexBit == 0)`, which is always `0` because `ownerIndexBit` is never `0`. Consequently the check that an owner has not already confirmed the operation always passes, allowing the same owner to confirm repeatedly and potentially bypass the required number of distinct confirmations, leading to unauthorized execution of transactions.\"\n    }\n  ],\n  \"confidence\": 0.78\n}",
+   "prompt_tokens": 1762,
+   "completion_tokens": 670,
+   "finish_reason": "stop",
+   "at": "2026-11-14T16:52:00+00:00"
+  },
+  "ta_r1_b0": {
+   "raw": "{\n  \"vulnerabilities\": [],\n  \"confidence\": 0.9\n}",
+   "prompt_tokens": 2930,
+   "completion_tokens": 902,
+   "finish_reason": "stop",
+   "at": "2026-11-14T16:52:02+00:00"
+  },
+  "ta_r1_b1": {
+   "raw": "{\n  \"vulnerabilities\": [],\n  \"confidence\": 0.95\n}",
+   "prompt_tokens": 2831,
+   "completion_tokens": 621,
+   "finish_reason": "stop",
+   "at": "2026-11-14T16:53:06+00:00"
+  },
+  "ta_r1_b2": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"other\",\n      \"location\": \"function confirm(bytes32 _h) returns (bool o_success)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The function declares a named return variable `o_success` but does not assign a value on all execution paths. If the function reaches the end without hitting a `return` statement, the variable remains uninitialized, causing it to default to `false`. This can lead to callers receiving an incorrect success indication, especially when the function is expected to return `true` after a successful confirmation.\"\n    }\n  ],\n  \"confidence\": 0.9\n}",
+   "prompt_tokens": 2512,
+   "completion_tokens": 737,
+   "finish_reason": "stop",
+   "at": "2026-11-14T16:53:09+00:00"
+  },
+  "ta_r1_b3": {
+   "raw": "{\n  \"vulnerabilities\": [],\n  \"confidence\": 0.95\n}",
+   "prompt_tokens": 2455,
+   "completion_tokens": 511,
+   "finish_reason": "stop",
+   "at": "2026-11-14T16:54:09+00:00"
+  },
+  "ta_r1_b4": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"other\",\n      \"location\": \"Contract has no payable fallback function; ether sent to the contract will be rejected\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The contract does not define a fallback (or receive) payable function, so any direct ether transfer to the contract will revert, potentially locking funds or causing loss of ether when users mistakenly send ether.\"\n    },\n    {\n      \"type\": \"other\",\n      \"location\": \"Owner management functions (addOwner, changeOwner, removeOwner) do not validate that address arguments are non\u2011zero\",\n      \"severity\": \"low\",\n      \"explanation\": \"The functions that add, change, or remove owners accept address parameters without checking for the zero address, allowing an attacker to set an owner to address(0) and break the multi\u2011sig logic or lock the contract.\"\n    }\n  ],\n  \"confidence\": 0.85\n}",
+   "prompt_tokens": 2546,
+   "completion_tokens": 721,
+   "finish_reason": "stop",
+   "at": "2026-11-14T16:54:11+00:00"
+  },
+  "ta_r1_b5": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"clearPending()\",\n      \"severity\": \"high\",\n      \"explanation\": \"clearPending iterates over the entire m_pendingIndex array without any bound on its length. As pending operations accumulate, the array can grow arbitrarily large, causing the loop to consume excessive gas and potentially run out of gas, preventing the function (and any caller that invokes it) from completing. This creates a denial\u2011of\u2011service vector where an attacker can fill the pending list and block contract functionality.\"\n    }\n  ],\n  \"confidence\": 0.85\n}",
+   "prompt_tokens": 1945,
+   "completion_tokens": 570,
+   "finish_reason": "stop",
+   "at": "2026-11-14T16:55:11+00:00"
+  },
+  "ba_r2": {
+   "raw": "",
+   "prompt_tokens": 1902,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T16:55:15+00:00"
+  },
+  "ba_r3": {
+   "raw": "",
+   "prompt_tokens": 1902,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T16:56:16+00:00"
+  },
+  "ba_r4": {
+   "raw": "",
+   "prompt_tokens": 1902,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T16:56:19+00:00"
+  },
+  "ta_r2": {
+   "raw": "",
+   "prompt_tokens": 2179,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T16:57:19+00:00"
+  },
+  "ta_r3": {
+   "raw": "",
+   "prompt_tokens": 2179,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T16:57:23+00:00"
+  },
+  "ta_r4": {
+   "raw": "",
+   "prompt_tokens": 2179,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T16:58:32+00:00"
+  },
+  "hybrid_r2": {
+   "raw": "",
+   "prompt_tokens": 2319,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T16:58:51+00:00"
+  },
+  "hybrid_r3": {
+   "raw": "",
+   "prompt_tokens": 2319,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T16:59:54+00:00"
+  },
+  "hybrid_r4": {
+   "raw": "",
+   "prompt_tokens": 2319,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T17:00:19+00:00"
+  }
+ }
+}

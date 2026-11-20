@@ -1,0 +1,129 @@
+{
+ "contract": "ERC20Basic",
+ "origin": "tasks",
+ "tier": "hard",
+ "part": "test",
+ "source_path": "tasks/hard/ERC20Basic.sol",
+ "backend": "groq",
+ "model": "openai/gpt-oss-120b",
+ "temperature": 0.1,
+ "max_tokens": 1000,
+ "max_code_chars": 6000,
+ "prompt_hash": "a3669b2a2342a966",
+ "n_ta_batches": 6,
+ "created_at": "2026-11-16T06:43:06+00:00",
+ "calls": {
+  "ba_r1": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"function EGC()\",\n      \"severity\": \"critical\",\n      \"explanation\": \"The function intended as constructor is named EGC instead of KAI, so it is a public regular function. Anyone can call it to set themselves as owner, mint totalSupply and assign the entire balance, effectively taking over the contract.\"\n    },\n    {\n      \"type\": \"selfdestruct\",\n      \"location\": \"function kill()\",\n      \"severity\": \"critical\",\n      \"explanation\": \"The kill function can be called by the contract owner. Because the owner can be set by any user via the malformed constructor (EGC), an attacker can first become owner and then self\u2011destruct the contract, draining all ether (none is held) and rendering the token unusable.\"\n    }\n  ],\n  \"confidence\": 0.95\n}",
+   "prompt_tokens": 1082,
+   "completion_tokens": 777,
+   "finish_reason": "stop",
+   "at": "2026-11-16T06:44:01+00:00"
+  },
+  "ta_r1_b0": {
+   "raw": "{\n  \"vulnerabilities\": [],\n  \"confidence\": 0.95\n}",
+   "prompt_tokens": 2250,
+   "completion_tokens": 542,
+   "finish_reason": "stop",
+   "at": "2026-11-16T06:44:08+00:00"
+  },
+  "ta_r1_b1": {
+   "raw": "{\n  \"vulnerabilities\": [],\n  \"confidence\": 0.9\n}",
+   "prompt_tokens": 2151,
+   "completion_tokens": 533,
+   "finish_reason": "stop",
+   "at": "2026-11-16T06:45:03+00:00"
+  },
+  "ta_r1_b2": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"function EGC (misdeclared constructor)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function EGC is intended to initialize the contract but is declared as a regular public function instead of using the `constructor` keyword. Because it is callable by anyone after deployment, an attacker can invoke EGC to",
+   "prompt_tokens": 1832,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-16T06:45:11+00:00"
+  },
+  "ta_r1_b3": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"changeOwner, kill (onlyOwner functions)\",\n      \"severity\": \"high\",\n      \"explanation\": \"Critical functions are restricted to a single owner address, centralizing control. If the owner key is compromised, an attacker can change ownership or destroy the contract, leading to total loss of control and funds.\"\n    }\n  ],\n  \"confidence\": 0.95\n}",
+   "prompt_tokens": 1775,
+   "completion_tokens": 470,
+   "finish_reason": "stop",
+   "at": "2026-11-16T06:46:04+00:00"
+  },
+  "ta_r1_b4": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"uninitialized_storage\",\n      \"location\": \"KAI constructor (function EGC())\",\n      \"severity\": \"high\",\n      \"explanation\": \"The constructor is named EGC instead of matching the contract name KAI, so it is never executed. Owner, totalSupply, and initial balances remain unset, leaving the contract without an owner and with",
+   "prompt_tokens": 1866,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-16T06:46:13+00:00"
+  },
+  "ta_r1_b5": {
+   "raw": "{\n  \"vulnerabilities\": [],\n  \"confidence\": 1.0\n}",
+   "prompt_tokens": 1265,
+   "completion_tokens": 210,
+   "finish_reason": "stop",
+   "at": "2026-11-16T06:46:14+00:00"
+  },
+  "ba_r2": {
+   "raw": "",
+   "prompt_tokens": 1255,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-16T06:47:07+00:00"
+  },
+  "ba_r3": {
+   "raw": "",
+   "prompt_tokens": 1255,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-16T06:47:17+00:00"
+  },
+  "ba_r4": {
+   "raw": "",
+   "prompt_tokens": 1255,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-16T06:47:20+00:00"
+  },
+  "ta_r2": {
+   "raw": "",
+   "prompt_tokens": 1159,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-16T06:48:10+00:00"
+  },
+  "ta_r3": {
+   "raw": "",
+   "prompt_tokens": 1159,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-16T06:48:20+00:00"
+  },
+  "ta_r4": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"function EGC (intended constructor)\",\n      \"severity\": \"critical\",\n      \"explanation\": \"The function meant to be the constructor is named `EGC` while the contract is `KAI`. In Solidity 0.4.11 constructors must match the contract name, so `EGC` is a regular public function. Anyone can call it to set themselves as `owner",
+   "prompt_tokens": 1159,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-16T06:48:22+00:00"
+  },
+  "hybrid_r2": {
+   "raw": "",
+   "prompt_tokens": 1332,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-16T06:49:13+00:00"
+  },
+  "hybrid_r3": {
+   "raw": "",
+   "prompt_tokens": 1332,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-16T06:49:24+00:00"
+  },
+  "hybrid_r4": {
+   "raw": "",
+   "prompt_tokens": 1332,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-16T06:49:27+00:00"
+  }
+ }
+}

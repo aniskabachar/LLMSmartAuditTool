@@ -1,0 +1,129 @@
+{
+ "contract": "parity_wallet_bug_2",
+ "origin": "tasks",
+ "tier": "hard",
+ "part": "train",
+ "source_path": "tasks/hard/parity_wallet_bug_2.sol",
+ "backend": "groq",
+ "model": "openai/gpt-oss-120b",
+ "temperature": 0.1,
+ "max_tokens": 1000,
+ "max_code_chars": 6000,
+ "prompt_hash": "a3669b2a2342a966",
+ "n_ta_batches": 6,
+ "created_at": "2026-11-18T06:06:35+00:00",
+ "calls": {
+  "ba_r1": {
+   "raw": "",
+   "prompt_tokens": 1983,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:07:32+00:00"
+  },
+  "ta_r1_b0": {
+   "raw": "",
+   "prompt_tokens": 3151,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:08:35+00:00"
+  },
+  "ta_r1_b1": {
+   "raw": "",
+   "prompt_tokens": 3052,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:09:38+00:00"
+  },
+  "ta_r1_b2": {
+   "raw": "",
+   "prompt_tokens": 2733,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:10:41+00:00"
+  },
+  "ta_r1_b3": {
+   "raw": "",
+   "prompt_tokens": 2676,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:11:44+00:00"
+  },
+  "ta_r1_b4": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"lack_of_input_validation\",\n      \"location\": \"changeOwner / addOwner / removeOwner functions\",\n      \"severity\": \"high\",\n      \"explanation\": \"These functions do not validate that the provided address arguments are non\u2011zero. An attacker could set an owner to address(0), breaking owner checks and potentially locking the wallet or allowing unauthorized actions.\"\n    },\n    {\n      \"type\": \"other\",\n      \"location\": \"confirm function external call\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract performs an external call (m_txs[_h].to.call.value(...)) before deleting the pending transaction state. This allows a malicious callee to re\u2011enter the contract and potentially execute the same transaction multiple times, leading to a re\u2011entrancy style vulnerability.\"\n    }\n  ],\n  \"confidence\": 0.9\n}",
+   "prompt_tokens": 2767,
+   "completion_tokens": 921,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:12:47+00:00"
+  },
+  "ta_r1_b5": {
+   "raw": "",
+   "prompt_tokens": 2166,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:12:50+00:00"
+  },
+  "ba_r2": {
+   "raw": "",
+   "prompt_tokens": 1982,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:13:50+00:00"
+  },
+  "ba_r3": {
+   "raw": "",
+   "prompt_tokens": 1982,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:13:53+00:00"
+  },
+  "ba_r4": {
+   "raw": "",
+   "prompt_tokens": 1982,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:14:53+00:00"
+  },
+  "ta_r2": {
+   "raw": "",
+   "prompt_tokens": 2153,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:14:56+00:00"
+  },
+  "ta_r3": {
+   "raw": "",
+   "prompt_tokens": 2153,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:15:56+00:00"
+  },
+  "ta_r4": {
+   "raw": "",
+   "prompt_tokens": 2153,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:16:00+00:00"
+  },
+  "hybrid_r2": {
+   "raw": "",
+   "prompt_tokens": 2153,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:16:59+00:00"
+  },
+  "hybrid_r3": {
+   "raw": "",
+   "prompt_tokens": 2153,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:17:02+00:00"
+  },
+  "hybrid_r4": {
+   "raw": "",
+   "prompt_tokens": 2153,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:18:02+00:00"
+  }
+ }
+}

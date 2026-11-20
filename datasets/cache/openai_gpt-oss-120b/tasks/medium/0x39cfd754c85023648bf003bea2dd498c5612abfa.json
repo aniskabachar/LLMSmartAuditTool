@@ -1,0 +1,129 @@
+{
+ "contract": "0x39cfd754c85023648bf003bea2dd498c5612abfa",
+ "origin": "tasks",
+ "tier": "medium",
+ "part": "test",
+ "source_path": "tasks/medium/0x39cfd754c85023648bf003bea2dd498c5612abfa.sol",
+ "backend": "groq",
+ "model": "openai/gpt-oss-120b",
+ "temperature": 0.1,
+ "max_tokens": 1000,
+ "max_code_chars": 6000,
+ "prompt_hash": "a3669b2a2342a966",
+ "n_ta_batches": 6,
+ "created_at": "2026-11-18T05:49:03+00:00",
+ "calls": {
+  "ba_r1": {
+   "raw": "",
+   "prompt_tokens": 757,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T05:49:05+00:00"
+  },
+  "ta_r1_b0": {
+   "raw": "",
+   "prompt_tokens": 1925,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T05:49:10+00:00"
+  },
+  "ta_r1_b1": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"WithdrawToken function (Token contract)\",\n      \"severity\": \"high\",\n      \"explanation\": \"Uses token.call(...) without checking the return value, allowing silent failure of the token transfer and possible loss of funds.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"WithdrawToHolder function (TokenBank contract)\",\n      \"severity\": \"high\",\n      \"explanation\": \"Calls _addr.call.value(_wei) without verifying success, which can lead to",
+   "prompt_tokens": 1826,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T05:50:09+00:00"
+  },
+  "ta_r1_b2": {
+   "raw": "",
+   "prompt_tokens": 1507,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T05:50:13+00:00"
+  },
+  "ta_r1_b3": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"Token.WithdrawToken function (line 44)\",\n      \"severity\": \"high\",\n      \"explanation\": \"Uses token.call(...) without checking the return value, allowing silent failure and potential reentrancy attacks.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"TokenBank.WithdrawToHolder function (line 97)\",\n      \"severity\": \"high\",\n      \"explanation\": \"Calls _addr.call.value(_wei) without verifying success, exposing the contract",
+   "prompt_tokens": 1450,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T05:51:12+00:00"
+  },
+  "ta_r1_b4": {
+   "raw": "",
+   "prompt_tokens": 1541,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T05:51:16+00:00"
+  },
+  "ta_r1_b5": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"Token.WithdrawToken\",\n      \"severity\": \"high\",\n      \"explanation\": \"Uses token.call(...) without checking the return value. If the external transfer fails, the function silently proceeds, potentially causing loss of tokens and allowing an attacker to block withdrawals (DoS).\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"TokenBank.WithdrawToHolder\",\n      \"severity\": \"high\",\n      \"explanation\": \"Calls _addr.call.value(_wei) without verifying success. A failing external call leaves the contract in an inconsistent state (balance already deducted) and can be used to prevent legitimate withdrawals, constituting a denial\u2011of\u2011service vector.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "prompt_tokens": 940,
+   "completion_tokens": 960,
+   "finish_reason": "stop",
+   "at": "2026-11-18T05:51:18+00:00"
+  },
+  "ba_r2": {
+   "raw": "",
+   "prompt_tokens": 756,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T05:52:15+00:00"
+  },
+  "ba_r3": {
+   "raw": "",
+   "prompt_tokens": 756,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T05:52:18+00:00"
+  },
+  "ba_r4": {
+   "raw": "",
+   "prompt_tokens": 756,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T05:52:21+00:00"
+  },
+  "ta_r2": {
+   "raw": "",
+   "prompt_tokens": 999,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T05:52:24+00:00"
+  },
+  "ta_r3": {
+   "raw": "",
+   "prompt_tokens": 999,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T05:53:20+00:00"
+  },
+  "ta_r4": {
+   "raw": "",
+   "prompt_tokens": 999,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T05:53:23+00:00"
+  },
+  "hybrid_r2": {
+   "raw": "",
+   "prompt_tokens": 999,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T05:54:49+00:00"
+  },
+  "hybrid_r3": {
+   "raw": "",
+   "prompt_tokens": 999,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T05:54:54+00:00"
+  },
+  "hybrid_r4": {
+   "raw": "",
+   "prompt_tokens": 999,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T05:54:57+00:00"
+  }
+ }
+}

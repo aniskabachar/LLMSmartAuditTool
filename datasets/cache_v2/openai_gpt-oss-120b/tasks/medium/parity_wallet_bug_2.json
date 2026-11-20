@@ -1,0 +1,130 @@
+{
+ "contract": "parity_wallet_bug_2",
+ "origin": "tasks",
+ "tier": "medium",
+ "part": "test",
+ "source_path": "tasks/medium/parity_wallet_bug_2.sol",
+ "backend": "groq",
+ "model": "openai/gpt-oss-120b",
+ "temperature": 0.1,
+ "max_tokens": 4000,
+ "reasoning_effort": "low",
+ "max_code_chars": 6000,
+ "prompt_hash": "a3669b2a2342a966",
+ "n_ta_batches": 6,
+ "created_at": "2026-11-18T08:30:08+00:00",
+ "calls": {
+  "ba_r1": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"function confirm(bytes32 _operation) - calculation of ownerIndexBit = 2**ownerIndex\",\n      \"severity\": \"high\",\n      \"explanation\": \"The exponentiation 2**ownerIndex can overflow the uint type for large ownerIndex values, causing incorrect bitmasking and allowing unauthorized confirmations.\"\n    },\n    {\n      \"type\": \"timestamp_dependence\",\n      \"location\": \"function underLimit(uint _value) - uses now / 1 days to compute today()\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The contract relies on block.timestamp for daily limit reset, which can be manipulated by miners within a reasonable range, potentially affecting the limit logic.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"function clearPending() - loops over m_pendingIndex array deleting entries\",\n      \"severity\": \"low\",\n      \"explanation\": \"If m_pendingIndex grows large, the loop may exceed block gas limits, preventing the function from completing and locking pending transactions.\"\n    },\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"function execute (not fully shown) likely performs external call after state changes\",\n      \"severity\": \"high\",\n      \"explanation\": \"If the execute function sends ether or calls external contracts after updating internal state without proper re\u2011entrancy guards, a malicious contract could re\u2011enter and manipulate pending operations.\"\n    }\n  ],\n  \"confidence\": 0.78\n}",
+   "prompt_tokens": 1762,
+   "completion_tokens": 513,
+   "finish_reason": "stop",
+   "at": "2026-11-18T08:30:15+00:00"
+  },
+  "ta_r1_b0": {
+   "raw": "{\n  \"vulnerabilities\": [],\n  \"confidence\": 0.97\n}",
+   "prompt_tokens": 2930,
+   "completion_tokens": 190,
+   "finish_reason": "stop",
+   "at": "2026-11-18T08:31:16+00:00"
+  },
+  "ta_r1_b1": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"other\",\n      \"location\": \"Contract overall - no withdrawal function\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The contract does not provide any function that allows users to withdraw deposited Ether or tokens. Absence of a secure withdrawal mechanism can lock user funds in the contract, leading to loss of assets.\"\n    }\n  ],\n  \"confidence\": 0.85\n}",
+   "prompt_tokens": 2831,
+   "completion_tokens": 256,
+   "finish_reason": "stop",
+   "at": "2026-11-18T08:32:18+00:00"
+  },
+  "ta_r1_b2": {
+   "raw": "{\n  \"vulnerabilities\": [],\n  \"confidence\": 0.75\n}",
+   "prompt_tokens": 2512,
+   "completion_tokens": 206,
+   "finish_reason": "stop",
+   "at": "2026-11-18T08:33:19+00:00"
+  },
+  "ta_r1_b3": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"other\",\n      \"location\": \"WalletLibrary contract does not implement functions declared in WalletAbi interface\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The WalletAbi interface declares several external functions (e.g., revoke, changeOwner, addOwner, removeOwner, changeRequirement, isOwner, hasConfirmed, setDailyLimit, execute, confirm) but WalletLibrary does not provide implementations for them, causing the contract to be non\u2011compliant with the interface and potentially leading to unexpected behavior when the interface is expected to be fulfilled.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "prompt_tokens": 2455,
+   "completion_tokens": 417,
+   "finish_reason": "stop",
+   "at": "2026-11-18T08:34:20+00:00"
+  },
+  "ta_r1_b4": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"fallback_function\",\n      \"location\": \"WalletLibrary contract (no payable fallback function defined)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The contract does not define a payable fallback or receive function. Any ether sent directly to the contract will be rejected and revert, potentially causing loss of funds or preventing intended ether deposits.\"\n    }\n  ],\n  \"confidence\": 0.85\n}",
+   "prompt_tokens": 2546,
+   "completion_tokens": 285,
+   "finish_reason": "stop",
+   "at": "2026-11-18T08:35:22+00:00"
+  },
+  "ta_r1_b5": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"clearPending() function\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function iterates over the entire m_pendingIndex array, which can grow without bound as pending operations accumulate. This unbounded loop can cause gas exhaustion, making the function uncallable and potentially locking the wallet.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "prompt_tokens": 1945,
+   "completion_tokens": 185,
+   "finish_reason": "stop",
+   "at": "2026-11-18T08:36:23+00:00"
+  },
+  "ba_r2": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"timestamp_dependence\",\n      \"location\": \"function underLimit(uint _value) - uses now / 1 days to compute today()\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The contract relies on block.timestamp for daily limit reset, which can be manipulated by miners within a reasonable range, potentially affecting the limit logic.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"function clearPending() - loops over m_pendingIndex array deleting entries\",\n      \"severity\": \"low\",\n      \"explanation\": \"If m_pendingIndex grows large, the loop may exceed block gas limits, preventing the function from completing and locking pending transactions.\"\n    },\n    {\n      \"type\": \"other\",\n      \"location\": \"function confirm(bytes32 _operation) - ownerIndexBit = 2**ownerIndex\",\n      \"severity\": \"low\",\n      \"explanation\": \"The bitmask calculation uses exponentiation which can be expensive and may overflow if ownerIndex exceeds 255, but the contract caps owners at 250, making overflow unlikely; however, the use of exponentiation for bitmasking is inefficient and could be replaced with bit shifting.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "prompt_tokens": 2067,
+   "completion_tokens": 417,
+   "finish_reason": "stop",
+   "at": "2026-11-18T08:37:24+00:00"
+  },
+  "ba_r3": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"timestamp_dependence\",\n      \"location\": \"function underLimit(uint _value) \u2013 uses now / 1 days to compute today()\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The contract relies on block.timestamp for daily limit reset. Miners can manipulate the timestamp within a reasonable range, allowing them to accelerate or delay the daily limit reset and potentially bypass the limit.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"function clearPending() \u2013 loops over m_pendingIndex array deleting entries\",\n      \"severity\": \"low\",\n      \"explanation\": \"If m_pendingIndex grows large, the for\u2011loop may exceed the block gas limit, causing the transaction to run out of gas and preventing pending operations from being cleared, effectively locking the wallet.\"\n    }\n  ],\n  \"confidence\": 0.85\n}",
+   "prompt_tokens": 2007,
+   "completion_tokens": 379,
+   "finish_reason": "stop",
+   "at": "2026-11-18T08:38:26+00:00"
+  },
+  "ba_r4": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"timestamp_dependence\",\n      \"location\": \"function underLimit(uint _value) \u2013 uses now / 1 days to compute today()\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The contract relies on block.timestamp for daily limit reset. Miners can manipulate the timestamp within a reasonable range, allowing them to accelerate or delay the daily limit reset and potentially bypass the limit.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"function clearPending() \u2013 loops over m_pendingIndex array deleting entries\",\n      \"severity\": \"low\",\n      \"explanation\": \"If m_pendingIndex grows large, the for\u2011loop may exceed the block gas limit, causing the transaction to run out of gas and preventing pending operations from being cleared, effectively locking the wallet.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "prompt_tokens": 1939,
+   "completion_tokens": 271,
+   "finish_reason": "stop",
+   "at": "2026-11-18T08:39:27+00:00"
+  },
+  "ta_r2": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"clearPending() function\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function iterates over the entire m_pendingIndex array, which can grow without bound as pending operations accumulate. This unbounded loop can cause gas exhaustion, making the function uncallable and potentially locking the wallet.\"\n    },\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"execute() (not shown but implied) / transaction execution path\",\n      \"severity\": \"high\",\n      \"explanation\": \"When executing a transaction, the contract forwards Ether and arbitrary calldata to an external address without first updating its internal state (e.g., clearing the pending operation). A malicious callee could re-enter the wallet and cause double-spending or bypass required confirmations.\"\n    },\n    {\n      \"type\": \"timestamp_dependence\",\n      \"location\": \"today() function\",\n      \"severity\": \"low\",\n      \"explanation\": \"The contract uses block.timestamp (now) to compute daily limits. Miners can manipulate timestamps within a reasonable range, potentially allowing them to extend the daily limit window.\"\n    },\n    {\n      \"type\": \"other\",\n      \"location\": \"WalletLibrary contract lacks a payable fallback/receive function\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The contract does not define a payable fallback or receive function, so any Ether sent directly to the contract address will be rejected, which may lead to unexpected transaction failures.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "prompt_tokens": 2104,
+   "completion_tokens": 569,
+   "finish_reason": "stop",
+   "at": "2026-11-18T08:40:29+00:00"
+  },
+  "ta_r3": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"clearPending() function\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function iterates over the entire m_pendingIndex array, which can grow without bound as pending operations accumulate. This unbounded loop can cause gas exhaustion, making the function uncallable and potentially locking the wallet.\"\n    },\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"execute() transaction execution path\",\n      \"severity\": \"high\",\n      \"explanation\": \"When executing a transaction, the contract forwards Ether and arbitrary calldata to an external address without first updating its internal state (e.g., clearing the pending operation). A malicious callee could re-enter the wallet and cause double\u2011spending or bypass required confirmations.\"\n    },\n    {\n      \"type\": \"timestamp_dependence\",\n      \"location\": \"today() function\",\n      \"severity\": \"low\",\n      \"explanation\": \"The contract uses block.timestamp (now) to compute daily limits. Miners can manipulate timestamps within a reasonable range, potentially allowing them to extend the daily limit window.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"confirm() function (ownerIndexBit calculation)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"ownerIndexBit is computed as 2**ownerIndex. If ownerIndex is large enough, the exponentiation can overflow the uint type, causing incorrect bitmasking and allowing an attacker to bypass confirmation checks.\"\n    }\n  ],\n  \"confidence\": 0.85\n}",
+   "prompt_tokens": 2069,
+   "completion_tokens": 519,
+   "finish_reason": "stop",
+   "at": "2026-11-18T08:41:30+00:00"
+  },
+  "ta_r4": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"clearPending() function\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function iterates over the entire m_pendingIndex array, which can grow without bound as pending operations accumulate. This unbounded loop can cause gas exhaustion, making the function uncallable and potentially locking the wallet.\"\n    },\n    {\n      \"type\": \"timestamp_dependence\",\n      \"location\": \"today() function\",\n      \"severity\": \"low\",\n      \"explanation\": \"The contract uses block.timestamp (now) to compute daily limits. Miners can manipulate timestamps within a reasonable range, potentially allowing them to extend the daily limit window.\"\n    }\n  ],\n  \"confidence\": 0.85\n}",
+   "prompt_tokens": 2074,
+   "completion_tokens": 438,
+   "finish_reason": "stop",
+   "at": "2026-11-18T08:42:32+00:00"
+  },
+  "hybrid_r2": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"timestamp_dependence\",\n      \"location\": \"function today() / underLimit()\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The contract uses block.timestamp (now) to compute the current day for the daily limit reset. Miners can manipulate timestamps within a reasonable range, potentially allowing them to extend or shorten the daily limit window.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"function clearPending()\",\n      \"severity\": \"low\",\n      \"explanation\": \"clearPending iterates over the entire m_pendingIndex array and deletes each entry. If the array grows large, the loop can exceed the block gas limit, making the function uncallable and preventing pending operations from being cleared.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "prompt_tokens": 2409,
+   "completion_tokens": 362,
+   "finish_reason": "stop",
+   "at": "2026-11-18T08:43:33+00:00"
+  },
+  "hybrid_r3": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"timestamp_dependence\",\n      \"location\": \"function today() / underLimit()\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The contract uses block.timestamp (now) to compute the current day for the daily limit reset. Miners can manipulate timestamps within a reasonable range, potentially allowing them to extend or shorten the daily limit window.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"function clearPending()\",\n      \"severity\": \"low\",\n      \"explanation\": \"clearPending iterates over the entire m_pendingIndex array and deletes each entry. If the array grows large, the loop can exceed the block gas limit, making the function uncallable and preventing pending operations from being cleared.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "prompt_tokens": 1920,
+   "completion_tokens": 286,
+   "finish_reason": "stop",
+   "at": "2026-11-18T08:44:35+00:00"
+  },
+  "hybrid_r4": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"timestamp_dependence\",\n      \"location\": \"function today() / underLimit()\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The contract uses block.timestamp (now) to compute the current day for the daily limit reset. Miners can manipulate timestamps within a reasonable range, potentially allowing them to extend or shorten the daily limit window.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"function clearPending()\",\n      \"severity\": \"low\",\n      \"explanation\": \"clearPending iterates over the entire m_pendingIndex array and deletes each entry. If the array grows large, the loop can exceed the block gas limit, making the function uncallable and preventing pending operations from being cleared.\"\n    }\n  ],\n  \"confidence\": 0.9\n}",
+   "prompt_tokens": 1920,
+   "completion_tokens": 239,
+   "finish_reason": "stop",
+   "at": "2026-11-18T08:45:36+00:00"
+  }
+ }
+}

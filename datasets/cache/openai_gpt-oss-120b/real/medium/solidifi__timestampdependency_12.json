@@ -1,0 +1,59 @@
+{
+ "contract": "solidifi__timestampdependency_12",
+ "origin": "real",
+ "tier": "medium",
+ "part": "train",
+ "source_path": "datasets/real/medium/solidifi__timestampdependency_12.sol",
+ "backend": "groq",
+ "model": "openai/gpt-oss-120b",
+ "temperature": 0.1,
+ "max_tokens": 1000,
+ "max_code_chars": 6000,
+ "prompt_hash": "a3669b2a2342a966",
+ "n_ta_batches": 6,
+ "created_at": "2026-11-18T06:34:00+00:00",
+ "calls": {
+  "ba_r1": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"timestamp_dependence\",\n      \"location\": \"bug_tmstmp40 (and similar play functions)\",\n      \"severity\": \"high\",\n      \"explanation\": \"Winner is determined by `now % 15 == 0`, which is fully controllable by miners within the allowed timestamp window. An attacker can manipulate the block timestamp to guarantee a win and drain the contract balance.\"\n    },\n    {\n      \"type\": \"other\",\n      \"location",
+   "prompt_tokens": 1787,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:34:07+00:00"
+  },
+  "ta_r1_b0": {
+   "raw": "",
+   "prompt_tokens": 2955,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:35:12+00:00"
+  },
+  "ta_r1_b1": {
+   "raw": "",
+   "prompt_tokens": 2856,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:36:14+00:00"
+  },
+  "ta_r1_b2": {
+   "raw": "",
+   "prompt_tokens": 2537,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:37:17+00:00"
+  },
+  "ta_r1_b3": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"getETH(uint256 _amount) and transferAnyERC20Token(address _tokenAddress, uint256 _value)\",\n      \"severity\": \"high\",\n      \"explanation\": \"Both functions are protected only by the onlyOwner modifier, giving a single address full control to withdraw ether or any ERC20 tokens from the contract, creating a centralization risk if the owner key is compromised.\"\n    },\n    {\n      \"type\": \"timestamp_dependence\",\n      \"location\": \"bug_tmstmp36(), bug_tmstmp40() (betting functions)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The winner is determined using `now % 15 == 0`, relying on block timestamps for randomness. Miners can influence timestamps, making the outcome predictable and allowing manipulation of the betting outcome.\"\n    }\n  ],\n  \"confidence\": 0.9\n}",
+   "prompt_tokens": 2480,
+   "completion_tokens": 784,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:37:19+00:00"
+  },
+  "ta_r1_b4": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"timestamp_dependence\",\n      \"location\": \"function bug_tmstmp40 (and similar betting functions)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The function uses `now` (block.timestamp) to enforce a per\u2011block restriction and to decide the winner (`if(now % 15 == 0)`). Block timestamps can be manipulated by miners within a reasonable range, making the restriction ineffective and allowing predictable or exploitable outcomes.\"\n    }\n  ],\n  \"confidence\": 0.85\n}",
+   "prompt_tokens": 2571,
+   "completion_tokens": 619,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:38:19+00:00"
+  }
+ }
+}

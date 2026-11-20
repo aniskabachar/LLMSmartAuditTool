@@ -1,0 +1,41 @@
+{
+ "contract": "ProofofExistence",
+ "origin": "tasks",
+ "tier": "easy",
+ "part": "test",
+ "source_path": "tasks/easy/ProofofExistence.sol",
+ "backend": "groq",
+ "model": "openai/gpt-oss-120b",
+ "temperature": 0.1,
+ "max_tokens": 4000,
+ "reasoning_effort": "low",
+ "max_code_chars": 6000,
+ "prompt_hash": "a3669b2a2342a966",
+ "n_ta_batches": 6,
+ "created_at": "2026-11-18T08:48:46+00:00",
+ "calls": {
+  "ba_r1": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"tx_origin\",\n      \"location\": \"bug_txorigin36, bug_txorigin40, transferTo_txorigin35, sendto_txorigin33, transferTo_txorigin27, transferTo_txorigin31, sendto_txorigin13\",\n      \"severity\": \"high\",\n      \"explanation\": \"Functions rely on tx.origin for authorization, which can be spoofed via malicious contracts calling the victim contract, allowing unauthorized access.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"transferTo_txorigin35, transferTo_txorigin27, transferTo_txorigin31\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Uses low\u2011level .call.value without checking the returned success flag, enabling silent failures and potential re\u2011entrancy attacks.\"\n    },\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"transferTo_txorigin35, transferTo_txorigin27, transferTo_txorigin31\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Calls an external address with .call.value before any state changes, allowing a malicious callee to re\u2011enter and exploit the contract if future state modifications are added.\"\n    },\n    {\n      \"type\": \"timestamp_dependence\",\n      \"location\": \"SetFileExistenceProof\",\n      \"severity\": \"low\",\n      \"explanation\": \"Uses now (block timestamp) to set the file existence date, which can be manipulated by miners within a reasonable range.\"\n    }\n  ],\n  \"confidence\": 0.93\n}",
+   "prompt_tokens": 1349,
+   "completion_tokens": 535,
+   "finish_reason": "stop",
+   "at": "2026-11-18T08:49:49+00:00"
+  },
+  "ta_r1_b0": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"tx_origin\",\n      \"location\": \"bug_txorigin36, bug_txorigin40, transferTo_txorigin35, transferTo_txorigin27, transferTo_txorigin31, sendto_txorigin33, sendto_txorigin13\",\n      \"severity\": \"high\",\n      \"explanation\": \"Functions use tx.origin for authorization, which can be spoofed via intermediate contracts, leading to unauthorized access.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"transferTo_txorigin35, transferTo_txorigin27, transferTo_txorigin31\",\n      \"severity\": \"high\",\n      \"explanation\": \"Calls use low\u2011level `call.value` without checking the returned success flag, allowing silent failures and potential loss of funds.\"\n    },\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"transferTo_txorigin35, transferTo_txorigin27, transferTo_txorigin31\",\n      \"severity\": \"high\",\n      \"explanation\": \"Ether is sent via low\u2011level `call` before any state changes, enabling a re\u2011entrancy attack where the callee can re\u2011enter the function and drain funds.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 2517,
+   "completion_tokens": 392,
+   "provider": "groq",
+   "at": "2026-11-18T09:44:42+00:00"
+  },
+  "ta_r1_b1": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"tx_origin\",\n      \"location\": \"bug_txorigin36, bug_txorigin40, transferTo_txorigin35, transferTo_txorigin27, transferTo_txorigin31, sendto_txorigin33, sendto_txorigin13\",\n      \"severity\": \"high\",\n      \"explanation\": \"Functions rely on tx.origin for authorization, which can be spoofed via malicious contracts, allowing unauthorized callers to execute privileged actions.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"transferTo_txorigin35, transferTo_txorigin27, transferTo_txorigin31\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Uses low\u2011level call.value without checking the return value, which can silently fail and may lead to loss of funds or unexpected behavior.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"GetFileExistenceProof, getQRCode, searchExistenceProoUsngQRf\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Functions iterate over a dynamic array with unbounded loops; an attacker can grow the array to cause out\u2011of\u2011gas errors, blocking legitimate calls.\"\n    }\n  ],\n  \"confidence\": 0.93\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 2418,
+   "completion_tokens": 522,
+   "provider": "groq",
+   "at": "2026-11-18T09:45:44+00:00"
+  }
+ }
+}

@@ -1,0 +1,129 @@
+{
+ "contract": "solidifi__overflowunderflow_44",
+ "origin": "real",
+ "tier": "easy",
+ "part": "train",
+ "source_path": "datasets/real/easy/solidifi__overflowunderflow_44.sol",
+ "backend": "groq",
+ "model": "openai/gpt-oss-120b",
+ "temperature": 0.1,
+ "max_tokens": 1000,
+ "max_code_chars": 6000,
+ "prompt_hash": "a3669b2a2342a966",
+ "n_ta_batches": 6,
+ "created_at": "2026-11-18T06:05:30+00:00",
+ "calls": {
+  "ba_r1": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"bug_intou40(uint8)\",\n      \"severity\": \"low\",\n      \"explanation\": \"Adds user\u2011provided uint8 to a uint8 variable without bounds check, causing overflow.\"\n    },\n    {\n      \"type\": \"integer_underflow\",\n      \"location\": \"bug_intou11()\",\n      \"severity\": \"low\",\n      \"explanation\": \"Subtracts 10 from a uint8 initialized to 0, causing underflow.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"increaseLockTime_intou33(uint)\",\n      \"severity\": \"low\",\n      \"explanation\": \"Adds arbitrary seconds to a uint lockTime mapping entry without overflow protection; overflow could wrap the lock time.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"increaseLockTime_intou1(uint)\",\n      \"severity\": \"low\",\n      \"explanation\": \"Same as above for a different lockTime mapping.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"bug_intou8(uint8)\",\n      \"severity\": \"low\",\n      \"explanation\": \"Adds user",
+   "prompt_tokens": 1796,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:05:34+00:00"
+  },
+  "ta_r1_b0": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"bug_intou40(uint8)\",\n      \"severity\": \"high\",\n      \"explanation\": \"Adds a uint8 input to a uint8 variable without overflow check, causing uint8 overflow when p_intou40 > 255.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"bug_intou11()\",\n      \"severity\": \"high\",\n      \"explanation\": \"Subtracts 10 from a uint8 variable initialized to 0, causing underflow (wrap\u2011around) to 246.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"transfer_intou10(address,uint)\",\n      \"severity\": \"high\",\n      \"explanation\": \"Uses `require(balances_intou10[msg.sender] - _value >= 0)` which performs subtraction before the check, allowing underflow and overflow of balances.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"transfer_intou22(address,uint)\",\n      \"severity\": \"high\",\n      \"explanation\": \"Same flawed subtraction check as above, enabling balance underflow/overflow.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"increaseLockTime_intou33(uint)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Adds seconds to lockTime without overflow protection; can wrap to a low value and bypass the time lock.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"increaseLockTime_intou1(uint)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Same unchecked addition",
+   "prompt_tokens": 2964,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:06:37+00:00"
+  },
+  "ta_r1_b1": {
+   "raw": "{\n  \"vulnerabilities\": [],\n  \"confidence\": 0.97\n}",
+   "prompt_tokens": 2865,
+   "completion_tokens": 543,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:07:39+00:00"
+  },
+  "ta_r1_b2": {
+   "raw": "{\n  \"vulnerabilities\": [],\n  \"confidence\": 0.9\n}",
+   "prompt_tokens": 2546,
+   "completion_tokens": 424,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:07:40+00:00"
+  },
+  "ta_r1_b3": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"bug_intou40(uint8)\",\n      \"severity\": \"high\",\n      \"explanation\": \"Adds an unchecked uint8 value which can overflow, causing incorrect state.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"bug_intou11()\",\n      \"severity\": \"high\",\n      \"explanation\": \"Subtracts from a uint8 without underflow check, leading to underflow.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"transfer_intou10(address,uint)\",\n      \"severity\": \"high\",\n      \"explanation\": \"Uses `balances_intou10[msg.sender] - _value >= 0` on unsigned integers; subtraction can underflow and allow unauthorized transfers.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"transfer_intou22(address,uint)\",\n      \"severity\": \"high\",\n      \"explanation\": \"Same unchecked subtraction issue as above, enabling balance underflow.\"\n    },\n    {\n     ",
+   "prompt_tokens": 2489,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:08:42+00:00"
+  },
+  "ta_r1_b4": {
+   "raw": "",
+   "prompt_tokens": 2580,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:09:45+00:00"
+  },
+  "ta_r1_b5": {
+   "raw": "{\n  \"vulnerabilities\": [],\n  \"confidence\": 0.9\n}",
+   "prompt_tokens": 1979,
+   "completion_tokens": 810,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:09:48+00:00"
+  },
+  "ba_r2": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"bug_intou40(uint8 p_intou40)\",\n      \"severity\": \"low\",\n      \"explanation\": \"Adds a user\u2011controlled uint8 to a zero\u2011initialized variable without overflow check, causing a uint8 overflow.\"\n    },\n    {\n      \"type\": \"integer_underflow\",\n      \"location\": \"bug_intou11()\",\n      \"severity\": \"low\",\n      \"explanation\": \"Subtracts 10 from a zero\u2011initialized uint8, causing an underflow.\"\n   ",
+   "prompt_tokens": 1836,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:10:48+00:00"
+  },
+  "ba_r3": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"bug_intou40(uint8)\",\n      \"severity\": \"low\",\n      \"explanation\": \"Adds an arbitrary uint8 input to a zero-initialized uint8 variable without bounds check, causing overflow when p_intou40 > 255.\"\n    },\n    {\n      \"type\": \"integer_under",
+   "prompt_tokens": 1836,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:10:51+00:00"
+  },
+  "ba_r4": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"bug_intou40(uint8)\",\n      \"severity\": \"high\",\n      \"explanation\": \"Adds an arbitrary uint8 to a zero-initialized variable without bounds check, causing a uint8 overflow.\"\n    },\n    {\n      \"type\": \"integer_underflow\",\n      \"location\": \"bug_intou11()\",\n      \"severity\": \"high\",\n      \"explanation\": \"Subtracts 10 from a zero-initialized uint8, causing an underflow.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"bug_intou8(uint8)\",\n      \"severity\": \"high\",\n",
+   "prompt_tokens": 1836,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:11:51+00:00"
+  },
+  "ta_r2": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"bug_intou40(uint8 p_intou40)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Adds user\u2011controlled uint8 to a zero variable without overflow check, causing wrap\u2011around when p_intou40 > 255.\"\n    },\n    {\n      \"type\": \"integer_underflow\",\n      \"location\": \"bug_intou11()\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Subtracts 10 from a zero uint8 variable, causing underflow to 246.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"bug_intou8(uint8 p_intou8)\",\n      \"severity\": \"medium\",\n     ",
+   "prompt_tokens": 1877,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:11:53+00:00"
+  },
+  "ta_r3": {
+   "raw": "",
+   "prompt_tokens": 1836,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:12:54+00:00"
+  },
+  "ta_r4": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"bug_intou40(uint8)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Adds an arbitrary uint8 value to a zero-initialized uint8 variable without overflow checks, causing a wrapping overflow.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"bug_intou11()\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Subtracts 10 from a zero-initialized uint8 variable, causing an underflow (wrap to 246).\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"bug_intou8(uint8)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Same unchecked addition overflow as bug_intou40.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"bug_intou39()\",\n      \"severity\": \"medium\",\n",
+   "prompt_tokens": 1836,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:12:56+00:00"
+  },
+  "hybrid_r2": {
+   "raw": "",
+   "prompt_tokens": 1877,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:13:57+00:00"
+  },
+  "hybrid_r3": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"bug_intou40(uint8)\",\n      \"severity\": \"low\",\n      \"explanation\": \"Adds an arbitrary uint8 value to a zero-initialized uint8 without overflow check, causing uint8 overflow when p_intou40 > 255.\"\n    },\n    {\n      \"type\": \"integer_underflow\",\n      \"",
+   "prompt_tokens": 1877,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:14:00+00:00"
+  },
+  "hybrid_r4": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"bug_intou40(uint8)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Adds an arbitrary uint8 to a zero variable without overflow checks; in Solidity 0.5.0 overflow wraps, allowing overflow.\"\n    },\n    {\n      \"type\": \"integer_underflow\",\n      \"location\": \"bug_intou11()\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Subtracts 10 from a zero uint8 variable, causing underflow and wrap-around.\"\n    },\n    {\n      \"type\": \"integer_underflow\",\n      \"location\": \"transfer_intou10(address,uint)\",\n      \"severity\": \"high\",\n      \"explanation\": \"Uses `require(balances[msg.sender] - _value >= 0)` which evaluates after unchecked subtraction; if _value > balance it underflows, passes the check, and then underflows again when updating balances.\"\n    },\n    {\n      \"type\": \"integer_underflow\",\n      \"location\": \"transfer_intou22(address,uint)\",\n      \"severity\": \"high\",\n      \"explanation\": \"Same unchecked subtraction logic as transfer_intou10, allowing balance underflow.\"\n    },\n    {\n      \"type\": \"integer_underflow\",\n      \"location\": \"transfer_undrflow2(address,uint)\",\n      \"severity\": \"high\",\n      \"explanation\": \"Same unchecked subtraction logic as other transfer functions, leading to balance underflow.\"\n    },\n    {\n      \"type\": \"integer_underflow\",\n      \"location\": \"transfer_intou30(address,uint)\",\n      \"severity\": \"high\",\n      \"explanation\": \"Same unchecked subtraction logic as other transfer functions, leading to balance underflow.\"\n    },\n    {\n      \"type\": \"integer_overflow",
+   "prompt_tokens": 1836,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:15:00+00:00"
+  }
+ }
+}

@@ -1,0 +1,129 @@
+{
+ "contract": "solidifi__tod_39",
+ "origin": "real",
+ "tier": "medium",
+ "part": "train",
+ "source_path": "datasets/real/medium/solidifi__tod_39.sol",
+ "backend": "groq",
+ "model": "openai/gpt-oss-120b",
+ "temperature": 0.1,
+ "max_tokens": 1000,
+ "max_code_chars": 6000,
+ "prompt_hash": "a3669b2a2342a966",
+ "n_ta_batches": 6,
+ "created_at": "2026-11-18T06:18:57+00:00",
+ "calls": {
+  "ba_r1": {
+   "raw": "",
+   "prompt_tokens": 1737,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:19:12+00:00"
+  },
+  "ta_r1_b0": {
+   "raw": "",
+   "prompt_tokens": 2905,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:20:00+00:00"
+  },
+  "ta_r1_b1": {
+   "raw": "",
+   "prompt_tokens": 2806,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:21:03+00:00"
+  },
+  "ta_r1_b2": {
+   "raw": "{\n  \"vulnerabilities\": [],\n  \"confidence\": 1.0\n}",
+   "prompt_tokens": 2487,
+   "completion_tokens": 642,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:22:05+00:00"
+  },
+  "ta_r1_b3": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"setReward_TOD14, setReward_TOD30, setReward_TOD8, setReward_TOD40, setReward_TOD36\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Each setReward_TOD* function restricts execution to a single address stored in owner_TOD*, creating a centralization risk. If the owner address is compromised or malicious, it can arbitrarily set reward amounts, leading to potential abuse of power.\"\n    }\n  ],\n  \"confidence\": 0.95\n}",
+   "prompt_tokens": 2430,
+   "completion_tokens": 797,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:22:07+00:00"
+  },
+  "ta_r1_b4": {
+   "raw": "",
+   "prompt_tokens": 2521,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:23:08+00:00"
+  },
+  "ta_r1_b5": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"setReward_TOD14 (and all other setReward_TOD* functions)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"These functions call owner_TODX.transfer which forwards only 2300 gas. If the owner address is a contract with a fallback/receive function that requires more gas, the transfer will revert, preventing the function from completing and effectively denying service to the owner.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"claimReward_TOD14 (and all other claimReward_TOD* functions)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The functions use msg.sender.transfer to send the reward. If the caller is a contract whose fallback consumes more than 2300 gas, the transfer will fail and the claim will revert, causing a denial of service for legitimate claimants.\"\n    },\n    {\n      \"type\": \"denial_of",
+   "prompt_tokens": 1920,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:23:12+00:00"
+  },
+  "ba_r2": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"transfer() and transferFrom() functions (addition to balanceOf)\",\n      \"severity\": \"high\",\n      \"ex",
+   "prompt_tokens": 1736,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:24:11+00:00"
+  },
+  "ba_r3": {
+   "raw": "",
+   "prompt_tokens": 1777,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:24:16+00:00"
+  },
+  "ba_r4": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"front_running\",\n      \"location\": \"approve function\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The ERC20",
+   "prompt_tokens": 1777,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:25:14+00:00"
+  },
+  "ta_r2": {
+   "raw": "",
+   "prompt_tokens": 1886,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:25:19+00:00"
+  },
+  "ta_r3": {
+   "raw": "",
+   "prompt_tokens": 1886,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:26:17+00:00"
+  },
+  "ta_r4": {
+   "raw": "",
+   "prompt_tokens": 1886,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:26:22+00:00"
+  },
+  "hybrid_r2": {
+   "raw": "",
+   "prompt_tokens": 1886,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:27:20+00:00"
+  },
+  "hybrid_r3": {
+   "raw": "",
+   "prompt_tokens": 1886,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:27:26+00:00"
+  },
+  "hybrid_r4": {
+   "raw": "",
+   "prompt_tokens": 1886,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:28:23+00:00"
+  }
+ }
+}

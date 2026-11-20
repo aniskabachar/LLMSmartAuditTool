@@ -1,0 +1,340 @@
+{
+  "generated_at": "2026-11-14T16:05:08+00:00",
+  "purpose": "training pool only; never evaluated as test data",
+  "sources": {
+    "smartbugs-curated": {
+      "url": "https://github.com/smartbugs/smartbugs-curated.git",
+      "commit": "230e649123477eff332742a59a1c7cc6dc286cab"
+    },
+    "SolidiFI-benchmark": {
+      "url": "https://github.com/smartbugs/SolidiFI-benchmark.git",
+      "commit": "4b0573e1b3f7031396de6f48f7f3e7380222ad3a"
+    }
+  },
+  "thresholds": {
+    "test_jaccard": 0.5,
+    "dup_jaccard": 0.9,
+    "max_code_chars": 6000
+  },
+  "kept": 285,
+  "kept_by_tier": {
+    "easy": 124,
+    "medium": 161
+  },
+  "kept_by_source": {
+    "sbc": 4,
+    "solidifi": 281
+  },
+  "kept_by_type": {
+    "front_running": 36,
+    "integer_overflow": 43,
+    "reentrancy": 44,
+    "timestamp_dependence": 39,
+    "tx_origin": 37,
+    "unchecked_low_level_calls": 86
+  },
+  "dropped_counts": {
+    "exact_dup_of_tasks": 92,
+    "near_test": 20,
+    "near_train_or_kept": 95,
+    "bug_truncated": 1
+  },
+  "dropped": {
+    "exact_dup_of_tasks": [
+      "sbc__FibonacciBalance",
+      "sbc__arbitrary_location_write_simple",
+      "sbc__incorrect_constructor_name1",
+      "sbc__incorrect_constructor_name2",
+      "sbc__incorrect_constructor_name3",
+      "sbc__mapping_write",
+      "sbc__multiowned_vulnerable",
+      "sbc__mycontract",
+      "sbc__parity_wallet_bug_1",
+      "sbc__parity_wallet_bug_2",
+      "sbc__phishable",
+      "sbc__proxy",
+      "sbc__rubixi",
+      "sbc__simple_suicide",
+      "sbc__unprotected0",
+      "sbc__wallet_02_refund_nosub",
+      "sbc__wallet_03_wrong_constructor",
+      "sbc__wallet_04_confused_sign",
+      "sbc__integer_overflow_1",
+      "sbc__integer_overflow_mapping_sym_1",
+      "sbc__overflow_simple_add",
+      "sbc__timelock",
+      "sbc__token",
+      "sbc__auction",
+      "sbc__dos_address",
+      "sbc__dos_number",
+      "sbc__dos_simple",
+      "sbc__list_dos",
+      "sbc__send_loop",
+      "sbc__ERC20",
+      "sbc__FindThisHash",
+      "sbc__eth_tx_order_dependence_minimal",
+      "sbc__odds_and_evens",
+      "sbc__crypto_roulette",
+      "sbc__name_registrar",
+      "sbc__open_address_lottery",
+      "sbc__0x01f8c4e3fa3edeb29e514cba738d87ce8c091d3f",
+      "sbc__0x23a91059fdc9579a9fbd0edc5f2ea0bfdb70deb4",
+      "sbc__0x4320e6f8c05b27ab4707cd1f6d5ce6f3e4b3a5a1",
+      "sbc__0x4e73b32ed6c35f570686b89848e5f39f20ecc106",
+      "sbc__0x561eac93c92360949ab1f1403323e6db345cbf31",
+      "sbc__0x627fa62ccbb1c1b04ffaecd72a53e37fc0e17839",
+      "sbc__0x7541b76cb60f4c60af330c208b0623b7f54bf615",
+      "sbc__0x7a8721a9d64c74da899424c1b52acbf58ddc9782",
+      "sbc__0x7b368c4e805c3870b6c49a3f1f49f69af8662cf3",
+      "sbc__0x8c7777c45481dba411450c228cb692ac3d550344",
+      "sbc__0x93c32845fae42c83a70e5f06214c8433665c2ab5",
+      "sbc__0x941d225236464a25eb18076df7da6a91d0f95e9e",
+      "sbc__0x96edbe868531bd23a6c05e9d0c424ea64fb1b78b",
+      "sbc__0xaae1f51cf3339f18b6d3f3bdc75a5facd744b0b8",
+      "sbc__0xb5e1b1ee15c6fa0e48fce100125569d430f1bd12",
+      "sbc__0xb93430ce38ac4a6bb47fb1fc085ea669353fd89e",
+      "sbc__0xbaf51e761510c1a11bf48dd87c0307ac8a8c8a4f",
+      "sbc__0xbe4041d55db380c5ae9d4a9b9703f1ed4e7e3888",
+      "sbc__0xcead721ef5b11f1a7b530171aab69b16c5e66b6e",
+      "sbc__0xf015c35649c82f5467c9c74b7f28ee67665aad68",
+      "sbc__spank_chain_payment",
+      "sbc__short_address_example",
+      "sbc__0x07f7ecb66d788ab01dc93b9b71a88401de7d0f2e",
+      "sbc__0x0cbe050f75bc8f8c2d6c0d249fea125fd6e1acc9",
+      "sbc__0x19cf8481ea15427a98ba3cdd6d9e14690011ab10",
+      "sbc__0x2972d548497286d18e92b5fa1f8f9139e5653fd2",
+      "sbc__0x39cfd754c85023648bf003bea2dd498c5612abfa",
+      "sbc__0x3a0e9acd953ffc0dd18d63603488846a6b8b2b01",
+      "sbc__0x4051334adc52057aca763453820cb0e045076ef3",
+      "sbc__0x4b71ad9c1a84b9b643aa54fdd66e2dec96e8b152",
+      "sbc__0x524960d55174d912768678d8c606b4d50b79d7b1",
+      "sbc__0x52d2e0f9b01101a59b38a3d05c80b7618aeed984",
+      "sbc__0x5aa88d2901c68fda244f1d0584400368d2c8e739",
+      "sbc__0x610495793564aed0f9c7fc48dc4c7c9151d34fd6",
+      "sbc__0x627fa62ccbb1c1b04ffaecd72a53e37fc0e17839",
+      "sbc__0x663e4229142a27f00bafb5d087e1e730648314c3",
+      "sbc__0x70f9eddb3931491aab1aeafbc1e7f1ca2a012db4",
+      "sbc__0x78c2a1e91b52bca4130b6ed9edd9fbcfd4671c37",
+      "sbc__0x7a4349a749e59a5736efb7826ee3496a2dfd5489",
+      "sbc__0x7d09edb07d23acb532a82be3da5c17d9d85806b4",
+      "sbc__0x806a6bd219f162442d992bdc4ee6eba1f2c5a707",
+      "sbc__0x84d9ec85c9c568eb332b7226a8f826d897e0a4a8",
+      "sbc__0x89c1b3807d4c67df034fffb62f3509561218d30b",
+      "sbc__0x8fd1e427396ddb511533cf9abdbebd0a7e08da35",
+      "sbc__0x958a8f594101d2c0485a52319f29b2647f2ebc06",
+      "sbc__0x9d06cbafa865037a01d322d3f4222fa3e04e5488",
+      "sbc__0xa1fceeff3acc57d257b917e30c4df661401d6431",
+      "sbc__0xa46edd6a9a93feec36576ee5048146870ea2c3ae",
+      "sbc__0xb0510d68f210b7db66e8c7c814f22680f2b8d1d6",
+      "sbc__0xb11b2fed6c9354f7aa2f658d3b4d7b31d8a13b77",
+      "sbc__0xb37f18af15bafb869a065b61fc83cfc44ed9cc27",
+      "sbc__0xb620cee6b52f96f3c6b253e6eea556aa2d214a99",
+      "sbc__0xb7c5c5aa4d42967efe906e1b66cb8df9cebf04f7",
+      "sbc__0xbaa3de6504690efb064420d89e871c27065cdd52",
+      "sbc__0xbebbfe5b549f5db6e6c78ca97cac19d1fb03082c",
+      "sbc__0xd2018bfaa266a9ec0a1a84b061640faa009def76"
+    ],
+    "near_test": [
+      {
+        "id": "sbc__integer_overflow_mul",
+        "similar_to": "easy/integer_overflow_mul.sol",
+        "jaccard": 1.0
+      },
+      {
+        "id": "sbc__reentrancy_dao",
+        "similar_to": "easy/reentrancy_dao.sol",
+        "jaccard": 1.0
+      },
+      {
+        "id": "sbc__0x3e013fc32a54c4c5b6991ba539dcd0ec4355c859",
+        "similar_to": "medium/0x5aa88d2901c68fda244f1d0584400368d2c8e739.sol",
+        "jaccard": 0.915
+      },
+      {
+        "id": "sbc__0x3f2ef511aa6e75231e4deafc7a3d2ecab3741de2",
+        "similar_to": "medium/0x70f9eddb3931491aab1aeafbc1e7f1ca2a012db4.sol",
+        "jaccard": 0.583
+      },
+      {
+        "id": "sbc__0x4a66ad0bca2d700f11e1f2fc2c106f7d3264504c",
+        "similar_to": "medium/0xa46edd6a9a93feec36576ee5048146870ea2c3ae.sol",
+        "jaccard": 0.593
+      },
+      {
+        "id": "sbc__0xd5967fed03e85d1cce44cab284695b41bc675b5c",
+        "similar_to": "medium/0x2972d548497286d18e92b5fa1f8f9139e5653fd2.sol",
+        "jaccard": 0.737
+      },
+      {
+        "id": "sbc__0xdb1c55f6926e7d847ddf8678905ad871a68199d2",
+        "similar_to": "medium/0x70f9eddb3931491aab1aeafbc1e7f1ca2a012db4.sol",
+        "jaccard": 0.722
+      },
+      {
+        "id": "sbc__0xe4eabdca81e31d9acbc4af76b30f532b6ed7f3bf",
+        "similar_to": "medium/0x70f9eddb3931491aab1aeafbc1e7f1ca2a012db4.sol",
+        "jaccard": 0.722
+      },
+      {
+        "id": "sbc__0xe82f0742a71a02b9e9ffc142fdcb6eb1ed06fb87",
+        "similar_to": "medium/0x70f9eddb3931491aab1aeafbc1e7f1ca2a012db4.sol",
+        "jaccard": 0.722
+      },
+      {
+        "id": "sbc__0xe894d54dca59cb53fe9cbc5155093605c7068220",
+        "similar_to": "medium/0xa46edd6a9a93feec36576ee5048146870ea2c3ae.sol",
+        "jaccard": 0.568
+      },
+      {
+        "id": "sbc__0xf70d589d76eebdd7c12cc5eec99f8f6fa4233b9e",
+        "similar_to": "medium/0x70f9eddb3931491aab1aeafbc1e7f1ca2a012db4.sol",
+        "jaccard": 0.722
+      },
+      {
+        "id": "sbc__king_of_the_ether_throne",
+        "similar_to": "medium/king_of_the_ether_throne.sol",
+        "jaccard": 1.0
+      },
+      {
+        "id": "solidifi__overflowunderflow_46",
+        "similar_to": "easy/ProofofExistence.sol",
+        "jaccard": 0.561
+      },
+      {
+        "id": "solidifi__txorigin_39",
+        "similar_to": "easy/TAMC.sol",
+        "jaccard": 0.966
+      },
+      {
+        "id": "solidifi__txorigin_46",
+        "similar_to": "easy/ProofofExistence.sol",
+        "jaccard": 0.943
+      },
+      {
+        "id": "solidifi__txorigin_49",
+        "similar_to": "easy/TAMC.sol",
+        "jaccard": 1.0
+      },
+      {
+        "id": "solidifi__tod_46",
+        "similar_to": "medium/ProofOfExistence.sol",
+        "jaccard": 0.968
+      },
+      {
+        "id": "solidifi__timestampdependency_46",
+        "similar_to": "easy/ProofofExistence.sol",
+        "jaccard": 0.583
+      },
+      {
+        "id": "solidifi__uncheckedsend_46",
+        "similar_to": "easy/ProofofExistence.sol",
+        "jaccard": 0.664
+      },
+      {
+        "id": "solidifi__unhandledexceptions_46",
+        "similar_to": "easy/ProofofExistence.sol",
+        "jaccard": 0.542
+      }
+    ],
+    "near_train_or_kept": [
+      "sbc__BECToken",
+      "sbc__integer_overflow_add",
+      "sbc__integer_overflow_benign_1",
+      "sbc__integer_overflow_minimal",
+      "sbc__integer_overflow_multitx_multifunc_feasible",
+      "sbc__integer_overflow_multitx_onefunc_feasible",
+      "sbc__overflow_single_tx",
+      "sbc__tokensalechallenge",
+      "sbc__blackjack",
+      "sbc__etheraffle",
+      "sbc__guess_the_random_number",
+      "sbc__lottery",
+      "sbc__lucky_doubler",
+      "sbc__old_blockhash",
+      "sbc__random_number_generator",
+      "sbc__smart_billions",
+      "sbc__etherbank",
+      "sbc__etherstore",
+      "sbc__modifier_reentrancy",
+      "sbc__reentrance",
+      "sbc__reentrancy_cross_function",
+      "sbc__reentrancy_insecure",
+      "sbc__reentrancy_simple",
+      "sbc__simple_dao",
+      "sbc__ether_lotto",
+      "sbc__governmental_survey",
+      "sbc__lottopollo",
+      "sbc__roulette",
+      "sbc__timed_crowdsale",
+      "sbc__0xf2570186500a46986f3139f65afedc2afe4f445d",
+      "sbc__etherpot_lotto",
+      "sbc__lotto",
+      "sbc__mishandled",
+      "sbc__unchecked_return_value",
+      "solidifi__reentrancy_8",
+      "solidifi__reentrancy_15",
+      "solidifi__reentrancy_36",
+      "solidifi__reentrancy_38",
+      "solidifi__reentrancy_41",
+      "solidifi__reentrancy_42",
+      "solidifi__reentrancy_49",
+      "solidifi__overflowunderflow_8",
+      "solidifi__overflowunderflow_15",
+      "solidifi__overflowunderflow_36",
+      "solidifi__overflowunderflow_38",
+      "solidifi__overflowunderflow_41",
+      "solidifi__overflowunderflow_42",
+      "solidifi__overflowunderflow_49",
+      "solidifi__txorigin_2",
+      "solidifi__txorigin_8",
+      "solidifi__txorigin_10",
+      "solidifi__txorigin_13",
+      "solidifi__txorigin_15",
+      "solidifi__txorigin_32",
+      "solidifi__txorigin_36",
+      "solidifi__txorigin_38",
+      "solidifi__txorigin_41",
+      "solidifi__txorigin_42",
+      "solidifi__tod_1",
+      "solidifi__tod_2",
+      "solidifi__tod_3",
+      "solidifi__tod_8",
+      "solidifi__tod_10",
+      "solidifi__tod_12",
+      "solidifi__tod_13",
+      "solidifi__tod_15",
+      "solidifi__tod_36",
+      "solidifi__tod_38",
+      "solidifi__tod_41",
+      "solidifi__tod_42",
+      "solidifi__tod_49",
+      "solidifi__timestampdependency_5",
+      "solidifi__timestampdependency_8",
+      "solidifi__timestampdependency_15",
+      "solidifi__timestampdependency_17",
+      "solidifi__timestampdependency_36",
+      "solidifi__timestampdependency_38",
+      "solidifi__timestampdependency_39",
+      "solidifi__timestampdependency_41",
+      "solidifi__timestampdependency_42",
+      "solidifi__timestampdependency_49",
+      "solidifi__uncheckedsend_8",
+      "solidifi__uncheckedsend_15",
+      "solidifi__uncheckedsend_36",
+      "solidifi__uncheckedsend_38",
+      "solidifi__uncheckedsend_41",
+      "solidifi__uncheckedsend_42",
+      "solidifi__uncheckedsend_49",
+      "solidifi__unhandledexceptions_8",
+      "solidifi__unhandledexceptions_15",
+      "solidifi__unhandledexceptions_36",
+      "solidifi__unhandledexceptions_38",
+      "solidifi__unhandledexceptions_41",
+      "solidifi__unhandledexceptions_42",
+      "solidifi__unhandledexceptions_49"
+    ],
+    "bug_truncated": [
+      "sbc__0xe09b1ab8111c2729a76f16de96bc86a7af837928"
+    ]
+  }
+}

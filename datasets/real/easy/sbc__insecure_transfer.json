@@ -1,0 +1,19 @@
+{
+  "contract": "insecure_transfer.sol",
+  "source": "SmartBugs Curated (extra, training pool)",
+  "category": "arithmetic",
+  "vulnerabilities": [
+    {
+      "type": "integer_overflow",
+      "severity": "medium",
+      "location": "lines 18",
+      "description": "Known integer_overflow vulnerability from SmartBugs Curated (dataset/arithmetic/insecure_transfer.sol)"
+    }
+  ],
+  "lines": [
+    18
+  ],
+  "origin": "smartbugs-curated/dataset/arithmetic/insecure_transfer.sol",
+  "max_jaccard_vs_test": 0.056,
+  "code_sha256": "9794e4aacf94c24c2f81f9001ea022cb4ef56e601173248113e202b622bfd3d9"
+}

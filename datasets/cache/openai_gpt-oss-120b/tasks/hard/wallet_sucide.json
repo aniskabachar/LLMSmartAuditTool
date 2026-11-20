@@ -1,0 +1,73 @@
+{
+ "contract": "wallet_sucide",
+ "origin": "tasks",
+ "tier": "hard",
+ "part": "train",
+ "source_path": "tasks/hard/wallet_sucide.sol",
+ "backend": "groq",
+ "model": "openai/gpt-oss-120b",
+ "temperature": 0.1,
+ "max_tokens": 1000,
+ "max_code_chars": 6000,
+ "prompt_hash": "a3669b2a2342a966",
+ "n_ta_batches": 6,
+ "created_at": "2026-11-18T06:33:39+00:00",
+ "calls": {
+  "ba_r1": {
+   "raw": "",
+   "prompt_tokens": 1973,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:33:42+00:00"
+  },
+  "ta_r1_b0": {
+   "raw": "",
+   "prompt_tokens": 3141,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:34:45+00:00"
+  },
+  "ta_r1_b1": {
+   "raw": "",
+   "prompt_tokens": 3042,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:35:47+00:00"
+  },
+  "ta_r1_b2": {
+   "raw": "",
+   "prompt_tokens": 2723,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:36:51+00:00"
+  },
+  "ta_r1_b3": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"Wallet constructor / delegatecall to constant _walletLibrary address\",\n      \"severity\": \"high\",\n      \"explanation\":",
+   "prompt_tokens": 2666,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:37:54+00:00"
+  },
+  "ta_r1_b4": {
+   "raw": "",
+   "prompt_tokens": 2757,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:38:57+00:00"
+  },
+  "ta_r1_b5": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"clearPending() function\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function iterates over the dynamic array m_pendingIndex without any upper bound. An attacker can create a large number of pending operations, causing the loop to exceed the block gas limit and making the function (and any function that calls it, e.g., addOwner, removeOwner, changeOwner) unusable.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"execute() / MultiTransact handling external call m_txs[_h].to.call.value(...)(...)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The contract uses a low\u2011level call without a gas stipend. A malicious destination contract can consume all supplied gas or revert, causing the whole transaction to throw and preventing the execution of the intended operation, which can be leveraged to block further transactions.\"\n    }\n  ],\n  \"confidence\": 0.9\n}",
+   "prompt_tokens": 2156,
+   "completion_tokens": 968,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:39:01+00:00"
+  },
+  "ba_r2": {
+   "raw": "",
+   "prompt_tokens": 1972,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:40:04+00:00"
+  }
+ }
+}

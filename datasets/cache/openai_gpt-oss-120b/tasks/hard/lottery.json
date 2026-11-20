@@ -1,0 +1,129 @@
+{
+ "contract": "lottery",
+ "origin": "tasks",
+ "tier": "hard",
+ "part": "train",
+ "source_path": "tasks/hard/lottery.sol",
+ "backend": "groq",
+ "model": "openai/gpt-oss-120b",
+ "temperature": 0.1,
+ "max_tokens": 1000,
+ "max_code_chars": 6000,
+ "prompt_hash": "a3669b2a2342a966",
+ "n_ta_batches": 6,
+ "created_at": "2026-11-18T06:28:23+00:00",
+ "calls": {
+  "ba_r1": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"front_running\",\n      \"location\": \"makeBet() \u2013 outcome based on block.number parity\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The win condition is deterministic (block number % 2). Miners can choose to include the transaction in an even or odd block, allowing them to manipulate the result in their favor.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"getBets() \u2013 unbounded for loop over bets array\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The function iterates over the entire bets array and emits an event for each entry. As the array grows, the gas required may exceed the block gas",
+   "prompt_tokens": 484,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:28:26+00:00"
+  },
+  "ta_r1_b0": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"bad_randomness\",\n      \"location\": \"makeBet()\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function determines the win condition using `block.number % 2`, which is fully predictable and can be manipulated by miners who choose the block number in which to include the transaction, allowing them to control the outcome of the lottery.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "prompt_tokens": 1652,
+   "completion_tokens": 998,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:28:29+00:00"
+  },
+  "ta_r1_b1": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"function getBets()\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function iterates over the dynamic `bets` array without any gas limit checks. If the array grows large, the loop can exceed the block gas limit, causing the transaction to fail and effectively DoS the organizer from retrieving bet data.\"\n    },\n    {\n      \"type\": \"other\",\n      \"location\": \"function makeBet() (no withdrawal path for losers)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"When a bet is lost, the contract retains the Ether and provides no function for users to withdraw their deposited funds, leaving participants unable to recover their money.\"\n    },\n    {\n      \"type\": \"bad_randomness\",\n      \"location\": \"function makeBet()\",\n      \"severity\": \"high\",\n      \"explanation\": \"The outcome is determined by `block.number % 2`, which is predictable and can be manipulated by miners, allowing them to influence the result and compromise the fairness of the lottery.\"\n    }\n  ],\n  \"confidence\": 0.96\n}",
+   "prompt_tokens": 1553,
+   "completion_tokens": 968,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:29:26+00:00"
+  },
+  "ta_r1_b2": {
+   "raw": "{\n  \"vulnerabilities\": [],\n  \"confidence\": 0.99\n}",
+   "prompt_tokens": 1234,
+   "completion_tokens": 609,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:29:31+00:00"
+  },
+  "ta_r1_b3": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"functions getBets() and destroy()\",\n      \"severity\": \"high\",\n      \"explanation\": \"Critical functions are restricted to a single address (organizer) without any multi\u2011signature or decentralized control, creating a centralization risk if that address is compromised.\"\n    }\n  ],\n  \"confidence\": 0.95\n}",
+   "prompt_tokens": 1177,
+   "completion_tokens": 828,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:29:33+00:00"
+  },
+  "ta_r1_b4": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"fallback_function\",\n      \"location\": \"fallback function ()\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The contract defines a fallback function that immediately throws, rejecting any ether sent directly to the contract. This can cause accidental loss of ether if a user sends funds without calling makeBet, as the transaction will revert and the ether will be locked or lost.\"\n    }\n  ],\n  \"confidence\": 0.9\n}",
+   "prompt_tokens": 1268,
+   "completion_tokens": 743,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:30:29+00:00"
+  },
+  "ta_r1_b5": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"function getBets() - unbounded loop over bets array\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The function iterates over the entire `bets` array without any limit. As the number of bets grows, the gas required to execute the loop can exceed the block gas limit, causing the function to become uncallable and effectively denying service to anyone trying to retrieve bet information.\"\n    }\n  ],\n  \"confidence\": 0.95\n}",
+   "prompt_tokens": 667,
+   "completion_tokens": 988,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:30:33+00:00"
+  },
+  "ba_r2": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"bad_randomness\",\n      \"location\": \"function makeBet()\",\n      \"severity\": \"high\",\n      \"explanation\": \"The win condition is determined by (block.number % 2) which is predictable and can be manipulated by miners, allowing them to influence the outcome of the lottery.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"function getBets()\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The function iterates over an unbounded array of bets and emits an event for each. As the number of bets grows, the gas required may exceed block limits, preventing",
+   "prompt_tokens": 483,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:30:36+00:00"
+  },
+  "ba_r3": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"bad_randomness\",\n      \"location\": \"makeBet() \u2013 win condition uses block.number % 2\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The outcome is derived from the current block number, which miners can influence, making the randomness predictable and manipulable.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"getBets() \u2013 loops over the entire bets array emitting an event for each entry\",\n      \"severity\": \"medium\",\n      \"explanation\": \"If the bets array grows large, the function may run out of gas, preventing the organizer from retrieving bet data and effectively locking the contract.\"\n    },\n    {\n      \"type\": \"other\",\n      \"location\": \"makeBet() \u2013 missing payable modifier\",\n      \"severity\": \"low\",\n      \"explanation\": \"The function accesses msg.value but is not marked payable, causing any transaction that sends ether to revert before the logic executes.\"\n    }\n  ],\n  \"confidence\": 0.9\n}",
+   "prompt_tokens": 524,
+   "completion_tokens": 799,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:30:38+00:00"
+  },
+  "ba_r4": {
+   "raw": "",
+   "prompt_tokens": 693,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:31:33+00:00"
+  },
+  "ta_r2": {
+   "raw": "",
+   "prompt_tokens": 1037,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:31:36+00:00"
+  },
+  "ta_r3": {
+   "raw": "",
+   "prompt_tokens": 1037,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:31:39+00:00"
+  },
+  "ta_r4": {
+   "raw": "",
+   "prompt_tokens": 1037,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:32:36+00:00"
+  },
+  "hybrid_r2": {
+   "raw": "",
+   "prompt_tokens": 1037,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:32:39+00:00"
+  },
+  "hybrid_r3": {
+   "raw": "",
+   "prompt_tokens": 1037,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:32:42+00:00"
+  },
+  "hybrid_r4": {
+   "raw": "",
+   "prompt_tokens": 1037,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:33:39+00:00"
+  }
+ }
+}

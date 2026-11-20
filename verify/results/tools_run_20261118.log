@@ -1,0 +1,46 @@
+69 contracts x 8 tools; lams [0.0, 0.01, 0.02, 0.05]; 5-fold x 3 repeats; 40,000 PPO steps per fold
+  lam=0     rep 0 fold 0: best-fixed=['maian', 'mythril', 'oyente', 'slither', 'smartcheck']  (119s)
+  lam=0     rep 0 fold 1: best-fixed=['maian', 'mythril', 'slither', 'smartcheck']  (226s)
+  lam=0     rep 0 fold 2: best-fixed=['maian', 'mythril', 'oyente', 'slither', 'smartcheck']  (340s)
+  lam=0     rep 0 fold 3: best-fixed=['maian', 'mythril', 'oyente', 'slither', 'smartcheck']  (451s)
+  lam=0     rep 0 fold 4: best-fixed=['maian', 'mythril', 'oyente', 'slither', 'smartcheck']  (555s)
+  lam=0.01  rep 0 fold 0: best-fixed=['mythril', 'oyente', 'slither', 'smartcheck']  (657s)
+  lam=0.01  rep 0 fold 1: best-fixed=['mythril', 'slither', 'smartcheck']  (765s)
+  lam=0.01  rep 0 fold 2: best-fixed=['mythril', 'oyente', 'slither', 'smartcheck']  (862s)
+  lam=0.01  rep 0 fold 3: best-fixed=['mythril', 'oyente', 'slither', 'smartcheck']  (968s)
+  lam=0.01  rep 0 fold 4: best-fixed=['mythril', 'oyente', 'slither', 'smartcheck']  (1091s)
+  lam=0.02  rep 0 fold 0: best-fixed=['mythril', 'oyente', 'slither', 'smartcheck']  (1357s)
+  lam=0.02  rep 0 fold 1: best-fixed=['mythril', 'slither', 'smartcheck']  (1600s)
+  lam=0.02  rep 0 fold 2: best-fixed=['mythril', 'oyente', 'slither', 'smartcheck']  (1908s)
+  lam=0.02  rep 0 fold 3: best-fixed=['mythril', 'oyente', 'slither', 'smartcheck']  (2144s)
+  lam=0.02  rep 0 fold 4: best-fixed=['mythril', 'oyente', 'slither', 'smartcheck']  (2328s)
+  lam=0.02  rep 1 fold 0: best-fixed=['mythril', 'oyente', 'slither', 'smartcheck']  (2504s)
+  lam=0.02  rep 1 fold 1: best-fixed=['mythril', 'oyente', 'slither', 'smartcheck']  (2692s)
+  lam=0.02  rep 1 fold 2: best-fixed=['mythril', 'slither', 'smartcheck']  (2894s)
+  lam=0.02  rep 1 fold 3: best-fixed=['mythril', 'slither', 'smartcheck']  (3069s)
+  lam=0.02  rep 1 fold 4: best-fixed=['mythril', 'oyente', 'slither', 'smartcheck']  (3260s)
+  lam=0.02  rep 2 fold 0: best-fixed=['mythril', 'oyente', 'slither', 'smartcheck']  (3449s)
+  lam=0.02  rep 2 fold 1: best-fixed=['mythril', 'slither', 'smartcheck']  (3631s)
+  lam=0.02  rep 2 fold 2: best-fixed=['mythril', 'oyente', 'slither', 'smartcheck']  (3851s)
+  lam=0.02  rep 2 fold 3: best-fixed=['mythril', 'slither', 'smartcheck']  (4041s)
+  lam=0.02  rep 2 fold 4: best-fixed=['mythril', 'oyente', 'slither', 'smartcheck']  (4285s)
+  lam=0.05  rep 0 fold 0: best-fixed=['mythril', 'slither', 'smartcheck']  (4411s)
+  lam=0.05  rep 0 fold 1: best-fixed=['mythril', 'slither', 'smartcheck']  (4540s)
+  lam=0.05  rep 0 fold 2: best-fixed=['mythril', 'slither', 'smartcheck']  (19909s)
+  lam=0.05  rep 0 fold 3: best-fixed=['mythril', 'slither', 'smartcheck']  (20008s)
+  lam=0.05  rep 0 fold 4: best-fixed=['mythril', 'slither', 'smartcheck']  (20123s)
+C:\Users\anisk\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\numpy\_core\fromnumeric.py:3824: RuntimeWarning: Mean of empty slice
+  return _methods._mean(a, axis=axis, dtype=dtype,
+C:\Users\anisk\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\numpy\_core\_methods.py:142: RuntimeWarning: invalid value encountered in scalar divide
+  ret = ret.dtype.type(ret / rcount)
+Traceback (most recent call last):
+  File "C:\Users\anisk\OneDrive\Desktop\LLMSmartAuditTool-Multiagent\rl_tools\run.py", line 335, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\anisk\OneDrive\Desktop\LLMSmartAuditTool-Multiagent\rl_tools\run.py", line 275, in main
+    results = {lam: summarise(per_lam[lam], lam) for lam in args.lams}
+                    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\anisk\OneDrive\Desktop\LLMSmartAuditTool-Multiagent\rl_tools\run.py", line 271, in summarise
+    "tool_use_pct": {t: round(100 * use[t] / n_runs, 1) for t in tools},
+                              ~~~~~~~~~~~~~^~~~~~~~
+ZeroDivisionError: division by zero

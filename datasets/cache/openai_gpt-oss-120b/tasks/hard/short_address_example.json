@@ -1,0 +1,129 @@
+{
+ "contract": "short_address_example",
+ "origin": "tasks",
+ "tier": "hard",
+ "part": "test",
+ "source_path": "tasks/hard/short_address_example.sol",
+ "backend": "groq",
+ "model": "openai/gpt-oss-120b",
+ "temperature": 0.1,
+ "max_tokens": 1000,
+ "max_code_chars": 6000,
+ "prompt_hash": "a3669b2a2342a966",
+ "n_ta_batches": 6,
+ "created_at": "2026-11-14T19:26:06+00:00",
+ "calls": {
+  "ba_r1": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"other\",\n      \"location\": \"function sendCoin(address to, uint amount)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function does not validate that the `to` address is exactly 20 bytes. In Solidity 0.4.x this allows a short address attack where a truncated address shifts the `amount` parameter, causing the transferred amount to be mis\u2011interpreted and enabling token theft.\"\n    },\n    {\n      \"type\": \"access_control\",\n      \"location\": \"constructor MyToken()\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The constructor assigns the initial token balance to `tx.origin` instead of `msg.sender`. Using `tx.origin` for authentication is unsafe because a malicious contract can forward a call, causing the tokens to be allocated to an unintended address.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"function sendCoin(address to, uint amount)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The addition `balances[to] += amount` is performed without overflow checks. With a sufficiently large `amount` an overflow could wrap the recipient's balance, allowing token creation.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "prompt_tokens": 491,
+   "completion_tokens": 841,
+   "finish_reason": "stop",
+   "at": "2026-11-14T19:26:08+00:00"
+  },
+  "ta_r1_b0": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"other\",\n      \"location\": \"sendCoin function\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function does not validate that the 'to' address is exactly 20 bytes. In Solidity ^0.4.11 this allows a short address attack where a truncated address shifts the calldata, causing the 'amount' parameter to be interpreted incorrectly and enabling token theft or loss.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "prompt_tokens": 1659,
+   "completion_tokens": 870,
+   "finish_reason": "stop",
+   "at": "2026-11-16T06:34:51+00:00"
+  },
+  "ta_r1_b1": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"tx_origin\",\n      \"location\": \"constructor MyToken()\",\n      \"severity\": \"high\",\n      \"explanation\": \"The constructor assigns the initial token balance using tx.origin, which can be spoofed by a malicious contract calling the token contract, allowing unauthorized allocation of tokens.\"\n    },\n    {\n      \"type\": \"other\",\n      \"location\": \"function sendCoin(address to, uint amount)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function does not validate the length of the address parameter, making it vulnerable to the ERC20 short address attack where a crafted transaction with a truncated address can cause mis\u2011aligned calldata and result in unintended token transfers.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "prompt_tokens": 1560,
+   "completion_tokens": 763,
+   "finish_reason": "stop",
+   "at": "2026-11-16T06:34:53+00:00"
+  },
+  "ta_r1_b2": {
+   "raw": "{\n  \"vulnerabilities\": [],\n  \"confidence\": 1.0\n}",
+   "prompt_tokens": 1241,
+   "completion_tokens": 572,
+   "finish_reason": "stop",
+   "at": "2026-11-16T06:34:55+00:00"
+  },
+  "ta_r1_b3": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"tx_origin\",\n      \"location\": \"constructor MyToken()\",\n      \"severity\": \"high\",\n      \"explanation\": \"Uses tx.origin to assign the initial token supply, which can be spoofed via a malicious contract and centralizes control in a single address.\"\n    },\n   ",
+   "prompt_tokens": 1184,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-16T06:35:41+00:00"
+  },
+  "ta_r1_b4": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"tx_origin\",\n      \"location\": \"constructor MyToken()\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The constructor assigns the initial token balance using tx.origin, which can be spoofed via a malicious contract calling the token contract, leading to unauthorized token allocation.\"\n    },\n    {\n      \"type\": \"other\",\n      \"location\": \"function sendCoin(address to, uint amount)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The function does not validate the length of the address parameter, making it vulnerable to the short address attack where malformed calldata can cause the 'to' address to be truncated and the amount to be misinterpreted, allowing token theft.\"\n    }\n  ],\n  \"confidence\": 0.99\n}",
+   "prompt_tokens": 1275,
+   "completion_tokens": 603,
+   "finish_reason": "stop",
+   "at": "2026-11-16T06:35:43+00:00"
+  },
+  "ta_r1_b5": {
+   "raw": "{\n  \"vulnerabilities\": [],\n  \"confidence\": 1.0\n}",
+   "prompt_tokens": 674,
+   "completion_tokens": 139,
+   "finish_reason": "stop",
+   "at": "2026-11-16T06:35:43+00:00"
+  },
+  "ba_r2": {
+   "raw": "",
+   "prompt_tokens": 738,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-16T06:35:46+00:00"
+  },
+  "ba_r3": {
+   "raw": "",
+   "prompt_tokens": 738,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-16T06:36:44+00:00"
+  },
+  "ba_r4": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"function sendCoin(address to, uint amount)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The addition `balances[to] += amount` is performed without overflow checks. An attacker can cause the recipient's balance to wrap around by sending a large `amount`, effectively creating tokens out of thin air.\"\n    }\n  ],\n  \"confidence\": 0.9\n}",
+   "prompt_tokens": 738,
+   "completion_tokens": 748,
+   "finish_reason": "stop",
+   "at": "2026-11-16T06:36:46+00:00"
+  },
+  "ta_r2": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"other\",\n      \"location\": \"sendCoin function\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function does not validate that the 'to' address is exactly 20 bytes. In Solidity ^0.4.11 a crafted transaction with a truncated address shifts calldata, causing the 'amount' parameter to be mis\u2011interpreted",
+   "prompt_tokens": 762,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-16T06:36:48+00:00"
+  },
+  "ta_r3": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"other\",\n      \"location\": \"function sendCoin(address to, uint amount)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The contract does not validate the length of the address parameter, allowing a short address attack where a truncated address shifts the amount parameter, causing incorrect token transfers.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"function sendCoin(address to, uint amount)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"balances[to] is increased with `+= amount` without overflow checks; a malicious user could cause an overflow if the recipient's balance is close to uint max.\"\n    },\n    {\n      \"type\": \"tx_origin\",\n      \"location\": \"constructor MyToken()\",\n      \"severity\": \"low\",\n      \"explanation\": \"The constructor assigns the initial token supply to `tx.origin` instead of `msg.sender`, which is discouraged and can lead to unexpected behavior when the contract is deployed via",
+   "prompt_tokens": 490,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-16T06:36:51+00:00"
+  },
+  "ta_r4": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"other\",\n      \"location\": \"sendCoin function\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The contract is vulnerable to the short address attack: when a caller supplies an address shorter than 20 bytes, the calldata is misaligned causing the amount parameter to be parsed incorrectly, allowing an attacker to transfer fewer tokens than intended.\"\n    }\n  ],\n  \"confidence\": 0.95\n}",
+   "prompt_tokens": 570,
+   "completion_tokens": 610,
+   "finish_reason": "stop",
+   "at": "2026-11-16T06:37:45+00:00"
+  },
+  "hybrid_r2": {
+   "raw": "",
+   "prompt_tokens": 928,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-16T06:37:48+00:00"
+  },
+  "hybrid_r3": {
+   "raw": "",
+   "prompt_tokens": 928,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-16T06:37:51+00:00"
+  },
+  "hybrid_r4": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"other\",\n      \"location\": \"function sendCoin(address to, uint amount)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function does not validate that the `to` address is exactly",
+   "prompt_tokens": 928,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-16T06:37:53+00:00"
+  }
+ }
+}

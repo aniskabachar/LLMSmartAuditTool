@@ -1,0 +1,50 @@
+{
+ "contract": "TAMC",
+ "origin": "tasks",
+ "tier": "easy",
+ "part": "test",
+ "source_path": "tasks/easy/TAMC.sol",
+ "backend": "groq",
+ "model": "openai/gpt-oss-120b",
+ "temperature": 0.1,
+ "max_tokens": 4000,
+ "reasoning_effort": "low",
+ "max_code_chars": 6000,
+ "prompt_hash": "a3669b2a2342a966",
+ "n_ta_batches": 6,
+ "created_at": "2026-11-18T09:44:21+00:00",
+ "calls": {
+  "ba_r1": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"tx_origin\",\n      \"location\": \"withdrawAll_txorigin14, withdrawAll_txorigin30, bug_txorigin8, bug_txorigin40, bug_txorigin36, transferTo_txorigin39, transferTo_txorigin31, transferTo_txorigin35, transferTo_txorigin27, sendto_txorigin13, sendto_txorigin33\",\n      \"severity\": \"high\",\n      \"explanation\": \"Authorization is based on tx.origin, which can be spoofed through malicious contracts, allowing unauthorized callers to execute privileged functions.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"transferTo_txorigin39, transferTo_txorigin31, transferTo_txorigin35, transferTo_txorigin27\",\n      \"severity\": \"high\",\n      \"explanation\": \"Uses low\u2011level call with .value without checking the return value, enabling silent failures and potential reentrancy attacks.\"\n    },\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"transferTo_txorigin39, transferTo_txorigin31, transferTo_txorigin35, transferTo_txorigin27\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Calls external address with .call.value forwarding all gas and no reentrancy guard, allowing the callee to re\u2011enter the contract and manipulate state.\"\n    }\n  ],\n  \"confidence\": 0.93\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 915,
+   "completion_tokens": 465,
+   "provider": "groq",
+   "at": "2026-11-18T09:44:38+00:00"
+  },
+  "ta_r1_b0": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"multiple functions using require(tx.origin == owner_txoriginX)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract relies on tx.origin for authorization, which can be spoofed through intermediate contracts, allowing unauthorized access.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"functions transferTo_txorigin39, transferTo_txorigin31, transferTo_txorigin35, transferTo_txorigin27\",\n      \"severity\": \"high\",\n      \"explanation\": \"These functions use low\u2011level call with .call.value(amount) without checking the returned success flag, enabling silent failures or re\u2011entrancy attacks.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"functions sendto_txorigin13, sendto_txorigin33\",\n      \"severity\": \"high\",\n      \"explanation\": \"Uses .transfer which reverts on failure, but combined with tx.origin checks it may still allow malicious re\u2011entrancy; however the primary issue is the unchecked low\u2011level call pattern elsewhere.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"function transfer (balance updates) and function transferFrom (balance and allowance updates)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Arithmetic operations on balances and allowances are performed without SafeMath or overflow checks, allowing potential overflow/underflow attacks.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 2083,
+   "completion_tokens": 464,
+   "provider": "groq",
+   "at": "2026-11-18T09:45:40+00:00"
+  },
+  "ta_r1_b1": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"tx_origin\",\n      \"location\": \"multiple functions (e.g., withdrawAll_txorigin14, bug_txorigin8, transferTo_txorigin39, etc.)\",\n      \"severity\": \"high\",\n      \"explanation\": \"Functions rely on tx.origin for authorization, which can be spoofed via malicious contracts, allowing unauthorized callers to execute privileged actions.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"functions using to.call.value(amount) without checking return value (e.g., transferTo_txorigin39, transferTo_txorigin31, transferTo_txorigin35, transferTo_txorigin27)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Low\u2011level call is used without verifying success, enabling silent failures and potential reentrancy attacks since no checks\u2011effects\u2011interactions pattern is applied.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1984,
+   "completion_tokens": 460,
+   "provider": "groq",
+   "at": "2026-11-18T09:46:42+00:00"
+  },
+  "ta_r1_b2": {
+   "raw": "{\n  \"vulnerabilities\": [],\n  \"confidence\": 0.99\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1665,
+   "completion_tokens": 119,
+   "provider": "groq",
+   "at": "2026-11-18T09:47:43+00:00"
+  }
+ }
+}

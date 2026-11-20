@@ -1,0 +1,129 @@
+{
+ "contract": "solidifi__timestampdependency_33",
+ "origin": "real",
+ "tier": "medium",
+ "part": "train",
+ "source_path": "datasets/real/medium/solidifi__timestampdependency_33.sol",
+ "backend": "groq",
+ "model": "openai/gpt-oss-120b",
+ "temperature": 0.1,
+ "max_tokens": 1000,
+ "max_code_chars": 6000,
+ "prompt_hash": "a3669b2a2342a966",
+ "n_ta_batches": 6,
+ "created_at": "2026-11-18T06:15:00+00:00",
+ "calls": {
+  "ba_r1": {
+   "raw": "",
+   "prompt_tokens": 1880,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:15:03+00:00"
+  },
+  "ta_r1_b0": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"king(uint256 stakeTokens) function \u2013 addition of stakeTokens to staker[msg.sender].tokens and calculation of stakeTokens + findOnePercent(stakeTokens) for token.transferFrom\",\n      \"severity\": \"high\",\n      \"explanation\": \"Plain arithmetic operators are used without SafeMath checks, allowing overflow of uint256 values which could let an attacker manipulate token amounts and bypass staking requirements.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"redeem() function \u2013 calculation staker[msg.sender].tokens * stakePercentage * 100 / 10000\",\n      \"severity\": \"high\",\n      \"explanation\": \"Multiplication of token amount and percentage is performed with raw operators, which can overflow and cause incorrect payout amounts.\"\n    },\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"redeem() function\",\n      \"severity\": \"critical\",\n      \"explanation\": \"External ERC20 token transfers (token.transfer and token",
+   "prompt_tokens": 3048,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:16:06+00:00"
+  },
+  "ta_r1_b1": {
+   "raw": "",
+   "prompt_tokens": 2949,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:17:08+00:00"
+  },
+  "ta_r1_b2": {
+   "raw": "",
+   "prompt_tokens": 2630,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:18:11+00:00"
+  },
+  "ta_r1_b3": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"functions with onlyOwner modifier (transferOwnership, changeStakeTokens, changeStakeTime, changeStakingPercentage, lockWithdrawals)\",\n      \"severity\": \"high\",\n      \"explanation\": \"All critical configuration functions are restricted to a single owner address via the onlyOwner modifier, creating centralization risk. If the owner address is compromised or acts maliciously, it can arbitrarily change staking parameters, lock withdrawals, or transfer ownership, potentially harming users.\"\n    }\n  ],\n  \"confidence\": 0.9\n}",
+   "prompt_tokens": 2573,
+   "completion_tokens": 689,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:19:13+00:00"
+  },
+  "ta_r1_b4": {
+   "raw": "",
+   "prompt_tokens": 2664,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:19:16+00:00"
+  },
+  "ta_r1_b5": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"redeem()\",\n      \"severity\": \"high\",\n      \"explanation\": \"redeem() makes external calls to token.transfer and token.transferFrom with require checks. If the ERC20 token contract is malicious or its transfer functions revert, the entire redeem transaction reverts, preventing any user from withdrawing their staked tokens and causing a denial of service.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"king(uint256 stakeTokens) (staking function)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The staking function calls token.transferFrom with a require. A malicious token contract could make transferFrom revert, blocking new stakes and effectively freezing the staking mechanism.\"\n    }\n  ],\n  \"confidence\": 0.9\n}",
+   "prompt_tokens": 2063,
+   "completion_tokens": 821,
+   "finish_reason": "stop",
+   "at": "2026-11-18T06:20:16+00:00"
+  },
+  "ba_r2": {
+   "raw": "",
+   "prompt_tokens": 1879,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:20:19+00:00"
+  },
+  "ba_r3": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"redeem() reward calculation\",\n      \"severity\": \"high\",\n      \"explanation\": \"The reward amount is calculated as staker[msg.sender].tokens * stakePercentage * 100 / 10000 without using SafeMath. The multiplication can overflow uint256 before the division, allowing an attacker to receive an incorrect (potentially huge) token amount.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"king() token stake accumulation\",\n      \"severity\": \"high\",\n      \"explanation\": \"staker[msg.sender].tokens is increased with `staker[msg.sender].tokens = staker[msg.sender].tokens + stakeTokens;` without SafeMath, so a large stake could overflow the stored balance.\"\n    },\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"redeem() external token calls\",\n      \"severity\": \"medium\",\n      \"explanation\": \"redeem() first calls `token.transfer` and `token.transferFrom` before updating the",
+   "prompt_tokens": 1879,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:21:19+00:00"
+  },
+  "ba_r4": {
+   "raw": "",
+   "prompt_tokens": 1960,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:21:22+00:00"
+  },
+  "ta_r2": {
+   "raw": "",
+   "prompt_tokens": 2225,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:22:23+00:00"
+  },
+  "ta_r3": {
+   "raw": "",
+   "prompt_tokens": 2225,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:22:25+00:00"
+  },
+  "ta_r4": {
+   "raw": "",
+   "prompt_tokens": 2225,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:23:26+00:00"
+  },
+  "hybrid_r2": {
+   "raw": "",
+   "prompt_tokens": 2225,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:23:28+00:00"
+  },
+  "hybrid_r3": {
+   "raw": "",
+   "prompt_tokens": 2225,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:24:28+00:00"
+  },
+  "hybrid_r4": {
+   "raw": "",
+   "prompt_tokens": 2225,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-18T06:24:31+00:00"
+  }
+ }
+}

@@ -1,0 +1,129 @@
+{
+ "contract": "ProofOfExistence",
+ "origin": "tasks",
+ "tier": "medium",
+ "part": "test",
+ "source_path": "tasks/medium/ProofOfExistence.sol",
+ "backend": "groq",
+ "model": "openai/gpt-oss-120b",
+ "temperature": 0.1,
+ "max_tokens": 1000,
+ "max_code_chars": 6000,
+ "prompt_hash": "a3669b2a2342a966",
+ "n_ta_batches": 6,
+ "created_at": "2026-11-14T19:13:21+00:00",
+ "calls": {
+  "ba_r1": {
+   "raw": "",
+   "prompt_tokens": 1691,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T19:13:25+00:00"
+  },
+  "ta_r1_b0": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"reentrancy\",\n      \"location\":",
+   "prompt_tokens": 2859,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T19:14:25+00:00"
+  },
+  "ta_r1_b1": {
+   "raw": "",
+   "prompt_tokens": 2760,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T19:15:28+00:00"
+  },
+  "ta_r1_b2": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"other\",\n      \"location\": \"GetFileExistenceProof\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function declares return values but only returns inside the loop when a match is found. If no matching proof exists, execution reaches the end of the function without a return, causing the default (zero) values to be returned unintentionally.\"\n    },\n    {\n      \"type\": \"other\",\n      \"location\": \"getQRCode\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function returns a bytes32 value only when a matching proof is found inside the loop. If no match is found, the function falls off the end without returning, leading to an implicit zero value.\"\n    },\n    {\n      \"type\": \"other\",\n      \"location\": \"searchExistenceProoUsngQRf\",\n      \"severity\": \"high\",\n      \"explanation\": \"Similar to the other view functions, it returns a tuple only inside the loop. When the QR code is not present, the function reaches the end without a return, yielding default zeroed values.\"\n    },\n    {\n      \"type\": \"other\",\n      \"location\": \"GetFileExistenceProof (redundant check)\",\n      \"severity\": \"low\",\n      \"explanation\": \"The code computes `bool res = ... && ...;` and then checks `if (res == true)`. Comparing",
+   "prompt_tokens": 2441,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T19:16:31+00:00"
+  },
+  "ta_r1_b3": {
+   "raw": "",
+   "prompt_tokens": 2384,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T19:16:34+00:00"
+  },
+  "ta_r1_b4": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"other\",\n      \"location\": \"contract level (no fallback function defined)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The contract does not implement a payable fallback or receive function. Any ether sent directly to the contract address will be rejected and could be unintentionally lost or cause the transaction to revert.\"\n    },\n    {\n      \"type\": \"other\",\n      \"location\": \"function SetFileExistenceProof\",\n      \"severity\": \"low\",\n      \"explanation\": \"The function accepts address parameters (dappBoxOrigin, _contractAddress) without validating that they are non\u2011zero. Supplying the zero address can corrupt the stored proof data and may be exploited to create misleading proofs.\"\n    }\n  ],\n  \"confidence\": 0.85\n}",
+   "prompt_tokens": 2475,
+   "completion_tokens": 931,
+   "finish_reason": "stop",
+   "at": "2026-11-14T19:17:36+00:00"
+  },
+  "ta_r1_b5": {
+   "raw": "",
+   "prompt_tokens": 1874,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T19:17:40+00:00"
+  },
+  "ba_r2": {
+   "raw": "",
+   "prompt_tokens": 1690,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T19:18:40+00:00"
+  },
+  "ba_r3": {
+   "raw": "",
+   "prompt_tokens": 1690,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T19:18:45+00:00"
+  },
+  "ba_r4": {
+   "raw": "",
+   "prompt_tokens": 1690,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T19:19:44+00:00"
+  },
+  "ta_r2": {
+   "raw": "",
+   "prompt_tokens": 1882,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T19:19:48+00:00"
+  },
+  "ta_r3": {
+   "raw": "",
+   "prompt_tokens": 1882,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T19:20:47+00:00"
+  },
+  "ta_r4": {
+   "raw": "",
+   "prompt_tokens": 1882,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T19:20:51+00:00"
+  },
+  "hybrid_r2": {
+   "raw": "",
+   "prompt_tokens": 1882,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T19:21:52+00:00"
+  },
+  "hybrid_r3": {
+   "raw": "",
+   "prompt_tokens": 1882,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T19:21:54+00:00"
+  },
+  "hybrid_r4": {
+   "raw": "",
+   "prompt_tokens": 1882,
+   "completion_tokens": 1000,
+   "finish_reason": "length",
+   "at": "2026-11-14T19:22:55+00:00"
+  }
+ }
+}

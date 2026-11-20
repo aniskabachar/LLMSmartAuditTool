@@ -1,0 +1,39 @@
+{
+  "contract": "Timestamp-Dependency/buggy_10.sol",
+  "source": "SolidiFI benchmark (training pool)",
+  "category": "solidifi_timestampdependency",
+  "vulnerabilities": [
+    {
+      "type": "timestamp_dependence",
+      "severity": "medium",
+      "location": "21 injected lines",
+      "description": "Timestamp-Dependency bugs injected by SolidiFI at known lines"
+    }
+  ],
+  "lines": [
+    8,
+    9,
+    10,
+    12,
+    13,
+    14,
+    15,
+    16,
+    23,
+    25,
+    27,
+    37,
+    38,
+    39,
+    40,
+    41,
+    50,
+    51,
+    52,
+    58,
+    63
+  ],
+  "origin": "SolidiFI-benchmark/buggy_contracts/Timestamp-Dependency/buggy_10.sol",
+  "max_jaccard_vs_test": 0.026,
+  "code_sha256": "ff27d2f4fc8ae4edf01a121956f94e9458b171c6df8cd9b62ad9b55c3e7e73c9"
+}

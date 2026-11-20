@@ -68,11 +68,43 @@ def config() -> dict:
         "model":       MODEL,
         "temperature": TEMPERATURE,
         "max_tokens":  MAX_TOKENS,
+        "comments_stripped": True,
         "prompt_hash": sha256(SYSTEM_PROMPT, USER_PREFIX),
     }
 
 
+def strip_comments(code: str) -> str:
+    """Remove // and /* */ comments from Solidity source (string literals kept intact).
+
+    Benchmark sources (SmartBugs curated and the tasks/ copies of it) carry comments
+    that give the answer away, e.g. "// <yes> <report> DENIAL_OF_SERVICE" above the
+    bug and a header with "@vulnerable_at_lines". Static tools never see comments
+    (they analyse compiled code), so code sent to the LLM is stripped too."""
+    out, i, n = [], 0, len(code)
+    while i < n:
+        c = code[i]
+        if c in "\"'":                                    # string literal
+            j = i + 1
+            while j < n and code[j] != c:
+                j += 2 if code[j] == "\\" else 1
+            out.append(code[i:j + 1])
+            i = j + 1
+        elif code.startswith("//", i):
+            j = code.find("\n", i)
+            i = n if j < 0 else j
+        elif code.startswith("/*", i):
+            j = code.find("*/", i + 2)
+            i = n if j < 0 else j + 2
+        else:
+            out.append(c)
+            i += 1
+    lines = [ln.rstrip() for ln in "".join(out).splitlines()]
+    return "\n".join(ln for ln in lines if ln.strip())
+
+
 def truncate(code: str, max_chars: int = 6000) -> str:
+    """Comment-stripped code, head + tail kept when longer than max_chars."""
+    code = strip_comments(code)
     if len(code) <= max_chars:
         return code
     half = max_chars // 2
