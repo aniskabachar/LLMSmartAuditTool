@@ -10,7 +10,7 @@ ground-truth category, so telling the model the tier would leak the label.
 """
 
 from __future__ import annotations
-import sys, os, json
+import sys, os, json, re
 sys.path.insert(0, str(__import__("pathlib").Path(__file__).parent.parent))
 
 from pathlib import Path
@@ -102,9 +102,26 @@ def strip_comments(code: str) -> str:
     return "\n".join(ln for ln in lines if ln.strip())
 
 
+_BUG_NAME = re.compile(r"\b([A-Za-z0-9_]*?)_(intou|re_ent|tmstmp|unchk|txorigin|tod)(\d+)\b")
+
+
+def neutralize_identifiers(code: str) -> str:
+    """Rename SolidiFI's bug-revealing identifiers (balances_re_ent8, bug_intou12, ...).
+
+    SolidiFI names every injected variable/function with a suffix naming the bug type
+    (_intou overflow/underflow, _re_ent reentrancy, _tmstmp timestamp, _unchk unchecked
+    send, _txorigin, _tod). balances_re_ent8 -> balances_x8, bug_intou12 -> f_x12,
+    bugv_tmstmp3 -> g_x3: names stay unique and the code is unchanged otherwise."""
+    def repl(m):
+        base = {"bug": "f", "bugv": "g"}.get(m.group(1), m.group(1))
+        return f"{base}_x{m.group(3)}"
+    return _BUG_NAME.sub(repl, code)
+
+
 def truncate(code: str, max_chars: int = 6000) -> str:
-    """Comment-stripped code, head + tail kept when longer than max_chars."""
-    code = strip_comments(code)
+    """Code as sent to the LLM: comments stripped, benchmark bug names neutralised,
+    head + tail kept when longer than max_chars."""
+    code = neutralize_identifiers(strip_comments(code))
     if len(code) <= max_chars:
         return code
     half = max_chars // 2

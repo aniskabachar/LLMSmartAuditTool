@@ -57,6 +57,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--workers", type=int, default=10)
     ap.add_argument("--variant", choices=list(VARIANTS), default="ba")
+    ap.add_argument("--data", default=str(DATA.relative_to(ROOT)),
+                    help="Dataset whose contracts get an LLM reply (replies already present are kept)")
     args = ap.parse_args()
     system = VARIANTS[args.variant][0]()
     ME.REASONING_EFFORT = VARIANTS[args.variant][1]          # read by rl_offline.llm at call time
@@ -65,7 +67,8 @@ def main():
     import hashlib
     sys_hash = hashlib.sha256(system.encode()).hexdigest()[:16]
 
-    contracts = json.loads(DATA.read_text(encoding="utf-8"))["contracts"]
+    data = Path(args.data) if Path(args.data).is_absolute() else ROOT / args.data
+    contracts = json.loads(data.read_text(encoding="utf-8"))["contracts"]
     done = json.loads(OUT.read_text(encoding="utf-8")) if OUT.exists() else {
         "model": ME.MODEL, "temperature": ME.TEMPERATURE, "max_tokens": ME.MAX_TOKENS,
         "reasoning_effort": ME.REASONING_EFFORT, "prompt_hash": ME.config("ba")["prompt_hash"],

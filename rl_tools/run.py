@@ -54,13 +54,14 @@ TYPES = ("access_control", "bad_randomness", "denial_of_service", "front_running
 
 # ── data ──────────────────────────────────────────────────────────────────────
 
-def load():
-    d = json.loads(DATA.read_text(encoding="utf-8"))
+def load(data: Path | None = None):
+    d = json.loads((data or DATA).read_text(encoding="utf-8"))
     tools = d["tools"]
     items = []
     for name, c in d["contracts"].items():
         items.append({
             "name": name, "labels": frozenset(c["labels"]), "tier": c["tier"],
+            "origin": c.get("origin", "smartbugs"),
             "x": np.asarray(c["features"], dtype=np.float32),
             "found": [frozenset(c["tools"][t]["found"]) for t in tools],
             "sec": np.asarray([c["tools"][t]["seconds"] for t in tools], dtype=np.float32),
@@ -195,11 +196,12 @@ def paired(a, b, n=10000, seed=0):
 
 
 def folds(items, k, seed):
-    """Stratified by label: each fold gets a share of every label."""
+    """Stratified by (source, label): each fold gets a share of every label of every source.
+    (With one source this is the same split as stratifying by label alone.)"""
     rng = random.Random(seed)
     by = {}
     for i, it in enumerate(items):
-        by.setdefault(min(it["labels"]), []).append(i)
+        by.setdefault((it["origin"], min(it["labels"])), []).append(i)
     out = [[] for _ in range(k)]
     j = 0
     for lab in sorted(by):
@@ -225,15 +227,18 @@ def main():
     ap.add_argument("--ent", type=float, default=0.02, help="PPO entropy coefficient")
     ap.add_argument("--features", choices=("compact", "all"), default="compact",
                     help="contract features PPO sees: 4 compact ones (default) or all 28")
+    ap.add_argument("--data", default=str(DATA.relative_to(ROOT)),
+                    help="Tool dataset (rl_tools/build_dataset.py output)")
     ap.add_argument("--quick", action="store_true")
     args = ap.parse_args()
+    data_path = Path(args.data) if Path(args.data).is_absolute() else ROOT / args.data
     if args.quick:
         args.lams, args.repeats, args.steps = [args.main_lam], 1, 3000
     if args.main_lam not in args.lams:
         args.lams.append(args.main_lam)
     torch.set_num_threads(1)
 
-    meta_d, tools, items = load()
+    meta_d, tools, items = load(data_path)
     fidx = COMPACT if args.features == "compact" else None
     T, N = len(tools), len(items)
     subsets = all_subsets(T)
@@ -320,7 +325,7 @@ def main():
                        "recall": float(np.mean(r)), "minutes": float(np.mean(mins)),
                        "n_tools": float(np.mean(ntools)),
                        "tool_use_pct": {t: round(100 * use[t] / n_runs, 1) for t in tools},
-                       "_u": u, "_s": s}
+                       "_u": u, "_s": s, "_m": mins}
         return rows
 
     results = {lam: summarise(per_lam[lam], lam) for lam in args.lams}
@@ -334,22 +339,32 @@ def main():
     out.mkdir(parents=True, exist_ok=True)
     clean = {str(l): {m: {k: v for k, v in r.items() if not k.startswith("_")} for m, r in rows.items()}
              for l, rows in results.items()}
+    origins = sorted({it["origin"] for it in items})
+    by_origin = {}                                   # main lam: per source, per method
+    for o in origins:
+        idx = [i for i, it in enumerate(items) if it["origin"] == o]
+        by_origin[o] = {"n": len(idx), "methods": {
+            m: {"score": boot_ci([r["_s"][i] for i in idx]), "utility": float(np.mean([r["_u"][i] for i in idx])),
+                "minutes": float(np.mean([r["_m"][i] for i in idx]))} for m, r in main_rows.items()},
+            "PPO_minus_best_fixed_score": paired([main_rows["PPO"]["_s"][i] for i in idx],
+                                                 [main_rows["best-fixed"]["_s"][i] for i in idx])}
     meta = {"generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-            "data": str(DATA.relative_to(ROOT)), "data_source": meta_d["source"],
+            "data": str(data_path.relative_to(ROOT)), "data_source": meta_d["source"],
+            "origins": {o: by_origin[o]["n"] for o in origins},
             "data_commit": meta_d["source_commit"], "n_contracts": N, "tools": tools,
             "labels": dict(Counter(min(it["labels"]) for it in items)),
             "lams": args.lams, "main_lam": args.main_lam, "folds": args.folds, "repeats": args.repeats,
             "ppo_steps": args.steps, "features": args.features, "ent_coef": args.ent, "minutes": round((time.time() - started) / 60, 1),
             "python": platform.python_version()}
-    (out / "results.json").write_text(json.dumps({"metadata": meta, "results": clean, "paired_vs_PPO": paired_rows},
-                                                 indent=2), encoding="utf-8")
+    (out / "results.json").write_text(json.dumps({"metadata": meta, "results": clean, "paired_vs_PPO": paired_rows,
+                                                  "by_origin": by_origin}, indent=2), encoding="utf-8")
 
     def fmt(ci):
         return f"{ci[0]:.3f} [{ci[1]:.3f}, {ci[2]:.3f}]"
     order = ["PPO", "PPO-static", "best-fixed", "greedy-cheapest", "all tools", "random"] + list(tools) + ["oracle"]
     md = ["# Tool-selection RL on real static-analysis results", "",
-          f"- Data: real outputs and run times of {T} tools on the {N} SmartBugs curated contracts "
-          f"({meta_d['source']}).",
+          f"- Data: `{data_path.relative_to(ROOT)}` — real outputs of {T} tools on {N} labelled contracts "
+          f"({', '.join(f'{o}: {by_origin[o]['n']}' for o in origins)}); sources: {meta_d['source']}.",
           f"- PPO sees {'4 compact contract features' if args.features == 'compact' else 'all 28 contract features'} "
           f"+ tools run so far + categories they found.",
           f"- Utility = score − λ·minutes of tool run time; λ = {args.main_lam} at the main setting.",
@@ -362,6 +377,18 @@ def main():
         r = main_rows[m]
         md.append(f"| {m} | {fmt(r['utility'])} | {fmt(r['score'])} | {r['precision']:.3f} | "
                   f"{r['recall']:.3f} | {r['minutes']:.2f} | {r['n_tools']:.2f} |")
+    if len(origins) > 1:
+        md += ["", f"## By source (λ = {args.main_lam}): score [95% CI], minutes", "",
+               "| Method | " + " | ".join(f"{o} (n={by_origin[o]['n']})" for o in origins) + " |",
+               "|---|" + "---|" * len(origins)]
+        for m in order:
+            md.append(f"| {m} | " + " | ".join(
+                f"{fmt(by_origin[o]['methods'][m]['score'])}, {by_origin[o]['methods'][m]['minutes']:.2f}"
+                for o in origins) + " |")
+        md += ["", "PPO minus best-fixed (score) per source: " + "; ".join(
+            f"{o} {by_origin[o]['PPO_minus_best_fixed_score'][0]:+.3f} "
+            f"[{by_origin[o]['PPO_minus_best_fixed_score'][1]:+.3f}, {by_origin[o]['PPO_minus_best_fixed_score'][2]:+.3f}]"
+            for o in origins)]
     md += ["", "## Paired bootstrap: PPO minus method", "",
            "| Method | ΔUtility [95% CI] | p | ΔScore [95% CI] | p |", "|---|---|---|---|---|"]
     for m in order[1:]:

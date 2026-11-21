@@ -318,8 +318,8 @@ def audit_with_cot(code: str) -> tuple[Action, list[str], str | None]:
     Returns (Action, raw responses, error message or None).
     """
     # Strip answer-revealing benchmark comments, then keep first N + last N chars
-    from verify.real_evaluator import strip_comments
-    code = strip_comments(code)
+    from verify.real_evaluator import strip_comments, neutralize_identifiers
+    code = neutralize_identifiers(strip_comments(code))
     if len(code) > 7000:
         code = code[:3500] + "\n\n// ...truncated...\n\n" + code[-3500:]
 
