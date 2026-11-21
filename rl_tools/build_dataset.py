@@ -30,7 +30,13 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
 OUT = ROOT / "datasets" / "tool_results" / "curated_tools.json"
-LLM = ROOT / "datasets" / "tool_results" / "llm_ba.json"   # rl_tools/collect_llm.py (optional)
+# LLM "tools" from rl_tools/collect_llm.py (each optional): tool name -> reply file.
+# llm_ba_high is left out: at reasoning_effort "high" 30 of 69 replies ran out of tokens.
+LLM_TOOLS = {
+    "llm_ba":      ROOT / "datasets" / "tool_results" / "llm_ba.json",       # BA prompt, effort low
+    "llm_ba_med":  ROOT / "datasets" / "tool_results" / "llm_ba_med.json",   # BA prompt, effort medium
+    "llm_ba_dasp": ROOT / "datasets" / "tool_results" / "llm_ba_dasp.json",  # BA + DASP definitions
+}
 
 # LLM finding type (auditor/models.py) -> category set used here (SmartBugs/DASP
 # puts tx.origin and unprotected selfdestruct under access control, uninitialised
@@ -73,10 +79,11 @@ def main():
         for c in list_contracts(part):
             sources.setdefault(c.stem, c)
 
-    llm = json.loads(LLM.read_text(encoding="utf-8"))["contracts"] if LLM.exists() else None
-    if llm is not None:
+    llms = {t: json.loads(p.read_text(encoding="utf-8"))["contracts"]
+            for t, p in LLM_TOOLS.items() if p.exists()}
+    if llms:
         from rl_offline.common import _parse
-    tool_names = list(TOOLS) + (["llm_ba"] if llm is not None else [])
+    tool_names = list(TOOLS) + list(llms)
     contracts = {}
     for name in sorted(results):
         if name not in truth or name not in sources:
@@ -97,15 +104,15 @@ def main():
             if dur is None:
                 raise SystemExit(f"{name}/{t}: missing run time")
             tools[t] = {"found": found, "seconds": round(dur, 2)}
-        if llm is not None:
+        for t, llm in llms.items():
             if name not in llm:
-                raise SystemExit(f"{name}: no LLM reply in {LLM}; rerun rl_tools/collect_llm.py")
+                raise SystemExit(f"{name}: no reply in {LLM_TOOLS[t]}; rerun rl_tools/collect_llm.py")
             call = llm[name]
             action, _ = _parse(call["raw"])
             types = {v.type.value for v in action.vulnerabilities} if action else set()
-            tools["llm_ba"] = {"found": sorted({LLM_TYPE_MAP.get(t, t) for t in types}),
-                               "seconds": float(call["seconds"]),
-                               "tokens": int(call["prompt_tokens"] + call["completion_tokens"])}
+            tools[t] = {"found": sorted({LLM_TYPE_MAP.get(x, x) for x in types}),
+                        "seconds": float(call["seconds"]),
+                        "tokens": int(call["prompt_tokens"] + call["completion_tokens"])}
         c = sources[name]
         contracts[name] = {"labels": labels, "source": c.sol.relative_to(ROOT).as_posix(),
                            "split_in_repo": c.part, "tier": c.tier,
@@ -121,8 +128,9 @@ def main():
         "source": "https://github.com/smartbugs/smartbugs-results (Apache-2.0), Durieux et al. ICSE 2020",
         "source_commit": commit,
         "built_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "tools": tool_names, "llm": (None if llm is None else
-                 "openai/gpt-oss-120b via Groq, BA round 1, v2 settings (rl_tools/collect_llm.py)"),
+        "tools": tool_names, "llm": ({t: str(LLM_TOOLS[t].relative_to(ROOT)) for t in llms} or None),
+        "llm_note": "openai/gpt-oss-120b via Groq, one BA call per contract, comments stripped "
+                    "(rl_tools/collect_llm.py --variant ...)",
         "category_map": CATEGORY_MAP,
         "n_contracts": len(contracts), "contracts": contracts}, indent=1), encoding="utf-8")
     print(f"Wrote {len(contracts)} contracts x {len(tool_names)} tools -> {OUT.relative_to(ROOT)}")

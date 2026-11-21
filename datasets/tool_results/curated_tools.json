@@ -1,7 +1,7 @@
 {
  "source": "https://github.com/smartbugs/smartbugs-results (Apache-2.0), Durieux et al. ICSE 2020",
  "source_commit": "f7b1728df62740f7e043f8f86645ad3a60465793",
- "built_at": "2026-11-20T06:02:29+00:00",
+ "built_at": "2026-11-20T12:34:52+00:00",
  "tools": [
   "honeybadger",
   "maian",
@@ -11,9 +11,16 @@
   "securify",
   "slither",
   "smartcheck",
-  "llm_ba"
+  "llm_ba",
+  "llm_ba_med",
+  "llm_ba_dasp"
  ],
- "llm": "openai/gpt-oss-120b via Groq, BA round 1, v2 settings (rl_tools/collect_llm.py)",
+ "llm": {
+  "llm_ba": "datasets\\tool_results\\llm_ba.json",
+  "llm_ba_med": "datasets\\tool_results\\llm_ba_med.json",
+  "llm_ba_dasp": "datasets\\tool_results\\llm_ba_dasp.json"
+ },
+ "llm_note": "openai/gpt-oss-120b via Groq, one BA call per contract, comments stripped (rl_tools/collect_llm.py --variant ...)",
  "category_map": {
   "access_control": "access_control",
   "arithmetic": "integer_overflow",
@@ -114,6 +121,19 @@
      ],
      "seconds": 8.34,
      "tokens": 1753
+    },
+    "llm_ba_med": {
+     "found": [
+      "front_running",
+      "integer_overflow"
+     ],
+     "seconds": 8.67,
+     "tokens": 2200
+    },
+    "llm_ba_dasp": {
+     "found": [],
+     "seconds": 7.28,
+     "tokens": 1815
     }
    }
   },
@@ -193,6 +213,20 @@
      ],
      "seconds": 7.98,
      "tokens": 1161
+    },
+    "llm_ba_med": {
+     "found": [
+      "front_running"
+     ],
+     "seconds": 7.99,
+     "tokens": 1331
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "front_running"
+     ],
+     "seconds": 7.49,
+     "tokens": 1442
     }
    }
   },
@@ -281,6 +315,24 @@
      ],
      "seconds": 8.84,
      "tokens": 1213
+    },
+    "llm_ba_med": {
+     "found": [
+      "access_control",
+      "denial_of_service",
+      "integer_overflow"
+     ],
+     "seconds": 9.28,
+     "tokens": 1650
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "access_control",
+      "denial_of_service",
+      "integer_overflow"
+     ],
+     "seconds": 8.04,
+     "tokens": 1377
     }
    }
   },
@@ -365,6 +417,16 @@
      "found": [],
      "seconds": 8.03,
      "tokens": 456
+    },
+    "llm_ba_med": {
+     "found": [],
+     "seconds": 7.77,
+     "tokens": 662
+    },
+    "llm_ba_dasp": {
+     "found": [],
+     "seconds": 7.18,
+     "tokens": 797
     }
    }
   },
@@ -451,6 +513,20 @@
      ],
      "seconds": 8.05,
      "tokens": 753
+    },
+    "llm_ba_med": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 7.99,
+     "tokens": 868
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 7.46,
+     "tokens": 988
     }
    }
   },
@@ -537,6 +613,20 @@
      ],
      "seconds": 8.44,
      "tokens": 799
+    },
+    "llm_ba_med": {
+     "found": [
+      "denial_of_service"
+     ],
+     "seconds": 8.24,
+     "tokens": 963
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "denial_of_service"
+     ],
+     "seconds": 7.6,
+     "tokens": 976
     }
    }
   },
@@ -627,6 +717,24 @@
      ],
      "seconds": 8.84,
      "tokens": 2579
+    },
+    "llm_ba_med": {
+     "found": [
+      "bad_randomness",
+      "integer_overflow",
+      "timestamp_dependence"
+     ],
+     "seconds": 10.33,
+     "tokens": 3427
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "bad_randomness",
+      "reentrancy",
+      "timestamp_dependence"
+     ],
+     "seconds": 8.3,
+     "tokens": 2826
     }
    }
   },
@@ -722,6 +830,21 @@
      ],
      "seconds": 8.7,
      "tokens": 877
+    },
+    "llm_ba_med": {
+     "found": [
+      "timestamp_dependence"
+     ],
+     "seconds": 8.33,
+     "tokens": 1240
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "bad_randomness",
+      "timestamp_dependence"
+     ],
+     "seconds": 7.78,
+     "tokens": 1250
     }
    }
   },
@@ -803,6 +926,18 @@
      "found": [],
      "seconds": 7.97,
      "tokens": 680
+    },
+    "llm_ba_med": {
+     "found": [],
+     "seconds": 7.76,
+     "tokens": 805
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "denial_of_service"
+     ],
+     "seconds": 7.49,
+     "tokens": 1042
     }
    }
   },
@@ -890,6 +1025,23 @@
      ],
      "seconds": 8.67,
      "tokens": 961
+    },
+    "llm_ba_med": {
+     "found": [
+      "access_control",
+      "denial_of_service",
+      "integer_overflow"
+     ],
+     "seconds": 8.28,
+     "tokens": 1161
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "denial_of_service",
+      "integer_overflow"
+     ],
+     "seconds": 7.87,
+     "tokens": 1141
     }
    }
   },
@@ -971,6 +1123,18 @@
      "found": [],
      "seconds": 1.15,
      "tokens": 623
+    },
+    "llm_ba_med": {
+     "found": [],
+     "seconds": 1.92,
+     "tokens": 967
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "denial_of_service"
+     ],
+     "seconds": 0.71,
+     "tokens": 900
     }
    }
   },
@@ -1056,6 +1220,21 @@
      ],
      "seconds": 0.9,
      "tokens": 728
+    },
+    "llm_ba_med": {
+     "found": [
+      "denial_of_service",
+      "reentrancy"
+     ],
+     "seconds": 2.78,
+     "tokens": 1365
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "reentrancy"
+     ],
+     "seconds": 0.85,
+     "tokens": 994
     }
    }
   },
@@ -1154,6 +1333,24 @@
      ],
      "seconds": 1.04,
      "tokens": 725
+    },
+    "llm_ba_med": {
+     "found": [
+      "denial_of_service",
+      "integer_overflow",
+      "reentrancy",
+      "timestamp_dependence"
+     ],
+     "seconds": 2.66,
+     "tokens": 1501
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "bad_randomness",
+      "integer_overflow"
+     ],
+     "seconds": 1.25,
+     "tokens": 1073
     }
    }
   },
@@ -1249,6 +1446,21 @@
      ],
      "seconds": 1.29,
      "tokens": 1475
+    },
+    "llm_ba_med": {
+     "found": [
+      "bad_randomness",
+      "other"
+     ],
+     "seconds": 2.97,
+     "tokens": 2256
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "bad_randomness"
+     ],
+     "seconds": 1.06,
+     "tokens": 1724
     }
    }
   },
@@ -1346,6 +1558,27 @@
      ],
      "seconds": 3.99,
      "tokens": 1605
+    },
+    "llm_ba_med": {
+     "found": [
+      "bad_randomness",
+      "denial_of_service",
+      "integer_overflow",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 3.07,
+     "tokens": 2360
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "bad_randomness",
+      "denial_of_service",
+      "integer_overflow",
+      "reentrancy",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 1.92,
+     "tokens": 2061
     }
    }
   },
@@ -1446,6 +1679,23 @@
      ],
      "seconds": 1.17,
      "tokens": 889
+    },
+    "llm_ba_med": {
+     "found": [
+      "integer_overflow",
+      "reentrancy"
+     ],
+     "seconds": 1.79,
+     "tokens": 1011
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "integer_overflow",
+      "reentrancy",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 1.13,
+     "tokens": 1044
     }
    }
   },
@@ -1550,6 +1800,25 @@
      ],
      "seconds": 1.5,
      "tokens": 1127
+    },
+    "llm_ba_med": {
+     "found": [
+      "access_control",
+      "integer_overflow",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 2.06,
+     "tokens": 1327
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "access_control",
+      "integer_overflow",
+      "reentrancy",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 1.42,
+     "tokens": 1367
     }
    }
   },
@@ -1636,6 +1905,22 @@
      ],
      "seconds": 1.23,
      "tokens": 762
+    },
+    "llm_ba_med": {
+     "found": [
+      "bad_randomness",
+      "timestamp_dependence"
+     ],
+     "seconds": 1.52,
+     "tokens": 957
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "bad_randomness",
+      "timestamp_dependence"
+     ],
+     "seconds": 1.23,
+     "tokens": 1072
     }
    }
   },
@@ -1722,6 +2007,20 @@
      ],
      "seconds": 1.19,
      "tokens": 757
+    },
+    "llm_ba_med": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 1.64,
+     "tokens": 1059
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 1.13,
+     "tokens": 981
     }
    }
   },
@@ -1808,6 +2107,20 @@
      ],
      "seconds": 0.94,
      "tokens": 621
+    },
+    "llm_ba_med": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 1.7,
+     "tokens": 869
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 1.02,
+     "tokens": 934
     }
    }
   },
@@ -1894,6 +2207,20 @@
      ],
      "seconds": 1.02,
      "tokens": 700
+    },
+    "llm_ba_med": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 1.65,
+     "tokens": 961
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 1.07,
+     "tokens": 959
     }
    }
   },
@@ -1981,6 +2308,21 @@
      ],
      "seconds": 0.64,
      "tokens": 516
+    },
+    "llm_ba_med": {
+     "found": [
+      "access_control",
+      "integer_overflow"
+     ],
+     "seconds": 1.4,
+     "tokens": 807
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 0.79,
+     "tokens": 791
     }
    }
   },
@@ -2066,6 +2408,20 @@
      ],
      "seconds": 0.66,
      "tokens": 548
+    },
+    "llm_ba_med": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 0.94,
+     "tokens": 679
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 0.89,
+     "tokens": 814
     }
    }
   },
@@ -2147,6 +2503,20 @@
      ],
      "seconds": 0.58,
      "tokens": 519
+    },
+    "llm_ba_med": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 1.42,
+     "tokens": 812
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 0.81,
+     "tokens": 809
     }
    }
   },
@@ -2233,6 +2603,20 @@
      ],
      "seconds": 1.52,
      "tokens": 637
+    },
+    "llm_ba_med": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 1.21,
+     "tokens": 691
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 1.88,
+     "tokens": 825
     }
    }
   },
@@ -2319,6 +2703,20 @@
      ],
      "seconds": 0.84,
      "tokens": 606
+    },
+    "llm_ba_med": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 0.99,
+     "tokens": 706
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 0.84,
+     "tokens": 818
     }
    }
   },
@@ -2402,6 +2800,21 @@
      ],
      "seconds": 0.83,
      "tokens": 521
+    },
+    "llm_ba_med": {
+     "found": [
+      "access_control",
+      "integer_overflow"
+     ],
+     "seconds": 1.18,
+     "tokens": 797
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 0.68,
+     "tokens": 786
     }
    }
   },
@@ -2485,6 +2898,20 @@
      ],
      "seconds": 0.91,
      "tokens": 593
+    },
+    "llm_ba_med": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 1.16,
+     "tokens": 813
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 0.66,
+     "tokens": 894
     }
    }
   },
@@ -2568,6 +2995,20 @@
      ],
      "seconds": 1.15,
      "tokens": 568
+    },
+    "llm_ba_med": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 1.64,
+     "tokens": 973
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 0.91,
+     "tokens": 871
     }
    }
   },
@@ -2668,6 +3109,24 @@
      ],
      "seconds": 1.99,
      "tokens": 1389
+    },
+    "llm_ba_med": {
+     "found": [
+      "integer_overflow",
+      "reentrancy",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 3.7,
+     "tokens": 2534
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "integer_overflow",
+      "reentrancy",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 1.55,
+     "tokens": 1774
     }
    }
   },
@@ -2770,6 +3229,25 @@
      ],
      "seconds": 2.13,
      "tokens": 1807
+    },
+    "llm_ba_med": {
+     "found": [
+      "denial_of_service",
+      "integer_overflow",
+      "timestamp_dependence",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 2.85,
+     "tokens": 2111
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "denial_of_service",
+      "integer_overflow",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 2.52,
+     "tokens": 2131
     }
    }
   },
@@ -2860,6 +3338,23 @@
      ],
      "seconds": 0.9,
      "tokens": 774
+    },
+    "llm_ba_med": {
+     "found": [
+      "bad_randomness",
+      "denial_of_service",
+      "other"
+     ],
+     "seconds": 2.43,
+     "tokens": 1436
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "bad_randomness",
+      "denial_of_service"
+     ],
+     "seconds": 1.79,
+     "tokens": 1199
     }
    }
   },
@@ -2959,6 +3454,22 @@
      ],
      "seconds": 1.22,
      "tokens": 777
+    },
+    "llm_ba_med": {
+     "found": [
+      "access_control",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 2.15,
+     "tokens": 1166
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "access_control",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 1.3,
+     "tokens": 1072
     }
    }
   },
@@ -3053,6 +3564,29 @@
      ],
      "seconds": 1.58,
      "tokens": 1695
+    },
+    "llm_ba_med": {
+     "found": [
+      "access_control",
+      "bad_randomness",
+      "denial_of_service",
+      "integer_overflow",
+      "other",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 3.97,
+     "tokens": 2840
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "bad_randomness",
+      "denial_of_service",
+      "integer_overflow",
+      "reentrancy",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 1.9,
+     "tokens": 2207
     }
    }
   },
@@ -3141,6 +3675,22 @@
      "found": [],
      "seconds": 1.06,
      "tokens": 701
+    },
+    "llm_ba_med": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 1.92,
+     "tokens": 1147
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "access_control",
+      "denial_of_service",
+      "integer_overflow"
+     ],
+     "seconds": 1.64,
+     "tokens": 1178
     }
    }
   },
@@ -3224,6 +3774,22 @@
      ],
      "seconds": 1.66,
      "tokens": 858
+    },
+    "llm_ba_med": {
+     "found": [
+      "integer_overflow",
+      "reentrancy"
+     ],
+     "seconds": 2.81,
+     "tokens": 1641
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "integer_overflow",
+      "reentrancy"
+     ],
+     "seconds": 1.07,
+     "tokens": 1165
     }
    }
   },
@@ -3307,6 +3873,18 @@
      ],
      "seconds": 1.72,
      "tokens": 799
+    },
+    "llm_ba_med": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 2.03,
+     "tokens": 1269
+    },
+    "llm_ba_dasp": {
+     "found": [],
+     "seconds": 0.9,
+     "tokens": 981
     }
    }
   },
@@ -3394,6 +3972,20 @@
      ],
      "seconds": 0.63,
      "tokens": 547
+    },
+    "llm_ba_med": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 1.68,
+     "tokens": 766
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 1.15,
+     "tokens": 851
     }
    }
   },
@@ -3477,6 +4069,18 @@
      ],
      "seconds": 1.66,
      "tokens": 901
+    },
+    "llm_ba_med": {
+     "found": [
+      "other"
+     ],
+     "seconds": 2.44,
+     "tokens": 1294
+    },
+    "llm_ba_dasp": {
+     "found": [],
+     "seconds": 0.95,
+     "tokens": 941
     }
    }
   },
@@ -3577,6 +4181,24 @@
      ],
      "seconds": 1.46,
      "tokens": 967
+    },
+    "llm_ba_med": {
+     "found": [
+      "denial_of_service",
+      "integer_overflow",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 2.99,
+     "tokens": 1695
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "denial_of_service",
+      "integer_overflow",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 1.65,
+     "tokens": 1425
     }
    }
   },
@@ -3662,6 +4284,20 @@
      ],
      "seconds": 1.49,
      "tokens": 972
+    },
+    "llm_ba_med": {
+     "found": [
+      "bad_randomness"
+     ],
+     "seconds": 1.49,
+     "tokens": 988
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "denial_of_service"
+     ],
+     "seconds": 0.9,
+     "tokens": 994
     }
    }
   },
@@ -3752,6 +4388,25 @@
      ],
      "seconds": 1.27,
      "tokens": 1159
+    },
+    "llm_ba_med": {
+     "found": [
+      "bad_randomness",
+      "integer_overflow",
+      "other",
+      "timestamp_dependence"
+     ],
+     "seconds": 2.92,
+     "tokens": 2013
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "bad_randomness",
+      "integer_overflow",
+      "timestamp_dependence"
+     ],
+     "seconds": 1.51,
+     "tokens": 1553
     }
    }
   },
@@ -3835,6 +4490,20 @@
      ],
      "seconds": 0.58,
      "tokens": 514
+    },
+    "llm_ba_med": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 0.8,
+     "tokens": 621
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 0.64,
+     "tokens": 811
     }
    }
   },
@@ -3918,6 +4587,20 @@
      ],
      "seconds": 1.56,
      "tokens": 917
+    },
+    "llm_ba_med": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 1.72,
+     "tokens": 1139
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 1.31,
+     "tokens": 1140
     }
    }
   },
@@ -4003,6 +4686,23 @@
      ],
      "seconds": 1.88,
      "tokens": 2674
+    },
+    "llm_ba_med": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 4.38,
+     "tokens": 3751
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "access_control",
+      "denial_of_service",
+      "integer_overflow",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 1.66,
+     "tokens": 2860
     }
    }
   },
@@ -4103,6 +4803,24 @@
      ],
      "seconds": 2.62,
      "tokens": 2714
+    },
+    "llm_ba_med": {
+     "found": [
+      "denial_of_service",
+      "integer_overflow",
+      "reentrancy"
+     ],
+     "seconds": 3.52,
+     "tokens": 3373
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "integer_overflow",
+      "reentrancy",
+      "timestamp_dependence"
+     ],
+     "seconds": 1.62,
+     "tokens": 2798
     }
    }
   },
@@ -4190,6 +4908,20 @@
      ],
      "seconds": 0.63,
      "tokens": 554
+    },
+    "llm_ba_med": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 1.04,
+     "tokens": 650
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 0.9,
+     "tokens": 883
     }
    }
   },
@@ -4276,6 +5008,20 @@
      ],
      "seconds": 0.64,
      "tokens": 552
+    },
+    "llm_ba_med": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 1.34,
+     "tokens": 794
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 0.92,
+     "tokens": 861
     }
    }
   },
@@ -4356,6 +5102,22 @@
      ],
      "seconds": 1.25,
      "tokens": 674
+    },
+    "llm_ba_med": {
+     "found": [
+      "bad_randomness",
+      "timestamp_dependence"
+     ],
+     "seconds": 1.48,
+     "tokens": 918
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "bad_randomness",
+      "integer_overflow"
+     ],
+     "seconds": 0.86,
+     "tokens": 991
     }
    }
   },
@@ -4456,6 +5218,24 @@
      ],
      "seconds": 1.1,
      "tokens": 714
+    },
+    "llm_ba_med": {
+     "found": [
+      "integer_overflow",
+      "reentrancy",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 1.99,
+     "tokens": 1183
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "integer_overflow",
+      "reentrancy",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 1.09,
+     "tokens": 996
     }
    }
   },
@@ -4554,6 +5334,22 @@
      ],
      "seconds": 1.12,
      "tokens": 710
+    },
+    "llm_ba_med": {
+     "found": [
+      "integer_overflow",
+      "reentrancy"
+     ],
+     "seconds": 1.88,
+     "tokens": 1094
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "integer_overflow",
+      "reentrancy"
+     ],
+     "seconds": 0.93,
+     "tokens": 945
     }
    }
   },
@@ -4651,6 +5447,22 @@
      ],
      "seconds": 1.01,
      "tokens": 679
+    },
+    "llm_ba_med": {
+     "found": [
+      "integer_overflow",
+      "reentrancy"
+     ],
+     "seconds": 1.33,
+     "tokens": 929
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "integer_overflow",
+      "reentrancy"
+     ],
+     "seconds": 0.91,
+     "tokens": 912
     }
    }
   },
@@ -4736,6 +5548,21 @@
      ],
      "seconds": 0.96,
      "tokens": 618
+    },
+    "llm_ba_med": {
+     "found": [
+      "timestamp_dependence"
+     ],
+     "seconds": 2.28,
+     "tokens": 1280
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "bad_randomness",
+      "timestamp_dependence"
+     ],
+     "seconds": 0.95,
+     "tokens": 976
     }
    }
   },
@@ -4841,6 +5668,24 @@
      ],
      "seconds": 2.63,
      "tokens": 2160
+    },
+    "llm_ba_med": {
+     "found": [
+      "denial_of_service",
+      "integer_overflow",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 3.37,
+     "tokens": 2752
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "denial_of_service",
+      "integer_overflow",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 2.49,
+     "tokens": 2376
     }
    }
   },
@@ -4923,6 +5768,22 @@
      ],
      "seconds": 1.06,
      "tokens": 842
+    },
+    "llm_ba_med": {
+     "found": [
+      "access_control",
+      "denial_of_service"
+     ],
+     "seconds": 2.07,
+     "tokens": 1221
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "access_control",
+      "denial_of_service"
+     ],
+     "seconds": 1.25,
+     "tokens": 1134
     }
    }
   },
@@ -5011,6 +5872,21 @@
      ],
      "seconds": 1.3,
      "tokens": 792
+    },
+    "llm_ba_med": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 1.54,
+     "tokens": 992
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "access_control",
+      "integer_overflow"
+     ],
+     "seconds": 0.95,
+     "tokens": 1061
     }
    }
   },
@@ -5112,6 +5988,24 @@
      ],
      "seconds": 1.13,
      "tokens": 748
+    },
+    "llm_ba_med": {
+     "found": [
+      "integer_overflow",
+      "reentrancy",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 1.63,
+     "tokens": 1067
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "integer_overflow",
+      "reentrancy",
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 1.2,
+     "tokens": 1004
     }
    }
   },
@@ -5197,6 +6091,20 @@
      ],
      "seconds": 0.5,
      "tokens": 481
+    },
+    "llm_ba_med": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 1.09,
+     "tokens": 651
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 0.71,
+     "tokens": 770
     }
    }
   },
@@ -5289,6 +6197,24 @@
      ],
      "seconds": 1.43,
      "tokens": 2458
+    },
+    "llm_ba_med": {
+     "found": [
+      "access_control",
+      "front_running",
+      "integer_overflow"
+     ],
+     "seconds": 3.19,
+     "tokens": 3066
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "access_control",
+      "bad_randomness",
+      "denial_of_service"
+     ],
+     "seconds": 3.02,
+     "tokens": 2839
     }
    }
   },
@@ -5381,6 +6307,23 @@
      ],
      "seconds": 1.05,
      "tokens": 2016
+    },
+    "llm_ba_med": {
+     "found": [
+      "access_control",
+      "integer_overflow",
+      "reentrancy"
+     ],
+     "seconds": 2.54,
+     "tokens": 2701
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "integer_overflow",
+      "reentrancy"
+     ],
+     "seconds": 1.25,
+     "tokens": 2384
     }
    }
   },
@@ -5462,6 +6405,20 @@
      ],
      "seconds": 0.81,
      "tokens": 487
+    },
+    "llm_ba_med": {
+     "found": [
+      "timestamp_dependence"
+     ],
+     "seconds": 0.89,
+     "tokens": 666
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "timestamp_dependence"
+     ],
+     "seconds": 1.59,
+     "tokens": 770
     }
    }
   },
@@ -5550,6 +6507,20 @@
      ],
      "seconds": 0.91,
      "tokens": 742
+    },
+    "llm_ba_med": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 1.64,
+     "tokens": 1022
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 1.05,
+     "tokens": 984
     }
    }
   },
@@ -5637,6 +6608,20 @@
      ],
      "seconds": 0.74,
      "tokens": 685
+    },
+    "llm_ba_med": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 1.06,
+     "tokens": 834
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 0.9,
+     "tokens": 910
     }
    }
   },
@@ -5722,6 +6707,20 @@
      ],
      "seconds": 1.15,
      "tokens": 895
+    },
+    "llm_ba_med": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 2.24,
+     "tokens": 1407
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 1.08,
+     "tokens": 999
     }
    }
   },
@@ -5809,6 +6808,20 @@
      ],
      "seconds": 0.66,
      "tokens": 559
+    },
+    "llm_ba_med": {
+     "found": [
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 1.56,
+     "tokens": 869
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "unchecked_low_level_calls"
+     ],
+     "seconds": 0.75,
+     "tokens": 812
     }
    }
   },
@@ -5888,6 +6901,20 @@
      ],
      "seconds": 0.71,
      "tokens": 522
+    },
+    "llm_ba_med": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 1.01,
+     "tokens": 651
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 0.98,
+     "tokens": 853
     }
    }
   },
@@ -5975,6 +7002,20 @@
      ],
      "seconds": 1.77,
      "tokens": 948
+    },
+    "llm_ba_med": {
+     "found": [
+      "reentrancy"
+     ],
+     "seconds": 2.44,
+     "tokens": 1362
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "reentrancy"
+     ],
+     "seconds": 1.08,
+     "tokens": 1001
     }
    }
   },
@@ -6064,6 +7105,21 @@
      ],
      "seconds": 1.08,
      "tokens": 795
+    },
+    "llm_ba_med": {
+     "found": [
+      "access_control"
+     ],
+     "seconds": 2.05,
+     "tokens": 1196
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "access_control",
+      "reentrancy"
+     ],
+     "seconds": 1.0,
+     "tokens": 997
     }
    }
   },
@@ -6153,6 +7209,21 @@
      ],
      "seconds": 1.2,
      "tokens": 797
+    },
+    "llm_ba_med": {
+     "found": [
+      "integer_overflow"
+     ],
+     "seconds": 1.97,
+     "tokens": 1137
+    },
+    "llm_ba_dasp": {
+     "found": [
+      "integer_overflow",
+      "reentrancy"
+     ],
+     "seconds": 1.28,
+     "tokens": 1097
     }
    }
   }
