@@ -2428,6 +2428,15 @@
    "seconds": 8.52,
    "provider": "groq",
    "at": "2026-11-21T10:14:59+00:00"
+  },
+  "0x39cfd754c85023648bf003bea2dd498c5612abfa": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"Token and TokenBank contracts (owner variable shadowing)\",\n      \"severity\": \"high\",\n      \"explanation\": \"Token declares its own `owner` variable that shadows the `owner` from Ownable. Functions using the `onlyOwner` modifier check Ownable.owner, while `initTokenBank` and other logic modify Token.owner. This mismatch allows the original deployer (Ownable.owner) to retain privileged access even after ownership is supposedly transferred, breaking intended access control.\"\n    },\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"WithdrawToHolder function\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The contract sends ether to `_addr` via `_addr.call.value(_wei)` before updating `Holders[_addr]`. A malicious recipient can re\u2011enter the contract (e.g., via a fallback function) and trigger another withdrawal before the balance is reduced, leading to double\u2011spending.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"WithdrawToken (token.call) and WithdrawToHolder (_addr.call.value)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Both low\u2011level `call` invocations ignore the returned success flag. If the external call fails (e.g., token transfer reverts), the contract proceeds as if it succeeded, potentially causing loss of tokens or ether without detection.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"Deposit function (Holders[msg.sender] += msg.value)\",\n      \"severity\": \"low\",\n      \"explanation\": \"Using Solidity ^0.4.18 without SafeMath means the addition can overflow silently if a holder\u2019s balance exceeds 2^256\u20111 wei, which would wrap around and corrupt accounting.\"\n    }\n  ],\n  \"confidence\": 0.9\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 679,
+   "completion_tokens": 1560,
+   "seconds": 59.31,
+   "provider": "groq",
+   "at": "2026-11-24T06:12:38+00:00"
   }
  }
 }

@@ -1,0 +1,178 @@
+Slither 0.11.6: 3/179 done, 176 to go
+[1/176] 0x19cf8481ea15427a98ba3cdd6d9e14690011ab10: ok solc 0.4.26 100 findings 6.83s
+[2/176] 0x23a91059fdc9579a9fbd0edc5f2ea0bfdb70deb4: ok solc 0.4.26 18 findings 6.44s
+[3/176] 0x2972d548497286d18e92b5fa1f8f9139e5653fd2: ok solc 0.4.26 10 findings 8.47s
+[4/176] 0x39cfd754c85023648bf003bea2dd498c5612abfa: ok solc 0.4.26 22 findings 7.94s
+[5/176] 0x3a0e9acd953ffc0dd18d63603488846a6b8b2b01: ok solc 0.4.26 23 findings 6.17s
+[6/176] 0x3e013fc32a54c4c5b6991ba539dcd0ec4355c859: FAILED solc 0.4.26 0 findings 6.11s  ''
+[7/176] 0x3f2ef511aa6e75231e4deafc7a3d2ecab3741de2: FAILED solc 0.4.26 0 findings 7.93s  ''
+[8/176] 0x4051334adc52057aca763453820cb0e045076ef3: ok solc 0.4.26 10 findings 6.9s
+[9/176] 0x4320e6f8c05b27ab4707cd1f6d5ce6f3e4b3a5a1: ok solc 0.4.26 23 findings 7.69s
+[10/176] 0x4a66ad0bca2d700f11e1f2fc2c106f7d3264504c: ok solc 0.4.26 10 findings 6.75s
+[11/176] 0x4b71ad9c1a84b9b643aa54fdd66e2dec96e8b152: ok solc 0.4.26 10 findings 7.29s
+[12/176] 0x4e73b32ed6c35f570686b89848e5f39f20ecc106: ok solc 0.4.26 23 findings 8.21s
+[13/176] 0x524960d55174d912768678d8c606b4d50b79d7b1: ok solc 0.4.26 4 findings 5.82s
+[14/176] 0x52d2e0f9b01101a59b38a3d05c80b7618aeed984: ok solc 0.4.26 9 findings 7.49s
+[15/176] 0x561eac93c92360949ab1f1403323e6db345cbf31: ok solc 0.4.26 25 findings 8.03s
+[16/176] 0x5aa88d2901c68fda244f1d0584400368d2c8e739: ok solc 0.4.26 9 findings 8.88s
+[17/176] 0x610495793564aed0f9c7fc48dc4c7c9151d34fd6: ok solc 0.4.26 10 findings 7.11s
+[18/176] 0x627fa62ccbb1c1b04ffaecd72a53e37fc0e17839: ok solc 0.4.26 23 findings 10.17s
+[19/176] 0x663e4229142a27f00bafb5d087e1e730648314c3: ok solc 0.4.26 217 findings 15.65s
+[20/176] 0x70f9eddb3931491aab1aeafbc1e7f1ca2a012db4: ok solc 0.4.26 10 findings 8.03s
+[21/176] 0x7541b76cb60f4c60af330c208b0623b7f54bf615: ok solc 0.4.26 23 findings 7.66s
+[22/176] 0x78c2a1e91b52bca4130b6ed9edd9fbcfd4671c37: ok solc 0.4.26 9 findings 9.18s
+[23/176] 0x7a4349a749e59a5736efb7826ee3496a2dfd5489: ok solc 0.4.26 10 findings 7.56s
+[24/176] 0x7a8721a9d64c74da899424c1b52acbf58ddc9782: ok solc 0.4.26 19 findings 6.35s
+[25/176] 0x7b368c4e805c3870b6c49a3f1f49f69af8662cf3: ok solc 0.4.26 23 findings 8.04s
+[26/176] 0x7d09edb07d23acb532a82be3da5c17d9d85806b4: ok solc 0.4.26 24 findings 8.45s
+[27/176] 0x806a6bd219f162442d992bdc4ee6eba1f2c5a707: ok solc 0.4.26 10 findings 6.23s
+[28/176] 0x84d9ec85c9c568eb332b7226a8f826d897e0a4a8: ok solc 0.4.26 23 findings 6.77s
+[29/176] 0x89c1b3807d4c67df034fffb62f3509561218d30b: FAILED solc 0.4.26 0 findings 9.47s  ''
+[30/176] 0x8c7777c45481dba411450c228cb692ac3d550344: ok solc 0.4.26 19 findings 7.31s
+[31/176] 0x8fd1e427396ddb511533cf9abdbebd0a7e08da35: ok solc 0.4.26 23 findings 6.69s
+[32/176] 0x93c32845fae42c83a70e5f06214c8433665c2ab5: ok solc 0.4.26 23 findings 6.49s
+[33/176] 0x941d225236464a25eb18076df7da6a91d0f95e9e: ok solc 0.4.26 20 findings 5.83s
+[34/176] 0x958a8f594101d2c0485a52319f29b2647f2ebc06: ok solc 0.4.26 22 findings 6.89s
+[35/176] 0x96edbe868531bd23a6c05e9d0c424ea64fb1b78b: ok solc 0.4.26 29 findings 5.88s
+[36/176] 0x9d06cbafa865037a01d322d3f4222fa3e04e5488: ok solc 0.4.26 20 findings 5.47s
+[37/176] 0xa1fceeff3acc57d257b917e30c4df661401d6431: ok solc 0.4.26 7 findings 5.45s
+[38/176] 0xa46edd6a9a93feec36576ee5048146870ea2c3ae: ok solc 0.4.26 9 findings 6.43s
+[39/176] 0xaae1f51cf3339f18b6d3f3bdc75a5facd744b0b8: ok solc 0.4.26 25 findings 6.6s
+[40/176] 0xb0510d68f210b7db66e8c7c814f22680f2b8d1d6: ok solc 0.4.26 22 findings 6.16s
+[41/176] 0xb11b2fed6c9354f7aa2f658d3b4d7b31d8a13b77: ok solc 0.4.26 15 findings 5.37s
+[42/176] 0xb37f18af15bafb869a065b61fc83cfc44ed9cc27: ok solc 0.4.26 8 findings 5.98s
+[43/176] 0xb5e1b1ee15c6fa0e48fce100125569d430f1bd12: ok solc 0.4.26 19 findings 6.57s
+[44/176] 0xb620cee6b52f96f3c6b253e6eea556aa2d214a99: ok solc 0.4.26 22 findings 7.19s
+[45/176] 0xb7c5c5aa4d42967efe906e1b66cb8df9cebf04f7: ok solc 0.4.26 6 findings 6.26s
+[46/176] 0xb93430ce38ac4a6bb47fb1fc085ea669353fd89e: ok solc 0.4.26 18 findings 5.39s
+[47/176] 0xbaa3de6504690efb064420d89e871c27065cdd52: ok solc 0.4.26 15 findings 5.35s
+[48/176] 0xbaf51e761510c1a11bf48dd87c0307ac8a8c8a4f: ok solc 0.4.26 19 findings 5.67s
+[49/176] 0xbe4041d55db380c5ae9d4a9b9703f1ed4e7e3888: ok solc 0.4.26 29 findings 6.24s
+[50/176] 0xbebbfe5b549f5db6e6c78ca97cac19d1fb03082c: ok solc 0.4.26 15 findings 5.91s
+[51/176] 0xcead721ef5b11f1a7b530171aab69b16c5e66b6e: ok solc 0.4.26 22 findings 5.37s
+[52/176] 0xd2018bfaa266a9ec0a1a84b061640faa009def76: ok solc 0.4.26 10 findings 5.4s
+[53/176] 0xf015c35649c82f5467c9c74b7f28ee67665aad68: ok solc 0.4.26 23 findings 5.49s
+[54/176] 0xf2570186500a46986f3139f65afedc2afe4f445d: ok solc 0.4.26 7 findings 5.71s
+[55/176] 0xf70d589d76eebdd7c12cc5eec99f8f6fa4233b9e: FAILED solc 0.4.26 0 findings 5.47s  ''
+[56/176] AZT: FAILED solc 0.5.17 0 findings 4.91s  ''
+[57/176] AsseteGram: ok solc 0.5.17 100 findings 5.64s
+[58/176] Axioms: FAILED solc 0.4.26 0 findings 4.59s  ''
+[59/176] BECToken: ok solc 0.4.26 27 findings 6.1s
+[60/176] BankOfEther: ok solc 0.6.12 7 findings 5.98s
+[61/176] BeaconProxy: FAILED solc 0.8.26 0 findings 6.16s  ''
+[62/176] BitCash: ok solc 0.6.12 81 findings 5.91s
+[63/176] CareerOnToken: FAILED solc 0.5.17 0 findings 5.79s  ''
+[64/176] CreditDepositBank_Attack: ok solc 0.4.26 25 findings 6.39s
+[65/176] Delegation: ok solc 0.7.6 8 findings 6.83s
+[66/176] DocumentSigner: ok solc 0.5.17 46 findings 5.97s
+[67/176] DocumentSinger: ok solc 0.5.17 36 findings 5.75s
+[68/176] ERC1967Proxy: FAILED solc 0.8.26 0 findings 5.26s  ''
+[69/176] ERC20: ok solc 0.4.26 4 findings 6.1s
+[70/176] ERC20Basic: ok solc 0.4.26 24 findings 6.88s
+[71/176] ERC223Token: ok solc 0.5.17 264 findings 7.58s
+[72/176] ETHDropOpenAdd: ok solc 0.5.17 19 findings 6.37s
+[73/176] EthRoulette: FAILED solc 0.5.17 0 findings 5.57s  ''
+[74/176] Etheramid_Attack: FAILED solc 0.4.26 0 findings 5.82s  ''
+[75/176] Ethmoon: ok solc 0.4.26 9 findings 6.33s
+[76/176] FibonacciBalance: ok solc 0.4.26 15 findings 6.05s
+[77/176] FindThisHash: FAILED solc 0.4.26 0 findings 5.22s  ''
+[78/176] ForTheBlockchain: ok solc 0.5.17 194 findings 6.91s
+[79/176] HFConditionalTransfer: FAILED solc 0.4.26 0 findings 5.86s  ''
+[80/176] HelpMeSave: ok solc 0.4.26 25 findings 6.34s
+[81/176] HotDollarsToken: FAILED solc 0.5.17 0 findings 5.24s  ''
+[82/176] IManagedToken: FAILED solc 0.4.26 0 findings 5.17s  ''
+[83/176] MD: ok solc 0.5.17 82 findings 6.06s
+[84/176] MultiTokenNetwork: ok solc 0.4.26 18 findings 6.46s
+[85/176] Ownable: FAILED solc 0.5.17 0 findings 5.53s  ''
+[86/176] ProofOfExistence: ok solc 0.5.17 55 findings 6.44s
+[87/176] ProofofExistence: FAILED solc 0.5.17 0 findings 5.63s  ''
+[88/176] QuarterMachine: ok solc 0.4.26 8 findings 6.45s
+[89/176] SuicideMultiTxFeasible: ok solc 0.4.26 4 findings 6.52s
+[90/176] SuicideMultiTxInfeasible: ok solc 0.4.26 4 findings 6.54s
+[91/176] TAMC: ok solc 0.5.17 50 findings 6.19s
+[92/176] TAMContract: FAILED solc 0.5.17 0 findings 5.54s  ''
+[93/176] TTC: FAILED solc 0.5.17 0 findings 5.88s  ''
+[94/176] arbitrary_location_write_simple: ok solc 0.4.26 8 findings 6.58s
+[95/176] auction: ok solc 0.4.26 3 findings 6.33s
+[96/176] blackjack: FAILED solc 0.4.26 0 findings 5.73s  ''
+[97/176] bug_1: ok solc 0.5.17 96 findings 6.53s
+[98/176] bug_2: ok solc 0.5.17 102 findings 6.95s
+[99/176] bug_3: FAILED solc 0.5.17 0 findings 5.91s  ''
+[100/176] crypto_roulette: ok solc 0.4.26 12 findings 6.31s
+[101/176] dos_address: ok solc 0.4.26 3 findings 6.11s
+[102/176] dos_number: ok solc 0.4.26 3 findings 6.34s
+[103/176] dos_simple: ok solc 0.4.26 2 findings 6.57s
+[104/176] eth_tx_order_dependence_minimal: ok solc 0.4.26 5 findings 6.68s
+[105/176] ether_lotto: ok solc 0.4.26 8 findings 6.57s
+[106/176] etheraffle: ok solc 0.4.26 9 findings 6.53s
+[107/176] etherbank: ok solc 0.4.26 6 findings 6.64s
+[108/176] etherpot_lotto: ok solc 0.4.26 11 findings 6.73s
+[109/176] etherstore: ok solc 0.4.26 7 findings 7.12s
+[110/176] governmental_survey: ok solc 0.4.26 14 findings 8.02s
+[111/176] guess_the_random_number: ok solc 0.4.26 7 findings 6.6s
+[112/176] incorrect_constructor_name1: ok solc 0.4.26 3 findings 6.36s
+[113/176] incorrect_constructor_name2: ok solc 0.4.26 2 findings 6.24s
+[114/176] incorrect_constructor_name3: ok solc 0.4.26 3 findings 6.17s
+[115/176] insecure_transfer: ok solc 0.4.26 5 findings 6.13s
+[116/176] integer_overflow_1: ok solc 0.4.26 2 findings 6.06s
+[117/176] integer_overflow_add: ok solc 0.4.26 2 findings 6.21s
+[118/176] integer_overflow_benign_1: ok solc 0.4.26 3 findings 6.28s
+[119/176] integer_overflow_mapping_sym_1: ok solc 0.4.26 2 findings 5.95s
+[120/176] integer_overflow_minimal: ok solc 0.4.26 2 findings 5.66s
+[121/176] integer_overflow_mul: ok solc 0.4.26 2 findings 7.64s
+[122/176] integer_overflow_multitx_multifunc_feasible: ok solc 0.4.26 2 findings 8.85s
+[123/176] integer_overflow_multitx_onefunc_feasible: ok solc 0.4.26 2 findings 6.54s
+[124/176] king_of_the_ether_throne: ok solc 0.4.26 25 findings 7.24s
+[125/176] list_dos: ok solc 0.4.26 21 findings 6.87s
+[126/176] lottery: ok solc 0.4.26 8 findings 6.54s
+[127/176] lotto: ok solc 0.4.26 10 findings 6.57s
+[128/176] lottopollo: ok solc 0.4.26 8 findings 6.36s
+[129/176] lucky_doubler: ok solc 0.4.26 19 findings 6.61s
+[130/176] mapping_write: ok solc 0.4.26 5 findings 6.44s
+[131/176] mishandled: ok solc 0.4.26 3 findings 6.64s
+[132/176] modifier_reentrancy: ok solc 0.4.26 5 findings 6.36s
+[133/176] multi_delegatecall: ok solc 0.8.26 5 findings 6.56s
+[134/176] multiowned_vulnerable: ok solc 0.4.26 4 findings 6.46s
+[135/176] mycontract: ok solc 0.4.26 5 findings 7.41s
+[136/176] name_registrar: ok solc 0.4.26 6 findings 6.59s
+[137/176] odds_and_evens: ok solc 0.4.26 5 findings 5.98s
+[138/176] old_blockhash: ok solc 0.4.26 3 findings 6.19s
+[139/176] open_address_lottery: ok solc 0.4.26 11 findings 7.04s
+[140/176] overflow_simple_add: ok solc 0.4.25 3 findings 6.76s
+[141/176] overflow_single_tx: ok solc 0.4.26 2 findings 6.81s
+[142/176] owner_example: ok solc 0.8.26 10 findings 6.52s
+[143/176] parity_wallet_bug_1: ok solc 0.4.9 97 findings 7.49s
+[144/176] parity_wallet_bug_2: ok solc 0.4.26 73 findings 7.19s
+[145/176] phishable: ok solc 0.4.26 7 findings 6.31s
+[146/176] proxy: ok solc 0.4.26 6 findings 6.3s
+[147/176] random_number_generator: ok solc 0.4.26 4 findings 6.21s
+[148/176] reentrance: ok solc 0.4.26 8 findings 6.93s
+[149/176] reentrancy_bonus: FAILED solc 0.4.26 0 findings 5.86s  ''
+[150/176] reentrancy_cross_function: FAILED solc 0.4.26 0 findings 6.55s  ''
+[151/176] reentrancy_dao: ok solc 0.4.26 4 findings 6.59s
+[152/176] reentrancy_insecure: ok solc 0.5.17 5 findings 6.66s
+[153/176] reentrancy_simple: ok solc 0.4.26 5 findings 6.48s
+[154/176] roulette: ok solc 0.4.26 6 findings 6.56s
+[155/176] rubixi: ok solc 0.4.26 34 findings 7.13s
+[156/176] send_loop: ok solc 0.4.24 5 findings 6.55s
+[157/176] short_address_example: ok solc 0.4.26 2 findings 12.92s
+[158/176] simple_dao: ok solc 0.4.26 4 findings 5.9s
+[159/176] simple_suicide: ok solc 0.4.26 3 findings 7.39s
+[160/176] smart_billions: ok solc 0.4.26 77 findings 9.51s
+[161/176] spank_chain_payment: ok solc 0.4.26 127 findings 8.64s
+[162/176] storage_abuse: FAILED solc 0.4.26 0 findings 6.55s  ''
+[163/176] storage_example: ok solc 0.4.26 11 findings 8.35s
+[164/176] theRun: ok solc 0.4.26 54 findings 6.96s
+[165/176] timed_crowdsale: ok solc 0.4.26 3 findings 6.73s
+[166/176] timelock: ok solc 0.4.26 4 findings 6.29s
+[167/176] token: ok solc 0.4.26 6 findings 6.14s
+[168/176] tokensalechallenge: ok solc 0.4.26 2 findings 8.19s
+[169/176] unchecked_return_value: ok solc 0.4.25 6 findings 8.78s
+[170/176] unprotected0: ok solc 0.4.26 4 findings 7.69s
+[171/176] vulnerableBlockHashGame: ok solc 0.5.17 7 findings 7.09s
+[172/176] wallet_02_refund_nosub: ok solc 0.4.26 4 findings 6.3s
+[173/176] wallet_03_wrong_constructor: ok solc 0.4.26 4 findings 6.05s
+[174/176] wallet_04_confused_sign: ok solc 0.4.26 4 findings 6.52s
+[175/176] wallet_delegatecall: FAILED solc 0.4.26 0 findings 5.71s  ''
+[176/176] wallet_sucide: FAILED solc 0.4.26 0 findings 6.57s  ''
+done: 153/179 compiled and analysed -> datasets\tool_results\slither_local.json

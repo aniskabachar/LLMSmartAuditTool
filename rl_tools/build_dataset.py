@@ -88,6 +88,21 @@ FINDING_ALIASES = {
     ("slither", "unchecked-send"): "unchecked_low_calls",
     ("slither", "pragma"): "Ignore",
     ("slither", "too-many-digits"): "Ignore",
+    # Slither 0.11 (run locally, rl_tools/run_slither.py) renamed / added detectors
+    ("slither", "arbitrary-send-eth"): "access_control",        # = "arbitrary-send"
+    ("slither", "weak-prng"): "bad_randomness",
+    ("slither", "unchecked-transfer"): "unchecked_low_calls",
+    ("slither", "controlled-array-length"): "access_control",   # arbitrary storage write (SWC-124)
+    ("slither", "return-bomb"): "denial_service",
+    ("slither", "delegatecall-loop"): "Other",
+    ("slither", "msg-value-in-nonpayable"): "Other",
+    ("slither", "incorrect-modifier"): "Other",
+    ("slither", "encode-packed-collision"): "Other",
+    **{("slither", n): "Ignore" for n in (
+        "missing-zero-check", "events-maths", "unindexed-event-address", "events-access",
+        "boolean-equal", "divide-before-multiply", "dead-code", "cache-array-length",
+        "constant-function-asm", "immutable-states", "tautology", "unimplemented-functions",
+        "costly-loop", "missing-inheritance", "redundant-statements", "write-after-write")},
 }
 
 
@@ -247,6 +262,32 @@ def main():
                              "tokens": int(call["prompt_tokens"] + call["completion_tokens"])}
     tool_names = list(TOOLS_USED) + list(llms)
 
+    # Base project's TA mode (rl_tools/collect_ta.py) as two tools: after round 1 (union of the
+    # 6 targeted batches) and after the consensus reviews (n = 3). Only when every contract has it.
+    import os
+    ta_file = Path(os.getenv("LLM_TA_FILE", ROOT / "datasets" / "tool_results" / "llm_ta.json"))
+    if ta_file.exists():
+        from rl_offline.common import trajectory
+        ta = json.loads(ta_file.read_text(encoding="utf-8"))
+        keys, rounds = ta["keys"], ta["rounds"]
+        gap = [n for n in contracts if not all(k in ta["contracts"].get(n, {}).get("calls", {}) for k in keys)]
+        if gap:
+            print(f"TA mode: missing for {len(gap)} contracts -> left out (py rl_tools/collect_ta.py)")
+        else:
+            for name, c in contracts.items():
+                rec = ta["contracts"][name]
+                traj = trajectory(rec, "TA", max_rounds=rounds)
+                for tname, k in (("llm_ta1", 1), (f"llm_ta{rounds}", rounds)):
+                    r = traj[k - 1]
+                    calls = [v for key, v in rec["calls"].items()
+                             if key.startswith("ta_r1_b") or (not key.startswith("ta_r1") and int(key[4:]) <= k)]
+                    c["tools"][tname] = {
+                        "found": sorted({LLM_TYPE_MAP.get(v.type.value, v.type.value) for v in r.action.vulnerabilities}),
+                        "seconds": round(sum(float(v["seconds"]) for v in calls), 2),
+                        "tokens": int(r.tokens)}
+            tool_names += ["llm_ta1", f"llm_ta{rounds}"]
+            print(f"TA mode: added tools llm_ta1 and llm_ta{rounds}")
+
     try:
         commit = subprocess.run(["git", "-C", str(src), "rev-parse", "HEAD"],
                                 capture_output=True, text=True).stdout.strip()
@@ -267,7 +308,7 @@ def main():
                     "(rl_tools/collect_llm.py --variant ...)",
         "category_map": CATEGORY_MAP,
         "n_contracts": len(contracts), "contracts": contracts}, indent=1), encoding="utf-8")
-    print(f"Wrote {len(contracts)} contracts x {len(tool_names)} tools -> {OUT.relative_to(ROOT)}")
+    print(f"Wrote {len(contracts)} contracts x {len(tool_names)} tools -> {OUT}")
 
 
 if __name__ == "__main__":

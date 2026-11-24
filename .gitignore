@@ -47,3 +47,6 @@ _claude_snapshot.tgz
 _stage/
 
 collection.log
+
+# local Slither install (rl_tools/run_slither.py)
+.venv-slither/

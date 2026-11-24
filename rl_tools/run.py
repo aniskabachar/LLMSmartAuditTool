@@ -54,7 +54,12 @@ TYPES = ("access_control", "bad_randomness", "denial_of_service", "front_running
 
 # ── data ──────────────────────────────────────────────────────────────────────
 
-def load(data: Path | None = None):
+COST_UNITS = {"minutes": "min", "ktokens": "k LLM tokens", "both": "min + k tokens"}
+
+
+def load(data: Path | None = None, cost: str = "minutes"):
+    """cost: what one tool run costs - "minutes" of run time (default), "ktokens" (thousands
+    of LLM tokens; static tools cost 0), or "both" (minutes + k tokens)."""
     d = json.loads((data or DATA).read_text(encoding="utf-8"))
     tools = d["tools"]
     items = []
@@ -65,7 +70,11 @@ def load(data: Path | None = None):
             "x": np.asarray(c["features"], dtype=np.float32),
             "found": [frozenset(c["tools"][t]["found"]) for t in tools],
             "sec": np.asarray([c["tools"][t]["seconds"] for t in tools], dtype=np.float32),
+            "tok": np.asarray([c["tools"][t].get("tokens", 0) for t in tools], dtype=np.float32),
         })
+        it = items[-1]
+        it["cost"] = {"minutes": it["sec"] / 60.0, "ktokens": it["tok"] / 1000.0,
+                      "both": it["sec"] / 60.0 + it["tok"] / 1000.0}[cost]
     return d, tools, items
 
 
@@ -77,12 +86,12 @@ def score(found: frozenset, labels: frozenset) -> float:
 
 
 def outcome(it, subset) -> tuple[float, float, float, float]:
-    """(score, precision, recall, minutes) of running a set of tool indices."""
+    """(score, precision, recall, cost) of running a set of tool indices (cost unit: see load)."""
     found = frozenset().union(*[it["found"][i] for i in subset]) if subset else frozenset()
     tp = len(found & it["labels"])
     p = tp / len(found) if found else 0.0
     r = tp / len(it["labels"])
-    return 0.6 * r + 0.4 * p, p, r, float(sum(it["sec"][i] for i in subset)) / 60.0
+    return 0.6 * r + 0.4 * p, p, r, float(sum(it["cost"][i] for i in subset))
 
 
 # ── environment ───────────────────────────────────────────────────────────────
@@ -132,7 +141,7 @@ class ToolEnv(gym.Env):
             return self.obs(), -self.REPEAT_PENALTY, False, self.t >= 2 * self.T, {}
         self.used.append(a)
         s, _, _, m = outcome(self.it, self.used)
-        dm = float(self.it["sec"][a]) / 60.0
+        dm = float(self.it["cost"][a])
         r = (s - self.cur) - self.lam * dm
         self.cur, self.minutes = s, m
         done = len(self.used) == self.T
@@ -225,6 +234,8 @@ def main():
     ap.add_argument("--repeats", type=int, default=3)
     ap.add_argument("--steps", type=int, default=30_000)
     ap.add_argument("--ent", type=float, default=0.02, help="PPO entropy coefficient")
+    ap.add_argument("--cost", choices=list(COST_UNITS), default="minutes",
+                    help="cost of a tool run: minutes of run time, k LLM tokens, or both")
     ap.add_argument("--features", choices=("compact", "all"), default="compact",
                     help="contract features PPO sees: 4 compact ones (default) or all 28")
     ap.add_argument("--data", default=str(DATA.relative_to(ROOT)),
@@ -238,7 +249,7 @@ def main():
         args.lams.append(args.main_lam)
     torch.set_num_threads(1)
 
-    meta_d, tools, items = load(data_path)
+    meta_d, tools, items = load(data_path, args.cost)
     fidx = COMPACT if args.features == "compact" else None
     T, N = len(tools), len(items)
     subsets = all_subsets(T)
@@ -248,7 +259,7 @@ def main():
     started = time.time()
     # Checkpoint: each finished fold's picks are saved, so a restart (PC shut down,
     # sleep, Ctrl+C) skips the folds already done. Keyed by every setting that matters.
-    cfg_key = json.dumps({"env": "v2-repeat-noop", "ent": args.ent, "features": args.features, "lams": sorted(args.lams), "main": args.main_lam, "folds": args.folds,
+    cfg_key = json.dumps({"env": "v2-repeat-noop", "ent": args.ent, "cost": args.cost, "features": args.features, "lams": sorted(args.lams), "main": args.main_lam, "folds": args.folds,
                           "repeats": args.repeats, "steps": args.steps,
                           "data": meta_d.get("source_commit"), "n": N, "tools": tools,
                           "built_at": meta_d.get("built_at")}, sort_keys=True)
@@ -313,16 +324,18 @@ def main():
         for m, per in picks.items():
             if not any(per):                       # method not run at this lam (ablation)
                 continue
-            u, s, p, r, mins, ntools = [], [], [], [], [], []
+            u, s, p, r, mins, ntools, toks = [], [], [], [], [], [], []
             for it, runs in zip(items, per):
                 o = [outcome(it, sub) for sub in runs]       # average over repeats
                 s.append(np.mean([x[0] for x in o])); p.append(np.mean([x[1] for x in o]))
                 r.append(np.mean([x[2] for x in o])); mins.append(np.mean([x[3] for x in o]))
                 u.append(np.mean([x[0] - lam * x[3] for x in o])); ntools.append(np.mean([len(x) for x in runs]))
+                toks.append(np.mean([sum(float(it["tok"][j]) for j in sub) for sub in runs]))
             use = Counter(tools[j] for runs in per for sub in runs for j in sub)
             n_runs = sum(len(runs) for runs in per)
             rows[m] = {"utility": boot_ci(u), "score": boot_ci(s), "precision": float(np.mean(p)),
-                       "recall": float(np.mean(r)), "minutes": float(np.mean(mins)),
+                       "recall": float(np.mean(r)), "minutes": float(np.mean(mins)), "cost": float(np.mean(mins)),
+                       "llm_tokens": float(np.mean(toks)),
                        "n_tools": float(np.mean(ntools)),
                        "tool_use_pct": {t: round(100 * use[t] / n_runs, 1) for t in tools},
                        "_u": u, "_s": s, "_m": mins}
@@ -354,7 +367,7 @@ def main():
             "data_commit": meta_d["source_commit"], "n_contracts": N, "tools": tools,
             "labels": dict(Counter(min(it["labels"]) for it in items)),
             "lams": args.lams, "main_lam": args.main_lam, "folds": args.folds, "repeats": args.repeats,
-            "ppo_steps": args.steps, "features": args.features, "ent_coef": args.ent, "minutes": round((time.time() - started) / 60, 1),
+            "ppo_steps": args.steps, "cost_mode": args.cost, "features": args.features, "ent_coef": args.ent, "minutes": round((time.time() - started) / 60, 1),
             "python": platform.python_version()}
     (out / "results.json").write_text(json.dumps({"metadata": meta, "results": clean, "paired_vs_PPO": paired_rows,
                                                   "by_origin": by_origin}, indent=2), encoding="utf-8")
@@ -367,18 +380,19 @@ def main():
           f"({', '.join(f'{o}: {by_origin[o]['n']}' for o in origins)}); sources: {meta_d['source']}.",
           f"- PPO sees {'4 compact contract features' if args.features == 'compact' else 'all 28 contract features'} "
           f"+ tools run so far + categories they found.",
-          f"- Utility = score − λ·minutes of tool run time; λ = {args.main_lam} at the main setting.",
+          f"- Utility = score − λ·cost, cost = {COST_UNITS[args.cost]} per contract (`--cost {args.cost}`); "
+          f"λ = {args.main_lam} at the main setting.",
           f"- {args.folds}-fold stratified cross-validation × {args.repeats} repeats; every contract is "
           f"scored by policies that never saw it. 95% bootstrap CIs over contracts.", "",
           f"## Main result (λ = {args.main_lam})", "",
-          "| Method | Utility [95% CI] | Score [95% CI] | Precision | Recall | Minutes | Tools run |",
-          "|---|---|---|---|---|---|---|"]
+          f"| Method | Utility [95% CI] | Score [95% CI] | Precision | Recall | Cost ({COST_UNITS[args.cost]}) | LLM tokens | Tools run |",
+          "|---|---|---|---|---|---|---|---|"]
     for m in order:
         r = main_rows[m]
         md.append(f"| {m} | {fmt(r['utility'])} | {fmt(r['score'])} | {r['precision']:.3f} | "
-                  f"{r['recall']:.3f} | {r['minutes']:.2f} | {r['n_tools']:.2f} |")
+                  f"{r['recall']:.3f} | {r['minutes']:.2f} | {r['llm_tokens']:,.0f} | {r['n_tools']:.2f} |")
     if len(origins) > 1:
-        md += ["", f"## By source (λ = {args.main_lam}): score [95% CI], minutes", "",
+        md += ["", f"## By source (λ = {args.main_lam}): score [95% CI], cost ({COST_UNITS[args.cost]})", "",
                "| Method | " + " | ".join(f"{o} (n={by_origin[o]['n']})" for o in origins) + " |",
                "|---|" + "---|" * len(origins)]
         for m in order:
@@ -399,8 +413,8 @@ def main():
            "## Tools PPO runs (% of contracts)", "",
            "| " + " | ".join(tools) + " |", "|" + "---|" * len(tools),
            "| " + " | ".join(f"{main_rows['PPO']['tool_use_pct'][t]}" for t in tools) + " |", "",
-           "## λ sweep", "", "| λ | PPO utility | PPO score | PPO minutes | best-fixed utility | best-fixed score | "
-           "best-fixed minutes | oracle utility |", "|---|---|---|---|---|---|---|---|"]
+           "## λ sweep", "", "| λ | PPO utility | PPO score | PPO cost | best-fixed utility | best-fixed score | "
+           "best-fixed cost | oracle utility |", "|---|---|---|---|---|---|---|---|"]
     for lam in args.lams:
         r = results[lam]
         md.append(f"| {lam:g} | {r['PPO']['utility'][0]:.3f} | {r['PPO']['score'][0]:.3f} | {r['PPO']['minutes']:.2f} | "

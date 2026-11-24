@@ -1,0 +1,294 @@
+===== 23-11-2026 14:48:05.48 ===== 
+TA mode: 3/269 contracts complete; ~15,193 tokens per contract; ~4.04M tokens to go
+[4/269] FindThisHash: 8,637 tokens
+[5/269] auction: 9,808 tokens
+[6/269] dos_simple: 9,413 tokens
+[7/269] dos_address: 10,258 tokens
+[8/269] crypto_roulette: 11,704 tokens
+[9/269] ether_lotto: 10,908 tokens
+[10/269] arbitrary_location_write_simple: 11,430 tokens
+[11/269] eth_tx_order_dependence_minimal: 11,449 tokens
+[12/269] dos_number: 11,509 tokens
+Exception in thread Thread-4 (worker):
+Traceback (most recent call last):
+  File "C:\Users\anisk\AppData\Local\Python\pythoncore-3.14-64\Lib\threading.py", line 1082, in _bootstrap_inner
+    self._context.run(self.run)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\anisk\AppData\Local\Python\pythoncore-3.14-64\Lib\threading.py", line 1024, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\anisk\OneDrive\Desktop\LLMSmartAuditTool-Multiagent\rl_tools\collect_ta.py", line 99, in worker
+    save()
+    ~~~~^^
+  File "C:\Users\anisk\OneDrive\Desktop\LLMSmartAuditTool-Multiagent\rl_tools\collect_ta.py", line 78, in save
+    tmp.replace(OUT)
+    ~~~~~~~~~~~^^^^^
+  File "C:\Users\anisk\AppData\Local\Python\pythoncore-3.14-64\Lib\pathlib\__init__.py", line 1091, in replace
+    os.replace(self, target)
+    ~~~~~~~~~~^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\datasets\\tool_results\\llm_ta.tmp' -> 'C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\datasets\\tool_results\\llm_ta.json'
+[13/269] integer_overflow_1: 9,771 tokens
+[14/269] etherstore: 11,119 tokens
+[15/269] guess_the_random_number: 10,427 tokens
+[16/269] incorrect_constructor_name2: 10,074 tokens
+[17/269] incorrect_constructor_name1: 10,419 tokens
+[18/269] incorrect_constructor_name3: 10,473 tokens
+[19/269] governmental_survey: 13,421 tokens
+[20/269] etheraffle: 16,065 tokens
+[21/269] integer_overflow_add: 9,443 tokens
+[22/269] integer_overflow_benign_1: 8,647 tokens
+[23/269] integer_overflow_minimal: 8,919 tokens
+[24/269] integer_overflow_mapping_sym_1: 9,048 tokens
+[25/269] etherpot_lotto: 19,183 tokens
+[26/269] integer_overflow_mul: 9,139 tokens
+[27/269] integer_overflow_multitx_multifunc_feasible: 9,799 tokens
+[28/269] integer_overflow_multitx_onefunc_feasible: 9,429 tokens
+[29/269] lottery: 12,072 tokens
+[30/269] lotto: 11,886 tokens
+[31/269] multiowned_vulnerable: 11,324 tokens
+[32/269] mycontract: 9,572 tokens
+[33/269] modifier_reentrancy: 12,477 tokens
+[34/269] mapping_write: 10,870 tokens
+[35/269] king_of_the_ether_throne: 16,305 tokens
+[36/269] list_dos: 18,364 tokens
+[37/269] name_registrar: 10,886 tokens
+[38/269] overflow_simple_add: 8,846 tokens
+[39/269] lucky_doubler: 20,425 tokens
+[40/269] old_blockhash: 10,970 tokens
+[41/269] odds_and_evens: 12,906 tokens
+[42/269] overflow_single_tx: 11,910 tokens
+[43/269] open_address_lottery: 13,811 tokens
+[44/269] phishable: 9,772 tokens
+[45/269] proxy: 9,662 tokens
+[46/269] random_number_generator: 9,869 tokens
+[47/269] reentrance: 10,827 tokens
+[48/269] reentrancy_dao: 10,088 tokens
+[49/269] reentrancy_simple: 10,188 tokens
+[50/269] parity_wallet_bug_1: 24,079 tokens
+Exception in thread Thread-10 (worker):
+Traceback (most recent call last):
+  File "C:\Users\anisk\AppData\Local\Python\pythoncore-3.14-64\Lib\threading.py", line 1082, in _bootstrap_inner
+    self._context.run(self.run)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\anisk\AppData\Local\Python\pythoncore-3.14-64\Lib\threading.py", line 1024, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\anisk\OneDrive\Desktop\LLMSmartAuditTool-Multiagent\rl_tools\collect_ta.py", line 99, in worker
+    save()
+    ~~~~^^
+  File "C:\Users\anisk\OneDrive\Desktop\LLMSmartAuditTool-Multiagent\rl_tools\collect_ta.py", line 78, in save
+    tmp.replace(OUT)
+    ~~~~~~~~~~~^^^^^
+  File "C:\Users\anisk\AppData\Local\Python\pythoncore-3.14-64\Lib\pathlib\__init__.py", line 1091, in replace
+    os.replace(self, target)
+    ~~~~~~~~~~^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\datasets\\tool_results\\llm_ta.tmp' -> 'C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\datasets\\tool_results\\llm_ta.json'
+[51/269] roulette: 10,020 tokens
+[52/269] parity_wallet_bug_2: 24,691 tokens
+[53/269] short_address_example: 11,388 tokens
+[54/269] simple_suicide: 9,185 tokens
+[55/269] simple_dao: 11,104 tokens
+[56/269] timed_crowdsale: 8,501 tokens
+[57/269] timelock: 10,159 tokens
+[58/269] token: 10,696 tokens
+[59/269] unchecked_return_value: 9,248 tokens
+[60/269] tokensalechallenge: 10,536 tokens
+[61/269] rubixi: 22,504 tokens
+[62/269] unprotected0: 9,507 tokens
+[63/269] smart_billions: 25,966 tokens
+[64/269] spank_chain_payment: 22,407 tokens
+[65/269] wallet_02_refund_nosub: 12,394 tokens
+[66/269] wallet_03_wrong_constructor: 12,639 tokens
+[67/269] wallet_04_confused_sign: 11,898 tokens
+[68/269] sf_integer_overflow_1: 23,344 tokens
+[69/269] sf_integer_overflow_2: 25,518 tokens
+[70/269] sf_integer_overflow_3: 24,132 tokens
+[71/269] sf_integer_overflow_4: 24,415 tokens
+[72/269] sf_integer_overflow_5: 25,374 tokens
+[73/269] sf_integer_overflow_6: 24,730 tokens
+[74/269] sf_integer_overflow_7: 24,439 tokens
+[75/269] sf_integer_overflow_8: 24,675 tokens
+      daily limit on groq key 6, switching to nvidia key 11
+      nvidia does not serve openai/gpt-oss-120b any more; skipping it
+sf_integer_overflow_11: stopping worker (DailyLimitReached: nvidia: model unavailable, no other keys left)
+[76/269] sf_integer_overflow_10: 15,853 tokens
+sf_integer_overflow_15: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk4)
+[77/269] sf_integer_overflow_9: 24,798 tokens
+[78/269] sf_integer_overflow_12: 25,637 tokens
+[79/269] sf_integer_overflow_13: 23,013 tokens
+[80/269] sf_integer_overflow_14: 23,274 tokens
+[81/269] sf_integer_overflow_16: 24,437 tokens
+[82/269] sf_integer_overflow_17: 25,799 tokens
+[83/269] sf_integer_overflow_18: 24,171 tokens
+[84/269] sf_integer_overflow_19: 25,116 tokens
+[85/269] sf_integer_overflow_20: 23,642 tokens
+[86/269] sf_integer_overflow_21: 25,622 tokens
+[87/269] sf_integer_overflow_22: 24,683 tokens
+[88/269] sf_integer_overflow_23: 22,733 tokens
+[89/269] sf_integer_overflow_24: 22,459 tokens
+[90/269] sf_integer_overflow_25: 26,527 tokens
+[91/269] sf_integer_overflow_26: 24,285 tokens
+[92/269] sf_integer_overflow_27: 24,226 tokens
+[93/269] sf_integer_overflow_28: 24,698 tokens
+[94/269] sf_integer_overflow_29: 26,007 tokens
+[95/269] sf_integer_overflow_30: 22,753 tokens
+[96/269] sf_integer_overflow_31: 22,639 tokens
+[97/269] sf_integer_overflow_32: 23,739 tokens
+sf_integer_overflow_37: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk0)
+sf_integer_overflow_38: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kn7ym)
+[98/269] sf_integer_overflow_33: 24,843 tokens
+[99/269] sf_integer_overflow_34: 27,418 tokens
+sf_integer_overflow_36: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01knpjq)
+sf_integer_overflow_39: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk5)
+[100/269] sf_integer_overflow_35: 24,459 tokens
+sf_integer_overflow_41: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk7)
+sf_integer_overflow_40: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pka)
+TA mode: 100/269 contracts complete -> datasets\tool_results\llm_ta.json
+[score_ta] TA mode still missing for 169/269 contracts; nothing to score yet.
+===== 24-11-2026 10:21:44.26 ===== 
+TA mode: 100/269 contracts complete; ~16,255 tokens per contract; ~2.75M tokens to go
+[101/269] blackjack: 24,371 tokens
+[102/269] send_loop: 11,074 tokens
+[103/269] sf_integer_overflow_36: 24,337 tokens
+[104/269] sf_integer_overflow_11: 24,399 tokens
+[105/269] sf_integer_overflow_40: 22,230 tokens
+[106/269] sf_integer_overflow_39: 18,898 tokens
+[107/269] sf_integer_overflow_15: 22,661 tokens
+[108/269] sf_integer_overflow_41: 24,717 tokens
+[109/269] sf_integer_overflow_38: 24,282 tokens
+[110/269] sf_integer_overflow_37: 24,511 tokens
+[111/269] sf_integer_overflow_42: 24,886 tokens
+[112/269] sf_integer_overflow_43: 22,775 tokens
+[113/269] sf_integer_overflow_44: 23,497 tokens
+[114/269] sf_integer_overflow_45: 25,173 tokens
+[115/269] sf_integer_overflow_46: 23,004 tokens
+[116/269] sf_integer_overflow_47: 24,096 tokens
+[117/269] sf_integer_overflow_49: 19,015 tokens
+[118/269] sf_integer_overflow_48: 23,569 tokens
+[119/269] sf_integer_overflow_50: 22,743 tokens
+[120/269] sf_reentrancy_1: 26,534 tokens
+[121/269] sf_reentrancy_2: 25,155 tokens
+[122/269] sf_reentrancy_3: 28,583 tokens
+[123/269] sf_reentrancy_4: 26,904 tokens
+[124/269] sf_reentrancy_5: 25,592 tokens
+[125/269] sf_reentrancy_6: 28,910 tokens
+[126/269] sf_reentrancy_7: 24,467 tokens
+[127/269] sf_reentrancy_8: 26,780 tokens
+[128/269] sf_reentrancy_9: 24,866 tokens
+[129/269] sf_reentrancy_10: 18,929 tokens
+[130/269] sf_reentrancy_11: 27,890 tokens
+[131/269] sf_reentrancy_12: 25,064 tokens
+[132/269] sf_reentrancy_13: 24,327 tokens
+      daily limit on groq key 6, switching to nvidia key 11
+      nvidia does not serve openai/gpt-oss-120b any more; skipping it
+sf_reentrancy_21: stopping worker (DailyLimitReached: nvidia: model unavailable, no other keys left)
+sf_reentrancy_14: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk4)
+[133/269] sf_reentrancy_15: 28,846 tokens
+[134/269] sf_reentrancy_16: 26,333 tokens
+[135/269] sf_reentrancy_17: 26,160 tokens
+[136/269] sf_reentrancy_18: 23,982 tokens
+[137/269] sf_reentrancy_19: 26,793 tokens
+[138/269] sf_reentrancy_20: 25,413 tokens
+[139/269] sf_reentrancy_22: 25,177 tokens
+[140/269] sf_reentrancy_23: 25,405 tokens
+[141/269] sf_reentrancy_24: 21,188 tokens
+[142/269] sf_reentrancy_25: 26,747 tokens
+[143/269] sf_reentrancy_26: 26,821 tokens
+[144/269] sf_reentrancy_27: 24,037 tokens
+[145/269] sf_reentrancy_28: 25,321 tokens
+[146/269] sf_reentrancy_29: 24,495 tokens
+[147/269] sf_reentrancy_30: 23,844 tokens
+[148/269] sf_reentrancy_31: 25,386 tokens
+[149/269] sf_reentrancy_32: 29,576 tokens
+[150/269] sf_reentrancy_33: 26,764 tokens
+[151/269] sf_reentrancy_34: 25,899 tokens
+[152/269] sf_reentrancy_35: 24,404 tokens
+[153/269] sf_reentrancy_36: 25,061 tokens
+[154/269] sf_reentrancy_37: 26,701 tokens
+[155/269] sf_reentrancy_38: 26,515 tokens
+[156/269] sf_reentrancy_39: 21,506 tokens
+sf_reentrancy_41: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pka)
+[157/269] sf_reentrancy_40: 25,308 tokens
+sf_reentrancy_48: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk0)
+sf_reentrancy_46: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kn7ym)
+[158/269] sf_reentrancy_42: 27,378 tokens
+[159/269] sf_reentrancy_43: 26,181 tokens
+[160/269] sf_reentrancy_44: 24,082 tokens
+sf_reentrancy_49: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk7)
+[161/269] sf_reentrancy_45: 25,129 tokens
+sf_timestamp_dependence_2: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk5)
+sf_reentrancy_47: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01knpjq)
+[162/269] sf_timestamp_dependence_1: 20,791 tokens
+[163/269] sf_reentrancy_50: 25,116 tokens
+[164/269] sf_timestamp_dependence_4: 23,228 tokens
+[165/269] sf_timestamp_dependence_3: 24,139 tokens
+sf_timestamp_dependence_5: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pkd)
+sf_timestamp_dependence_6: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk1)
+TA mode: 165/269 contracts complete -> datasets\tool_results\llm_ta.json
+TA mode: 165/269 contracts complete; ~19,536 tokens per contract; ~2.03M tokens to go
+      daily limit on groq key 10, switching to nvidia key 11
+sf_reentrancy_46: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk1)
+      nvidia does not serve openai/gpt-oss-120b any more; skipping it
+sf_timestamp_dependence_6: stopping worker (DailyLimitReached: nvidia: model unavailable, no other keys left)
+[166/269] sf_reentrancy_14: 29,415 tokens
+sf_reentrancy_21: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01knpjq)
+sf_reentrancy_47: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk4)
+sf_timestamp_dependence_2: stopping worker (AccessDenied: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk7)
+sf_reentrancy_48: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk4)
+sf_reentrancy_41: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk0)
+sf_timestamp_dependence_7: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kn7ym)
+sf_timestamp_dependence_5: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pka)
+sf_reentrancy_49: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk5)
+TA mode: 166/269 contracts complete -> datasets\tool_results\llm_ta.json
+[score_ta] TA mode still missing for 103/269 contracts; nothing to score yet.
+269 done, 96 to go
+      daily limit on groq key 7, switching to nvidia key 11
+[270/165] 0x0cbe050f75bc8f8c2d6c0d249fea125fd6e1acc9: stop 529 tok 8.22s
+0x4051334adc52057aca763453820cb0e045076ef3: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk0)
+[271/165] 0x2972d548497286d18e92b5fa1f8f9139e5653fd2: stop 664 tok 8.28s
+0x4320e6f8c05b27ab4707cd1f6d5ce6f3e4b3a5a1: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk4)
+[272/165] 0x3f2ef511aa6e75231e4deafc7a3d2ecab3741de2: stop 980 tok 8.68s
+0x4a66ad0bca2d700f11e1f2fc2c106f7d3264504c: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pkd)
+[273/165] 0x07f7ecb66d788ab01dc93b9b71a88401de7d0f2e: stop 1963 tok 9.13s
+0x4b71ad9c1a84b9b643aa54fdd66e2dec96e8b152: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01knpjq)
+      nvidia does not serve openai/gpt-oss-120b any more; skipping it
+0x39cfd754c85023648bf003bea2dd498c5612abfa: stopping worker (DailyLimitReached: nvidia: model unavailable, no other keys left)
+0x01f8c4e3fa3edeb29e514cba738d87ce8c091d3f: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kn7ym)
+0x23a91059fdc9579a9fbd0edc5f2ea0bfdb70deb4: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk4)
+[274/165] 0x3e013fc32a54c4c5b6991ba539dcd0ec4355c859: stop 811 tok 11.69s
+0x4e73b32ed6c35f570686b89848e5f39f20ecc106: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pka)
+[275/165] 0x19cf8481ea15427a98ba3cdd6d9e14690011ab10: stop 2374 tok 11.95s
+0x524960d55174d912768678d8c606b4d50b79d7b1: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk1)
+[276/165] 0x3a0e9acd953ffc0dd18d63603488846a6b8b2b01: stop 1303 tok 12.32s
+0x52d2e0f9b01101a59b38a3d05c80b7618aeed984: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk7)
+276/165 contracts have an LLM reply -> datasets\tool_results\llm_ba.json
+269 done, 96 to go
+      daily limit on groq key 6, switching to nvidia key 11
+0x07f7ecb66d788ab01dc93b9b71a88401de7d0f2e: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01knpjq)
+0x3f2ef511aa6e75231e4deafc7a3d2ecab3741de2: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pkd)
+0x23a91059fdc9579a9fbd0edc5f2ea0bfdb70deb4: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk4)
+0x01f8c4e3fa3edeb29e514cba738d87ce8c091d3f: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kn7ym)
+0x19cf8481ea15427a98ba3cdd6d9e14690011ab10: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk1)
+0x3e013fc32a54c4c5b6991ba539dcd0ec4355c859: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pka)
+0x3a0e9acd953ffc0dd18d63603488846a6b8b2b01: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk7)
+      nvidia does not serve openai/gpt-oss-120b any more; skipping it
+0x2972d548497286d18e92b5fa1f8f9139e5653fd2: stopping worker (DailyLimitReached: nvidia: model unavailable, no other keys left)
+[270/165] 0x39cfd754c85023648bf003bea2dd498c5612abfa: stop 2239 tok 59.31s
+0x4051334adc52057aca763453820cb0e045076ef3: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk5)
+0x0cbe050f75bc8f8c2d6c0d249fea125fd6e1acc9: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk0)
+270/165 contracts have an LLM reply -> datasets\tool_results\llm_ba_med.json
+269 done, 96 to go
+      daily limit on groq key 10, switching to nvidia key 11
+0x0cbe050f75bc8f8c2d6c0d249fea125fd6e1acc9: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk0)0x2972d548497286d18e92b5fa1f8f9139e5653fd2: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk4)
+
+0x07f7ecb66d788ab01dc93b9b71a88401de7d0f2e: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01knpjq)
+0x39cfd754c85023648bf003bea2dd498c5612abfa: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk5)
+      nvidia does not serve openai/gpt-oss-120b any more; skipping it
+0x3f2ef511aa6e75231e4deafc7a3d2ecab3741de2: stopping worker (DailyLimitReached: nvidia: model unavailable, no other keys left)
+0x01f8c4e3fa3edeb29e514cba738d87ce8c091d3f: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kn7ym)
+0x3e013fc32a54c4c5b6991ba539dcd0ec4355c859: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pka)
+0x23a91059fdc9579a9fbd0edc5f2ea0bfdb70deb4: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk4)
+0x19cf8481ea15427a98ba3cdd6d9e14690011ab10: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk1)
+0x3a0e9acd953ffc0dd18d63603488846a6b8b2b01: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk7)
+269/165 contracts have an LLM reply -> datasets\tool_results\llm_ba_dasp.json
+[finish_pipeline] A (TA as tools + PPO): data incomplete, not done | B (real-only PPO): data incomplete, not done

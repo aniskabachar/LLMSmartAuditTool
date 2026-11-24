@@ -2426,6 +2426,69 @@
    "seconds": 11.34,
    "provider": "groq",
    "at": "2026-11-21T09:19:56+00:00"
+  },
+  "0x0cbe050f75bc8f8c2d6c0d249fea125fd6e1acc9": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"callAddress function\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The low\u2011level `call()` is used without checking its return value, allowing silent failure or re\u2011entrancy attacks if the called contract executes malicious code.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 324,
+   "completion_tokens": 205,
+   "seconds": 8.22,
+   "provider": "groq",
+   "at": "2026-11-24T06:11:32+00:00"
+  },
+  "0x2972d548497286d18e92b5fa1f8f9139e5653fd2": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"transfer function, line with caddress.call(...)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The contract uses a low\u2011level call to an external contract without checking the returned success flag or handling failures, which can cause silent loss of tokens or unexpected behavior if the called contract reverts or returns false.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 394,
+   "completion_tokens": 270,
+   "seconds": 8.28,
+   "provider": "groq",
+   "at": "2026-11-24T06:11:32+00:00"
+  },
+  "0x3f2ef511aa6e75231e4deafc7a3d2ecab3741de2": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"withdraw()\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function allows anyone calling from the hard\u2011coded address 0x7a617c2B05d2A74Ff9bABC9d81E5225C1e01004b to become the Owner, effectively a backdoor that lets that address hijack ownership.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"Command(address adr,bytes data)\",\n      \"severity\": \"high\",\n      \"explanation\": \"Uses low\u2011level call without checking the return value, enabling silent failures and potential re\u2011entrancy attacks because no gas limit or success verification is performed.\"\n    },\n    {\n      \"type\": \"other\",\n      \"location\": \"redeem()\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Logic error: after Owner.transfer(this.balance) the contract balance becomes zero, so msg.sender.transfer(this.balance) always sends 0 ether, meaning the sender never receives the intended payout.\"\n    }\n  ],\n  \"confidence\": 0.93\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 496,
+   "completion_tokens": 484,
+   "seconds": 8.68,
+   "provider": "groq",
+   "at": "2026-11-24T06:11:33+00:00"
+  },
+  "0x07f7ecb66d788ab01dc93b9b71a88401de7d0f2e": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"bad_randomness\",\n      \"location\": \"play() function\",\n      \"severity\": \"high\",\n      \"explanation\": \"The winning number is derived from blockhash of a previous block combined with the player's address, which can be manipulated by miners to influence the outcome.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"donateToWhale() and loseWager() functions\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Calls to the whale contract are made using low\u2011level .call without checking the return value, allowing silent failures and potential re\u2011entrancy.\"\n    },\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"donateToWhale() and loseWager() functions\",\n      \"severity\": \"medium\",\n      \"explanation\": \"State (totalDonated) is updated after the external call, enabling a malicious whale contract to re\u2011enter and manipulate the contract's state.\"\n    },\n    {\n      \"type\": \"tx_origin\",\n      \"location\": \"onlyRealPeople modifier (used in constructor, wager, play)\",\n      \"severity\": \"low\",\n      \"explanation\": \"Authentication based on tx.origin can be bypassed via a contract forwarding calls, weakening access control.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"totalDonated += amount in donateToWhale() and loseWager()\",\n      \"severity\": \"low\",\n      \"explanation\": \"Using Solidity 0.4.24 without SafeMath allows totalDonated to overflow if extremely large amounts are donated.\"\n    }\n  ],\n  \"confidence\": 0.93\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1300,
+   "completion_tokens": 663,
+   "seconds": 9.13,
+   "provider": "groq",
+   "at": "2026-11-24T06:11:33+00:00"
+  },
+  "0x3e013fc32a54c4c5b6991ba539dcd0ec4355c859": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"function Command(address adr,bytes data)\",\n      \"severity\": \"high\",\n      \"explanation\": \"Uses low\u2011level call without checking the return value, allowing the Owner to trigger a call that may fail silently or be exploited for re\u2011entrancy.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"function multiplicate(address adr)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Adds this.balance and msg.value (uint256) without overflow checks; with enough ether the sum could wrap around, causing incorrect transfer amounts.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 396,
+   "completion_tokens": 415,
+   "seconds": 11.69,
+   "provider": "groq",
+   "at": "2026-11-24T06:11:36+00:00"
+  },
+  "0x19cf8481ea15427a98ba3cdd6d9e14690011ab10": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"createDaoPOLSKAtokens() - multiplication of msg.value * CreationRate\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract uses Solidity ^0.4.11 without built\u2011in overflow checks and multiplies user\u2011provided msg.value by CreationRate. A large msg.value can cause uint256 overflow, resulting in creation of far fewer tokens than intended and possible loss of funds.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"FundsTransfer(), PartialFundsTransfer(), finalize() - owner.send(...)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The contract uses low\u2011level .send() to transfer ether to the owner without checking the return value. If the send fails (e.g., due to gas limit or a rejecting fallback), the call silently fails, potentially locking ether in the contract (denial of service).\"\n    },\n    {\n      \"type\": \"access_control\",\n      \"location\": \"migrate() - condition if (migratestate) throw;\",\n      \"severity\": \"low\",\n      \"explanation\": \"The migrate function checks `if (migratestate) throw;` which prevents migration when the flag is true. The intended logic is likely the opposite, allowing migration only when migration is enabled. This mis\u2011configuration could lock users' tokens.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1805,
+   "completion_tokens": 569,
+   "seconds": 11.95,
+   "provider": "groq",
+   "at": "2026-11-24T06:11:36+00:00"
+  },
+  "0x3a0e9acd953ffc0dd18d63603488846a6b8b2b01": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"Deposit() function\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Holders[msg.sender] is increased by msg.value without SafeMath; a large deposit could overflow the uint and wrap around, corrupting balances.\"\n    },\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"WithdrawToHolder() function\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract sends ether to _addr via low\u2011level call before updating Holders[_addr]; a malicious receiver can re\u2011enter and withdraw multiple times.\"\n    },\n    {\n      \"type\": \"access_control\",\n      \"location\": \"owner variable shadowing in Token and TokenBank contracts\",\n      \"severity\": \"high\",\n      \"explanation\": \"Token and TokenBank declare their own 'owner' state variable, which shadows Ownable.owner used by the onlyOwner modifier. Functions that set 'owner' (e.g., initTokenBank) modify the wrong variable, allowing the original owner to retain control and breaking intended access control.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"WithdrawToken() and WithdrawToHolder() functions\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Both functions use low\u2011level .call without checking the returned boolean; failures (e.g., token contract not implementing transfer) are silently ignored, leading to loss of funds or false assumptions about success.\"\n    }\n  ],\n  \"confidence\": 0.93\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 692,
+   "completion_tokens": 611,
+   "seconds": 12.32,
+   "provider": "groq",
+   "at": "2026-11-24T06:11:36+00:00"
   }
  }
 }
