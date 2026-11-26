@@ -1,0 +1,52 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\medium\\Ethmoon.sol",
+ "audited_at": "2026-11-26T14:08:18",
+ "vulnerability_categories": [
+  "denial_of_service",
+  "integer_overflow"
+ ],
+ "analysers_run": [
+  "llm_ba_med"
+ ],
+ "llm_tokens": 2337,
+ "analyser_seconds": 14.6,
+ "wall_seconds": 15.7,
+ "steps": [
+  {
+   "tool": "llm_ba_med",
+   "p": 0.658,
+   "categories": [
+    "denial_of_service",
+    "integer_overflow"
+   ],
+   "details": [
+    {
+     "type": "denial_of_service",
+     "location": "pay() function loop over queue",
+     "severity": "high",
+     "explanation": "The pay() function iterates over the entire queue array, which never shrinks because entries are only deleted but not removed. As the queue grows, the loop can exceed the block gas limit, causing the function to run out of gas and stop processing payouts. This can lock funds for earlier depositors, effectively a DoS."
+    },
+    {
+     "type": "integer_overflow",
+     "location": "pay() function, line `uint128 money = uint128(address(this).balance);`",
+     "severity": "medium",
+     "explanation": "The contract casts the full contract balance (uint256) to uint128 without checking for overflow. An attacker could increase the balance (e.g., via self\u2011destruct) to a value larger than 2^128\u20111, causing truncation and an incorrect `money` amount, which may lead to under\u2011payment of depositors."
+    }
+   ],
+   "seconds": 14.64,
+   "tokens": 2337,
+   "new_categories": [
+    "denial_of_service",
+    "integer_overflow"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_qwen_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T13:55:05"
+ }
+}

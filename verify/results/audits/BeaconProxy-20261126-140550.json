@@ -1,0 +1,30 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\hard\\BeaconProxy.sol",
+ "audited_at": "2026-11-26T14:05:50",
+ "vulnerability_categories": [],
+ "analysers_run": [
+  "llm_ba_med"
+ ],
+ "llm_tokens": 2180,
+ "analyser_seconds": 17.2,
+ "wall_seconds": 18.4,
+ "steps": [
+  {
+   "tool": "llm_ba_med",
+   "p": 0.765,
+   "categories": [],
+   "details": [],
+   "seconds": 17.2,
+   "tokens": 2180,
+   "new_categories": []
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_qwen_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T13:55:05"
+ }
+}

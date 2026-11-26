@@ -1,0 +1,52 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\medium\\0x4a66ad0bca2d700f11e1f2fc2c106f7d3264504c.sol",
+ "audited_at": "2026-11-26T13:57:13",
+ "vulnerability_categories": [
+  "integer_overflow",
+  "unchecked_low_level_calls"
+ ],
+ "analysers_run": [
+  "llm_ba_dasp"
+ ],
+ "llm_tokens": 1112,
+ "analyser_seconds": 10.1,
+ "wall_seconds": 10.1,
+ "steps": [
+  {
+   "tool": "llm_ba_dasp",
+   "p": 0.87,
+   "categories": [
+    "integer_overflow",
+    "unchecked_low_level_calls"
+   ],
+   "details": [
+    {
+     "type": "unchecked_low_level_calls",
+     "location": "transfer function, caddress.call(...)",
+     "severity": "high",
+     "explanation": "The contract uses low\u2011level call to an external address without checking the returned success flag, allowing silent failure and potential loss of funds."
+    },
+    {
+     "type": "integer_overflow",
+     "location": "transfer function, v[i] * 1000000000000000000",
+     "severity": "medium",
+     "explanation": "Using Solidity ^0.4.18 means arithmetic is unchecked; multiplying user\u2011provided v[i] by 1e18 can overflow uint256 and wrap around, causing incorrect transfer amounts."
+    }
+   ],
+   "seconds": 10.05,
+   "tokens": 1112,
+   "new_categories": [
+    "integer_overflow",
+    "unchecked_low_level_calls"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_qwen_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T13:55:05"
+ }
+}

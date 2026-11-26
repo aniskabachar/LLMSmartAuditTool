@@ -1,0 +1,52 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\medium\\mishandled.sol",
+ "audited_at": "2026-11-26T14:13:59",
+ "vulnerability_categories": [
+  "denial_of_service",
+  "unchecked_low_level_calls"
+ ],
+ "analysers_run": [
+  "llm_ba_dasp"
+ ],
+ "llm_tokens": 937,
+ "analyser_seconds": 1.1,
+ "wall_seconds": 22.6,
+ "steps": [
+  {
+   "tool": "llm_ba_dasp",
+   "p": 0.872,
+   "categories": [
+    "denial_of_service",
+    "unchecked_low_level_calls"
+   ],
+   "details": [
+    {
+     "type": "unchecked_low_level_calls",
+     "location": "withdrawBalance",
+     "severity": "medium",
+     "explanation": "msg.sender.send(amountToWithdraw) is a low\u2011level call whose return value is not checked; if the send fails the contract silently ignores the failure, potentially locking user funds."
+    },
+    {
+     "type": "denial_of_service",
+     "location": "withdrawBalance",
+     "severity": "medium",
+     "explanation": "Because the send return value is not verified, a malicious recipient can cause the send to fail (e.g., by using a fallback that consumes >2300 gas), preventing the user from withdrawing their balance."
+    }
+   ],
+   "seconds": 1.09,
+   "tokens": 937,
+   "new_categories": [
+    "denial_of_service",
+    "unchecked_low_level_calls"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_qwen_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T13:55:05"
+ }
+}

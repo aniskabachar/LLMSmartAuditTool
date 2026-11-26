@@ -1,0 +1,52 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\medium\\HFConditionalTransfer.sol",
+ "audited_at": "2026-11-26T14:11:27",
+ "vulnerability_categories": [
+  "front_running",
+  "unchecked_low_level_calls"
+ ],
+ "analysers_run": [
+  "llm_ba_med"
+ ],
+ "llm_tokens": 1409,
+ "analyser_seconds": 3.6,
+ "wall_seconds": 3.6,
+ "steps": [
+  {
+   "tool": "llm_ba_med",
+   "p": 0.72,
+   "categories": [
+    "front_running",
+    "unchecked_low_level_calls"
+   ],
+   "details": [
+    {
+     "type": "unchecked_low_level_calls",
+     "location": "transferIfHF and transferIfNoHF functions (use of .send without checking return value)",
+     "severity": "high",
+     "explanation": "The contract uses address.send to forward ether but does not check the boolean return value. If the send fails (e.g., due to gas limits or a reverting fallback), the ether remains locked in the contract with no way to recover it, leading to loss of funds and a denial\u2011of\u2011service condition."
+    },
+    {
+     "type": "front_running",
+     "location": "transferIfHF and transferIfNoHF functions (condition based on external address balance)",
+     "severity": "medium",
+     "explanation": "The decision of which address receives the transferred ether depends on the balance of a hard\u2011coded external address. An attacker can manipulate that balance (by sending ether to or withdrawing from the address) immediately before the transaction is mined, influencing the outcome and potentially diverting funds."
+    }
+   ],
+   "seconds": 3.64,
+   "tokens": 1409,
+   "new_categories": [
+    "front_running",
+    "unchecked_low_level_calls"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_qwen_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T13:55:05"
+ }
+}

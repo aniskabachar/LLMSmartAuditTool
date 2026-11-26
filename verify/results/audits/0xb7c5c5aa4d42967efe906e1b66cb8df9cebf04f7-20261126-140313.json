@@ -1,0 +1,61 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\medium\\0xb7c5c5aa4d42967efe906e1b66cb8df9cebf04f7.sol",
+ "audited_at": "2026-11-26T14:03:13",
+ "vulnerability_categories": [
+  "integer_overflow",
+  "reentrancy",
+  "unchecked_low_level_calls"
+ ],
+ "analysers_run": [
+  "llm_ba_med"
+ ],
+ "llm_tokens": 1037,
+ "analyser_seconds": 2.9,
+ "wall_seconds": 4.0,
+ "steps": [
+  {
+   "tool": "llm_ba_med",
+   "p": 0.748,
+   "categories": [
+    "integer_overflow",
+    "reentrancy",
+    "unchecked_low_level_calls"
+   ],
+   "details": [
+    {
+     "type": "reentrancy",
+     "location": "withdraw()",
+     "severity": "high",
+     "explanation": "The contract makes an external call (msg.sender.call.value(...)) before updating the user's balance, allowing a malicious fallback to re-enter withdraw() and drain funds."
+    },
+    {
+     "type": "integer_overflow",
+     "location": "fallback payable function",
+     "severity": "medium",
+     "explanation": "balances[msg.sender] is increased by msg.value without overflow checks; an attacker can overflow the uint256 balance by sending many transactions."
+    },
+    {
+     "type": "unchecked_low_level_calls",
+     "location": "withdraw()",
+     "severity": "medium",
+     "explanation": "The low\u2011level call's return value is ignored; if the call fails, the contract still sets the balance to 0, causing loss of the user's ether."
+    }
+   ],
+   "seconds": 2.89,
+   "tokens": 1037,
+   "new_categories": [
+    "integer_overflow",
+    "reentrancy",
+    "unchecked_low_level_calls"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_qwen_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T13:55:05"
+ }
+}

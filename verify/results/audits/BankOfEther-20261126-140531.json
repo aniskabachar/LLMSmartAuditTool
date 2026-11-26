@@ -1,0 +1,67 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\hard\\BankOfEther.sol",
+ "audited_at": "2026-11-26T14:05:31",
+ "vulnerability_categories": [
+  "access_control",
+  "denial_of_service",
+  "other"
+ ],
+ "analysers_run": [
+  "llm_ba_med"
+ ],
+ "llm_tokens": 1148,
+ "analyser_seconds": 2.9,
+ "wall_seconds": 2.9,
+ "steps": [
+  {
+   "tool": "llm_ba_med",
+   "p": 0.749,
+   "categories": [
+    "access_control",
+    "denial_of_service",
+    "other"
+   ],
+   "details": [
+    {
+     "type": "access_control",
+     "location": "transferTo",
+     "severity": "high",
+     "explanation": "Uses tx.origin for authentication. An attacker can trick the owner into calling a malicious contract, making tx.origin equal to the owner and allowing unauthorized transfers."
+    },
+    {
+     "type": "access_control",
+     "location": "changeOwner",
+     "severity": "high",
+     "explanation": "Relies on tx.origin for ownership checks, vulnerable to the same phishing attack as transferTo."
+    },
+    {
+     "type": "other",
+     "location": "transferTo",
+     "severity": "high",
+     "explanation": "Does not verify that the caller has sufficient balance before transferring Ether, enabling anyone (who passes the tx.origin check) to drain the contract's funds."
+    },
+    {
+     "type": "denial_of_service",
+     "location": "transferTo",
+     "severity": "medium",
+     "explanation": "Uses .transfer which forwards only 2300 gas; if the recipient is a contract with a fallback that requires more gas, the call will revert and block the function, potentially causing a DOS."
+    }
+   ],
+   "seconds": 2.94,
+   "tokens": 1148,
+   "new_categories": [
+    "access_control",
+    "denial_of_service",
+    "other"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_qwen_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T13:55:05"
+ }
+}

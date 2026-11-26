@@ -1,0 +1,67 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\medium\\0xbebbfe5b549f5db6e6c78ca97cac19d1fb03082c.sol",
+ "audited_at": "2026-11-26T14:04:22",
+ "vulnerability_categories": [
+  "access_control",
+  "integer_overflow",
+  "unchecked_low_level_calls"
+ ],
+ "analysers_run": [
+  "llm_ba_med"
+ ],
+ "llm_tokens": 2144,
+ "analyser_seconds": 16.7,
+ "wall_seconds": 17.9,
+ "steps": [
+  {
+   "tool": "llm_ba_med",
+   "p": 0.759,
+   "categories": [
+    "access_control",
+    "integer_overflow",
+    "unchecked_low_level_calls"
+   ],
+   "details": [
+    {
+     "type": "unchecked_low_level_calls",
+     "location": "proxy() function",
+     "severity": "high",
+     "explanation": "Uses low\u2011level call without checking the return value, so a failed call can silently lose ether and the caller cannot detect the failure."
+    },
+    {
+     "type": "access_control",
+     "location": "withdraw() function (onlyOwner modifier checks Proxy.Owner, not VaultProxy.Owner)",
+     "severity": "high",
+     "explanation": "Owner variable is shadowed in the derived contract; onlyOwner refers to the Owner defined in Proxy (set at deployment) while the intended owner is stored in VaultProxy.Owner. This lets the original deployer withdraw funds even after ownership is supposedly transferred, breaking access control."
+    },
+    {
+     "type": "access_control",
+     "location": "function Vault() public payable (intended constructor)",
+     "severity": "medium",
+     "explanation": "The function is named differently from the contract, so it is not a constructor and can be called by anyone. It allows any EOA to set VaultProxy.Owner arbitrarily, leading to unexpected ownership changes."
+    },
+    {
+     "type": "integer_overflow",
+     "location": "deposit() function (Deposits[msg.sender] += msg.value)",
+     "severity": "low",
+     "explanation": "No overflow checks are performed on the addition; with enough deposits the uint256 could wrap around, corrupting the balance."
+    }
+   ],
+   "seconds": 16.74,
+   "tokens": 2144,
+   "new_categories": [
+    "access_control",
+    "integer_overflow",
+    "unchecked_low_level_calls"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_qwen_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T13:55:05"
+ }
+}

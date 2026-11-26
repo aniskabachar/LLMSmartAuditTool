@@ -1,0 +1,70 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\medium\\0xb11b2fed6c9354f7aa2f658d3b4d7b31d8a13b77.sol",
+ "audited_at": "2026-11-26T14:02:51",
+ "vulnerability_categories": [
+  "access_control",
+  "denial_of_service",
+  "integer_overflow",
+  "unchecked_low_level_calls"
+ ],
+ "analysers_run": [
+  "llm_ba_med"
+ ],
+ "llm_tokens": 2063,
+ "analyser_seconds": 4.8,
+ "wall_seconds": 5.8,
+ "steps": [
+  {
+   "tool": "llm_ba_med",
+   "p": 0.759,
+   "categories": [
+    "access_control",
+    "denial_of_service",
+    "integer_overflow",
+    "unchecked_low_level_calls"
+   ],
+   "details": [
+    {
+     "type": "integer_overflow",
+     "location": "deposit() function, line with Deposits[msg.sender] += msg.value;",
+     "severity": "high",
+     "explanation": "Deposits mapping is increased without overflow checks; in Solidity 0.4.24 arithmetic is unchecked, allowing a large cumulative deposit to wrap around and let an attacker withdraw more than deposited."
+    },
+    {
+     "type": "unchecked_low_level_calls",
+     "location": "proxy() function in Proxy contract, line with target.call.value(msg.value)(data);",
+     "severity": "medium",
+     "explanation": "The low\u2011level call forwards ether and arbitrary data without checking the returned success flag, so failures are silently ignored and can be abused to mislead callers."
+    },
+    {
+     "type": "denial_of_service",
+     "location": "withdraw() function in DepositProxy contract, missing update of Deposits mapping after transfer",
+     "severity": "critical",
+     "explanation": "The function transfers the requested amount but never subtracts it from Deposits[msg.sender]; the caller can repeatedly withdraw the same amount until the contract balance is drained."
+    },
+    {
+     "type": "tx_origin",
+     "location": "Vault() function in DepositProxy contract, line with if (msg.sender == tx.origin)",
+     "severity": "low",
+     "explanation": "Using tx.origin for authentication can be spoofed via a malicious contract forwarding the call, breaking the intended access control."
+    }
+   ],
+   "seconds": 4.76,
+   "tokens": 2063,
+   "new_categories": [
+    "access_control",
+    "denial_of_service",
+    "integer_overflow",
+    "unchecked_low_level_calls"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_qwen_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T13:55:05"
+ }
+}

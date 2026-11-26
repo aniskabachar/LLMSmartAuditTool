@@ -1,0 +1,61 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\medium\\Etheramid_Attack.sol",
+ "audited_at": "2026-11-26T14:08:02",
+ "vulnerability_categories": [
+  "bad_randomness",
+  "integer_overflow",
+  "unchecked_low_level_calls"
+ ],
+ "analysers_run": [
+  "llm_ba_med"
+ ],
+ "llm_tokens": 1956,
+ "analyser_seconds": 13.7,
+ "wall_seconds": 14.8,
+ "steps": [
+  {
+   "tool": "llm_ba_med",
+   "p": 0.718,
+   "categories": [
+    "bad_randomness",
+    "integer_overflow",
+    "unchecked_low_level_calls"
+   ],
+   "details": [
+    {
+     "type": "bad_randomness",
+     "location": "fallback function ()",
+     "severity": "medium",
+     "explanation": "The fallback uses `uint(msg.sender) % Count` to pick a random participant. This value is fully controllable by the sender and predictable, allowing an attacker to manipulate which participant is selected."
+    },
+    {
+     "type": "unchecked_low_level_calls",
+     "location": "function enter(address inviter)",
+     "severity": "high",
+     "explanation": "All `send` calls ignore the returned boolean. If a recipient contract\u2019s fallback consumes more than 2300 gas or otherwise rejects the transfer, the send fails silently and the ether is effectively lost, creating a potential denial\u2011of\u2011service or fund\u2011loss issue."
+    },
+    {
+     "type": "integer_overflow",
+     "location": "function addParticipant(address itself, address inviter)",
+     "severity": "low",
+     "explanation": "`Count` is incremented without overflow checks in Solidity ^0.4.5, which lacks built\u2011in overflow protection. An overflow could wrap `Count` to zero, breaking the participant indexing logic."
+    }
+   ],
+   "seconds": 13.67,
+   "tokens": 1956,
+   "new_categories": [
+    "bad_randomness",
+    "integer_overflow",
+    "unchecked_low_level_calls"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_qwen_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T13:55:05"
+ }
+}

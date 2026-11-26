@@ -1,0 +1,111 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\medium\\DocumentSigner.sol",
+ "audited_at": "2026-11-26T14:06:53",
+ "vulnerability_categories": [
+  "access_control",
+  "denial_of_service",
+  "integer_overflow",
+  "other",
+  "reentrancy"
+ ],
+ "analysers_run": [
+  "llm_ba",
+  "llm_ba_med"
+ ],
+ "llm_tokens": 4749,
+ "analyser_seconds": 26.8,
+ "wall_seconds": 27.9,
+ "steps": [
+  {
+   "tool": "llm_ba",
+   "p": 0.626,
+   "categories": [
+    "access_control"
+   ],
+   "details": [
+    {
+     "type": "access_control",
+     "location": "setReward_TOD36 / setReward_TOD40",
+     "severity": "medium",
+     "explanation": "owner_TOD36 and owner_TOD40 are never initialized, so only the zero address can call setReward, making the function unusable and allowing unintended behavior."
+    },
+    {
+     "type": "access_control",
+     "location": "setReward_TOD36 / setReward_TOD40",
+     "severity": "low",
+     "explanation": "The functions transfer the previous reward to the owner before updating the reward amount, which could be exploited if the owner address were controllable."
+    }
+   ],
+   "seconds": 11.42,
+   "tokens": 1565,
+   "new_categories": [
+    "access_control"
+   ]
+  },
+  {
+   "tool": "llm_ba_med",
+   "p": 0.393,
+   "categories": [
+    "access_control",
+    "denial_of_service",
+    "integer_overflow",
+    "other",
+    "reentrancy"
+   ],
+   "details": [
+    {
+     "type": "reentrancy",
+     "location": "claimReward_TOD36",
+     "severity": "medium",
+     "explanation": "The function transfers ether to msg.sender before updating the claimed_TOD36 flag, allowing a re\u2011entrancy vector if the recipient is a contract with a fallback that can call back into claimReward_TOD36."
+    },
+    {
+     "type": "reentrancy",
+     "location": "claimReward_TOD40",
+     "severity": "medium",
+     "explanation": "Same pattern as claimReward_TOD36: ether is sent before the claimed_TOD40 flag is set, creating a potential re\u2011entrancy issue."
+    },
+    {
+     "type": "access_control",
+     "location": "setReward_TOD36 and setReward_TOD40",
+     "severity": "low",
+     "explanation": "owner_TOD36 and owner_TOD40 are never initialized, so the require(msg.sender == owner_\u2026) check can never succeed, making the functions unusable and potentially locking any deposited reward."
+    },
+    {
+     "type": "other",
+     "location": "getReward_TOD39, getReward_TOD31, getReward_TOD13, getReward_TOD35, getReward_TOD33, getReward_TOD27",
+     "severity": "medium",
+     "explanation": "If the corresponding winner_TOD\u2026 variable has not been set (e.g., guess never matched), the payable getReward function will transfer the sent ether to address(0), effectively burning the funds."
+    },
+    {
+     "type": "denial_of_service",
+     "location": "signDocument",
+     "severity": "low",
+     "explanation": "The function iterates over the entire signers array to check for duplicates; with a large number of signers the loop may exceed the block gas limit, preventing further signatures."
+    },
+    {
+     "type": "integer_overflow",
+     "location": "signDocument (loop index i)",
+     "severity": "low",
+     "explanation": "Solidity ^0.5.0 does not have built\u2011in overflow checks; the loop counter i could overflow after 2^256 iterations, which would corrupt the duplicate\u2011check logic."
+    }
+   ],
+   "seconds": 15.35,
+   "tokens": 3184,
+   "new_categories": [
+    "denial_of_service",
+    "integer_overflow",
+    "other",
+    "reentrancy"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_qwen_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T13:55:05"
+ }
+}

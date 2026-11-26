@@ -1,0 +1,52 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\medium\\QuarterMachine.sol",
+ "audited_at": "2026-11-26T14:12:55",
+ "vulnerability_categories": [
+  "denial_of_service",
+  "integer_overflow"
+ ],
+ "analysers_run": [
+  "llm_ba_med"
+ ],
+ "llm_tokens": 1772,
+ "analyser_seconds": 3.7,
+ "wall_seconds": 4.9,
+ "steps": [
+  {
+   "tool": "llm_ba_med",
+   "p": 0.705,
+   "categories": [
+    "denial_of_service",
+    "integer_overflow"
+   ],
+   "details": [
+    {
+     "type": "integer_overflow",
+     "location": "purchase() \u2013 contractTotalInvested and totalInvested updates",
+     "severity": "medium",
+     "explanation": "The contract adds msg.value to contractTotalInvested and totalInvested[msg.sender] without using SafeMath, allowing a potential overflow if the cumulative invested amount approaches 2^256\u20111."
+    },
+    {
+     "type": "denial_of_service",
+     "location": "purchase() \u2013 while loop iterating over buyIns array",
+     "severity": "high",
+     "explanation": "The loop processes the entire buyIns array until it finds enough value to pay out. As the array grows, the gas required can exceed the block gas limit, causing the purchase() function to become uncallable and effectively freezing the contract."
+    }
+   ],
+   "seconds": 3.69,
+   "tokens": 1772,
+   "new_categories": [
+    "denial_of_service",
+    "integer_overflow"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_qwen_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T13:55:05"
+ }
+}

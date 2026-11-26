@@ -1,0 +1,70 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\medium\\0x89c1b3807d4c67df034fffb62f3509561218d30b.sol",
+ "audited_at": "2026-11-26T14:00:56",
+ "vulnerability_categories": [
+  "front_running",
+  "integer_overflow",
+  "reentrancy",
+  "unchecked_low_level_calls"
+ ],
+ "analysers_run": [
+  "llm_ba"
+ ],
+ "llm_tokens": 2443,
+ "analyser_seconds": 22.2,
+ "wall_seconds": 22.2,
+ "steps": [
+  {
+   "tool": "llm_ba",
+   "p": 0.73,
+   "categories": [
+    "front_running",
+    "integer_overflow",
+    "reentrancy",
+    "unchecked_low_level_calls"
+   ],
+   "details": [
+    {
+     "type": "reentrancy",
+     "location": "withdraw()",
+     "severity": "high",
+     "explanation": "withdraw uses a low\u2011level call to the requester without setting externalCallFlag, allowing the caller's fallback to re\u2011enter the contract (e.g., request()) and manipulate state such as requestCnt or unrespondedCnt."
+    },
+    {
+     "type": "integer_overflow",
+     "location": "request() \u2013 requestCnt++ and unrespondedCnt++",
+     "severity": "medium",
+     "explanation": "requestCnt and unrespondedCnt are uint64 counters that are incremented without overflow checks; with pragma ^0.4.9 they can wrap after 2^64 calls, breaking request ID uniqueness and accounting."
+    },
+    {
+     "type": "unchecked_low_level_calls",
+     "location": "deliver() \u2013 requests[requestId].requester.call.gas(2300).value(fee)() and requests[requestId].callbackAddr.call.gas(callbackGas)(...)",
+     "severity": "medium",
+     "explanation": "Low\u2011level call results are not verified (except for the SGX send). If the call fails, the contract proceeds as if payment succeeded, potentially leading to loss of funds or inconsistent state."
+    },
+    {
+     "type": "front_running",
+     "location": "deliver() \u2013 calculation of callbackGas using tx.gasprice",
+     "severity": "low",
+     "explanation": "The callback gas amount depends on tx.gasprice, which miners can manipulate, allowing them to affect whether the callback is executed with sufficient gas."
+    }
+   ],
+   "seconds": 22.16,
+   "tokens": 2443,
+   "new_categories": [
+    "front_running",
+    "integer_overflow",
+    "reentrancy",
+    "unchecked_low_level_calls"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_qwen_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T13:55:05"
+ }
+}

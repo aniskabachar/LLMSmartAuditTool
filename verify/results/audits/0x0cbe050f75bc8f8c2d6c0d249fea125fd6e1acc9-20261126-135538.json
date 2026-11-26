@@ -1,0 +1,43 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\medium\\0x0cbe050f75bc8f8c2d6c0d249fea125fd6e1acc9.sol",
+ "audited_at": "2026-11-26T13:55:38",
+ "vulnerability_categories": [
+  "unchecked_low_level_calls"
+ ],
+ "analysers_run": [
+  "llm_ba_dasp"
+ ],
+ "llm_tokens": 760,
+ "analyser_seconds": 1.6,
+ "wall_seconds": 1.6,
+ "steps": [
+  {
+   "tool": "llm_ba_dasp",
+   "p": 0.872,
+   "categories": [
+    "unchecked_low_level_calls"
+   ],
+   "details": [
+    {
+     "type": "unchecked_low_level_calls",
+     "location": "function callAddress(address a)",
+     "severity": "high",
+     "explanation": "The low\u2011level call a.call() does not check the returned boolean value, so failures are silently ignored and can lead to unexpected behavior or loss of funds."
+    }
+   ],
+   "seconds": 1.63,
+   "tokens": 760,
+   "new_categories": [
+    "unchecked_low_level_calls"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_qwen_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T13:55:05"
+ }
+}

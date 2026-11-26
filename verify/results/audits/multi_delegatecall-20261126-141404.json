@@ -1,0 +1,43 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\hard\\multi_delegatecall.sol",
+ "audited_at": "2026-11-26T14:14:04",
+ "vulnerability_categories": [
+  "access_control"
+ ],
+ "analysers_run": [
+  "llm_ba_med"
+ ],
+ "llm_tokens": 1808,
+ "analyser_seconds": 4.4,
+ "wall_seconds": 5.1,
+ "steps": [
+  {
+   "tool": "llm_ba_med",
+   "p": 0.756,
+   "categories": [
+    "access_control"
+   ],
+   "details": [
+    {
+     "type": "access_control",
+     "location": "function multiDelegatecall",
+     "severity": "high",
+     "explanation": "multiDelegatecall allows any caller to supply arbitrary calldata that is delegatecalled on the contract itself. This gives the caller unrestricted ability to execute any function of the contract (including state\u2011changing functions) in the context of the contract, effectively bypassing any intended access restrictions."
+    }
+   ],
+   "seconds": 4.38,
+   "tokens": 1808,
+   "new_categories": [
+    "access_control"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_qwen_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T13:55:05"
+ }
+}

@@ -1,0 +1,176 @@
+Held-out live evaluation: 0/96 done, 96 to go
+[1/96] 0x01f8c4e3fa3edeb29e514cba738d87ce8c091d3f: labels ['reentrancy'] | found ['access_control', 'integer_overflow', 'reentrancy'] | llm_ba_med | 1,716 tok
+[2/96] 0x07f7ecb66d788ab01dc93b9b71a88401de7d0f2e: labels ['unchecked_low_level_calls'] | found ['access_control', 'bad_randomness', 'other', 'reentrancy', 'unchecked_low_level_calls'] | llm_ba_med | 2,928 tok
+[3/96] 0x0cbe050f75bc8f8c2d6c0d249fea125fd6e1acc9: labels ['unchecked_low_level_calls'] | found ['unchecked_low_level_calls'] | llm_ba_dasp | 760 tok
+[4/96] 0x19cf8481ea15427a98ba3cdd6d9e14690011ab10: labels ['unchecked_low_level_calls'] | found ['integer_overflow'] | llm_ba | 2,155 tok
+[5/96] 0x23a91059fdc9579a9fbd0edc5f2ea0bfdb70deb4: labels ['reentrancy'] | found ['denial_of_service', 'integer_overflow', 'reentrancy', 'unchecked_low_level_calls'] | llm_ba_med | 1,284 tok
+[6/96] 0x2972d548497286d18e92b5fa1f8f9139e5653fd2: labels ['unchecked_low_level_calls'] | found ['unchecked_low_level_calls'] | llm_ba_dasp | 938 tok
+[7/96] 0x39cfd754c85023648bf003bea2dd498c5612abfa: labels ['unchecked_low_level_calls'] | found ['access_control', 'integer_overflow', 'reentrancy', 'unchecked_low_level_calls'] | llm_ba_med | 2,275 tok
+[8/96] 0x3a0e9acd953ffc0dd18d63603488846a6b8b2b01: labels ['unchecked_low_level_calls'] | found ['access_control', 'integer_overflow', 'reentrancy', 'unchecked_low_level_calls'] | llm_ba_med | 2,064 tok
+[9/96] 0x3e013fc32a54c4c5b6991ba539dcd0ec4355c859: labels ['unchecked_low_level_calls'] | found ['access_control', 'integer_overflow', 'unchecked_low_level_calls'] | llm_ba_med | 1,472 tok
+[10/96] 0x3f2ef511aa6e75231e4deafc7a3d2ecab3741de2: labels ['unchecked_low_level_calls'] | found ['access_control', 'denial_of_service', 'unchecked_low_level_calls'] | llm_ba_med | 1,586 tok
+      rate limit (groq), waiting 5s
+[11/96] 0x4051334adc52057aca763453820cb0e045076ef3: labels ['unchecked_low_level_calls'] | found ['denial_of_service', 'unchecked_low_level_calls'] | llm_ba_dasp | 1,050 tok
+[12/96] 0x4320e6f8c05b27ab4707cd1f6d5ce6f3e4b3a5a1: labels ['reentrancy'] | found ['access_control', 'integer_overflow', 'reentrancy'] | llm_ba_med | 1,354 tok
+[13/96] 0x4a66ad0bca2d700f11e1f2fc2c106f7d3264504c: labels ['unchecked_low_level_calls'] | found ['integer_overflow', 'unchecked_low_level_calls'] | llm_ba_dasp | 1,112 tok
+[14/96] 0x4b71ad9c1a84b9b643aa54fdd66e2dec96e8b152: labels ['unchecked_low_level_calls'] | found ['denial_of_service', 'unchecked_low_level_calls'] | llm_ba_dasp | 994 tok
+[15/96] 0x4e73b32ed6c35f570686b89848e5f39f20ecc106: labels ['reentrancy'] | found ['access_control', 'integer_overflow', 'reentrancy', 'unchecked_low_level_calls'] | llm_ba_med | 1,568 tok
+[16/96] 0x524960d55174d912768678d8c606b4d50b79d7b1: labels ['unchecked_low_level_calls'] | found ['unchecked_low_level_calls'] | llm_ba_dasp | 905 tok
+[17/96] 0x52d2e0f9b01101a59b38a3d05c80b7618aeed984: labels ['unchecked_low_level_calls'] | found ['unchecked_low_level_calls'] | llm_ba_dasp | 1,112 tok
+[18/96] 0x561eac93c92360949ab1f1403323e6db345cbf31: labels ['reentrancy'] | found ['access_control', 'denial_of_service', 'integer_overflow', 'reentrancy', 'unchecked_low_level_calls'] | llm_ba_med | 1,861 tok
+      rate limit (groq), waiting 4s
+[19/96] 0x5aa88d2901c68fda244f1d0584400368d2c8e739: labels ['unchecked_low_level_calls'] | found ['access_control', 'unchecked_low_level_calls'] | llm_ba_med | 1,597 tok
+[20/96] 0x610495793564aed0f9c7fc48dc4c7c9151d34fd6: labels ['unchecked_low_level_calls'] | found ['denial_of_service', 'integer_overflow', 'unchecked_low_level_calls'] | llm_ba_med | 1,275 tok
+[21/96] 0x627fa62ccbb1c1b04ffaecd72a53e37fc0e17839: labels ['reentrancy'] | found ['access_control', 'denial_of_service', 'integer_overflow', 'reentrancy', 'unchecked_low_level_calls'] | llm_ba_med | 2,015 tok
+[22/96] 0x663e4229142a27f00bafb5d087e1e730648314c3: labels ['unchecked_low_level_calls'] | found ['access_control', 'integer_overflow'] | llm_ba | 2,252 tok
+[23/96] 0x70f9eddb3931491aab1aeafbc1e7f1ca2a012db4: labels ['unchecked_low_level_calls'] | found ['access_control', 'denial_of_service', 'unchecked_low_level_calls'] | llm_ba_med | 1,722 tok
+[24/96] 0x7541b76cb60f4c60af330c208b0623b7f54bf615: labels ['reentrancy'] | found ['denial_of_service', 'integer_overflow', 'reentrancy', 'unchecked_low_level_calls'] | llm_ba_med | 1,695 tok
+[25/96] 0x78c2a1e91b52bca4130b6ed9edd9fbcfd4671c37: labels ['unchecked_low_level_calls'] | found ['access_control', 'other', 'unchecked_low_level_calls'] | llm_ba_med | 1,608 tok
+[26/96] 0x7a4349a749e59a5736efb7826ee3496a2dfd5489: labels ['unchecked_low_level_calls'] | found ['access_control', 'denial_of_service', 'unchecked_low_level_calls'] | llm_ba_med | 1,539 tok
+      rate limit (groq), waiting 3s
+[27/96] 0x7a8721a9d64c74da899424c1b52acbf58ddc9782: labels ['reentrancy'] | found ['access_control', 'integer_overflow', 'reentrancy'] | llm_ba_med | 1,538 tok
+[28/96] 0x7b368c4e805c3870b6c49a3f1f49f69af8662cf3: labels ['reentrancy'] | found ['denial_of_service', 'integer_overflow', 'reentrancy'] | llm_ba_med | 1,449 tok
+[29/96] 0x7d09edb07d23acb532a82be3da5c17d9d85806b4: labels ['unchecked_low_level_calls'] | found ['access_control', 'bad_randomness', 'integer_overflow', 'other', 'reentrancy', 'unchecked_low_level_calls'] | llm_ba_med | 3,491 tok
+[30/96] 0x806a6bd219f162442d992bdc4ee6eba1f2c5a707: labels ['unchecked_low_level_calls'] | found ['access_control', 'denial_of_service', 'unchecked_low_level_calls'] | llm_ba_med | 1,460 tok
+[31/96] 0x84d9ec85c9c568eb332b7226a8f826d897e0a4a8: labels ['unchecked_low_level_calls'] | found ['access_control', 'timestamp_dependence', 'unchecked_low_level_calls'] | llm_ba_dasp | 1,266 tok
+[32/96] 0x89c1b3807d4c67df034fffb62f3509561218d30b: labels ['unchecked_low_level_calls'] | found ['front_running', 'integer_overflow', 'reentrancy', 'unchecked_low_level_calls'] | llm_ba | 2,443 tok
+[33/96] 0x8c7777c45481dba411450c228cb692ac3d550344: labels ['reentrancy'] | found ['denial_of_service', 'integer_overflow', 'reentrancy', 'unchecked_low_level_calls'] | llm_ba_med | 1,355 tok
+[34/96] 0x8fd1e427396ddb511533cf9abdbebd0a7e08da35: labels ['unchecked_low_level_calls'] | found ['access_control', 'integer_overflow', 'reentrancy', 'unchecked_low_level_calls'] | llm_ba_med | 2,304 tok
+[35/96] 0x93c32845fae42c83a70e5f06214c8433665c2ab5: labels ['reentrancy'] | found ['integer_overflow', 'reentrancy', 'timestamp_dependence'] | llm_ba_med | 1,488 tok
+[36/96] 0x941d225236464a25eb18076df7da6a91d0f95e9e: labels ['reentrancy'] | found ['denial_of_service', 'integer_overflow', 'reentrancy'] | llm_ba_med | 1,614 tok
+[37/96] 0x958a8f594101d2c0485a52319f29b2647f2ebc06: labels ['unchecked_low_level_calls'] | found ['timestamp_dependence', 'unchecked_low_level_calls'] | llm_ba_med | 2,001 tok
+      rate limit (groq), waiting 5s
+[38/96] 0x96edbe868531bd23a6c05e9d0c424ea64fb1b78b: labels ['reentrancy'] | found ['access_control', 'integer_overflow', 'other', 'reentrancy'] | llm_ba_med | 1,614 tok
+[39/96] 0x9d06cbafa865037a01d322d3f4222fa3e04e5488: labels ['unchecked_low_level_calls'] | found ['integer_overflow', 'reentrancy'] | llm_ba_med | 1,861 tok
+[40/96] 0xa1fceeff3acc57d257b917e30c4df661401d6431: labels ['unchecked_low_level_calls'] | found ['denial_of_service', 'unchecked_low_level_calls'] | llm_ba_dasp | 1,045 tok
+[41/96] 0xa46edd6a9a93feec36576ee5048146870ea2c3ae: labels ['unchecked_low_level_calls'] | found ['unchecked_low_level_calls'] | llm_ba_dasp | 968 tok
+      daily limit on groq key 1, switching to groq key 2
+[42/96] 0xaae1f51cf3339f18b6d3f3bdc75a5facd744b0b8: labels ['reentrancy'] | found ['access_control', 'denial_of_service', 'integer_overflow', 'reentrancy', 'unchecked_low_level_calls'] | llm_ba_med | 1,589 tok
+      daily limit on groq key 1, switching to groq key 2
+[43/96] 0xb0510d68f210b7db66e8c7c814f22680f2b8d1d6: labels ['unchecked_low_level_calls'] | found ['access_control', 'unchecked_low_level_calls'] | llm_ba_med | 1,983 tok
+      daily limit on groq key 1, switching to groq key 2
+[44/96] 0xb11b2fed6c9354f7aa2f658d3b4d7b31d8a13b77: labels ['unchecked_low_level_calls'] | found ['access_control', 'denial_of_service', 'integer_overflow', 'unchecked_low_level_calls'] | llm_ba_med | 2,063 tok
+      daily limit on groq key 1, switching to groq key 2
+[45/96] 0xb37f18af15bafb869a065b61fc83cfc44ed9cc27: labels ['unchecked_low_level_calls'] | found ['integer_overflow', 'unchecked_low_level_calls'] | llm_ba_med | 1,129 tok
+      daily limit on groq key 1, switching to groq key 2
+[46/96] 0xb5e1b1ee15c6fa0e48fce100125569d430f1bd12: labels ['reentrancy'] | found ['denial_of_service', 'integer_overflow', 'reentrancy'] | llm_ba_med | 1,714 tok
+      daily limit on groq key 1, switching to groq key 2
+[47/96] 0xb620cee6b52f96f3c6b253e6eea556aa2d214a99: labels ['unchecked_low_level_calls'] | found ['access_control', 'denial_of_service', 'integer_overflow', 'unchecked_low_level_calls'] | llm_ba_med | 2,389 tok
+      daily limit on groq key 1, switching to groq key 2
+[48/96] 0xb7c5c5aa4d42967efe906e1b66cb8df9cebf04f7: labels ['unchecked_low_level_calls'] | found ['integer_overflow', 'reentrancy', 'unchecked_low_level_calls'] | llm_ba_med | 1,037 tok
+      daily limit on groq key 1, switching to groq key 2
+[49/96] 0xb93430ce38ac4a6bb47fb1fc085ea669353fd89e: labels ['reentrancy'] | found ['denial_of_service', 'integer_overflow', 'reentrancy', 'unchecked_low_level_calls'] | llm_ba_med | 1,597 tok
+      daily limit on groq key 1, switching to groq key 2
+[50/96] 0xbaa3de6504690efb064420d89e871c27065cdd52: labels ['unchecked_low_level_calls'] | found ['access_control', 'integer_overflow', 'unchecked_low_level_calls'] | llm_ba_med | 1,983 tok
+      daily limit on groq key 1, switching to groq key 2
+[51/96] 0xbaf51e761510c1a11bf48dd87c0307ac8a8c8a4f: labels ['reentrancy'] | found ['denial_of_service', 'integer_overflow', 'reentrancy'] | llm_ba_med | 1,581 tok
+      daily limit on groq key 1, switching to groq key 2
+[52/96] 0xbe4041d55db380c5ae9d4a9b9703f1ed4e7e3888: labels ['reentrancy'] | found ['access_control', 'denial_of_service', 'integer_overflow', 'reentrancy'] | llm_ba_med | 2,426 tok
+      daily limit on groq key 1, switching to groq key 2
+[53/96] 0xbebbfe5b549f5db6e6c78ca97cac19d1fb03082c: labels ['unchecked_low_level_calls'] | found ['access_control', 'integer_overflow', 'unchecked_low_level_calls'] | llm_ba_med | 2,144 tok
+      daily limit on groq key 1, switching to groq key 2
+[54/96] 0xcead721ef5b11f1a7b530171aab69b16c5e66b6e: labels ['reentrancy'] | found ['denial_of_service', 'integer_overflow', 'reentrancy'] | llm_ba_med | 1,571 tok
+      daily limit on groq key 1, switching to groq key 2
+[55/96] 0xd2018bfaa266a9ec0a1a84b061640faa009def76: labels ['unchecked_low_level_calls'] | found ['access_control', 'denial_of_service', 'unchecked_low_level_calls'] | llm_ba_med | 1,650 tok
+      daily limit on groq key 1, switching to groq key 2
+[56/96] 0xf015c35649c82f5467c9c74b7f28ee67665aad68: labels ['reentrancy'] | found ['denial_of_service', 'integer_overflow', 'reentrancy'] | llm_ba_med | 1,465 tok
+      daily limit on groq key 1, switching to groq key 2
+[57/96] 0xf2570186500a46986f3139f65afedc2afe4f445d: labels ['unchecked_low_level_calls'] | found ['denial_of_service', 'unchecked_low_level_calls'] | llm_ba_dasp | 987 tok
+      daily limit on groq key 1, switching to groq key 2
+[58/96] 0xf70d589d76eebdd7c12cc5eec99f8f6fa4233b9e: labels ['unchecked_low_level_calls'] | found ['access_control', 'denial_of_service', 'unchecked_low_level_calls'] | llm_ba_med | 1,520 tok
+      daily limit on groq key 1, switching to groq key 2
+[59/96] Axioms: labels ['unchecked_low_level_calls'] | found ['access_control', 'denial_of_service', 'integer_overflow', 'timestamp_dependence', 'unchecked_low_level_calls'] | llm_ba_med | 2,393 tok
+[60/96] BankOfEther: labels ['access_control'] | found ['access_control', 'denial_of_service', 'other'] | llm_ba_med | 1,148 tok
+      daily limit on groq key 1, switching to groq key 2
+[61/96] BeaconProxy: labels ['access_control'] | found [] | llm_ba_med | 2,180 tok
+      daily limit on groq key 1, switching to groq key 2
+[62/96] CreditDepositBank_Attack: labels ['unchecked_low_level_calls'] | found ['access_control', 'denial_of_service', 'integer_overflow', 'unchecked_low_level_calls'] | llm_ba_med | 2,551 tok
+      daily limit on groq key 1, switching to groq key 2
+[63/96] Delegation: labels ['access_control'] | found ['access_control'] | llm_ba_dasp+llm_ba_med | 1,932 tok
+      daily limit on groq key 1, switching to groq key 2
+[64/96] DocumentSigner: labels ['front_running'] | found ['access_control', 'denial_of_service', 'integer_overflow', 'other', 'reentrancy'] | llm_ba+llm_ba_med | 4,749 tok
+      daily limit on groq key 1, switching to groq key 2
+[65/96] ERC1967Proxy: labels ['access_control'] | found [] | llm_ba_med | 1,727 tok
+      daily limit on groq key 1, switching to groq key 2
+[66/96] ERC20Basic: labels ['access_control'] | found ['access_control'] | llm_ba_med | 1,874 tok
+[67/96] ERC223Token: labels ['front_running'] | found ['access_control', 'other', 'reentrancy'] | llm_qwen_dasp | 3,534 tok
+      daily limit on groq key 1, switching to groq key 2
+[68/96] ETHDropOpenAdd: labels ['unchecked_low_level_calls'] | found ['access_control', 'denial_of_service'] | llm_ba_med | 2,051 tok
+      daily limit on groq key 1, switching to groq key 2
+[69/96] EthRoulette: labels ['access_control'] | found ['bad_randomness', 'other'] | llm_ba_med | 1,641 tok
+      daily limit on groq key 1, switching to groq key 2
+[70/96] Etheramid_Attack: labels ['unchecked_low_level_calls'] | found ['bad_randomness', 'integer_overflow', 'unchecked_low_level_calls'] | llm_ba_med | 1,956 tok
+      daily limit on groq key 1, switching to groq key 2
+[71/96] Ethmoon: labels ['unchecked_low_level_calls'] | found ['denial_of_service', 'integer_overflow'] | llm_ba_med | 2,337 tok
+      rate limit (groq), waiting 11s
+      rate limit (groq), waiting 21s
+      rate limit (groq), waiting 31s
+[72/96] ForTheBlockchain: labels ['front_running'] | found ['access_control', 'other', 'unchecked_low_level_calls'] | llm_qwen_dasp | 3,665 tok
+[73/96] HFConditionalTransfer: labels ['unchecked_low_level_calls'] | found ['front_running', 'unchecked_low_level_calls'] | llm_ba_med | 1,409 tok
+      daily limit on groq key 1, switching to groq key 2
+[74/96] HelpMeSave: labels ['unchecked_low_level_calls'] | found ['access_control', 'denial_of_service'] | llm_ba_med | 1,961 tok
+      daily limit on groq key 1, switching to groq key 2
+[75/96] IManagedToken: labels ['unchecked_low_level_calls'] | found ['denial_of_service', 'integer_overflow'] | llm_ba | 2,230 tok
+      daily limit on groq key 1, switching to groq key 2
+[76/96] MultiTokenNetwork: labels ['unchecked_low_level_calls'] | found ['unchecked_low_level_calls'] | llm_ba_dasp+llm_ba_med | 5,112 tok
+      daily limit on groq key 1, switching to groq key 2
+[77/96] Ownable: labels ['unchecked_low_level_calls'] | found ['denial_of_service', 'integer_overflow', 'reentrancy', 'timestamp_dependence'] | llm_ba_med | 2,210 tok
+      daily limit on groq key 1, switching to groq key 2
+[78/96] ProofOfExistence: labels ['front_running'] | found ['access_control', 'denial_of_service', 'timestamp_dependence'] | llm_ba | 2,327 tok
+      daily limit on groq key 1, switching to groq key 2
+[79/96] QuarterMachine: labels ['unchecked_low_level_calls'] | found ['denial_of_service', 'integer_overflow'] | llm_ba_med | 1,772 tok
+      daily limit on groq key 1, switching to groq key 2
+[80/96] SuicideMultiTxFeasible: labels ['access_control'] | found ['access_control'] | llm_ba_dasp+llm_ba_med | 1,662 tok
+      daily limit on groq key 1, switching to groq key 2
+[81/96] SuicideMultiTxInfeasible: labels ['access_control'] | found [] | llm_ba_dasp+llm_ba_med | 1,515 tok
+      daily limit on groq key 1, switching to groq key 2
+[82/96] etherbank: labels ['reentrancy'] | found ['denial_of_service', 'integer_overflow', 'reentrancy'] | llm_ba_med | 1,166 tok
+      daily limit on groq key 1, switching to groq key 2
+[83/96] insecure_transfer: labels ['integer_overflow'] | found ['integer_overflow'] | llm_ba_dasp | 822 tok
+      daily limit on groq key 1, switching to groq key 2
+[84/96] lottopollo: labels ['timestamp_dependence'] | found ['bad_randomness', 'integer_overflow', 'unchecked_low_level_calls'] | llm_ba_med | 1,608 tok
+      daily limit on groq key 1, switching to groq key 2
+      rate limit (groq), waiting 11s
+[85/96] mishandled: labels ['unchecked_low_level_calls'] | found ['denial_of_service', 'unchecked_low_level_calls'] | llm_ba_dasp | 937 tok
+      daily limit on groq key 1, switching to groq key 2
+[86/96] multi_delegatecall: labels ['access_control'] | found ['access_control'] | llm_ba_med | 1,808 tok
+      daily limit on groq key 1, switching to groq key 2
+[87/96] owner_example: labels ['access_control'] | found ['access_control'] | llm_ba_med | 1,125 tok
+      daily limit on groq key 1, switching to groq key 2
+[88/96] reentrancy_bonus: labels ['reentrancy'] | found ['integer_overflow', 'reentrancy'] | llm_ba_dasp | 1,117 tok
+      daily limit on groq key 1, switching to groq key 2
+[89/96] reentrancy_cross_function: labels ['reentrancy'] | found ['integer_overflow', 'reentrancy'] | llm_ba_dasp | 922 tok
+      daily limit on groq key 1, switching to groq key 2
+[90/96] reentrancy_insecure: labels ['reentrancy'] | found ['reentrancy'] | llm_ba_dasp | 850 tok
+      daily limit on groq key 1, switching to groq key 2
+[91/96] storage_abuse: labels ['access_control'] | found ['access_control', 'unchecked_low_level_calls'] | llm_ba_dasp | 1,099 tok
+      daily limit on groq key 1, switching to groq key 2
+[92/96] storage_example: labels ['access_control'] | found ['other', 'unchecked_low_level_calls'] | llm_ba_dasp | 1,146 tok
+      daily limit on groq key 1, switching to groq key 2
+[93/96] theRun: labels ['bad_randomness'] | found ['bad_randomness', 'denial_of_service', 'integer_overflow'] | llm_ba | 1,769 tok
+      daily limit on groq key 1, switching to groq key 2
+[94/96] vulnerableBlockHashGame: labels ['bad_randomness'] | found ['access_control', 'bad_randomness'] | llm_ba_med | 1,618 tok
+      daily limit on groq key 1, switching to groq key 2
+[95/96] wallet_delegatecall: labels ['access_control'] | found ['access_control', 'timestamp_dependence', 'unchecked_low_level_calls'] | llm_ba+llm_ba_med | 5,902 tok
+      daily limit on groq key 1, switching to groq key 2
+[96/96] wallet_sucide: labels ['access_control'] | found ['access_control', 'reentrancy', 'unchecked_low_level_calls'] | llm_ba | 2,548 tok
+# Held-out live evaluation of the RL coordinator
+
+- 96 real-bug contracts never seen in training (real_tools.json minus the 269 training contracts); audits run live (Slither locally, LLM agents on Groq).
+- Fixed-analyser rows use replies collected earlier for the same contracts.
+- Score = 0.6·recall + 0.4·precision (category level); 95% bootstrap CIs.
+
+| Method | Score [95% CI] | Precision | Recall | LLM tokens / contract | Coordinator minus method |
+|---|---|---|---|---|---|
+| RL coordinator (live) | 0.626 [0.560, 0.690] | 0.363 | 0.802 | 1,812 |  |
+| always slither | 0.567 [0.492, 0.637] | 0.339 | 0.719 | 0 | +0.059 [-0.020, +0.138], p=0.069 |
+| always llm_ba | 0.653 [0.582, 0.720] | 0.430 | 0.802 | 1,190 | -0.027 [-0.079, +0.025], p=0.848 |
+| always llm_ba_med | 0.653 [0.589, 0.712] | 0.382 | 0.833 | 1,790 | -0.026 [-0.077, +0.023], p=0.851 |
+| always llm_ba_dasp | 0.630 [0.560, 0.695] | 0.386 | 0.792 | 1,474 | -0.003 [-0.062, +0.057], p=0.556 |
+| always llm_qwen_ba | 0.576 [0.503, 0.648] | 0.347 | 0.729 | 1,170 | +0.050 [-0.025, +0.126], p=0.103 |
+| always llm_qwen_think | 0.604 [0.536, 0.672] | 0.354 | 0.771 | 1,177 | +0.022 [-0.046, +0.089], p=0.267 |
+| always llm_qwen_dasp | 0.679 [0.619, 0.735] | 0.415 | 0.854 | 1,483 | -0.052 [-0.111, +0.003], p=0.968 |
+| all 4 analysers | 0.647 [0.598, 0.691] | 0.273 | 0.896 | 4,455 | -0.020 [-0.076, +0.030], p=0.771 |
+
+Analysers the coordinator ran (% of contracts): llm_ba_med 72%, llm_ba_dasp 23%, llm_ba 9%, llm_qwen_dasp 2%
+Calls that failed (counted as 'found nothing'): 0

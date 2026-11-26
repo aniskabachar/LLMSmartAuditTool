@@ -1,0 +1,62 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\hard\\SuicideMultiTxFeasible.sol",
+ "audited_at": "2026-11-26T14:13:00",
+ "vulnerability_categories": [
+  "access_control"
+ ],
+ "analysers_run": [
+  "llm_ba_dasp",
+  "llm_ba_med"
+ ],
+ "llm_tokens": 1662,
+ "analyser_seconds": 3.3,
+ "wall_seconds": 4.5,
+ "steps": [
+  {
+   "tool": "llm_ba_dasp",
+   "p": 0.871,
+   "categories": [
+    "access_control"
+   ],
+   "details": [
+    {
+     "type": "access_control",
+     "location": "run() function",
+     "severity": "critical",
+     "explanation": "The selfdestruct call is unrestricted; any caller can trigger it after init() has been called (which itself is public). This allows arbitrary users to destroy the contract and withdraw its balance, indicating missing access control."
+    }
+   ],
+   "seconds": 1.94,
+   "tokens": 920,
+   "new_categories": [
+    "access_control"
+   ]
+  },
+  {
+   "tool": "llm_ba_med",
+   "p": 0.295,
+   "categories": [
+    "access_control"
+   ],
+   "details": [
+    {
+     "type": "access_control",
+     "location": "run() function (selfdestruct call)",
+     "severity": "high",
+     "explanation": "The contract allows any external account to call `run()` after `init()` has been called (which itself is unrestricted). There is no access control restricting who can trigger `selfdestruct`, enabling arbitrary users to destroy the contract and withdraw its ether."
+    }
+   ],
+   "seconds": 1.39,
+   "tokens": 742,
+   "new_categories": []
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_qwen_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T13:55:05"
+ }
+}

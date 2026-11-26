@@ -1,0 +1,43 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\medium\\0x2972d548497286d18e92b5fa1f8f9139e5653fd2.sol",
+ "audited_at": "2026-11-26T13:55:50",
+ "vulnerability_categories": [
+  "unchecked_low_level_calls"
+ ],
+ "analysers_run": [
+  "llm_ba_dasp"
+ ],
+ "llm_tokens": 938,
+ "analyser_seconds": 6.0,
+ "wall_seconds": 6.0,
+ "steps": [
+  {
+   "tool": "llm_ba_dasp",
+   "p": 0.87,
+   "categories": [
+    "unchecked_low_level_calls"
+   ],
+   "details": [
+    {
+     "type": "unchecked_low_level_calls",
+     "location": "transfer function, line with caddress.call(...)",
+     "severity": "high",
+     "explanation": "The low\u2011level call return value is ignored, so a failed external call (e.g., out\u2011of\u2011gas or revert) will not be detected and the function will still return true, potentially masking errors and allowing unexpected behavior."
+    }
+   ],
+   "seconds": 6.02,
+   "tokens": 938,
+   "new_categories": [
+    "unchecked_low_level_calls"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_qwen_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T13:55:05"
+ }
+}

@@ -1,0 +1,43 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\medium\\0x52d2e0f9b01101a59b38a3d05c80b7618aeed984.sol",
+ "audited_at": "2026-11-26T13:57:44",
+ "vulnerability_categories": [
+  "unchecked_low_level_calls"
+ ],
+ "analysers_run": [
+  "llm_ba_dasp"
+ ],
+ "llm_tokens": 1112,
+ "analyser_seconds": 10.8,
+ "wall_seconds": 10.8,
+ "steps": [
+  {
+   "tool": "llm_ba_dasp",
+   "p": 0.87,
+   "categories": [
+    "unchecked_low_level_calls"
+   ],
+   "details": [
+    {
+     "type": "unchecked_low_level_calls",
+     "location": "function getTokens(uint num, address addr)",
+     "severity": "low",
+     "explanation": "The low\u2011level call addr.call.value(0)() does not check its return value, so a failing call is ignored and could hide errors or be used in a DoS scenario."
+    }
+   ],
+   "seconds": 10.77,
+   "tokens": 1112,
+   "new_categories": [
+    "unchecked_low_level_calls"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_qwen_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T13:55:05"
+ }
+}

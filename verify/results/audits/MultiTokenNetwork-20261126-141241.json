@@ -1,0 +1,59 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\medium\\MultiTokenNetwork.sol",
+ "audited_at": "2026-11-26T14:12:41",
+ "vulnerability_categories": [
+  "unchecked_low_level_calls"
+ ],
+ "analysers_run": [
+  "llm_ba_dasp",
+  "llm_ba_med"
+ ],
+ "llm_tokens": 5112,
+ "analyser_seconds": 5.5,
+ "wall_seconds": 66.4,
+ "steps": [
+  {
+   "tool": "llm_ba_dasp",
+   "p": 0.867,
+   "categories": [],
+   "details": [],
+   "seconds": 2.31,
+   "tokens": 2260,
+   "new_categories": []
+  },
+  {
+   "tool": "llm_ba_med",
+   "p": 0.187,
+   "categories": [
+    "unchecked_low_level_calls"
+   ],
+   "details": [
+    {
+     "type": "unchecked_low_level_calls",
+     "location": "AbstractDeployer.deploy",
+     "severity": "high",
+     "explanation": "Uses address(this).call(data) without validating returned data size. The assembly reads 32 bytes of returndata regardless of length, which can lead to incorrect address being returned or allow re\u2011entrancy attacks if the called function modifies contract state before the call returns."
+    },
+    {
+     "type": "unchecked_low_level_calls",
+     "location": "MultiTokenNetwork.makeCall",
+     "severity": "high",
+     "explanation": "Allows the owner to execute an arbitrary external call with value using target.call.value(value)(data). The low\u2011level call is unchecked beyond the boolean success check, enabling re\u2011entrancy into MultiTokenNetwork (or other contracts) and potential denial\u2011of\u2011service or state manipulation."
+    }
+   ],
+   "seconds": 3.19,
+   "tokens": 2852,
+   "new_categories": [
+    "unchecked_low_level_calls"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_qwen_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T13:55:05"
+ }
+}

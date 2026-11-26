@@ -1,0 +1,76 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\medium\\0x39cfd754c85023648bf003bea2dd498c5612abfa.sol",
+ "audited_at": "2026-11-26T13:55:59",
+ "vulnerability_categories": [
+  "access_control",
+  "integer_overflow",
+  "reentrancy",
+  "unchecked_low_level_calls"
+ ],
+ "analysers_run": [
+  "llm_ba_med"
+ ],
+ "llm_tokens": 2275,
+ "analyser_seconds": 9.7,
+ "wall_seconds": 9.7,
+ "steps": [
+  {
+   "tool": "llm_ba_med",
+   "p": 0.758,
+   "categories": [
+    "access_control",
+    "integer_overflow",
+    "reentrancy",
+    "unchecked_low_level_calls"
+   ],
+   "details": [
+    {
+     "type": "unchecked_low_level_calls",
+     "location": "WithdrawToken function in Token contract",
+     "severity": "medium",
+     "explanation": "Uses token.call(...) without checking the return value, so a failed ERC20 transfer will be ignored and tokens may be lost."
+    },
+    {
+     "type": "unchecked_low_level_calls",
+     "location": "WithdrawToHolder function in TokenBank contract",
+     "severity": "high",
+     "explanation": "Calls _addr.call.value(_wei) without checking success and without limiting gas, allowing the callee to revert or consume all gas."
+    },
+    {
+     "type": "reentrancy",
+     "location": "WithdrawToHolder function in TokenBank contract",
+     "severity": "high",
+     "explanation": "State (Holders[_addr]) is updated after the external call, enabling a malicious recipient contract to re-enter and withdraw multiple times before the balance is reduced."
+    },
+    {
+     "type": "integer_overflow",
+     "location": "Deposit function in TokenBank contract (Holders[msg.sender] += msg.value)",
+     "severity": "low",
+     "explanation": "Solidity ^0.4.18 does not have built\u2011in overflow checks; a sufficiently large total deposit could overflow the stored balance."
+    },
+    {
+     "type": "access_control",
+     "location": "owner variable shadowing in Token contract",
+     "severity": "medium",
+     "explanation": "Token defines its own 'owner' state variable that hides the one from Ownable. initTokenBank sets this shadowed variable, but onlyOwner checks the original Ownable.owner, leading to confusing and potentially ineffective ownership changes."
+    }
+   ],
+   "seconds": 9.69,
+   "tokens": 2275,
+   "new_categories": [
+    "access_control",
+    "integer_overflow",
+    "reentrancy",
+    "unchecked_low_level_calls"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_qwen_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T13:55:05"
+ }
+}

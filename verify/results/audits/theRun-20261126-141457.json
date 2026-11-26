@@ -1,0 +1,61 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\hard\\theRun.sol",
+ "audited_at": "2026-11-26T14:14:57",
+ "vulnerability_categories": [
+  "bad_randomness",
+  "denial_of_service",
+  "integer_overflow"
+ ],
+ "analysers_run": [
+  "llm_ba"
+ ],
+ "llm_tokens": 1769,
+ "analyser_seconds": 10.9,
+ "wall_seconds": 12.0,
+ "steps": [
+  {
+   "tool": "llm_ba",
+   "p": 0.543,
+   "categories": [
+    "bad_randomness",
+    "denial_of_service",
+    "integer_overflow"
+   ],
+   "details": [
+    {
+     "type": "bad_randomness",
+     "location": "function random(uint Max)",
+     "severity": "high",
+     "explanation": "The random number generator relies on predictable values such as block.timestamp, block.number and a constant salt, making the outcome manipulable by miners and attackers."
+    },
+    {
+     "type": "denial_of_service",
+     "location": "function init() and while loop sending payouts",
+     "severity": "medium",
+     "explanation": "The contract uses .send() to transfer Ether without checking the return value. If a recipient\u2019s fallback consumes more than 2300 gas or reverts, the send fails silently and the contract may consider the payout completed, leading to funds being locked or payouts being skipped."
+    },
+    {
+     "type": "integer_overflow",
+     "location": "variables Balance, WinningPot, fees calculations",
+     "severity": "low",
+     "explanation": "With Solidity 0.4.13 arithmetic is unchecked; large deposits could overflow the uint variables, corrupting accounting and potentially allowing exploitation."
+    }
+   ],
+   "seconds": 10.88,
+   "tokens": 1769,
+   "new_categories": [
+    "bad_randomness",
+    "denial_of_service",
+    "integer_overflow"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_qwen_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T13:55:05"
+ }
+}

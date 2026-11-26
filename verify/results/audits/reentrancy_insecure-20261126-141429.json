@@ -1,0 +1,43 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\easy\\reentrancy_insecure.sol",
+ "audited_at": "2026-11-26T14:14:29",
+ "vulnerability_categories": [
+  "reentrancy"
+ ],
+ "analysers_run": [
+  "llm_ba_dasp"
+ ],
+ "llm_tokens": 850,
+ "analyser_seconds": 5.0,
+ "wall_seconds": 5.8,
+ "steps": [
+  {
+   "tool": "llm_ba_dasp",
+   "p": 0.872,
+   "categories": [
+    "reentrancy"
+   ],
+   "details": [
+    {
+     "type": "reentrancy",
+     "location": "withdrawBalance",
+     "severity": "high",
+     "explanation": "The contract sends Ether to msg.sender via a low\u2011level call before updating userBalances, allowing a malicious recipient to re\u2011enter withdrawBalance and drain funds."
+    }
+   ],
+   "seconds": 4.98,
+   "tokens": 850,
+   "new_categories": [
+    "reentrancy"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_qwen_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T13:55:05"
+ }
+}

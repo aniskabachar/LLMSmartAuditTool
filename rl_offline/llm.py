@@ -114,11 +114,23 @@ class _HTTPError(Exception):
     pass
 
 
+def model_params(model: str) -> dict:
+    """Reasoning settings each model family accepts. gpt-oss: reasoning_effort low/medium/high.
+    Qwen3 on Groq: thinking on by default, reasoning_effort "none" turns it off; its reasoning is
+    kept out of the reply with reasoning_format "hidden". Other models get no reasoning fields."""
+    if "gpt-oss" in model:
+        return {"reasoning_effort": ME.REASONING_EFFORT}
+    if "qwen" in model.lower():
+        return {"reasoning_format": "hidden",
+                **({"reasoning_effort": "none"} if ME.REASONING_EFFORT == "none" else {})}
+    return {}
+
+
 def _openai_compat_create(provider: str, key: str, model: str, system: str, user: str) -> dict:
     import httpx
     r = httpx.post(ENDPOINTS[provider], timeout=180, headers={"Authorization": f"Bearer {key}"}, json={
         "model": model, "temperature": ME.TEMPERATURE, "max_completion_tokens": ME.MAX_TOKENS,
-        "reasoning_effort": ME.REASONING_EFFORT,
+        **model_params(model),
         "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}]})
     if r.status_code != 200:
         ra = r.headers.get("retry-after")
@@ -171,7 +183,7 @@ class GroqBackend:
             self._client = Groq(api_key=self.key)
         r = self._client.chat.completions.create(
             model=self.api_model, temperature=ME.TEMPERATURE, max_tokens=ME.MAX_TOKENS,
-            reasoning_effort=ME.REASONING_EFFORT,
+            **model_params(self.api_model),
             messages=[{"role": "system", "content": system}, {"role": "user", "content": user}])
         usage = getattr(r, "usage", None)
         return {"raw": r.choices[0].message.content or "", "finish_reason": r.choices[0].finish_reason,

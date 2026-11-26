@@ -1,0 +1,43 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\hard\\ERC20Basic.sol",
+ "audited_at": "2026-11-26T14:07:26",
+ "vulnerability_categories": [
+  "access_control"
+ ],
+ "analysers_run": [
+  "llm_ba_med"
+ ],
+ "llm_tokens": 1874,
+ "analyser_seconds": 12.9,
+ "wall_seconds": 13.8,
+ "steps": [
+  {
+   "tool": "llm_ba_med",
+   "p": 0.765,
+   "categories": [
+    "access_control"
+   ],
+   "details": [
+    {
+     "type": "access_control",
+     "location": "function EGC()",
+     "severity": "critical",
+     "explanation": "The intended constructor is named EGC instead of matching the contract name KAI. In Solidity 0.4.x the constructor must have the same name as the contract, so EGC is a regular public function. Anyone can call it to set themselves as owner and allocate the entire totalSupply to their balance, effectively allowing unauthorized ownership takeover and token minting."
+    }
+   ],
+   "seconds": 12.94,
+   "tokens": 1874,
+   "new_categories": [
+    "access_control"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_qwen_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T13:55:05"
+ }
+}

@@ -1,0 +1,85 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\medium\\Axioms.sol",
+ "audited_at": "2026-11-26T14:05:28",
+ "vulnerability_categories": [
+  "access_control",
+  "denial_of_service",
+  "integer_overflow",
+  "timestamp_dependence",
+  "unchecked_low_level_calls"
+ ],
+ "analysers_run": [
+  "llm_ba_med"
+ ],
+ "llm_tokens": 2393,
+ "analyser_seconds": 15.0,
+ "wall_seconds": 16.3,
+ "steps": [
+  {
+   "tool": "llm_ba_med",
+   "p": 0.737,
+   "categories": [
+    "access_control",
+    "denial_of_service",
+    "integer_overflow",
+    "timestamp_dependence",
+    "unchecked_low_level_calls"
+   ],
+   "details": [
+    {
+     "type": "access_control",
+     "location": "transferGasFee(uint index)",
+     "severity": "high",
+     "explanation": "The function transfers the stored gasFeePaid to the owner but never resets the stored amount, allowing the owner to call it repeatedly and drain the same ether multiple times."
+    },
+    {
+     "type": "access_control",
+     "location": "refoundTokens(uint index)",
+     "severity": "high",
+     "explanation": "The owner can withdraw the full tokenAmount of an airdrop without checking how many tokens have already been distributed, enabling double\u2011spending of the tokens."
+    },
+    {
+     "type": "unchecked_low_level_calls",
+     "location": "distributeAirdrop(uint index,address[] _addrs,uint[] _vals)",
+     "severity": "medium",
+     "explanation": "Calls tokenSC.transfer(...) but does not verify the returned bool; if the ERC20 token returns false the contract will assume success and tokens may not be sent."
+    },
+    {
+     "type": "integer_overflow",
+     "location": "addNewAirdrop(...) - airdrops.length++",
+     "severity": "low",
+     "explanation": "Solidity 0.4.25 does not have built\u2011in overflow checks; incrementing the dynamic array length could overflow in an extreme scenario, causing unexpected behavior."
+    },
+    {
+     "type": "timestamp_dependence",
+     "location": "distributeAirdrop(uint index,...) - airdrop.countDown <= now",
+     "severity": "low",
+     "explanation": "The contract relies on block.timestamp for the countdown, which miners can manipulate within a reasonable range, potentially affecting the timing of distributions."
+    },
+    {
+     "type": "denial_of_service",
+     "location": "distributeAirdrop(uint index,address[] _addrs,uint[] _vals)",
+     "severity": "medium",
+     "explanation": "The function iterates over an unbounded array of addresses and values, which can exceed the block gas limit and make the distribution function unusable."
+    }
+   ],
+   "seconds": 15.0,
+   "tokens": 2393,
+   "new_categories": [
+    "access_control",
+    "denial_of_service",
+    "integer_overflow",
+    "timestamp_dependence",
+    "unchecked_low_level_calls"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_qwen_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T13:55:05"
+ }
+}

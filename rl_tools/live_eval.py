@@ -11,8 +11,8 @@ running one fixed analyser (their replies were collected earlier for real_tools.
 
 Resumable: finished contracts are kept in verify/results/audits/live_eval.json.
 
-Run:  py rl_tools/live_eval.py [--limit N]
-Out:  verify/results/audits/live_eval.{json,md}
+Run:  py rl_tools/live_eval.py [--limit N] [--tag qwen]
+Out:  verify/results/audits/live_eval[_<tag>].{json,md}
 """
 
 from __future__ import annotations
@@ -40,7 +40,11 @@ def main():
     utf8_console()
     ap = argparse.ArgumentParser()
     ap.add_argument("--limit", type=int, default=None)
+    ap.add_argument("--tag", default="", help="suffix for the output files (e.g. qwen), so earlier runs are kept")
     args = ap.parse_args()
+    global OUT
+    if args.tag:
+        OUT = OUT.with_name(f"live_eval_{args.tag}.json")
 
     todo_all = held_out()
     done = json.loads(OUT.read_text(encoding="utf-8")) if OUT.exists() else {}
@@ -79,6 +83,18 @@ def main():
     for t in ("slither", "llm_ba", "llm_ba_med", "llm_ba_dasp"):
         rows[f"always {t}"] = [(*sc(todo_all[n]["tools"][t]["found"], todo_all[n]["labels"]),
                                 todo_all[n]["tools"][t].get("tokens", 0)) for n in names]
+    # Qwen agents as fixed baselines too, when their replies cover these contracts
+    from rl_offline.common import _parse
+    from rl_tools.build_dataset import LLM_TYPE_MAP
+    for t in ("llm_qwen_ba", "llm_qwen_think", "llm_qwen_dasp"):
+        f = TR / f"{t}.json"
+        rep = json.loads(f.read_text(encoding="utf-8"))["contracts"] if f.exists() else {}
+        if all(n in rep for n in names):
+            def found(n, rep=rep):
+                a, _ = _parse(rep[n]["raw"])
+                return sorted({LLM_TYPE_MAP.get(v.type.value, v.type.value) for v in a.vulnerabilities}) if a else []
+            rows[f"always {t}"] = [(*sc(found(n), todo_all[n]["labels"]),
+                                    rep[n]["prompt_tokens"] + rep[n]["completion_tokens"]) for n in names]
     allf = lambda n: set().union(*[todo_all[n]["tools"][t]["found"]
                                    for t in ("slither", "llm_ba", "llm_ba_med", "llm_ba_dasp")])
     rows["all 4 analysers"] = [(*sc(allf(n), todo_all[n]["labels"]),
@@ -111,7 +127,7 @@ def main():
            ", ".join(f"{t} {100 * c / len(names):.0f}%" for t, c in sorted(use.items(), key=lambda x: -x[1])),
            f"Calls that failed (counted as 'found nothing'): {sum(done[n]['errors'] for n in names)}"]
     OUT.with_suffix(".md").write_text("\n".join(md), encoding="utf-8")
-    OUT.with_name("live_eval_summary.json").write_text(json.dumps(
+    OUT.with_name(OUT.stem + "_summary.json").write_text(json.dumps(
         {"n": len(names), "at": datetime.now().isoformat(timespec="seconds"), "rows": out}, indent=1),
         encoding="utf-8")
     print("\n".join(md))

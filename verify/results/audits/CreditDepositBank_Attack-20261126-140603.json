@@ -1,0 +1,94 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\medium\\CreditDepositBank_Attack.sol",
+ "audited_at": "2026-11-26T14:06:03",
+ "vulnerability_categories": [
+  "access_control",
+  "denial_of_service",
+  "integer_overflow",
+  "unchecked_low_level_calls"
+ ],
+ "analysers_run": [
+  "llm_ba_med"
+ ],
+ "llm_tokens": 2551,
+ "analyser_seconds": 12.3,
+ "wall_seconds": 13.4,
+ "steps": [
+  {
+   "tool": "llm_ba_med",
+   "p": 0.731,
+   "categories": [
+    "access_control",
+    "denial_of_service",
+    "integer_overflow",
+    "unchecked_low_level_calls"
+   ],
+   "details": [
+    {
+     "type": "integer_overflow",
+     "location": "deposit()",
+     "severity": "high",
+     "explanation": "balances[msg.sender] is increased by msg.value without overflow checks; an attacker can overflow the uint and reset their balance."
+    },
+    {
+     "type": "integer_overflow",
+     "location": "credit()",
+     "severity": "critical",
+     "explanation": "balances[msg.sender] is decreased by this.balance + msg.value without underflow protection; if the subtraction underflows the balance becomes huge, allowing the attacker to drain the contract."
+    },
+    {
+     "type": "access_control",
+     "location": "takeOver()",
+     "severity": "high",
+     "explanation": "Any address with a positive balance can call takeOver() and overwrite the contract's owner variable, effectively hijacking ownership."
+    },
+    {
+     "type": "access_control",
+     "location": "setManager()",
+     "severity": "medium",
+     "explanation": "Any address holding more than 100 finney can become the manager, granting them rights to close the contract."
+    },
+    {
+     "type": "access_control",
+     "location": "withdraw(address client)",
+     "severity": "critical",
+     "explanation": "The function sends the client\u2019s balance to msg.sender (the owner) but never updates balances[client]; the owner can repeatedly withdraw the same amount, draining client funds."
+    },
+    {
+     "type": "unchecked_low_level_calls",
+     "location": "withdraw(address client)",
+     "severity": "medium",
+     "explanation": "msg.sender.send(...) return value is ignored; if the send fails the contract retains the ether and the owner cannot recover it."
+    },
+    {
+     "type": "unchecked_low_level_calls",
+     "location": "close()",
+     "severity": "medium",
+     "explanation": "manager.send(this.balance) return value is not checked; a failed send prevents the subsequent selfdestruct, potentially locking the contract."
+    },
+    {
+     "type": "denial_of_service",
+     "location": "close()",
+     "severity": "medium",
+     "explanation": "Because the send to manager is unchecked, a malicious manager can cause it to fail, blocking selfdestruct and leaving the contract alive with its funds."
+    }
+   ],
+   "seconds": 12.32,
+   "tokens": 2551,
+   "new_categories": [
+    "access_control",
+    "denial_of_service",
+    "integer_overflow",
+    "unchecked_low_level_calls"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_qwen_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T13:55:05"
+ }
+}

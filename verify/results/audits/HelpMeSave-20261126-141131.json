@@ -1,0 +1,58 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\medium\\HelpMeSave.sol",
+ "audited_at": "2026-11-26T14:11:31",
+ "vulnerability_categories": [
+  "access_control",
+  "denial_of_service"
+ ],
+ "analysers_run": [
+  "llm_ba_med"
+ ],
+ "llm_tokens": 1961,
+ "analyser_seconds": 3.9,
+ "wall_seconds": 4.6,
+ "steps": [
+  {
+   "tool": "llm_ba_med",
+   "p": 0.759,
+   "categories": [
+    "access_control",
+    "denial_of_service"
+   ],
+   "details": [
+    {
+     "type": "access_control",
+     "location": "function MyTestWallet7()",
+     "severity": "high",
+     "explanation": "The function intended to set the contract owner is public and can be called by anyone, allowing arbitrary address takeover of the owner role because it is not the contract constructor."
+    },
+    {
+     "type": "selfdestruct",
+     "location": "function recovery(string _password,address _return_addr)",
+     "severity": "high",
+     "explanation": "Anyone can trigger selfdestruct and drain the contract's ether by providing an address whose keccak256 hash modulo 100000000000000 equals a fixed constant; the password parameter is ignored, giving unrestricted access to a destructive operation."
+    },
+    {
+     "type": "denial_of_service",
+     "location": "function withdraw() ... msg.sender.send(withdraw_amt);",
+     "severity": "medium",
+     "explanation": "The withdraw function uses .send without checking its return value; if the recipient is a contract that rejects the transfer (e.g., consumes >2300 gas), the send fails silently and the funds become permanently locked."
+    }
+   ],
+   "seconds": 3.88,
+   "tokens": 1961,
+   "new_categories": [
+    "access_control",
+    "denial_of_service"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_qwen_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T13:55:05"
+ }
+}

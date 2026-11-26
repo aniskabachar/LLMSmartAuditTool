@@ -1,0 +1,61 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\hard\\wallet_sucide.sol",
+ "audited_at": "2026-11-26T14:16:33",
+ "vulnerability_categories": [
+  "access_control",
+  "reentrancy",
+  "unchecked_low_level_calls"
+ ],
+ "analysers_run": [
+  "llm_ba"
+ ],
+ "llm_tokens": 2548,
+ "analyser_seconds": 2.3,
+ "wall_seconds": 3.0,
+ "steps": [
+  {
+   "tool": "llm_ba",
+   "p": 0.876,
+   "categories": [
+    "access_control",
+    "reentrancy",
+    "unchecked_low_level_calls"
+   ],
+   "details": [
+    {
+     "type": "reentrancy",
+     "location": "execute() internal call to m_txs[_h].to.call.value(...)",
+     "severity": "high",
+     "explanation": "The contract performs an external call before deleting the pending transaction, allowing a malicious callee to re-enter and potentially execute the same transaction multiple times."
+    },
+    {
+     "type": "unchecked_low_level_calls",
+     "location": "Wallet constructor delegatecall to initWallet",
+     "severity": "medium",
+     "explanation": "The delegatecall result is not checked; if the call fails the contract remains uninitialized, leading to incorrect state and possible takeover."
+    },
+    {
+     "type": "access_control",
+     "location": "modifier onlyowner()",
+     "severity": "low",
+     "explanation": "The modifier silently skips the function body for non\u2011owners instead of reverting, which can lead to unexpected behavior and may be exploited in combination with other logic."
+    }
+   ],
+   "seconds": 2.27,
+   "tokens": 2548,
+   "new_categories": [
+    "access_control",
+    "reentrancy",
+    "unchecked_low_level_calls"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_qwen_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T13:55:05"
+ }
+}

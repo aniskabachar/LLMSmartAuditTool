@@ -1,0 +1,61 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\medium\\ProofOfExistence.sol",
+ "audited_at": "2026-11-26T14:12:50",
+ "vulnerability_categories": [
+  "access_control",
+  "denial_of_service",
+  "timestamp_dependence"
+ ],
+ "analysers_run": [
+  "llm_ba"
+ ],
+ "llm_tokens": 2327,
+ "analyser_seconds": 3.0,
+ "wall_seconds": 4.2,
+ "steps": [
+  {
+   "tool": "llm_ba",
+   "p": 0.762,
+   "categories": [
+    "access_control",
+    "denial_of_service",
+    "timestamp_dependence"
+   ],
+   "details": [
+    {
+     "type": "access_control",
+     "location": "claimReward_TOD36 / claimReward_TOD40",
+     "severity": "high",
+     "explanation": "claimReward functions can be called by any address without proper authorization, allowing anyone to withdraw the reward if it has not been claimed yet."
+    },
+    {
+     "type": "denial_of_service",
+     "location": "getReward_TOD35, getReward_TOD33, getReward_TOD27, getReward_TOD31, getReward_TOD13",
+     "severity": "medium",
+     "explanation": "These functions transfer msg.value to a winner variable that is only set after a successful guess; if no guess was made, the winner remains the zero address, causing the transferred ether to be locked forever."
+    },
+    {
+     "type": "timestamp_dependence",
+     "location": "SetFileExistenceProof (uses now)",
+     "severity": "low",
+     "explanation": "The contract uses the block timestamp (now) to record the proof date, which can be manipulated by miners within a reasonable range."
+    }
+   ],
+   "seconds": 2.97,
+   "tokens": 2327,
+   "new_categories": [
+    "access_control",
+    "denial_of_service",
+    "timestamp_dependence"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_qwen_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T13:55:05"
+ }
+}

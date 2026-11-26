@@ -13,10 +13,12 @@ Analysers it can call (the same ones it was trained on, datasets/tool_results/ag
   llm_ba_med         same prompt, medium reasoning
   llm_ba_dasp        same prompt + DASP category guide
   spec_0 .. spec_5   the base project's six TA specialist agents (targeted scenario batches)
+  llm_qwen_ba, llm_qwen_think, llm_qwen_dasp   Qwen 3.8 27B agents (second model family;
+                     only if the coordinator was trained with them)
 LLM agents: openai/gpt-oss-120b on Groq (keys from .env, rotated as in the collectors).
 
 Train the coordinator once (all 269 labelled contracts; no API calls):
-  py rl_tools/audit.py --train
+  py rl_tools/audit.py --train [--data datasets/tool_results/agents_live_qwen_tools.json]
 Audit a contract:
   py rl_tools/audit.py path/to/Contract.sol [--max-tools N]
 Writes verify/results/audits/<name>-<time>.{md,json} and prints the report.
@@ -40,12 +42,12 @@ STEPS, LAM, COST, SEED = 40_000, 0.02, "both", 0
 
 # ── training ──────────────────────────────────────────────────────────────────
 
-def train():
+def train(data: Path = DATA):
     import torch
     from stable_baselines3 import PPO
     from rl_tools.run import COMPACT, TYPES, ToolEnv, load
     torch.set_num_threads(1)
-    meta_d, tools, items = load(DATA, COST)
+    meta_d, tools, items = load(data, COST)
     X = np.stack([it["x"] for it in items])
     mu, sd = X.mean(0), X.std(0) + 1e-6
     env = ToolEnv(items, len(tools), LAM, mu, sd, adaptive=True, seed=SEED, feat_idx=COMPACT)
@@ -59,7 +61,7 @@ def train():
         "tools": tools, "types": list(TYPES), "feat_idx": list(COMPACT),
         "mu": mu[list(COMPACT)].tolist(), "sd": sd[list(COMPACT)].tolist(),
         "lam": LAM, "cost": COST, "steps": STEPS, "seed": SEED, "policy": "MlpPolicy 64x64",
-        "trained_on": str(DATA.relative_to(ROOT)), "n_contracts": len(items),
+        "trained_on": str(data.relative_to(ROOT)), "n_contracts": len(items),
         "data_built_at": meta_d.get("built_at"),
         "trained_at": datetime.now().isoformat(timespec="seconds")}, indent=1), encoding="utf-8")
     print(f"Trained on {len(items)} contracts x {len(tools)} analysers in {time.time() - t0:.0f}s "
@@ -75,28 +77,33 @@ class Analysers:
         self.ME, self.sol = ME, sol
         self.raw_code = sol.read_text(encoding="utf-8", errors="replace")
         self.code = truncate(self.raw_code, ME.MAX_CODE_CHARS)   # strips comments too
-        self._backend = None
+        self._backends = {}
 
-    def backend(self):
-        if self._backend is None:
+    def backend(self, model: str):
+        """One backend per model (gpt-oss agents may fall back to other providers; Qwen only on Groq)."""
+        if model not in self._backends:
             from rl_offline.llm import GroqBackend, KeyPool, load_keys
-            self._backend = GroqBackend(pool=KeyPool(load_keys()))
-        return self._backend
+            keys = load_keys()
+            if model != "openai/gpt-oss-120b":
+                keys = [(p, k) for p, k in keys if p == "groq"]
+            self._backends[model] = GroqBackend(pool=KeyPool(keys))
+        return self._backends[model]
 
     def run(self, tool: str) -> dict:
         if tool == "slither":
             return self._slither()
-        from rl_tools.collect_llm import VARIANTS
+        import os
+        from rl_tools.collect_llm import use_variant
         from rl_offline.collect import prompt_for
-        if tool.startswith("spec_"):
-            self.ME.REASONING_EFFORT = "low"
+        if tool.startswith("spec_"):                 # base TA specialists: gpt-oss, low reasoning
+            model = "openai/gpt-oss-120b"
+            self.ME.REASONING_EFFORT, self.ME.MODEL = "low", model
+            os.environ["GROQ_MODEL"] = model
             system, user = prompt_for(f"ta_r1_b{tool.split('_')[1]}", self.code, {})
-        else:
-            v = tool.removeprefix("llm_")
-            system, effort = VARIANTS[v][0](), VARIANTS[v][1]
-            self.ME.REASONING_EFFORT = effort               # read by the backend at call time
+        else:                                        # sets model + reasoning, read at call time
+            system, model = use_variant(tool.removeprefix("llm_"))
             user = f"Contract to audit:\n\n{self.code}"
-        out = self.backend().call(system, user)
+        out = self.backend(model).call(system, user)
         return {"categories": self._categories(out["raw"]), "details": self._details(out["raw"]),
                 "seconds": float(out["seconds"]),
                 "tokens": int(out["prompt_tokens"] + out["completion_tokens"])}
@@ -222,10 +229,12 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("contract", nargs="?", help=".sol file to audit")
     ap.add_argument("--train", action="store_true", help="train and save the coordinator")
+    ap.add_argument("--data", default=str(DATA.relative_to(ROOT)),
+                    help="training dataset for --train (agents_live_qwen_tools.json adds the Qwen agents)")
     ap.add_argument("--max-tools", type=int, default=None, help="cap on analysers per contract")
     args = ap.parse_args()
     if args.train:
-        train()
+        train(ROOT / args.data)
     if args.contract:
         audit(Path(args.contract), args.max_tools)
     elif not args.train:

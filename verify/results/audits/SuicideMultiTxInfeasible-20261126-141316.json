@@ -1,0 +1,40 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\hard\\SuicideMultiTxInfeasible.sol",
+ "audited_at": "2026-11-26T14:13:16",
+ "vulnerability_categories": [],
+ "analysers_run": [
+  "llm_ba_dasp",
+  "llm_ba_med"
+ ],
+ "llm_tokens": 1515,
+ "analyser_seconds": 15.2,
+ "wall_seconds": 16.3,
+ "steps": [
+  {
+   "tool": "llm_ba_dasp",
+   "p": 0.871,
+   "categories": [],
+   "details": [],
+   "seconds": 10.94,
+   "tokens": 792,
+   "new_categories": []
+  },
+  {
+   "tool": "llm_ba_med",
+   "p": 0.173,
+   "categories": [],
+   "details": [],
+   "seconds": 4.25,
+   "tokens": 723,
+   "new_categories": []
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_qwen_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T13:55:05"
+ }
+}

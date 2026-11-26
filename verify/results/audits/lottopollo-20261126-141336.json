@@ -1,0 +1,61 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\medium\\lottopollo.sol",
+ "audited_at": "2026-11-26T14:13:36",
+ "vulnerability_categories": [
+  "bad_randomness",
+  "integer_overflow",
+  "unchecked_low_level_calls"
+ ],
+ "analysers_run": [
+  "llm_ba_med"
+ ],
+ "llm_tokens": 1608,
+ "analyser_seconds": 4.8,
+ "wall_seconds": 5.9,
+ "steps": [
+  {
+   "tool": "llm_ba_med",
+   "p": 0.748,
+   "categories": [
+    "bad_randomness",
+    "integer_overflow",
+    "unchecked_low_level_calls"
+   ],
+   "details": [
+    {
+     "type": "bad_randomness",
+     "location": "function randomGen()",
+     "severity": "high",
+     "explanation": "The function returns block.timestamp as a random number, which can be manipulated by miners, making the lottery outcome predictable and allowing an attacker to influence the result."
+    },
+    {
+     "type": "integer_overflow",
+     "location": "payOut(uint rand) - expression now - rand",
+     "severity": "medium",
+     "explanation": "In Solidity 0.4.0 subtraction does not check for underflow. If rand > now, the subtraction underflows to a very large value, causing the time\u2011lock condition to be bypassed and allowing unauthorized payouts."
+    },
+    {
+     "type": "unchecked_low_level_calls",
+     "location": "payOut(uint rand) - msg.sender.send(msg.value) and leader.send(this.balance)",
+     "severity": "low",
+     "explanation": "The contract uses .send without checking its return value. If the recipient contract rejects the transfer, the call fails silently and funds can become stuck in the contract, leading to a denial\u2011of\u2011service of the payout."
+    }
+   ],
+   "seconds": 4.78,
+   "tokens": 1608,
+   "new_categories": [
+    "bad_randomness",
+    "integer_overflow",
+    "unchecked_low_level_calls"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_qwen_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T13:55:05"
+ }
+}

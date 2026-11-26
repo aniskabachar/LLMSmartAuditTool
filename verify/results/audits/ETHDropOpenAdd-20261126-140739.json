@@ -1,0 +1,58 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\medium\\ETHDropOpenAdd.sol",
+ "audited_at": "2026-11-26T14:07:39",
+ "vulnerability_categories": [
+  "access_control",
+  "denial_of_service"
+ ],
+ "analysers_run": [
+  "llm_ba_med"
+ ],
+ "llm_tokens": 2051,
+ "analyser_seconds": 9.8,
+ "wall_seconds": 10.5,
+ "steps": [
+  {
+   "tool": "llm_ba_med",
+   "p": 0.731,
+   "categories": [
+    "access_control",
+    "denial_of_service"
+   ],
+   "details": [
+    {
+     "type": "access_control",
+     "location": "addMember function",
+     "severity": "medium",
+     "explanation": "addMember is public and lacks the onlySecretary modifier, allowing any address to add members to the distribution list, potentially enabling unauthorized parties to receive funds."
+    },
+    {
+     "type": "access_control",
+     "location": "removeMember function (require statement)",
+     "severity": "high",
+     "explanation": "The require uses assignment (`=`) instead of comparison (`==`), setting `memberList[_removeMember].exists` to true and always passing. This lets the secretary remove any address, even non\u2011members, and corrupts the members array indexing."
+    },
+    {
+     "type": "denial_of_service",
+     "location": "dripETH, dropETH, customDropETH loops (transfer calls)",
+     "severity": "medium",
+     "explanation": "Each function uses `address.transfer`, which reverts the whole transaction if any recipient is a contract that throws or consumes more than 2300 gas, allowing a malicious member to block fund distribution to all members."
+    }
+   ],
+   "seconds": 9.78,
+   "tokens": 2051,
+   "new_categories": [
+    "access_control",
+    "denial_of_service"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_qwen_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T13:55:05"
+ }
+}

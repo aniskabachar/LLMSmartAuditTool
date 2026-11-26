@@ -1,0 +1,70 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\medium\\0x3a0e9acd953ffc0dd18d63603488846a6b8b2b01.sol",
+ "audited_at": "2026-11-26T13:56:22",
+ "vulnerability_categories": [
+  "access_control",
+  "integer_overflow",
+  "reentrancy",
+  "unchecked_low_level_calls"
+ ],
+ "analysers_run": [
+  "llm_ba_med"
+ ],
+ "llm_tokens": 2064,
+ "analyser_seconds": 22.7,
+ "wall_seconds": 22.7,
+ "steps": [
+  {
+   "tool": "llm_ba_med",
+   "p": 0.758,
+   "categories": [
+    "access_control",
+    "integer_overflow",
+    "reentrancy",
+    "unchecked_low_level_calls"
+   ],
+   "details": [
+    {
+     "type": "access_control",
+     "location": "Token and TokenBank contracts (owner variable shadowing)",
+     "severity": "high",
+     "explanation": "Both Token and TokenBank declare a new state variable named `owner` that shadows the `owner` defined in Ownable. The `onlyOwner` modifier checks the Ownable.owner, which is never updated after deployment (initTokenBank updates the shadowed variable). This allows the original deployer to retain privileged access or enables unauthorized parties to bypass intended access control."
+    },
+    {
+     "type": "reentrancy",
+     "location": "WithdrawToHolder function",
+     "severity": "high",
+     "explanation": "The function sends ether to `_addr` via `_addr.call.value(_wei)` before updating the `Holders[_addr]` balance. A malicious contract can re\u2011enter and call `WithdrawToHolder` again, draining more funds than its recorded balance."
+    },
+    {
+     "type": "unchecked_low_level_calls",
+     "location": "WithdrawToken function (token.call) and WithdrawToHolder function (_addr.call.value)",
+     "severity": "medium",
+     "explanation": "Both functions use low\u2011level `call` without checking the returned success flag. Failures (e.g., token contract not implementing `transfer`) are ignored, potentially causing loss of funds or unexpected behavior."
+    },
+    {
+     "type": "integer_overflow",
+     "location": "Deposit function (Holders[msg.sender] += msg.value)",
+     "severity": "medium",
+     "explanation": "The contract uses Solidity ^0.4.18 which lacks built\u2011in overflow checks. Adding `msg.value` to an existing holder balance can overflow the 256\u2011bit integer, wrapping the balance to a low value and allowing further withdrawals."
+    }
+   ],
+   "seconds": 22.73,
+   "tokens": 2064,
+   "new_categories": [
+    "access_control",
+    "integer_overflow",
+    "reentrancy",
+    "unchecked_low_level_calls"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_qwen_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T13:55:05"
+ }
+}

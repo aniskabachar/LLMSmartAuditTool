@@ -9,6 +9,9 @@
   "llm_ba",
   "llm_ba_med",
   "llm_ba_dasp",
+  "llm_qwen_ba",
+  "llm_qwen_think",
+  "llm_qwen_dasp",
   "slither"
  ],
  "types": [
@@ -45,8 +48,8 @@
  "steps": 40000,
  "seed": 0,
  "policy": "MlpPolicy 64x64",
- "trained_on": "datasets\\tool_results\\agents_live_tools.json",
+ "trained_on": "datasets\\tool_results\\agents_live_qwen_tools.json",
  "n_contracts": 269,
- "data_built_at": "2026-11-26T11:30:05",
- "trained_at": "2026-11-26T11:32:19"
+ "data_built_at": "2026-11-26T13:37:27",
+ "trained_at": "2026-11-26T13:55:05"
 }

@@ -1,0 +1,79 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\easy\\0x627fa62ccbb1c1b04ffaecd72a53e37fc0e17839.sol",
+ "audited_at": "2026-11-26T13:58:24",
+ "vulnerability_categories": [
+  "access_control",
+  "denial_of_service",
+  "integer_overflow",
+  "reentrancy",
+  "unchecked_low_level_calls"
+ ],
+ "analysers_run": [
+  "llm_ba_med"
+ ],
+ "llm_tokens": 2015,
+ "analyser_seconds": 13.4,
+ "wall_seconds": 13.4,
+ "steps": [
+  {
+   "tool": "llm_ba_med",
+   "p": 0.758,
+   "categories": [
+    "access_control",
+    "denial_of_service",
+    "integer_overflow",
+    "reentrancy",
+    "unchecked_low_level_calls"
+   ],
+   "details": [
+    {
+     "type": "reentrancy",
+     "location": "WithdrawToHolder",
+     "severity": "high",
+     "explanation": "State (Holders[_addr]) is updated after an external call to _addr, allowing a malicious fallback to re-enter WithdrawToHolder and drain funds before the balance is cleared."
+    },
+    {
+     "type": "unchecked_low_level_calls",
+     "location": "WithdrawToken",
+     "severity": "medium",
+     "explanation": "Uses low\u2011level token.call without checking the return value, so a failed ERC20 transfer will be ignored and tokens may be lost."
+    },
+    {
+     "type": "integer_overflow",
+     "location": "Deposit",
+     "severity": "medium",
+     "explanation": "Adds msg.value to Holders[msg.sender] without overflow checks; repeated deposits could overflow the uint256 balance."
+    },
+    {
+     "type": "access_control",
+     "location": "owner variable shadowing in Token and TokenBank",
+     "severity": "medium",
+     "explanation": "Token and TokenBank declare their own 'owner' variable that shadows Ownable.owner used by the onlyOwner modifier, leading to mismatched ownership checks and potential unauthorized access."
+    },
+    {
+     "type": "denial_of_service",
+     "location": "WithdrawToHolder",
+     "severity": "low",
+     "explanation": "Calls external address with .call.value(_wei)() forwarding all gas; a malicious contract can consume all gas or revert, preventing the balance update and blocking withdrawals."
+    }
+   ],
+   "seconds": 13.4,
+   "tokens": 2015,
+   "new_categories": [
+    "access_control",
+    "denial_of_service",
+    "integer_overflow",
+    "reentrancy",
+    "unchecked_low_level_calls"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_qwen_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T13:55:05"
+ }
+}

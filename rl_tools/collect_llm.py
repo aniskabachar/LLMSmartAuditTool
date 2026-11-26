@@ -41,13 +41,30 @@ DASP_GUIDE = """Vulnerability categories (use the closest one):
 
 """
 
+QWEN = "qwen/qwen3.8-27b"      # second model family on Groq's free tier (Alibaba Qwen)
+DASP_SYSTEM = lambda: ME.BA_SYSTEM.replace("Respond ONLY", DASP_GUIDE + "Respond ONLY", 1)
+
 VARIANTS = {
-    #           system prompt                                                       reasoning_effort
-    "ba":      (lambda: ME.BA_SYSTEM,                                                "low"),
-    "ba_med":  (lambda: ME.BA_SYSTEM,                                                "medium"),
-    "ba_high": (lambda: ME.BA_SYSTEM,                                                "high"),
-    "ba_dasp": (lambda: ME.BA_SYSTEM.replace("Respond ONLY", DASP_GUIDE + "Respond ONLY", 1), "low"),
+    #            system prompt            reasoning   model (default: ME.MODEL, gpt-oss-120b)
+    "ba":         (lambda: ME.BA_SYSTEM,   "low"),
+    "ba_med":     (lambda: ME.BA_SYSTEM,   "medium"),
+    "ba_high":    (lambda: ME.BA_SYSTEM,   "high"),
+    "ba_dasp":    (DASP_SYSTEM,            "low"),
+    "qwen_ba":    (lambda: ME.BA_SYSTEM,   "none",     QWEN),    # thinking off
+    "qwen_think": (lambda: ME.BA_SYSTEM,   "default",  QWEN),    # thinking on (Qwen's default)
+    "qwen_dasp":  (DASP_SYSTEM,            "none",     QWEN),
 }
+
+
+def use_variant(v: str) -> tuple[str, str]:
+    """Set the model and reasoning for variant v (read by rl_offline.llm at call time);
+    returns (system prompt, model)."""
+    import os
+    spec = VARIANTS[v]
+    model = spec[2] if len(spec) > 2 else "openai/gpt-oss-120b"
+    ME.REASONING_EFFORT, ME.MODEL = spec[1], model
+    os.environ["GROQ_MODEL"] = model
+    return spec[0](), model
 
 
 def main():
@@ -60,8 +77,7 @@ def main():
     ap.add_argument("--data", default=str(DATA.relative_to(ROOT)),
                     help="Dataset whose contracts get an LLM reply (replies already present are kept)")
     args = ap.parse_args()
-    system = VARIANTS[args.variant][0]()
-    ME.REASONING_EFFORT = VARIANTS[args.variant][1]          # read by rl_offline.llm at call time
+    system, model = use_variant(args.variant)
     OUT = ROOT / "datasets" / "tool_results" / (
         "llm_ba.json" if args.variant == "ba" else f"llm_{args.variant}.json")
     import hashlib
@@ -75,11 +91,14 @@ def main():
         "comments_stripped": True, "variant": args.variant, "system_hash": sys_hash, "contracts": {}}
     if (done["max_tokens"], done["reasoning_effort"], done["prompt_hash"], done.get("comments_stripped"),
             done.get("system_hash", sys_hash)) != \
-            (ME.MAX_TOKENS, ME.REASONING_EFFORT, ME.config("ba")["prompt_hash"], True, sys_hash):
+            (ME.MAX_TOKENS, ME.REASONING_EFFORT, ME.config("ba")["prompt_hash"], True, sys_hash)             or done.get("model", "openai/gpt-oss-120b") != model:
         raise SystemExit(f"{OUT} was made with other settings; move it away first.")
     todo = [n for n in contracts if n not in done["contracts"]]
     print(f"{len(done['contracts'])} done, {len(todo)} to go")
-    pool = KeyPool(load_keys())
+    keys = load_keys()
+    if model != "openai/gpt-oss-120b":              # fallback providers serve gpt-oss only
+        keys = [(p, k) for p, k in keys if p == "groq"]
+    pool = KeyPool(keys)
     lock = threading.Lock()
     queue = list(todo)
 

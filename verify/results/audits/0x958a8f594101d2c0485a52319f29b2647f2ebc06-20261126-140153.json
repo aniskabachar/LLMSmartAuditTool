@@ -1,0 +1,52 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\medium\\0x958a8f594101d2c0485a52319f29b2647f2ebc06.sol",
+ "audited_at": "2026-11-26T14:01:53",
+ "vulnerability_categories": [
+  "timestamp_dependence",
+  "unchecked_low_level_calls"
+ ],
+ "analysers_run": [
+  "llm_ba_med"
+ ],
+ "llm_tokens": 2001,
+ "analyser_seconds": 9.1,
+ "wall_seconds": 9.1,
+ "steps": [
+  {
+   "tool": "llm_ba_med",
+   "p": 0.756,
+   "categories": [
+    "timestamp_dependence",
+    "unchecked_low_level_calls"
+   ],
+   "details": [
+    {
+     "type": "unchecked_low_level_calls",
+     "location": "execute(address _dst, uint _value, bytes _data) in Owned contract",
+     "severity": "medium",
+     "explanation": "The function uses low\u2011level .call without checking the return value. If the call fails the transaction proceeds as if it succeeded, potentially causing loss of ether or unexpected state."
+    },
+    {
+     "type": "timestamp_dependence",
+     "location": "createMarriage, setMajorEvent, and other functions that use now for dates in Marriage contract",
+     "severity": "low",
+     "explanation": "The contract relies on block.timestamp (now) for marriageDate and event dates. Miners can manipulate timestamps within a reasonable range, which may affect ordering or logic that depends on exact times."
+    }
+   ],
+   "seconds": 9.08,
+   "tokens": 2001,
+   "new_categories": [
+    "timestamp_dependence",
+    "unchecked_low_level_calls"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_qwen_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T13:55:05"
+ }
+}

@@ -1,0 +1,52 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\medium\\0xa1fceeff3acc57d257b917e30c4df661401d6431.sol",
+ "audited_at": "2026-11-26T14:02:35",
+ "vulnerability_categories": [
+  "denial_of_service",
+  "unchecked_low_level_calls"
+ ],
+ "analysers_run": [
+  "llm_ba_dasp"
+ ],
+ "llm_tokens": 1045,
+ "analyser_seconds": 12.9,
+ "wall_seconds": 12.9,
+ "steps": [
+  {
+   "tool": "llm_ba_dasp",
+   "p": 0.87,
+   "categories": [
+    "denial_of_service",
+    "unchecked_low_level_calls"
+   ],
+   "details": [
+    {
+     "type": "unchecked_low_level_calls",
+     "location": "transfer() loop",
+     "severity": "high",
+     "explanation": "The contract uses low\u2011level call() to invoke transferFrom on an arbitrary contract without checking the returned success flag, allowing silent failures or re\u2011entrancy attacks."
+    },
+    {
+     "type": "denial_of_service",
+     "location": "transfer() loop over tos array",
+     "severity": "medium",
+     "explanation": "The function iterates over an unbounded user\u2011provided array and makes external calls in each iteration; a malicious caller can supply a large array causing the transaction to run out of gas and block the function."
+    }
+   ],
+   "seconds": 12.92,
+   "tokens": 1045,
+   "new_categories": [
+    "denial_of_service",
+    "unchecked_low_level_calls"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_qwen_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T13:55:05"
+ }
+}

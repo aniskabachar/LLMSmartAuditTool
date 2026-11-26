@@ -1,0 +1,61 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\medium\\0x84d9ec85c9c568eb332b7226a8f826d897e0a4a8.sol",
+ "audited_at": "2026-11-26T14:00:34",
+ "vulnerability_categories": [
+  "access_control",
+  "timestamp_dependence",
+  "unchecked_low_level_calls"
+ ],
+ "analysers_run": [
+  "llm_ba_dasp"
+ ],
+ "llm_tokens": 1266,
+ "analyser_seconds": 8.5,
+ "wall_seconds": 8.5,
+ "steps": [
+  {
+   "tool": "llm_ba_dasp",
+   "p": 0.871,
+   "categories": [
+    "access_control",
+    "timestamp_dependence",
+    "unchecked_low_level_calls"
+   ],
+   "details": [
+    {
+     "type": "access_control",
+     "location": "writeIndex function",
+     "severity": "high",
+     "explanation": "The function writeIndex is public and lacks any access restriction, allowing any address to add arbitrary entries to the indexarray, which may corrupt data or be abused."
+    },
+    {
+     "type": "unchecked_low_level_calls",
+     "location": "execute function in Owned contract",
+     "severity": "medium",
+     "explanation": "The low\u2011level call `_dst.call.value(_value)(_data)` does not check the returned boolean value, so failures are silently ignored and may lead to lost ether or unexpected state."
+    },
+    {
+     "type": "timestamp_dependence",
+     "location": "writeIndex function (uses now)",
+     "severity": "low",
+     "explanation": "The function records `now` (block timestamp) as indexdate, which miners can manipulate within a reasonable range, potentially affecting ordering or logic that relies on exact timestamps."
+    }
+   ],
+   "seconds": 8.46,
+   "tokens": 1266,
+   "new_categories": [
+    "access_control",
+    "timestamp_dependence",
+    "unchecked_low_level_calls"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_qwen_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T13:55:05"
+ }
+}

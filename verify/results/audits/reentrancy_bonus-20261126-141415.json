@@ -1,0 +1,52 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\easy\\reentrancy_bonus.sol",
+ "audited_at": "2026-11-26T14:14:15",
+ "vulnerability_categories": [
+  "integer_overflow",
+  "reentrancy"
+ ],
+ "analysers_run": [
+  "llm_ba_dasp"
+ ],
+ "llm_tokens": 1117,
+ "analyser_seconds": 7.0,
+ "wall_seconds": 7.8,
+ "steps": [
+  {
+   "tool": "llm_ba_dasp",
+   "p": 0.872,
+   "categories": [
+    "integer_overflow",
+    "reentrancy"
+   ],
+   "details": [
+    {
+     "type": "reentrancy",
+     "location": "getFirstWithdrawalBonus",
+     "severity": "high",
+     "explanation": "claimedBonus is set to true after the external call to withdrawReward. An attacker can re\u2011enter getFirstWithdrawalBonus via the call and pass the require(!claimedBonus) check again, receiving the bonus multiple times."
+    },
+    {
+     "type": "integer_overflow",
+     "location": "getFirstWithdrawalBonus (oncerewardsForA[recipient] += 100)",
+     "severity": "medium",
+     "explanation": "The contract uses Solidity ^0.4.0 which lacks built\u2011in overflow checks. Adding 100 to rewardsForA can overflow the uint and wrap around, allowing manipulation of the reward amount."
+    }
+   ],
+   "seconds": 7.04,
+   "tokens": 1117,
+   "new_categories": [
+    "integer_overflow",
+    "reentrancy"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_qwen_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T13:55:05"
+ }
+}

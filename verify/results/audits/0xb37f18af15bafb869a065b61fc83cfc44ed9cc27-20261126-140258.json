@@ -1,0 +1,52 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\medium\\0xb37f18af15bafb869a065b61fc83cfc44ed9cc27.sol",
+ "audited_at": "2026-11-26T14:02:58",
+ "vulnerability_categories": [
+  "integer_overflow",
+  "unchecked_low_level_calls"
+ ],
+ "analysers_run": [
+  "llm_ba_med"
+ ],
+ "llm_tokens": 1129,
+ "analyser_seconds": 5.4,
+ "wall_seconds": 6.5,
+ "steps": [
+  {
+   "tool": "llm_ba_med",
+   "p": 0.749,
+   "categories": [
+    "integer_overflow",
+    "unchecked_low_level_calls"
+   ],
+   "details": [
+    {
+     "type": "unchecked_low_level_calls",
+     "location": "function sendMoney(address _target, uint _value)",
+     "severity": "medium",
+     "explanation": "Uses low\u2011level call without checking the return value. If the call fails the transaction will not revert and the sent ether could be lost, and the call forwards all gas allowing re\u2011entrancy into other functions."
+    },
+    {
+     "type": "integer_overflow",
+     "location": "fallback function (depositsCount++)",
+     "severity": "low",
+     "explanation": "The counter depositsCount is incremented with unchecked arithmetic. In Solidity 0.4.24 arithmetic does not revert on overflow, so after 2^256\u20111 deposits the counter would wrap to 0."
+    }
+   ],
+   "seconds": 5.4,
+   "tokens": 1129,
+   "new_categories": [
+    "integer_overflow",
+    "unchecked_low_level_calls"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_qwen_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T13:55:05"
+ }
+}

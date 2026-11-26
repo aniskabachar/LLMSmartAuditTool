@@ -1,0 +1,43 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\easy\\insecure_transfer.sol",
+ "audited_at": "2026-11-26T14:13:30",
+ "vulnerability_categories": [
+  "integer_overflow"
+ ],
+ "analysers_run": [
+  "llm_ba_dasp"
+ ],
+ "llm_tokens": 822,
+ "analyser_seconds": 7.7,
+ "wall_seconds": 8.8,
+ "steps": [
+  {
+   "tool": "llm_ba_dasp",
+   "p": 0.872,
+   "categories": [
+    "integer_overflow"
+   ],
+   "details": [
+    {
+     "type": "integer_overflow",
+     "location": "transfer function",
+     "severity": "medium",
+     "explanation": "Using Solidity ^0.4.0 arithmetic without SafeMath allows balanceOf[_to] += _value to overflow, granting the recipient an incorrect (wrapped) balance."
+    }
+   ],
+   "seconds": 7.66,
+   "tokens": 822,
+   "new_categories": [
+    "integer_overflow"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_qwen_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T13:55:05"
+ }
+}

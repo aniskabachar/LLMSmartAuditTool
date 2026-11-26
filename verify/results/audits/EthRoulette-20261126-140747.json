@@ -1,0 +1,52 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\hard\\EthRoulette.sol",
+ "audited_at": "2026-11-26T14:07:47",
+ "vulnerability_categories": [
+  "bad_randomness",
+  "other"
+ ],
+ "analysers_run": [
+  "llm_ba_med"
+ ],
+ "llm_tokens": 1641,
+ "analyser_seconds": 6.6,
+ "wall_seconds": 7.9,
+ "steps": [
+  {
+   "tool": "llm_ba_med",
+   "p": 0.759,
+   "categories": [
+    "bad_randomness",
+    "other"
+   ],
+   "details": [
+    {
+     "type": "bad_randomness",
+     "location": "function shuffle()",
+     "severity": "medium",
+     "explanation": "secretNumber is derived from now (block timestamp) and blockhash of the previous block, both manipulable by miners, allowing prediction or manipulation of the roulette outcome."
+    },
+    {
+     "type": "uninitialized_storage",
+     "location": "function play(uint256 number) - variable Game game",
+     "severity": "high",
+     "explanation": "The struct variable `Game game;` is declared without a data location (memory or storage). In Solidity 0.5 this defaults to a storage pointer that is uninitialized, leading to potential storage corruption when fields are written."
+    }
+   ],
+   "seconds": 6.62,
+   "tokens": 1641,
+   "new_categories": [
+    "bad_randomness",
+    "other"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_qwen_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T13:55:05"
+ }
+}
