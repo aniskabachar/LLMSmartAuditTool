@@ -1,0 +1,52 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\medium\\QuarterMachine.sol",
+ "audited_at": "2026-11-26T11:51:32",
+ "vulnerability_categories": [
+  "denial_of_service",
+  "integer_overflow"
+ ],
+ "analysers_run": [
+  "llm_ba_med"
+ ],
+ "llm_tokens": 1804,
+ "analyser_seconds": 8.6,
+ "wall_seconds": 8.6,
+ "steps": [
+  {
+   "tool": "llm_ba_med",
+   "p": 0.803,
+   "categories": [
+    "denial_of_service",
+    "integer_overflow"
+   ],
+   "details": [
+    {
+     "type": "integer_overflow",
+     "location": "purchase() - updates to contractTotalInvested, totalInvested, totalPaidOut, totalValue",
+     "severity": "high",
+     "explanation": "The function adds/subtracts values to several uint256 state variables without using SafeMath, allowing overflow or underflow if large amounts are sent or if totalValue becomes smaller than the deducted amount."
+    },
+    {
+     "type": "denial_of_service",
+     "location": "purchase() - while loop over buyIns and .transfer calls",
+     "severity": "medium",
+     "explanation": "The unbounded while loop iterates over the entire buyIns array, which can grow indefinitely and cause the transaction to run out of gas, blocking further purchases. Additionally, using .transfer on buyIn.owner can revert if the recipient is a malicious contract that throws, causing the whole purchase to fail."
+    }
+   ],
+   "seconds": 8.56,
+   "tokens": 1804,
+   "new_categories": [
+    "denial_of_service",
+    "integer_overflow"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T11:32:19"
+ }
+}

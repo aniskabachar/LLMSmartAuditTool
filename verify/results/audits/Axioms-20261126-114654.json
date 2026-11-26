@@ -1,0 +1,67 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\medium\\Axioms.sol",
+ "audited_at": "2026-11-26T11:46:54",
+ "vulnerability_categories": [
+  "denial_of_service",
+  "other",
+  "reentrancy"
+ ],
+ "analysers_run": [
+  "llm_ba_med"
+ ],
+ "llm_tokens": 2325,
+ "analyser_seconds": 13.2,
+ "wall_seconds": 13.2,
+ "steps": [
+  {
+   "tool": "llm_ba_med",
+   "p": 0.848,
+   "categories": [
+    "denial_of_service",
+    "other",
+    "reentrancy"
+   ],
+   "details": [
+    {
+     "type": "reentrancy",
+     "location": "distributeAirdrop(uint index,address[] _addrs,uint[] _vals)",
+     "severity": "high",
+     "explanation": "The function makes an external call to a potentially malicious ERC20 token via airdrop.tokenSC.transfer before any state changes. A malicious token could re-enter distributeAirdrop and cause duplicate token transfers."
+    },
+    {
+     "type": "denial_of_service",
+     "location": "distributeAirdrop(uint index,address[] _addrs,uint[] _vals)",
+     "severity": "medium",
+     "explanation": "The function iterates over a user\u2011controlled array without any gas or length limits. Supplying a very large array can cause the transaction to run out of gas and block the distribution."
+    },
+    {
+     "type": "other",
+     "location": "distributeAirdrop(uint index,address[] _addrs,uint[] _vals)",
+     "severity": "medium",
+     "explanation": "The function does not verify that _addrs and _vals have the same length. If _vals is shorter, the call to _vals[i] will revert, causing a denial of service."
+    },
+    {
+     "type": "other",
+     "location": "distributeAirdrop(uint index,address[] _addrs,uint[] _vals) and refoundTokens(uint index)",
+     "severity": "low",
+     "explanation": "The contract ignores the boolean return value of ERC20 transfer calls. If the token contract returns false, the operation is considered successful, potentially leading to loss of expected token transfers."
+    }
+   ],
+   "seconds": 13.17,
+   "tokens": 2325,
+   "new_categories": [
+    "denial_of_service",
+    "other",
+    "reentrancy"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T11:32:19"
+ }
+}

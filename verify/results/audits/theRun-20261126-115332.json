@@ -1,0 +1,79 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\hard\\theRun.sol",
+ "audited_at": "2026-11-26T11:53:32",
+ "vulnerability_categories": [
+  "access_control",
+  "bad_randomness",
+  "integer_overflow",
+  "reentrancy",
+  "unchecked_low_level_calls"
+ ],
+ "analysers_run": [
+  "llm_ba_med"
+ ],
+ "llm_tokens": 3155,
+ "analyser_seconds": 15.3,
+ "wall_seconds": 15.3,
+ "steps": [
+  {
+   "tool": "llm_ba_med",
+   "p": 0.552,
+   "categories": [
+    "access_control",
+    "bad_randomness",
+    "integer_overflow",
+    "reentrancy",
+    "unchecked_low_level_calls"
+   ],
+   "details": [
+    {
+     "type": "unchecked_low_level_calls",
+     "location": "init(), Participate() (WinningPot payout), payout loop in Participate(), CollectAllFees, GetAndReduceFeesByFraction \u2013 all .send calls without checking return value",
+     "severity": "high",
+     "explanation": "Using .send without checking its boolean return can cause ether to be lost or contracts to be unable to receive payouts, leading to denial of service or fund loss."
+    },
+    {
+     "type": "integer_overflow",
+     "location": "CollectAllFees() and GetAndReduceFeesByFraction() where feeFrac is decremented with feeFrac -= 1 without underflow checks",
+     "severity": "medium",
+     "explanation": "feeFrac is a uint; decrementing it when it is zero causes an underflow to 2^256\u20111, breaking fee calculations and potentially allowing huge fee withdrawals."
+    },
+    {
+     "type": "bad_randomness",
+     "location": "random(uint Max) function",
+     "severity": "medium",
+     "explanation": "Randomness is derived from block.timestamp, block.number and blockhash, which miners can influence, making the outcome predictable and exploitable."
+    },
+    {
+     "type": "reentrancy",
+     "location": "payout loop inside Participate() \u2013 external .send is performed before updating Balance, paid flag and Payout_id",
+     "severity": "medium",
+     "explanation": "State is modified after an external call, allowing a malicious contract to re\u2011enter and manipulate the payout logic before balances are updated."
+    },
+    {
+     "type": "access_control",
+     "location": "onlyowner modifier (used in ChangeOwnership, CollectAllFees, GetAndReduceFeesByFraction)",
+     "severity": "low",
+     "explanation": "The modifier does not revert when msg.sender != admin; it simply skips the function body, making the functions no\u2011ops for non\u2011owners instead of restricting access, which may lead to unexpected behavior."
+    }
+   ],
+   "seconds": 15.31,
+   "tokens": 3155,
+   "new_categories": [
+    "access_control",
+    "bad_randomness",
+    "integer_overflow",
+    "reentrancy",
+    "unchecked_low_level_calls"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T11:32:19"
+ }
+}

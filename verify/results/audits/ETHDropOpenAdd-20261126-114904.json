@@ -1,0 +1,70 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\medium\\ETHDropOpenAdd.sol",
+ "audited_at": "2026-11-26T11:49:04",
+ "vulnerability_categories": [
+  "access_control",
+  "denial_of_service",
+  "integer_overflow",
+  "other"
+ ],
+ "analysers_run": [
+  "llm_ba_med"
+ ],
+ "llm_tokens": 2227,
+ "analyser_seconds": 12.5,
+ "wall_seconds": 12.5,
+ "steps": [
+  {
+   "tool": "llm_ba_med",
+   "p": 0.849,
+   "categories": [
+    "access_control",
+    "denial_of_service",
+    "integer_overflow",
+    "other"
+   ],
+   "details": [
+    {
+     "type": "access_control",
+     "location": "addMember function",
+     "severity": "medium",
+     "explanation": "addMember is public and lacks the onlySecretary modifier, allowing any address to add arbitrary members without authorization."
+    },
+    {
+     "type": "other",
+     "location": "removeMember function (require statement)",
+     "severity": "high",
+     "explanation": "The require uses assignment (`=`) instead of comparison (`==`), so it always evaluates to true and unintentionally sets memberList[_removeMember].exists to true before the function proceeds, enabling removal of non\u2011members and corrupting the membership mapping."
+    },
+    {
+     "type": "integer_overflow",
+     "location": "removeMember function (members.length--)",
+     "severity": "high",
+     "explanation": "If removeMember is called when the members array is empty, decrementing members.length underflows (wraps to 2^256\u20111) because Solidity 0.5 does not have built\u2011in overflow checks, leading to an invalid array length and potential out\u2011of\u2011gas or storage corruption."
+    },
+    {
+     "type": "denial_of_service",
+     "location": "dripETH, dropETH, customDropETH functions",
+     "severity": "medium",
+     "explanation": "These functions iterate over the entire members array using a for\u2011loop and perform a transfer per iteration. With a sufficiently large members list, the transaction can exceed the block gas limit, making the contract unable to execute the drip functions (DoS)."
+    }
+   ],
+   "seconds": 12.48,
+   "tokens": 2227,
+   "new_categories": [
+    "access_control",
+    "denial_of_service",
+    "integer_overflow",
+    "other"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T11:32:19"
+ }
+}

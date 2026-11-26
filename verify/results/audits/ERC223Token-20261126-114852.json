@@ -1,0 +1,61 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\medium\\ERC223Token.sol",
+ "audited_at": "2026-11-26T11:48:52",
+ "vulnerability_categories": [
+  "access_control",
+  "reentrancy",
+  "unchecked_low_level_calls"
+ ],
+ "analysers_run": [
+  "llm_ba"
+ ],
+ "llm_tokens": 2418,
+ "analyser_seconds": 18.8,
+ "wall_seconds": 18.8,
+ "steps": [
+  {
+   "tool": "llm_ba",
+   "p": 0.955,
+   "categories": [
+    "access_control",
+    "reentrancy",
+    "unchecked_low_level_calls"
+   ],
+   "details": [
+    {
+     "type": "reentrancy",
+     "location": "claimReward_TOD10 (and all other claimReward_TOD* functions)",
+     "severity": "high",
+     "explanation": "The function transfers Ether to msg.sender before setting the claimed_TOD* flag, allowing a malicious receiver to re-enter the function via a fallback and claim the reward multiple times."
+    },
+    {
+     "type": "access_control",
+     "location": "claimReward_TOD10 (and all other claimReward_TOD* functions)",
+     "severity": "medium",
+     "explanation": "Anyone can call the claimReward functions as long as they provide a submission < 10, without any restriction to the intended beneficiary, enabling unauthorized users to drain the reward."
+    },
+    {
+     "type": "unchecked_low_level_calls",
+     "location": "owner_TOD* transfer calls in setReward_TOD* functions",
+     "severity": "low",
+     "explanation": "Using address.transfer is safe for gas limits but may fail if the recipient is a contract with a fallback that uses more than 2300 gas, causing the transaction to revert unexpectedly."
+    }
+   ],
+   "seconds": 18.83,
+   "tokens": 2418,
+   "new_categories": [
+    "access_control",
+    "reentrancy",
+    "unchecked_low_level_calls"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T11:32:19"
+ }
+}

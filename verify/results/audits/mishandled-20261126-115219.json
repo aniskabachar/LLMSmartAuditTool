@@ -1,0 +1,43 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\medium\\mishandled.sol",
+ "audited_at": "2026-11-26T11:52:19",
+ "vulnerability_categories": [
+  "unchecked_low_level_calls"
+ ],
+ "analysers_run": [
+  "llm_ba_dasp"
+ ],
+ "llm_tokens": 860,
+ "analyser_seconds": 6.5,
+ "wall_seconds": 6.5,
+ "steps": [
+  {
+   "tool": "llm_ba_dasp",
+   "p": 0.892,
+   "categories": [
+    "unchecked_low_level_calls"
+   ],
+   "details": [
+    {
+     "type": "unchecked_low_level_calls",
+     "location": "withdrawBalance()",
+     "severity": "medium",
+     "explanation": "The contract uses `msg.sender.send(amountToWithdraw)` without checking the returned boolean. If the send fails (e.g., due to exceeding the 2300 gas stipend or a rejecting fallback), the failure is silently ignored, potentially leaving user balances stuck."
+    }
+   ],
+   "seconds": 6.54,
+   "tokens": 860,
+   "new_categories": [
+    "unchecked_low_level_calls"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T11:32:19"
+ }
+}

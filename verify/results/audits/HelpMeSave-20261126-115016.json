@@ -1,0 +1,58 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\medium\\HelpMeSave.sol",
+ "audited_at": "2026-11-26T11:50:16",
+ "vulnerability_categories": [
+  "access_control",
+  "denial_of_service"
+ ],
+ "analysers_run": [
+  "llm_ba_med"
+ ],
+ "llm_tokens": 2106,
+ "analyser_seconds": 11.5,
+ "wall_seconds": 11.5,
+ "steps": [
+  {
+   "tool": "llm_ba_med",
+   "p": 0.903,
+   "categories": [
+    "access_control",
+    "denial_of_service"
+   ],
+   "details": [
+    {
+     "type": "access_control",
+     "location": "function MyTestWallet7()",
+     "severity": "high",
+     "explanation": "The function is public and can be called by anyone to set the contract's owner variable, allowing an attacker to become the owner and later withdraw funds."
+    },
+    {
+     "type": "selfdestruct",
+     "location": "function recovery(string _password,address _return_addr)",
+     "severity": "high",
+     "explanation": "Anyone can trigger selfdestruct if they find an address whose keccak256 hash modulo 1e14 equals a fixed value. No access control is enforced, enabling unauthorized destruction of the contract."
+    },
+    {
+     "type": "denial_of_service",
+     "location": "function withdraw()",
+     "severity": "medium",
+     "explanation": "The contract uses msg.sender.send() without checking the return value. If the recipient is a contract that rejects the 2300\u2011gas stipend, the send will fail and the funds will become locked, causing a denial of service."
+    }
+   ],
+   "seconds": 11.47,
+   "tokens": 2106,
+   "new_categories": [
+    "access_control",
+    "denial_of_service"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T11:32:19"
+ }
+}

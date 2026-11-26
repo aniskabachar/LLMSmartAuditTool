@@ -1,0 +1,61 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\medium\\ProofOfExistence.sol",
+ "audited_at": "2026-11-26T11:51:23",
+ "vulnerability_categories": [
+  "access_control",
+  "denial_of_service",
+  "timestamp_dependence"
+ ],
+ "analysers_run": [
+  "llm_ba"
+ ],
+ "llm_tokens": 2215,
+ "analyser_seconds": 19.7,
+ "wall_seconds": 19.7,
+ "steps": [
+  {
+   "tool": "llm_ba",
+   "p": 0.388,
+   "categories": [
+    "access_control",
+    "denial_of_service",
+    "timestamp_dependence"
+   ],
+   "details": [
+    {
+     "type": "timestamp_dependence",
+     "location": "SetFileExistenceProof (uses now for date)",
+     "severity": "low",
+     "explanation": "The contract uses the block timestamp (now) to record the proof date, which can be manipulated by miners within a reasonable range."
+    },
+    {
+     "type": "access_control",
+     "location": "SetFileExistenceProof",
+     "severity": "medium",
+     "explanation": "Anyone can call SetFileExistenceProof and specify an arbitrary dappBoxOrigin address, allowing malicious users to insert falsified existence proofs for other users."
+    },
+    {
+     "type": "denial_of_service",
+     "location": "GetFileExistenceProof, getQRCode, searchExistenceProoUsngQRf",
+     "severity": "medium",
+     "explanation": "These view functions iterate over an unbounded array of proofs. As the array grows, the gas required may exceed the block gas limit, making the functions unusable and potentially blocking legitimate reads."
+    }
+   ],
+   "seconds": 19.73,
+   "tokens": 2215,
+   "new_categories": [
+    "access_control",
+    "denial_of_service",
+    "timestamp_dependence"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T11:32:19"
+ }
+}

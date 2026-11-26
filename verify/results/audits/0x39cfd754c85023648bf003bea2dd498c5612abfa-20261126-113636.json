@@ -1,0 +1,70 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\medium\\0x39cfd754c85023648bf003bea2dd498c5612abfa.sol",
+ "audited_at": "2026-11-26T11:36:36",
+ "vulnerability_categories": [
+  "access_control",
+  "integer_overflow",
+  "reentrancy",
+  "unchecked_low_level_calls"
+ ],
+ "analysers_run": [
+  "llm_ba_med"
+ ],
+ "llm_tokens": 1991,
+ "analyser_seconds": 9.1,
+ "wall_seconds": 9.1,
+ "steps": [
+  {
+   "tool": "llm_ba_med",
+   "p": 0.904,
+   "categories": [
+    "access_control",
+    "integer_overflow",
+    "reentrancy",
+    "unchecked_low_level_calls"
+   ],
+   "details": [
+    {
+     "type": "integer_overflow",
+     "location": "Deposit() function (Holders[msg.sender] += msg.value)",
+     "severity": "medium",
+     "explanation": "The addition to the holder's balance is performed without overflow checks, allowing a malicious user to overflow the uint256 balance with enough deposits."
+    },
+    {
+     "type": "access_control",
+     "location": "owner variable shadowing in Token contract and TokenBank.initTokenBank()",
+     "severity": "high",
+     "explanation": "Token defines its own `owner` state variable that hides the `owner` from Ownable. `initTokenBank()` updates the shadowed variable, while the `onlyOwner` modifier checks the original Ownable.owner. This mismatch lets the original deployer retain privileged access even after ownership transfer attempts."
+    },
+    {
+     "type": "unchecked_low_level_calls",
+     "location": "WithdrawToken() and WithdrawToHolder() functions",
+     "severity": "medium",
+     "explanation": "Both functions use low\u2011level `.call` without checking the returned boolean. Failures (e.g., token transfer rejection or out\u2011of\u2011gas) are ignored, potentially causing loss of funds or false assumptions about successful execution."
+    },
+    {
+     "type": "reentrancy",
+     "location": "WithdrawToHolder() function (sending ether before updating Holders mapping)",
+     "severity": "medium",
+     "explanation": "The contract sends ether via `_addr.call.value(_wei)` before reducing the holder's balance, allowing a malicious contract that is the owner to re\u2011enter and withdraw more than its balance."
+    }
+   ],
+   "seconds": 9.14,
+   "tokens": 1991,
+   "new_categories": [
+    "access_control",
+    "integer_overflow",
+    "reentrancy",
+    "unchecked_low_level_calls"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T11:32:19"
+ }
+}

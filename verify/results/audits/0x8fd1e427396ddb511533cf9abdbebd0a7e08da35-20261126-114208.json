@@ -1,0 +1,85 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\medium\\0x8fd1e427396ddb511533cf9abdbebd0a7e08da35.sol",
+ "audited_at": "2026-11-26T11:42:08",
+ "vulnerability_categories": [
+  "access_control",
+  "denial_of_service",
+  "integer_overflow",
+  "reentrancy",
+  "unchecked_low_level_calls"
+ ],
+ "analysers_run": [
+  "llm_ba_med"
+ ],
+ "llm_tokens": 2953,
+ "analyser_seconds": 11.5,
+ "wall_seconds": 11.5,
+ "steps": [
+  {
+   "tool": "llm_ba_med",
+   "p": 0.904,
+   "categories": [
+    "access_control",
+    "denial_of_service",
+    "integer_overflow",
+    "reentrancy",
+    "unchecked_low_level_calls"
+   ],
+   "details": [
+    {
+     "type": "unchecked_low_level_calls",
+     "location": "Token.WithdrawToken",
+     "severity": "high",
+     "explanation": "Uses token.call(...) without checking the return value, so a failed ERC20 transfer will be ignored and tokens may be lost."
+    },
+    {
+     "type": "unchecked_low_level_calls",
+     "location": "TokenBank.WithdrawToHolder",
+     "severity": "high",
+     "explanation": "Calls _addr.call.value(_wei) without checking success, allowing silent failure and possible loss of ether."
+    },
+    {
+     "type": "reentrancy",
+     "location": "TokenBank.WithdrawToHolder",
+     "severity": "medium",
+     "explanation": "External call is made before updating Holders mapping, enabling a re\u2011entrancy attack if the recipient can trigger a fallback that calls back into the contract."
+    },
+    {
+     "type": "integer_overflow",
+     "location": "TokenBank.Deposit (Holders[msg.sender] += msg.value)",
+     "severity": "medium",
+     "explanation": "No overflow check on addition; a malicious user could overflow the uint balance and manipulate the accounting."
+    },
+    {
+     "type": "denial_of_service",
+     "location": "fallback function (payable) -> Deposit",
+     "severity": "low",
+     "explanation": "Ether sent with value < MinDeposit is accepted by the fallback but not credited to any holder, effectively locking the funds in the contract."
+    },
+    {
+     "type": "access_control",
+     "location": "owner variable shadowing in Ownable/Token/TokenBank",
+     "severity": "medium",
+     "explanation": "Token defines its own 'owner' state variable that shadows Ownable.owner. initTokenBank sets the shadowed variable, while onlyOwner checks the original owner, causing confusing and potentially ineffective ownership control."
+    }
+   ],
+   "seconds": 11.54,
+   "tokens": 2953,
+   "new_categories": [
+    "access_control",
+    "denial_of_service",
+    "integer_overflow",
+    "reentrancy",
+    "unchecked_low_level_calls"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T11:32:19"
+ }
+}

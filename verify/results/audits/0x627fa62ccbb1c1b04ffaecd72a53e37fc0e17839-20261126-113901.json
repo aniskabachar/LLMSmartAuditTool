@@ -1,0 +1,61 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\easy\\0x627fa62ccbb1c1b04ffaecd72a53e37fc0e17839.sol",
+ "audited_at": "2026-11-26T11:39:01",
+ "vulnerability_categories": [
+  "integer_overflow",
+  "reentrancy",
+  "unchecked_low_level_calls"
+ ],
+ "analysers_run": [
+  "llm_ba_med"
+ ],
+ "llm_tokens": 1790,
+ "analyser_seconds": 6.2,
+ "wall_seconds": 6.2,
+ "steps": [
+  {
+   "tool": "llm_ba_med",
+   "p": 0.904,
+   "categories": [
+    "integer_overflow",
+    "reentrancy",
+    "unchecked_low_level_calls"
+   ],
+   "details": [
+    {
+     "type": "reentrancy",
+     "location": "WithdrawToHolder",
+     "severity": "high",
+     "explanation": "The contract sends ether to an external address via `_addr.call.value(_wei)()` before updating the holder's balance, allowing a malicious contract to re-enter and drain funds."
+    },
+    {
+     "type": "integer_overflow",
+     "location": "Deposit (Holders[msg.sender] += msg.value) and WithdrawToHolder (Holders[_addr] -= _wei)",
+     "severity": "high",
+     "explanation": "Using Solidity ^0.4.19 without SafeMath means additions and subtractions on the `Holders` mapping can overflow or underflow, potentially letting an attacker manipulate balances."
+    },
+    {
+     "type": "unchecked_low_level_calls",
+     "location": "WithdrawToken",
+     "severity": "medium",
+     "explanation": "The contract performs a low\u2011level `token.call(...)` without checking the return value, so a failed token transfer will be ignored and may lead to loss of funds or inconsistent state."
+    }
+   ],
+   "seconds": 6.15,
+   "tokens": 1790,
+   "new_categories": [
+    "integer_overflow",
+    "reentrancy",
+    "unchecked_low_level_calls"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T11:32:19"
+ }
+}

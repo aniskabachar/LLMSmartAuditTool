@@ -1,0 +1,43 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\hard\\SuicideMultiTxFeasible.sol",
+ "audited_at": "2026-11-26T11:51:43",
+ "vulnerability_categories": [
+  "access_control"
+ ],
+ "analysers_run": [
+  "llm_ba_dasp"
+ ],
+ "llm_tokens": 880,
+ "analyser_seconds": 11.0,
+ "wall_seconds": 11.0,
+ "steps": [
+  {
+   "tool": "llm_ba_dasp",
+   "p": 0.866,
+   "categories": [
+    "access_control"
+   ],
+   "details": [
+    {
+     "type": "access_control",
+     "location": "run(uint256 input)",
+     "severity": "high",
+     "explanation": "The run function is public and can be called by anyone after init() has been called, allowing any attacker to trigger selfdestruct and drain the contract's balance without any authorization check."
+    }
+   ],
+   "seconds": 11.0,
+   "tokens": 880,
+   "new_categories": [
+    "access_control"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T11:32:19"
+ }
+}

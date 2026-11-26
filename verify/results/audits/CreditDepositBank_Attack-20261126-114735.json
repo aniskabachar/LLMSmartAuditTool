@@ -1,0 +1,76 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\medium\\CreditDepositBank_Attack.sol",
+ "audited_at": "2026-11-26T11:47:35",
+ "vulnerability_categories": [
+  "access_control",
+  "integer_overflow",
+  "reentrancy",
+  "unchecked_low_level_calls"
+ ],
+ "analysers_run": [
+  "llm_ba_med"
+ ],
+ "llm_tokens": 2839,
+ "analyser_seconds": 12.9,
+ "wall_seconds": 12.9,
+ "steps": [
+  {
+   "tool": "llm_ba_med",
+   "p": 0.849,
+   "categories": [
+    "access_control",
+    "integer_overflow",
+    "reentrancy",
+    "unchecked_low_level_calls"
+   ],
+   "details": [
+    {
+     "type": "access_control",
+     "location": "setManager function",
+     "severity": "high",
+     "explanation": "Anyone can become manager by depositing >100 finney, then can call close() to selfdestruct the contract and steal all funds."
+    },
+    {
+     "type": "reentrancy",
+     "location": "withdraw function",
+     "severity": "high",
+     "explanation": "Ether is sent to msg.sender before the client's balance is cleared, allowing the owner to call withdraw repeatedly and drain the same client balance."
+    },
+    {
+     "type": "integer_overflow",
+     "location": "credit function",
+     "severity": "high",
+     "explanation": "balances[msg.sender] is decreased by this.balance + msg.value without checks; when the subtraction underflows (e.g., caller has insufficient balance) it wraps around, giving the attacker a huge balance."
+    },
+    {
+     "type": "access_control",
+     "location": "owner variable shadowing in CreditDepositBank",
+     "severity": "medium",
+     "explanation": "CreditDepositBank declares its own 'owner' variable that shadows the one from Ownable, so functions like takeOver modify a different owner field that is never used for access control, leading to confusing and potentially exploitable logic."
+    },
+    {
+     "type": "unchecked_low_level_calls",
+     "location": "withdraw and close functions (send calls)",
+     "severity": "low",
+     "explanation": "The return values of send are ignored; if the transfer fails the contract retains the ether and the subsequent logic (e.g., selfdestruct) may behave unexpectedly."
+    }
+   ],
+   "seconds": 12.87,
+   "tokens": 2839,
+   "new_categories": [
+    "access_control",
+    "integer_overflow",
+    "reentrancy",
+    "unchecked_low_level_calls"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T11:32:19"
+ }
+}

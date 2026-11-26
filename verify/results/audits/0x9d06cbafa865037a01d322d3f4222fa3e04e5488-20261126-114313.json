@@ -1,0 +1,43 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\medium\\0x9d06cbafa865037a01d322d3f4222fa3e04e5488.sol",
+ "audited_at": "2026-11-26T11:43:13",
+ "vulnerability_categories": [
+  "integer_overflow"
+ ],
+ "analysers_run": [
+  "llm_ba_med"
+ ],
+ "llm_tokens": 2058,
+ "analyser_seconds": 13.4,
+ "wall_seconds": 13.4,
+ "steps": [
+  {
+   "tool": "llm_ba_med",
+   "p": 0.848,
+   "categories": [
+    "integer_overflow"
+   ],
+   "details": [
+    {
+     "type": "integer_overflow",
+     "location": "tokens_buy()",
+     "severity": "high",
+     "explanation": "The calculation `uint tokens_buy = msg.value * 10**18 / token_price;` (and later `uint sum2 = msg.value * 3 / 10;`) multiplies `msg.value` by a large constant before division. With Solidity ^0.4.23 arithmetic is unchecked, so a sufficiently large `msg.value` can overflow the 256\u2011bit uint, wrapping around to a small number. This allows an attacker to purchase a huge amount of tokens for a tiny ether amount or manipulate the ether split to owner2, leading to loss of funds."
+    }
+   ],
+   "seconds": 13.38,
+   "tokens": 2058,
+   "new_categories": [
+    "integer_overflow"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T11:32:19"
+ }
+}

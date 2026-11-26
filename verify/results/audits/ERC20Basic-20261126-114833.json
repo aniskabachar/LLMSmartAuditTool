@@ -1,0 +1,43 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\hard\\ERC20Basic.sol",
+ "audited_at": "2026-11-26T11:48:33",
+ "vulnerability_categories": [
+  "access_control"
+ ],
+ "analysers_run": [
+  "llm_ba_med"
+ ],
+ "llm_tokens": 1954,
+ "analyser_seconds": 8.8,
+ "wall_seconds": 8.8,
+ "steps": [
+  {
+   "tool": "llm_ba_med",
+   "p": 0.92,
+   "categories": [
+    "access_control"
+   ],
+   "details": [
+    {
+     "type": "access_control",
+     "location": "function EGC (intended constructor)",
+     "severity": "critical",
+     "explanation": "In Solidity ^0.4.11 the constructor must have the same name as the contract. The contract is named KAI but the function is named EGC, so EGC is a public regular function. Anyone can call it after deployment, which resets `owner`, `totalSupply`, and the owner's balance, effectively allowing an attacker to take ownership and all tokens."
+    }
+   ],
+   "seconds": 8.82,
+   "tokens": 1954,
+   "new_categories": [
+    "access_control"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T11:32:19"
+ }
+}

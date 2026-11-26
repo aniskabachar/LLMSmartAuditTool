@@ -1,0 +1,30 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\hard\\ERC1967Proxy.sol",
+ "audited_at": "2026-11-26T11:48:24",
+ "vulnerability_categories": [],
+ "analysers_run": [
+  "llm_ba_med"
+ ],
+ "llm_tokens": 2045,
+ "analyser_seconds": 15.9,
+ "wall_seconds": 15.9,
+ "steps": [
+  {
+   "tool": "llm_ba_med",
+   "p": 0.92,
+   "categories": [],
+   "details": [],
+   "seconds": 15.9,
+   "tokens": 2045,
+   "new_categories": []
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T11:32:19"
+ }
+}

@@ -1,0 +1,61 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\easy\\0x8c7777c45481dba411450c228cb692ac3d550344.sol",
+ "audited_at": "2026-11-26T11:41:56",
+ "vulnerability_categories": [
+  "denial_of_service",
+  "integer_overflow",
+  "reentrancy"
+ ],
+ "analysers_run": [
+  "llm_ba_med"
+ ],
+ "llm_tokens": 1328,
+ "analyser_seconds": 15.2,
+ "wall_seconds": 15.2,
+ "steps": [
+  {
+   "tool": "llm_ba_med",
+   "p": 0.918,
+   "categories": [
+    "denial_of_service",
+    "integer_overflow",
+    "reentrancy"
+   ],
+   "details": [
+    {
+     "type": "reentrancy",
+     "location": "CashOut function",
+     "severity": "high",
+     "explanation": "The contract sends ether to msg.sender via a low\u2011level call before updating the sender's balance, allowing a malicious receiver to re\u2011enter CashOut and withdraw more than their balance."
+    },
+    {
+     "type": "denial_of_service",
+     "location": "Log.AddMessage (called from Deposit and CashOut)",
+     "severity": "medium",
+     "explanation": "Each call pushes a new Message into an ever\u2011growing array. As the History array grows, the gas required for Deposit and CashOut increases and can eventually exceed the block gas limit, making the functions unusable."
+    },
+    {
+     "type": "integer_overflow",
+     "location": "Deposit function (balances[msg.sender] += msg.value)",
+     "severity": "low",
+     "explanation": "Balances are increased without SafeMath checks; a sufficiently large deposit could overflow the uint, corrupting the stored balance."
+    }
+   ],
+   "seconds": 15.19,
+   "tokens": 1328,
+   "new_categories": [
+    "denial_of_service",
+    "integer_overflow",
+    "reentrancy"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T11:32:19"
+ }
+}

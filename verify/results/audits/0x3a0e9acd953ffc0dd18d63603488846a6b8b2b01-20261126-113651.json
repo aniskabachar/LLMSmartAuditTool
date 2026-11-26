@@ -1,0 +1,76 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\medium\\0x3a0e9acd953ffc0dd18d63603488846a6b8b2b01.sol",
+ "audited_at": "2026-11-26T11:36:51",
+ "vulnerability_categories": [
+  "access_control",
+  "integer_overflow",
+  "reentrancy",
+  "unchecked_low_level_calls"
+ ],
+ "analysers_run": [
+  "llm_ba_med"
+ ],
+ "llm_tokens": 2341,
+ "analyser_seconds": 15.3,
+ "wall_seconds": 15.3,
+ "steps": [
+  {
+   "tool": "llm_ba_med",
+   "p": 0.904,
+   "categories": [
+    "access_control",
+    "integer_overflow",
+    "reentrancy",
+    "unchecked_low_level_calls"
+   ],
+   "details": [
+    {
+     "type": "integer_overflow",
+     "location": "Deposit() function, line with Holders[msg.sender] += msg.value;",
+     "severity": "medium",
+     "explanation": "The contract adds msg.value to a stored uint without using SafeMath. An attacker can cause the sum to overflow, resetting the holder's balance and enabling further withdrawals."
+    },
+    {
+     "type": "unchecked_low_level_calls",
+     "location": "WithdrawToken() function, line token.call(bytes4(sha3(\"transfer(address,uint256)\")),to,amount);",
+     "severity": "medium",
+     "explanation": "The low\u2011level call does not check the return value. If the token contract returns false or reverts, the call is ignored and the function appears to succeed, potentially leading to loss of funds."
+    },
+    {
+     "type": "unchecked_low_level_calls",
+     "location": "WithdrawToHolder() function, line _addr.call.value(_wei);",
+     "severity": "medium",
+     "explanation": "The low\u2011level call forwards ether without checking success. A failing call will be silently ignored, causing the contract to think the transfer succeeded while the holder's balance is still deducted."
+    },
+    {
+     "type": "reentrancy",
+     "location": "WithdrawToHolder() function, external call before state update",
+     "severity": "low",
+     "explanation": "Ether is sent to _addr via a low\u2011level call before the holder's balance is reduced, allowing a malicious recipient contract to re\u2011enter and manipulate state if it can bypass the onlyOwner check (e.g., if the owner is also a holder)."
+    },
+    {
+     "type": "access_control",
+     "location": "Owner variable shadowing in Token and TokenBank contracts",
+     "severity": "high",
+     "explanation": "Token defines its own `owner` variable that shadows Ownable.owner. Functions use the onlyOwner modifier, which checks Ownable.owner, but initTokenBank() modifies the shadowed owner variable, leaving the original owner unchanged. This mismatch can let the original deployer retain privileged access even after an intended ownership transfer."
+    }
+   ],
+   "seconds": 15.26,
+   "tokens": 2341,
+   "new_categories": [
+    "access_control",
+    "integer_overflow",
+    "reentrancy",
+    "unchecked_low_level_calls"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T11:32:19"
+ }
+}

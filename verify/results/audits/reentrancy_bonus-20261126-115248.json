@@ -1,0 +1,52 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\easy\\reentrancy_bonus.sol",
+ "audited_at": "2026-11-26T11:52:48",
+ "vulnerability_categories": [
+  "integer_overflow",
+  "reentrancy"
+ ],
+ "analysers_run": [
+  "llm_ba_dasp"
+ ],
+ "llm_tokens": 1100,
+ "analyser_seconds": 1.4,
+ "wall_seconds": 8.1,
+ "steps": [
+  {
+   "tool": "llm_ba_dasp",
+   "p": 0.867,
+   "categories": [
+    "integer_overflow",
+    "reentrancy"
+   ],
+   "details": [
+    {
+     "type": "reentrancy",
+     "location": "getFirstWithdrawalBonus",
+     "severity": "high",
+     "explanation": "The function updates claimedBonus after calling withdrawReward, which performs an external call. A malicious recipient can re-enter getFirstWithdrawalBonus before claimedBonus is set, allowing multiple bonus withdrawals."
+    },
+    {
+     "type": "integer_overflow",
+     "location": "getFirstWithdrawalBonus (rewardsForA[recipient] += 100)",
+     "severity": "medium",
+     "explanation": "The contract uses Solidity ^0.4.0 without SafeMath, so adding 100 to rewardsForA can overflow the uint storage variable."
+    }
+   ],
+   "seconds": 1.38,
+   "tokens": 1100,
+   "new_categories": [
+    "integer_overflow",
+    "reentrancy"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T11:32:19"
+ }
+}

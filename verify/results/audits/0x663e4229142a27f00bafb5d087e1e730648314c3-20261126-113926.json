@@ -1,0 +1,43 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\medium\\0x663e4229142a27f00bafb5d087e1e730648314c3.sol",
+ "audited_at": "2026-11-26T11:39:26",
+ "vulnerability_categories": [
+  "integer_overflow"
+ ],
+ "analysers_run": [
+  "llm_ba"
+ ],
+ "llm_tokens": 2121,
+ "analyser_seconds": 24.6,
+ "wall_seconds": 24.6,
+ "steps": [
+  {
+   "tool": "llm_ba",
+   "p": 0.961,
+   "categories": [
+    "integer_overflow"
+   ],
+   "details": [
+    {
+     "type": "integer_overflow",
+     "location": "_computeNextGen0Price()",
+     "severity": "medium",
+     "explanation": "The function adds avePrice + (avePrice / 2) without using SafeMath. If avePrice is close to the uint256 max, the addition can overflow and wrap around, resulting in an incorrect (very low) next price."
+    }
+   ],
+   "seconds": 24.61,
+   "tokens": 2121,
+   "new_categories": [
+    "integer_overflow"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T11:32:19"
+ }
+}

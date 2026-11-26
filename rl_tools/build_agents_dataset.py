@@ -20,8 +20,11 @@ smartcheck) are kept as extra, non-LLM agents.
 
 No API calls: everything comes from replies already collected.
 
-Run:  py rl_tools/build_agents_dataset.py [--hybrid]
-Out:  datasets/tool_results/agents_tools.json   (or agents_hybrid_tools.json)
+With --live the agents are joined by Slither run locally (rl_tools/run_slither.py):
+exactly the tools rl_tools/audit.py can run on a new contract.
+
+Run:  py rl_tools/build_agents_dataset.py [--hybrid | --live]
+Out:  datasets/tool_results/agents_tools.json   (or agents_hybrid_tools.json, agents_live_tools.json)
 """
 
 from __future__ import annotations
@@ -42,14 +45,31 @@ def main():
     utf8_console()
     ap = argparse.ArgumentParser()
     ap.add_argument("--hybrid", action="store_true", help="also keep the 4 static tools")
+    ap.add_argument("--live", action="store_true",
+                    help="deployable set: the 9 agents + Slither run locally (slither_local.json), "
+                         "i.e. exactly the tools audit.py can run on a new contract")
     args = ap.parse_args()
+    local = {}
+    if args.live:
+        from rl_tools.build_dataset import CATEGORY_MAP, load_mapping
+        mapping = load_mapping(ROOT / "datasets" / "smartbugs_meta")
+        sl = json.loads((TR / "slither_local.json").read_text(encoding="utf-8"))["contracts"]
+        for n, r in sl.items():
+            cats = {mapping.get(("slither", chk.strip().lower())) for chk in r["checks"]}
+            local[n] = {"found": sorted({CATEGORY_MAP[c] for c in cats if c in CATEGORY_MAP}),
+                        "seconds": float(r["seconds"]), "compiled": bool(r["ok"])}
 
     base = json.loads((TR / "combined_tools.json").read_text(encoding="utf-8"))
     ta = json.loads((TR / "llm_ta.json").read_text(encoding="utf-8"))
     n_spec = len([k for k in ta["keys"] if k.startswith("ta_r1_b")])
     specs = [f"spec_{i}" for i in range(n_spec)]
     static = [t for t in base["tools"] if not t.startswith("llm_")] if args.hybrid else []
-    tools = specs + GENERALISTS + static
+    tools = specs + GENERALISTS + static + (["slither"] if args.live else [])
+    if args.live:
+        gap = [n for n in base["contracts"] if n not in local]
+        if gap:
+            raise SystemExit(f"local Slither missing for {len(gap)} contracts; run "
+                             "py rl_tools/run_slither.py --data datasets/tool_results/combined_tools.json")
 
     empty, contracts = 0, {}
     for name, c in base["contracts"].items():
@@ -67,13 +87,17 @@ def main():
                                "tokens": int(call["prompt_tokens"] + call["completion_tokens"])}
         for t in GENERALISTS + static:
             new["tools"][t] = c["tools"][t]
+        if args.live:
+            new["tools"]["slither"] = local[name]
         contracts[name] = new
 
-    out = TR / ("agents_hybrid_tools.json" if args.hybrid else "agents_tools.json")
+    out = TR / ("agents_live_tools.json" if args.live else
+                "agents_hybrid_tools.json" if args.hybrid else "agents_tools.json")
     meta = {k: v for k, v in base.items() if k not in ("contracts", "tools")}
     meta.update({"tools": tools, "built_at": datetime.now().isoformat(timespec="seconds"),
                  "agents_note": "spec_0..5: base TA specialist agents (round-1 replies); "
-                                "llm_ba*: generalist agents" + ("; + static tools" if static else ""),
+                                "llm_ba*: generalist agents" + ("; + static tools" if static else "")
+                                + ("; slither: run locally (Slither 0.11.6)" if args.live else ""),
                  "n_contracts": len(contracts), "contracts": contracts})
     out.write_text(json.dumps(meta, indent=1), encoding="utf-8")
     print(f"Wrote {len(contracts)} contracts x {len(tools)} agents {tools} -> {out.relative_to(ROOT)}"

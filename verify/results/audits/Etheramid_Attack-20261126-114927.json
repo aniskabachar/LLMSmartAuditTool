@@ -1,0 +1,61 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\medium\\Etheramid_Attack.sol",
+ "audited_at": "2026-11-26T11:49:27",
+ "vulnerability_categories": [
+  "bad_randomness",
+  "integer_overflow",
+  "unchecked_low_level_calls"
+ ],
+ "analysers_run": [
+  "llm_ba_med"
+ ],
+ "llm_tokens": 1936,
+ "analyser_seconds": 10.1,
+ "wall_seconds": 10.1,
+ "steps": [
+  {
+   "tool": "llm_ba_med",
+   "p": 0.849,
+   "categories": [
+    "bad_randomness",
+    "integer_overflow",
+    "unchecked_low_level_calls"
+   ],
+   "details": [
+    {
+     "type": "unchecked_low_level_calls",
+     "location": "fallback function (function()) and enter() when using .send",
+     "severity": "high",
+     "explanation": "The contract uses .send to transfer ether to participants and to refund the sender, but ignores the returned boolean. If a recipient is a contract whose fallback consumes more than 2300 gas or reverts, the send will fail silently, causing ether to be locked in the contract and potentially leading to a denial\u2011of\u2011service."
+    },
+    {
+     "type": "integer_overflow",
+     "location": "addParticipant() \u2013 Count += 1",
+     "severity": "low",
+     "explanation": "Count is a uint that is incremented without overflow checks. Although reaching 2^256 participants is unrealistic, the lack of SafeMath means an overflow could wrap Count to zero, breaking the participant indexing logic."
+    },
+    {
+     "type": "bad_randomness",
+     "location": "fallback function \u2013 uint rand = uint(msg.sender) % Count;",
+     "severity": "low",
+     "explanation": "The contract derives a pseudo\u2011random index from the caller\u2019s address, which is fully controllable by an attacker. This allows manipulation of which participant is selected, undermining any intended randomness."
+    }
+   ],
+   "seconds": 10.05,
+   "tokens": 1936,
+   "new_categories": [
+    "bad_randomness",
+    "integer_overflow",
+    "unchecked_low_level_calls"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T11:32:19"
+ }
+}

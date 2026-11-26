@@ -1,0 +1,1205 @@
+{
+ "0x01f8c4e3fa3edeb29e514cba738d87ce8c091d3f": {
+  "found": [
+   "access_control",
+   "integer_overflow",
+   "reentrancy"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 1533,
+  "seconds": 6.3,
+  "errors": 0
+ },
+ "0x07f7ecb66d788ab01dc93b9b71a88401de7d0f2e": {
+  "found": [
+   "access_control",
+   "bad_randomness",
+   "denial_of_service",
+   "integer_overflow",
+   "other",
+   "reentrancy",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 3339,
+  "seconds": 6.5,
+  "errors": 0
+ },
+ "0x0cbe050f75bc8f8c2d6c0d249fea125fd6e1acc9": {
+  "found": [
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_dasp"
+  ],
+  "tokens": 760,
+  "seconds": 2.9,
+  "errors": 0
+ },
+ "0x19cf8481ea15427a98ba3cdd6d9e14690011ab10": {
+  "found": [
+   "integer_overflow"
+  ],
+  "analysers": [
+   "llm_ba"
+  ],
+  "tokens": 2257,
+  "seconds": 3.4,
+  "errors": 0
+ },
+ "0x23a91059fdc9579a9fbd0edc5f2ea0bfdb70deb4": {
+  "found": [
+   "integer_overflow",
+   "reentrancy",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 1294,
+  "seconds": 5.7,
+  "errors": 0
+ },
+ "0x2972d548497286d18e92b5fa1f8f9139e5653fd2": {
+  "found": [
+   "access_control",
+   "denial_of_service",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_dasp"
+  ],
+  "tokens": 1185,
+  "seconds": 3.6,
+  "errors": 0
+ },
+ "0x39cfd754c85023648bf003bea2dd498c5612abfa": {
+  "found": [
+   "access_control",
+   "integer_overflow",
+   "reentrancy",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 1991,
+  "seconds": 9.1,
+  "errors": 0
+ },
+ "0x3a0e9acd953ffc0dd18d63603488846a6b8b2b01": {
+  "found": [
+   "access_control",
+   "integer_overflow",
+   "reentrancy",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 2341,
+  "seconds": 15.3,
+  "errors": 0
+ },
+ "0x3e013fc32a54c4c5b6991ba539dcd0ec4355c859": {
+  "found": [
+   "integer_overflow",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 1657,
+  "seconds": 3.2,
+  "errors": 0
+ },
+ "0x3f2ef511aa6e75231e4deafc7a3d2ecab3741de2": {
+  "found": [
+   "denial_of_service",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 1593,
+  "seconds": 11.4,
+  "errors": 0
+ },
+ "0x4051334adc52057aca763453820cb0e045076ef3": {
+  "found": [
+   "denial_of_service",
+   "integer_overflow",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_dasp"
+  ],
+  "tokens": 1088,
+  "seconds": 10.7,
+  "errors": 0
+ },
+ "0x4320e6f8c05b27ab4707cd1f6d5ce6f3e4b3a5a1": {
+  "found": [
+   "access_control",
+   "integer_overflow",
+   "reentrancy",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 1825,
+  "seconds": 4.3,
+  "errors": 0
+ },
+ "0x4a66ad0bca2d700f11e1f2fc2c106f7d3264504c": {
+  "found": [
+   "integer_overflow",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_dasp"
+  ],
+  "tokens": 1111,
+  "seconds": 17.8,
+  "errors": 0
+ },
+ "0x4b71ad9c1a84b9b643aa54fdd66e2dec96e8b152": {
+  "found": [
+   "denial_of_service",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_dasp"
+  ],
+  "tokens": 996,
+  "seconds": 6.9,
+  "errors": 0
+ },
+ "0x4e73b32ed6c35f570686b89848e5f39f20ecc106": {
+  "found": [
+   "access_control",
+   "integer_overflow",
+   "reentrancy",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 2000,
+  "seconds": 6.0,
+  "errors": 0
+ },
+ "0x524960d55174d912768678d8c606b4d50b79d7b1": {
+  "found": [
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_dasp"
+  ],
+  "tokens": 932,
+  "seconds": 7.6,
+  "errors": 0
+ },
+ "0x52d2e0f9b01101a59b38a3d05c80b7618aeed984": {
+  "found": [
+   "denial_of_service",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_dasp"
+  ],
+  "tokens": 1133,
+  "seconds": 6.5,
+  "errors": 0
+ },
+ "0x561eac93c92360949ab1f1403323e6db345cbf31": {
+  "found": [
+   "access_control",
+   "denial_of_service",
+   "integer_overflow",
+   "reentrancy",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 1726,
+  "seconds": 5.0,
+  "errors": 0
+ },
+ "0x5aa88d2901c68fda244f1d0584400368d2c8e739": {
+  "found": [
+   "access_control",
+   "denial_of_service",
+   "integer_overflow",
+   "reentrancy",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 1809,
+  "seconds": 8.2,
+  "errors": 0
+ },
+ "0x610495793564aed0f9c7fc48dc4c7c9151d34fd6": {
+  "found": [
+   "integer_overflow",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 1122,
+  "seconds": 11.9,
+  "errors": 0
+ },
+ "0x627fa62ccbb1c1b04ffaecd72a53e37fc0e17839": {
+  "found": [
+   "integer_overflow",
+   "reentrancy",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 1790,
+  "seconds": 6.2,
+  "errors": 0
+ },
+ "0x663e4229142a27f00bafb5d087e1e730648314c3": {
+  "found": [
+   "integer_overflow"
+  ],
+  "analysers": [
+   "llm_ba"
+  ],
+  "tokens": 2121,
+  "seconds": 24.6,
+  "errors": 0
+ },
+ "0x70f9eddb3931491aab1aeafbc1e7f1ca2a012db4": {
+  "found": [
+   "access_control",
+   "denial_of_service",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 1572,
+  "seconds": 4.0,
+  "errors": 0
+ },
+ "0x7541b76cb60f4c60af330c208b0623b7f54bf615": {
+  "found": [
+   "integer_overflow",
+   "reentrancy",
+   "timestamp_dependence"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 1426,
+  "seconds": 11.3,
+  "errors": 0
+ },
+ "0x78c2a1e91b52bca4130b6ed9edd9fbcfd4671c37": {
+  "found": [
+   "denial_of_service",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 1557,
+  "seconds": 12.9,
+  "errors": 0
+ },
+ "0x7a4349a749e59a5736efb7826ee3496a2dfd5489": {
+  "found": [
+   "denial_of_service",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 1461,
+  "seconds": 12.0,
+  "errors": 0
+ },
+ "0x7a8721a9d64c74da899424c1b52acbf58ddc9782": {
+  "found": [
+   "access_control",
+   "integer_overflow",
+   "reentrancy",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 1747,
+  "seconds": 12.5,
+  "errors": 0
+ },
+ "0x7b368c4e805c3870b6c49a3f1f49f69af8662cf3": {
+  "found": [
+   "denial_of_service",
+   "integer_overflow",
+   "reentrancy",
+   "timestamp_dependence"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 2076,
+  "seconds": 14.6,
+  "errors": 0
+ },
+ "0x7d09edb07d23acb532a82be3da5c17d9d85806b4": {
+  "found": [
+   "bad_randomness",
+   "denial_of_service",
+   "integer_overflow",
+   "reentrancy",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 3444,
+  "seconds": 16.2,
+  "errors": 0
+ },
+ "0x806a6bd219f162442d992bdc4ee6eba1f2c5a707": {
+  "found": [
+   "access_control",
+   "denial_of_service",
+   "reentrancy",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 1640,
+  "seconds": 19.0,
+  "errors": 0
+ },
+ "0x84d9ec85c9c568eb332b7226a8f826d897e0a4a8": {
+  "found": [
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_dasp"
+  ],
+  "tokens": 1281,
+  "seconds": 13.5,
+  "errors": 0
+ },
+ "0x89c1b3807d4c67df034fffb62f3509561218d30b": {
+  "found": [
+   "denial_of_service",
+   "integer_overflow",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 3517,
+  "seconds": 18.5,
+  "errors": 0
+ },
+ "0x8c7777c45481dba411450c228cb692ac3d550344": {
+  "found": [
+   "denial_of_service",
+   "integer_overflow",
+   "reentrancy"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 1328,
+  "seconds": 15.2,
+  "errors": 0
+ },
+ "0x8fd1e427396ddb511533cf9abdbebd0a7e08da35": {
+  "found": [
+   "access_control",
+   "denial_of_service",
+   "integer_overflow",
+   "reentrancy",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 2953,
+  "seconds": 11.5,
+  "errors": 0
+ },
+ "0x93c32845fae42c83a70e5f06214c8433665c2ab5": {
+  "found": [
+   "integer_overflow",
+   "reentrancy",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 1437,
+  "seconds": 17.7,
+  "errors": 0
+ },
+ "0x941d225236464a25eb18076df7da6a91d0f95e9e": {
+  "found": [
+   "integer_overflow",
+   "reentrancy"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 1219,
+  "seconds": 8.3,
+  "errors": 0
+ },
+ "0x958a8f594101d2c0485a52319f29b2647f2ebc06": {
+  "found": [
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 1842,
+  "seconds": 11.3,
+  "errors": 0
+ },
+ "0x96edbe868531bd23a6c05e9d0c424ea64fb1b78b": {
+  "found": [
+   "access_control",
+   "denial_of_service",
+   "integer_overflow",
+   "other",
+   "reentrancy"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 2263,
+  "seconds": 14.4,
+  "errors": 0
+ },
+ "0x9d06cbafa865037a01d322d3f4222fa3e04e5488": {
+  "found": [
+   "integer_overflow"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 2058,
+  "seconds": 13.4,
+  "errors": 0
+ },
+ "0xa1fceeff3acc57d257b917e30c4df661401d6431": {
+  "found": [
+   "denial_of_service",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_dasp"
+  ],
+  "tokens": 1042,
+  "seconds": 14.2,
+  "errors": 0
+ },
+ "0xa46edd6a9a93feec36576ee5048146870ea2c3ae": {
+  "found": [
+   "denial_of_service",
+   "integer_overflow",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_dasp"
+  ],
+  "tokens": 1045,
+  "seconds": 3.5,
+  "errors": 0
+ },
+ "0xaae1f51cf3339f18b6d3f3bdc75a5facd744b0b8": {
+  "found": [
+   "access_control",
+   "integer_overflow",
+   "reentrancy",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 1481,
+  "seconds": 12.6,
+  "errors": 0
+ },
+ "0xb0510d68f210b7db66e8c7c814f22680f2b8d1d6": {
+  "found": [
+   "access_control",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 1926,
+  "seconds": 11.9,
+  "errors": 0
+ },
+ "0xb11b2fed6c9354f7aa2f658d3b4d7b31d8a13b77": {
+  "found": [
+   "access_control",
+   "integer_overflow",
+   "other",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 2039,
+  "seconds": 11.6,
+  "errors": 0
+ },
+ "0xb37f18af15bafb869a065b61fc83cfc44ed9cc27": {
+  "found": [
+   "denial_of_service",
+   "integer_overflow",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 1262,
+  "seconds": 9.2,
+  "errors": 0
+ },
+ "0xb5e1b1ee15c6fa0e48fce100125569d430f1bd12": {
+  "found": [
+   "integer_overflow",
+   "reentrancy",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 1572,
+  "seconds": 11.5,
+  "errors": 0
+ },
+ "0xb620cee6b52f96f3c6b253e6eea556aa2d214a99": {
+  "found": [
+   "access_control",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 2185,
+  "seconds": 13.0,
+  "errors": 0
+ },
+ "0xb7c5c5aa4d42967efe906e1b66cb8df9cebf04f7": {
+  "found": [
+   "denial_of_service",
+   "integer_overflow",
+   "reentrancy",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 1038,
+  "seconds": 8.4,
+  "errors": 0
+ },
+ "0xb93430ce38ac4a6bb47fb1fc085ea669353fd89e": {
+  "found": [
+   "denial_of_service",
+   "integer_overflow",
+   "reentrancy"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 1652,
+  "seconds": 8.3,
+  "errors": 0
+ },
+ "0xbaa3de6504690efb064420d89e871c27065cdd52": {
+  "found": [
+   "access_control",
+   "integer_overflow",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 2317,
+  "seconds": 4.1,
+  "errors": 0
+ },
+ "0xbaf51e761510c1a11bf48dd87c0307ac8a8c8a4f": {
+  "found": [
+   "denial_of_service",
+   "integer_overflow",
+   "reentrancy",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 1674,
+  "seconds": 3.1,
+  "errors": 0
+ },
+ "0xbe4041d55db380c5ae9d4a9b9703f1ed4e7e3888": {
+  "found": [
+   "access_control",
+   "integer_overflow",
+   "other",
+   "reentrancy"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 1909,
+  "seconds": 15.9,
+  "errors": 0
+ },
+ "0xbebbfe5b549f5db6e6c78ca97cac19d1fb03082c": {
+  "found": [
+   "access_control",
+   "integer_overflow",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 2178,
+  "seconds": 15.0,
+  "errors": 0
+ },
+ "0xcead721ef5b11f1a7b530171aab69b16c5e66b6e": {
+  "found": [
+   "integer_overflow",
+   "reentrancy"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 1277,
+  "seconds": 11.7,
+  "errors": 0
+ },
+ "0xd2018bfaa266a9ec0a1a84b061640faa009def76": {
+  "found": [
+   "access_control",
+   "denial_of_service",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 1843,
+  "seconds": 3.8,
+  "errors": 0
+ },
+ "0xf015c35649c82f5467c9c74b7f28ee67665aad68": {
+  "found": [
+   "integer_overflow",
+   "reentrancy",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 1482,
+  "seconds": 15.4,
+  "errors": 0
+ },
+ "0xf2570186500a46986f3139f65afedc2afe4f445d": {
+  "found": [
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_dasp"
+  ],
+  "tokens": 899,
+  "seconds": 7.6,
+  "errors": 0
+ },
+ "0xf70d589d76eebdd7c12cc5eec99f8f6fa4233b9e": {
+  "found": [
+   "denial_of_service",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 1495,
+  "seconds": 6.7,
+  "errors": 0
+ },
+ "Axioms": {
+  "found": [
+   "denial_of_service",
+   "other",
+   "reentrancy"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 2325,
+  "seconds": 13.2,
+  "errors": 0
+ },
+ "BankOfEther": {
+  "found": [
+   "access_control"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 1167,
+  "seconds": 12.2,
+  "errors": 0
+ },
+ "BeaconProxy": {
+  "found": [],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 2105,
+  "seconds": 14.9,
+  "errors": 0
+ },
+ "CreditDepositBank_Attack": {
+  "found": [
+   "access_control",
+   "integer_overflow",
+   "reentrancy",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 2839,
+  "seconds": 12.9,
+  "errors": 0
+ },
+ "Delegation": {
+  "found": [
+   "access_control"
+  ],
+  "analysers": [
+   "llm_ba_dasp"
+  ],
+  "tokens": 999,
+  "seconds": 17.7,
+  "errors": 0
+ },
+ "DocumentSigner": {
+  "found": [
+   "reentrancy"
+  ],
+  "analysers": [
+   "spec_0"
+  ],
+  "tokens": 2746,
+  "seconds": 15.5,
+  "errors": 0
+ },
+ "ERC1967Proxy": {
+  "found": [],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 2045,
+  "seconds": 15.9,
+  "errors": 0
+ },
+ "ERC20Basic": {
+  "found": [
+   "access_control"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 1954,
+  "seconds": 8.8,
+  "errors": 0
+ },
+ "ERC223Token": {
+  "found": [
+   "access_control",
+   "reentrancy",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba"
+  ],
+  "tokens": 2418,
+  "seconds": 18.8,
+  "errors": 0
+ },
+ "ETHDropOpenAdd": {
+  "found": [
+   "access_control",
+   "denial_of_service",
+   "integer_overflow",
+   "other"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 2227,
+  "seconds": 12.5,
+  "errors": 0
+ },
+ "EthRoulette": {
+  "found": [
+   "access_control",
+   "bad_randomness"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 1289,
+  "seconds": 12.2,
+  "errors": 0
+ },
+ "Etheramid_Attack": {
+  "found": [
+   "bad_randomness",
+   "integer_overflow",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 1936,
+  "seconds": 10.1,
+  "errors": 0
+ },
+ "Ethmoon": {
+  "found": [
+   "denial_of_service"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 1831,
+  "seconds": 12.0,
+  "errors": 0
+ },
+ "ForTheBlockchain": {
+  "found": [
+   "reentrancy",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba"
+  ],
+  "tokens": 2251,
+  "seconds": 18.5,
+  "errors": 0
+ },
+ "HFConditionalTransfer": {
+  "found": [
+   "front_running",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 1334,
+  "seconds": 7.4,
+  "errors": 0
+ },
+ "HelpMeSave": {
+  "found": [
+   "access_control",
+   "denial_of_service"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 2106,
+  "seconds": 11.5,
+  "errors": 0
+ },
+ "IManagedToken": {
+  "found": [
+   "access_control",
+   "denial_of_service",
+   "integer_overflow"
+  ],
+  "analysers": [
+   "llm_ba"
+  ],
+  "tokens": 2260,
+  "seconds": 20.7,
+  "errors": 0
+ },
+ "MultiTokenNetwork": {
+  "found": [
+   "denial_of_service"
+  ],
+  "analysers": [
+   "llm_ba_dasp"
+  ],
+  "tokens": 2219,
+  "seconds": 17.4,
+  "errors": 0
+ },
+ "Ownable": {
+  "found": [
+   "denial_of_service",
+   "integer_overflow",
+   "reentrancy",
+   "timestamp_dependence"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 2442,
+  "seconds": 8.8,
+  "errors": 0
+ },
+ "ProofOfExistence": {
+  "found": [
+   "access_control",
+   "denial_of_service",
+   "timestamp_dependence"
+  ],
+  "analysers": [
+   "llm_ba"
+  ],
+  "tokens": 2215,
+  "seconds": 19.7,
+  "errors": 0
+ },
+ "QuarterMachine": {
+  "found": [
+   "denial_of_service",
+   "integer_overflow"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 1804,
+  "seconds": 8.6,
+  "errors": 0
+ },
+ "SuicideMultiTxFeasible": {
+  "found": [
+   "access_control"
+  ],
+  "analysers": [
+   "llm_ba_dasp"
+  ],
+  "tokens": 880,
+  "seconds": 11.0,
+  "errors": 0
+ },
+ "SuicideMultiTxInfeasible": {
+  "found": [
+   "access_control"
+  ],
+  "analysers": [
+   "llm_ba_dasp"
+  ],
+  "tokens": 1007,
+  "seconds": 6.4,
+  "errors": 0
+ },
+ "etherbank": {
+  "found": [
+   "integer_overflow",
+   "reentrancy"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 1059,
+  "seconds": 7.0,
+  "errors": 0
+ },
+ "insecure_transfer": {
+  "found": [
+   "integer_overflow"
+  ],
+  "analysers": [
+   "llm_ba_dasp"
+  ],
+  "tokens": 839,
+  "seconds": 6.0,
+  "errors": 0
+ },
+ "lottopollo": {
+  "found": [
+   "bad_randomness",
+   "denial_of_service",
+   "timestamp_dependence"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 1377,
+  "seconds": 10.5,
+  "errors": 0
+ },
+ "mishandled": {
+  "found": [
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_dasp"
+  ],
+  "tokens": 860,
+  "seconds": 6.5,
+  "errors": 0
+ },
+ "multi_delegatecall": {
+  "found": [
+   "access_control",
+   "denial_of_service"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 1749,
+  "seconds": 8.0,
+  "errors": 0
+ },
+ "owner_example": {
+  "found": [
+   "access_control"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 1281,
+  "seconds": 12.5,
+  "errors": 0
+ },
+ "reentrancy_bonus": {
+  "found": [
+   "integer_overflow",
+   "reentrancy"
+  ],
+  "analysers": [
+   "llm_ba_dasp"
+  ],
+  "tokens": 1100,
+  "seconds": 1.4,
+  "errors": 0
+ },
+ "reentrancy_cross_function": {
+  "found": [
+   "integer_overflow",
+   "reentrancy"
+  ],
+  "analysers": [
+   "llm_ba_dasp"
+  ],
+  "tokens": 911,
+  "seconds": 7.5,
+  "errors": 0
+ },
+ "reentrancy_insecure": {
+  "found": [
+   "reentrancy"
+  ],
+  "analysers": [
+   "llm_ba_dasp"
+  ],
+  "tokens": 841,
+  "seconds": 5.0,
+  "errors": 0
+ },
+ "storage_abuse": {
+  "found": [
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_dasp"
+  ],
+  "tokens": 1033,
+  "seconds": 7.0,
+  "errors": 0
+ },
+ "storage_example": {
+  "found": [
+   "other",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_dasp"
+  ],
+  "tokens": 1133,
+  "seconds": 8.5,
+  "errors": 0
+ },
+ "theRun": {
+  "found": [
+   "access_control",
+   "bad_randomness",
+   "integer_overflow",
+   "reentrancy",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 3155,
+  "seconds": 15.3,
+  "errors": 0
+ },
+ "vulnerableBlockHashGame": {
+  "found": [
+   "bad_randomness",
+   "other"
+  ],
+  "analysers": [
+   "llm_ba_med"
+  ],
+  "tokens": 1421,
+  "seconds": 11.2,
+  "errors": 0
+ },
+ "wallet_delegatecall": {
+  "found": [
+   "access_control",
+   "other",
+   "unchecked_low_level_calls"
+  ],
+  "analysers": [
+   "llm_ba"
+  ],
+  "tokens": 2610,
+  "seconds": 18.0,
+  "errors": 0
+ },
+ "wallet_sucide": {
+  "found": [
+   "other",
+   "reentrancy"
+  ],
+  "analysers": [
+   "llm_ba"
+  ],
+  "tokens": 2497,
+  "seconds": 19.6,
+  "errors": 0
+ }
+}

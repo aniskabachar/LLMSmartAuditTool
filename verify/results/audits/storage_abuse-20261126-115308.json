@@ -1,0 +1,43 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\hard\\storage_abuse.sol",
+ "audited_at": "2026-11-26T11:53:08",
+ "vulnerability_categories": [
+  "unchecked_low_level_calls"
+ ],
+ "analysers_run": [
+  "llm_ba_dasp"
+ ],
+ "llm_tokens": 1033,
+ "analyser_seconds": 7.0,
+ "wall_seconds": 7.0,
+ "steps": [
+  {
+   "tool": "llm_ba_dasp",
+   "p": 0.892,
+   "categories": [
+    "unchecked_low_level_calls"
+   ],
+   "details": [
+    {
+     "type": "unchecked_low_level_calls",
+     "location": "function callTwo in contract B",
+     "severity": "medium",
+     "explanation": "The delegatecall return value (success) is captured but never checked or reverted on failure, allowing the function to appear successful while the delegated call may have failed, potentially leaving the contract in an unexpected state."
+    }
+   ],
+   "seconds": 7.02,
+   "tokens": 1033,
+   "new_categories": [
+    "unchecked_low_level_calls"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T11:32:19"
+ }
+}

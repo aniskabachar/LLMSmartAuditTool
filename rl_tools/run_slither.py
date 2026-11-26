@@ -52,15 +52,24 @@ def main():
     utf8_console()
     ap = argparse.ArgumentParser()
     ap.add_argument("--limit", type=int, default=None)
+    ap.add_argument("--data", default=None,
+                    help="run on the contracts of this tool dataset (name -> source) instead of tasks/")
     args = ap.parse_args()
     if not (VENV / "slither.exe").exists():
         raise SystemExit("Slither venv missing; see the setup lines at the top of this file.")
 
     real = {}
-    for part in ("test", "train"):
-        for c in list_contracts(part):
-            if c.origin == "tasks":
-                real.setdefault(c.stem, c)
+    if args.data:
+        from types import SimpleNamespace
+        d = json.loads((ROOT / args.data).read_text(encoding="utf-8"))
+        for n, c in d["contracts"].items():
+            sol = ROOT / c["source"]
+            real[n] = SimpleNamespace(sol=sol, code=lambda s=sol: s.read_text(encoding="utf-8", errors="replace"))
+    else:
+        for part in ("test", "train"):
+            for c in list_contracts(part):
+                if c.origin == "tasks":
+                    real.setdefault(c.stem, c)
     names = sorted(real)[: args.limit] if args.limit else sorted(real)
     done = json.loads(OUT.read_text(encoding="utf-8")) if OUT.exists() else {"slither": None, "contracts": {}}
     done["slither"] = subprocess.run([str(VENV / "slither.exe"), "--version"], capture_output=True,

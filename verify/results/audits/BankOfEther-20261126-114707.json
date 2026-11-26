@@ -1,0 +1,55 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\hard\\BankOfEther.sol",
+ "audited_at": "2026-11-26T11:47:07",
+ "vulnerability_categories": [
+  "access_control"
+ ],
+ "analysers_run": [
+  "llm_ba_med"
+ ],
+ "llm_tokens": 1167,
+ "analyser_seconds": 12.2,
+ "wall_seconds": 12.2,
+ "steps": [
+  {
+   "tool": "llm_ba_med",
+   "p": 0.899,
+   "categories": [
+    "access_control"
+   ],
+   "details": [
+    {
+     "type": "access_control",
+     "location": "function transferTo",
+     "severity": "high",
+     "explanation": "Authorization is based on tx.origin == owner, which can be spoofed via a malicious contract called by the owner, allowing an attacker to trigger transfers and drain funds."
+    },
+    {
+     "type": "access_control",
+     "location": "function changeOwner",
+     "severity": "high",
+     "explanation": "Uses tx.origin for ownership check, enabling a phishing attack where a malicious contract called by the owner can change the contract owner without proper consent."
+    },
+    {
+     "type": "access_control",
+     "location": "function transferTo (missing balance checks)",
+     "severity": "medium",
+     "explanation": "The function transfers arbitrary ether from the contract without verifying the caller's balance or the contract's balance, allowing the authorized (or spoofed) caller to drain all ether."
+    }
+   ],
+   "seconds": 12.24,
+   "tokens": 1167,
+   "new_categories": [
+    "access_control"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T11:32:19"
+ }
+}

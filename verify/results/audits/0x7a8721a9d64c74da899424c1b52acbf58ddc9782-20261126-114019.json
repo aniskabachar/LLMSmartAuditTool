@@ -1,0 +1,70 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\easy\\0x7a8721a9d64c74da899424c1b52acbf58ddc9782.sol",
+ "audited_at": "2026-11-26T11:40:19",
+ "vulnerability_categories": [
+  "access_control",
+  "integer_overflow",
+  "reentrancy",
+  "unchecked_low_level_calls"
+ ],
+ "analysers_run": [
+  "llm_ba_med"
+ ],
+ "llm_tokens": 1747,
+ "analyser_seconds": 12.5,
+ "wall_seconds": 12.5,
+ "steps": [
+  {
+   "tool": "llm_ba_med",
+   "p": 0.918,
+   "categories": [
+    "access_control",
+    "integer_overflow",
+    "reentrancy",
+    "unchecked_low_level_calls"
+   ],
+   "details": [
+    {
+     "type": "access_control",
+     "location": "onlyOwner modifier (uses tx.origin)",
+     "severity": "medium",
+     "explanation": "Authentication relies on tx.origin, which can be spoofed through a malicious contract call chain, allowing non\u2011owner accounts to bypass the onlyOwner restriction."
+    },
+    {
+     "type": "reentrancy",
+     "location": "CashOut function (external call before state update)",
+     "severity": "high",
+     "explanation": "The contract sends ether to msg.sender via a low\u2011level call before reducing the sender's balance, enabling a re\u2011entrancy attack that can repeatedly withdraw funds."
+    },
+    {
+     "type": "unchecked_low_level_calls",
+     "location": "CashOut function (msg.sender.call.value(_am)())",
+     "severity": "medium",
+     "explanation": "Uses a low\u2011level call without limiting gas or handling potential re\u2011entrancy safely; the call forwards all gas and its return value is only loosely checked, increasing attack surface."
+    },
+    {
+     "type": "integer_overflow",
+     "location": "Deposit function (balances[msg.sender] += msg.value) and CashOut function (balances[msg.sender] -= _am)",
+     "severity": "low",
+     "explanation": "Arithmetic operations on balances are performed without SafeMath checks; with enough value an overflow or underflow could corrupt balances."
+    }
+   ],
+   "seconds": 12.49,
+   "tokens": 1747,
+   "new_categories": [
+    "access_control",
+    "integer_overflow",
+    "reentrancy",
+    "unchecked_low_level_calls"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T11:32:19"
+ }
+}

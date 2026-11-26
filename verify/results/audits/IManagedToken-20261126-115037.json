@@ -1,0 +1,61 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\medium\\IManagedToken.sol",
+ "audited_at": "2026-11-26T11:50:37",
+ "vulnerability_categories": [
+  "access_control",
+  "denial_of_service",
+  "integer_overflow"
+ ],
+ "analysers_run": [
+  "llm_ba"
+ ],
+ "llm_tokens": 2260,
+ "analyser_seconds": 20.7,
+ "wall_seconds": 20.7,
+ "steps": [
+  {
+   "tool": "llm_ba",
+   "p": 0.95,
+   "categories": [
+    "access_control",
+    "denial_of_service",
+    "integer_overflow"
+   ],
+   "details": [
+    {
+     "type": "integer_overflow",
+     "location": "functions _allocateEth, _allocateTokens, token issue calculations, raised/allocatedEth/allocatedTokens updates",
+     "severity": "high",
+     "explanation": "The contract uses Solidity ^0.4.15 without SafeMath; arithmetic operations like allocatedEth += _amount, allocatedTokens += _amount, and token amount calculations can overflow, leading to incorrect balances and potential token issuance bypass."
+    },
+    {
+     "type": "denial_of_service",
+     "location": "functions _allocateStakeholdersEth, _allocateStakeholdersTokens, any function that iterates over stakeholderPercentagesIndex",
+     "severity": "medium",
+     "explanation": "These functions loop over a dynamic array of stakeholder addresses without a bound. An attacker can add many stakeholders, causing the loop to exceed block gas limits and making the contract unusable for further allocations or withdrawals."
+    },
+    {
+     "type": "access_control",
+     "location": "function retreiveTokens",
+     "severity": "medium",
+     "explanation": "The function is protected by only_beneficiary modifier, but the modifier definition is not present in the provided code. If the modifier is missing or incorrectly implemented, any address could call retreiveTokens and drain tokens."
+    }
+   ],
+   "seconds": 20.67,
+   "tokens": 2260,
+   "new_categories": [
+    "access_control",
+    "denial_of_service",
+    "integer_overflow"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T11:32:19"
+ }
+}

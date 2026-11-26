@@ -1,0 +1,76 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\medium\\0xb11b2fed6c9354f7aa2f658d3b4d7b31d8a13b77.sol",
+ "audited_at": "2026-11-26T11:44:07",
+ "vulnerability_categories": [
+  "access_control",
+  "integer_overflow",
+  "other",
+  "unchecked_low_level_calls"
+ ],
+ "analysers_run": [
+  "llm_ba_med"
+ ],
+ "llm_tokens": 2039,
+ "analyser_seconds": 11.6,
+ "wall_seconds": 11.6,
+ "steps": [
+  {
+   "tool": "llm_ba_med",
+   "p": 0.904,
+   "categories": [
+    "access_control",
+    "integer_overflow",
+    "other",
+    "unchecked_low_level_calls"
+   ],
+   "details": [
+    {
+     "type": "tx_origin",
+     "location": "Vault()",
+     "severity": "medium",
+     "explanation": "Uses `msg.sender == tx.origin` for authentication, allowing phishing attacks where a malicious contract can cause a victim to call `Vault()` and set themselves as owner."
+    },
+    {
+     "type": "unchecked_low_level_calls",
+     "location": "proxy()",
+     "severity": "high",
+     "explanation": "Calls an arbitrary address with `target.call.value(msg.value)(data)` without checking the return value or restricting the caller, enabling arbitrary code execution and potential loss of funds."
+    },
+    {
+     "type": "integer_overflow",
+     "location": "deposit()",
+     "severity": "medium",
+     "explanation": "Adds `msg.value` to `Deposits[msg.sender]` using `+=` in Solidity 0.4.24, which has no built\u2011in overflow checks; repeated deposits can overflow the balance."
+    },
+    {
+     "type": "other",
+     "location": "withdraw()",
+     "severity": "high",
+     "explanation": "The function transfers `amount` without decreasing `Deposits[msg.sender]`, allowing the owner to withdraw the same amount repeatedly and drain the contract."
+    },
+    {
+     "type": "access_control",
+     "location": "DepositProxy Owner variable shadows Proxy Owner",
+     "severity": "medium",
+     "explanation": "`DepositProxy` declares its own `Owner` variable, hiding the `Owner` used by the `onlyOwner` modifier from `Proxy`. This mismatch can lead to unauthorized access or denial of intended ownership functionality."
+    }
+   ],
+   "seconds": 11.57,
+   "tokens": 2039,
+   "new_categories": [
+    "access_control",
+    "integer_overflow",
+    "other",
+    "unchecked_low_level_calls"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T11:32:19"
+ }
+}

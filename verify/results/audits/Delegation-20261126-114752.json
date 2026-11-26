@@ -1,0 +1,43 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\hard\\Delegation.sol",
+ "audited_at": "2026-11-26T11:47:52",
+ "vulnerability_categories": [
+  "access_control"
+ ],
+ "analysers_run": [
+  "llm_ba_dasp"
+ ],
+ "llm_tokens": 999,
+ "analyser_seconds": 17.7,
+ "wall_seconds": 17.7,
+ "steps": [
+  {
+   "tool": "llm_ba_dasp",
+   "p": 0.89,
+   "categories": [
+    "access_control"
+   ],
+   "details": [
+    {
+     "type": "access_control",
+     "location": "fallback() external in Delegation",
+     "severity": "high",
+     "explanation": "The fallback function blindly delegatecalls any calldata to the external Delegate contract. Because delegatecall executes in the context of Delegation, an attacker can call Delegate.pwn() via the fallback, causing Delegation.owner to be overwritten with the attacker address, effectively allowing unauthorized ownership takeover."
+    }
+   ],
+   "seconds": 17.67,
+   "tokens": 999,
+   "new_categories": [
+    "access_control"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T11:32:19"
+ }
+}

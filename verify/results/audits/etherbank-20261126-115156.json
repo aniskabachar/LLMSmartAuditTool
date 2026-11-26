@@ -1,0 +1,52 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\easy\\etherbank.sol",
+ "audited_at": "2026-11-26T11:51:56",
+ "vulnerability_categories": [
+  "integer_overflow",
+  "reentrancy"
+ ],
+ "analysers_run": [
+  "llm_ba_med"
+ ],
+ "llm_tokens": 1059,
+ "analyser_seconds": 7.0,
+ "wall_seconds": 7.0,
+ "steps": [
+  {
+   "tool": "llm_ba_med",
+   "p": 0.916,
+   "categories": [
+    "integer_overflow",
+    "reentrancy"
+   ],
+   "details": [
+    {
+     "type": "reentrancy",
+     "location": "withdrawBalance()",
+     "severity": "high",
+     "explanation": "The contract sends ether to msg.sender via a low\u2011level call before resetting the user's balance, allowing a malicious recipient to re\u2011enter withdrawBalance and drain funds."
+    },
+    {
+     "type": "integer_overflow",
+     "location": "addToBalance()",
+     "severity": "medium",
+     "explanation": "The function adds msg.value to userBalances[msg.sender] using unchecked '+' on a uint in Solidity 0.4.0, so a large existing balance plus a deposit could overflow and wrap around, corrupting the stored balance."
+    }
+   ],
+   "seconds": 6.95,
+   "tokens": 1059,
+   "new_categories": [
+    "integer_overflow",
+    "reentrancy"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T11:32:19"
+ }
+}

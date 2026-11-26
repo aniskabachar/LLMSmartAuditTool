@@ -1,0 +1,43 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\medium\\0x524960d55174d912768678d8c606b4d50b79d7b1.sol",
+ "audited_at": "2026-11-26T11:38:22",
+ "vulnerability_categories": [
+  "unchecked_low_level_calls"
+ ],
+ "analysers_run": [
+  "llm_ba_dasp"
+ ],
+ "llm_tokens": 932,
+ "analyser_seconds": 7.6,
+ "wall_seconds": 7.6,
+ "steps": [
+  {
+   "tool": "llm_ba_dasp",
+   "p": 0.908,
+   "categories": [
+    "unchecked_low_level_calls"
+   ],
+   "details": [
+    {
+     "type": "unchecked_low_level_calls",
+     "location": "transfer() function",
+     "severity": "medium",
+     "explanation": "The contract uses low\u2011level `call` to invoke external functions without checking the returned success flag for the first `register` call and without handling possible reverts, which can lead to silent failures or unexpected behavior."
+    }
+   ],
+   "seconds": 7.59,
+   "tokens": 932,
+   "new_categories": [
+    "unchecked_low_level_calls"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T11:32:19"
+ }
+}

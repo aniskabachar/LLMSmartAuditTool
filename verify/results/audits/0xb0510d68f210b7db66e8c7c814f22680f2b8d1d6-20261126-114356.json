@@ -1,0 +1,52 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\medium\\0xb0510d68f210b7db66e8c7c814f22680f2b8d1d6.sol",
+ "audited_at": "2026-11-26T11:43:56",
+ "vulnerability_categories": [
+  "access_control",
+  "unchecked_low_level_calls"
+ ],
+ "analysers_run": [
+  "llm_ba_med"
+ ],
+ "llm_tokens": 1926,
+ "analyser_seconds": 11.9,
+ "wall_seconds": 12.0,
+ "steps": [
+  {
+   "tool": "llm_ba_med",
+   "p": 0.879,
+   "categories": [
+    "access_control",
+    "unchecked_low_level_calls"
+   ],
+   "details": [
+    {
+     "type": "access_control",
+     "location": "setExtra(uint256 _id, address _newExtra)",
+     "severity": "high",
+     "explanation": "The function allows any caller to change the `extra` mapping that determines where funds are sent in `fundPuppets`. An attacker can redirect the split funds to an address they control."
+    },
+    {
+     "type": "unchecked_low_level_calls",
+     "location": "fundPuppets()",
+     "severity": "medium",
+     "explanation": "The contract uses low\u2011level `.call.value(...).gas(...)()` to send ether to the addresses in `extra` without checking the returned success flag. Failed calls are ignored, potentially causing loss of funds or unexpected behavior."
+    }
+   ],
+   "seconds": 11.95,
+   "tokens": 1926,
+   "new_categories": [
+    "access_control",
+    "unchecked_low_level_calls"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T11:32:19"
+ }
+}

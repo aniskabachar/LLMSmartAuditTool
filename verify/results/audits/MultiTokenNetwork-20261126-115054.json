@@ -1,0 +1,43 @@
+{
+ "contract": "C:\\Users\\anisk\\OneDrive\\Desktop\\LLMSmartAuditTool-Multiagent\\tasks\\medium\\MultiTokenNetwork.sol",
+ "audited_at": "2026-11-26T11:50:54",
+ "vulnerability_categories": [
+  "denial_of_service"
+ ],
+ "analysers_run": [
+  "llm_ba_dasp"
+ ],
+ "llm_tokens": 2219,
+ "analyser_seconds": 17.4,
+ "wall_seconds": 17.3,
+ "steps": [
+  {
+   "tool": "llm_ba_dasp",
+   "p": 0.887,
+   "categories": [
+    "denial_of_service"
+   ],
+   "details": [
+    {
+     "type": "denial_of_service",
+     "location": "function allWalletBalances(address wallet)",
+     "severity": "medium",
+     "explanation": "The function iterates over the entire _multitokens array without a gas limit, so if the array grows large the call can run out of gas and block the function, causing a denial of service."
+    }
+   ],
+   "seconds": 17.35,
+   "tokens": 2219,
+   "new_categories": [
+    "denial_of_service"
+   ]
+  }
+ ],
+ "coordinator": {
+  "trained_on": "datasets\\tool_results\\agents_live_tools.json",
+  "n_contracts": 269,
+  "lam": 0.02,
+  "cost": "both",
+  "policy": "MlpPolicy 64x64",
+  "trained_at": "2026-11-26T11:32:19"
+ }
+}
