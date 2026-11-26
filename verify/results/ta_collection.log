@@ -292,3 +292,804 @@ TA mode: 166/269 contracts complete -> datasets\tool_results\llm_ta.json
 0x3a0e9acd953ffc0dd18d63603488846a6b8b2b01: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk7)
 269/165 contracts have an LLM reply -> datasets\tool_results\llm_ba_dasp.json
 [finish_pipeline] A (TA as tools + PPO): data incomplete, not done | B (real-only PPO): data incomplete, not done
+===== 24-11-2026 15:35:42.68 ===== 
+TA mode: 166/269 contracts complete; ~19,596 tokens per contract; ~2.02M tokens to go
+[167/269] sf_reentrancy_41: 28,755 tokens
+[168/269] sf_reentrancy_47: 25,493 tokens
+[169/269] sf_timestamp_dependence_5: 22,856 tokens
+[170/269] sf_timestamp_dependence_6: 23,638 tokens
+[171/269] sf_reentrancy_46: 26,461 tokens
+[172/269] sf_reentrancy_21: 26,336 tokens
+[173/269] sf_reentrancy_49: 21,878 tokens
+[174/269] sf_timestamp_dependence_2: 23,945 tokens
+      daily limit on groq key 5, switching to nvidia key 11
+sf_timestamp_dependence_14: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk4)
+      nvidia does not serve openai/gpt-oss-120b any more; skipping it
+sf_reentrancy_48: stopping worker (DailyLimitReached: nvidia: model unavailable, no other keys left)
+[175/269] sf_timestamp_dependence_7: 23,622 tokens
+[176/269] sf_timestamp_dependence_10: 14,434 tokens
+[177/269] sf_timestamp_dependence_8: 23,610 tokens
+[178/269] sf_timestamp_dependence_9: 23,651 tokens
+sf_timestamp_dependence_18: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01knpjq)
+sf_timestamp_dependence_12: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk0)
+sf_timestamp_dependence_16: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pkd)
+sf_timestamp_dependence_15: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk5)
+sf_timestamp_dependence_19: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk1)
+sf_timestamp_dependence_13: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kn7ym)
+sf_timestamp_dependence_11: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pka)
+sf_timestamp_dependence_17: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk7)
+TA mode: 178/269 contracts complete -> datasets\tool_results\llm_ta.json
+[score_ta] TA mode still missing for 91/269 contracts; nothing to score yet.
+276 done, 89 to go
+[277/165] 0x4b71ad9c1a84b9b643aa54fdd66e2dec96e8b152: stop 759 tok 8.55s
+[278/165] 0x4a66ad0bca2d700f11e1f2fc2c106f7d3264504c: stop 827 tok 8.57s
+[279/165] 0x23a91059fdc9579a9fbd0edc5f2ea0bfdb70deb4: stop 911 tok 8.6s
+[280/165] 0x52d2e0f9b01101a59b38a3d05c80b7618aeed984: stop 850 tok 8.57s
+[281/165] 0x39cfd754c85023648bf003bea2dd498c5612abfa: stop 1162 tok 8.74s
+      daily limit on groq key 6, switching to groq key 11
+      daily limit on groq key 3, switching to groq key 12
+[282/165] 0x627fa62ccbb1c1b04ffaecd72a53e37fc0e17839: stop 1173 tok 1.44s
+[283/165] 0x610495793564aed0f9c7fc48dc4c7c9151d34fd6: stop 875 tok 1.38s
+      daily limit on groq key 2, switching to groq key 13
+[284/165] 0x561eac93c92360949ab1f1403323e6db345cbf31: stop 1222 tok 1.72s
+[285/165] 0x5aa88d2901c68fda244f1d0584400368d2c8e739: stop 852 tok 7.18s
+[286/165] 0x663e4229142a27f00bafb5d087e1e730648314c3: stop 2031 tok 7.32s
+[287/165] 0x7a8721a9d64c74da899424c1b52acbf58ddc9782: stop 1083 tok 1.5s
+[288/165] 0x7a4349a749e59a5736efb7826ee3496a2dfd5489: stop 1015 tok 1.65s
+[289/165] 0x7541b76cb60f4c60af330c208b0623b7f54bf615: stop 1034 tok 9.75s
+[290/165] 0x7b368c4e805c3870b6c49a3f1f49f69af8662cf3: stop 1124 tok 1.63s
+[291/165] 0x7d09edb07d23acb532a82be3da5c17d9d85806b4: stop 1921 tok 1.84s
+[292/165] 0x806a6bd219f162442d992bdc4ee6eba1f2c5a707: stop 982 tok 1.33s
+[293/165] 0x8c7777c45481dba411450c228cb692ac3d550344: stop 907 tok 1.14s
+      daily limit on groq key 5, switching to nvidia key 14
+[294/165] 0x8fd1e427396ddb511533cf9abdbebd0a7e08da35: stop 1180 tok 1.41s
+[295/165] 0x01f8c4e3fa3edeb29e514cba738d87ce8c091d3f: stop 1124 tok 25.78s
+0x4e73b32ed6c35f570686b89848e5f39f20ecc106: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk7)
+0x941d225236464a25eb18076df7da6a91d0f95e9e: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kn7ym)
+[296/165] 0x524960d55174d912768678d8c606b4d50b79d7b1: stop 734 tok 27.75s
+0x958a8f594101d2c0485a52319f29b2647f2ebc06: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pka)
+      nvidia does not serve openai/gpt-oss-120b any more; skipping it
+0x4320e6f8c05b27ab4707cd1f6d5ce6f3e4b3a5a1: stopping worker (DailyLimitReached: nvidia: model unavailable, no other keys left)
+0x78c2a1e91b52bca4130b6ed9edd9fbcfd4671c37: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk5)
+0x70f9eddb3931491aab1aeafbc1e7f1ca2a012db4: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pkd)
+[297/165] 0x84d9ec85c9c568eb332b7226a8f826d897e0a4a8: stop 1022 tok 1.42s
+[298/165] 0x96edbe868531bd23a6c05e9d0c424ea64fb1b78b: stop 1223 tok 1.52s
+[299/165] 0x93c32845fae42c83a70e5f06214c8433665c2ab5: stop 974 tok 1.51s
+[300/165] 0x9d06cbafa865037a01d322d3f4222fa3e04e5488: stop 1121 tok 1.17s
+[301/165] 0xa1fceeff3acc57d257b917e30c4df661401d6431: stop 723 tok 0.91s
+[302/165] 0x89c1b3807d4c67df034fffb62f3509561218d30b: stop 2464 tok 1.86s
+[303/165] 0xa46edd6a9a93feec36576ee5048146870ea2c3ae: stop 754 tok 1.75s
+[304/165] 0xb0510d68f210b7db66e8c7c814f22680f2b8d1d6: stop 1453 tok 1.38s
+[305/165] 0x4051334adc52057aca763453820cb0e045076ef3: stop 740 tok 84.64s
+0xb5e1b1ee15c6fa0e48fce100125569d430f1bd12: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk1)
+[306/165] 0xaae1f51cf3339f18b6d3f3bdc75a5facd744b0b8: stop 1153 tok 1.66s
+[307/165] 0xb620cee6b52f96f3c6b253e6eea556aa2d214a99: stop 1857 tok 2.11s
+[308/165] 0xb11b2fed6c9354f7aa2f658d3b4d7b31d8a13b77: stop 1183 tok 1.84s
+[309/165] 0xb93430ce38ac4a6bb47fb1fc085ea669353fd89e: stop 1047 tok 1.44s
+[310/165] 0xb37f18af15bafb869a065b61fc83cfc44ed9cc27: stop 721 tok 1.09s
+[311/165] 0xb7c5c5aa4d42967efe906e1b66cb8df9cebf04f7: stop 775 tok 1.57s
+[312/165] 0xbaf51e761510c1a11bf48dd87c0307ac8a8c8a4f: stop 965 tok 1.23s
+[313/165] 0xbaa3de6504690efb064420d89e871c27065cdd52: stop 1280 tok 4.39s
+[314/165] 0xbe4041d55db380c5ae9d4a9b9703f1ed4e7e3888: stop 1267 tok 1.67s
+[315/165] 0xbebbfe5b549f5db6e6c78ca97cac19d1fb03082c: stop 1276 tok 1.99s
+[316/165] 0xf015c35649c82f5467c9c74b7f28ee67665aad68: stop 999 tok 0.98s
+[317/165] 0xcead721ef5b11f1a7b530171aab69b16c5e66b6e: stop 1076 tok 1.38s
+[318/165] 0xf70d589d76eebdd7c12cc5eec99f8f6fa4233b9e: stop 962 tok 1.43s
+[319/165] 0xf2570186500a46986f3139f65afedc2afe4f445d: stop 829 tok 1.37s
+[320/165] 0xd2018bfaa266a9ec0a1a84b061640faa009def76: stop 1078 tok 1.38s
+[321/165] BankOfEther: stop 846 tok 1.26s
+[322/165] BeaconProxy: stop 1658 tok 0.59s
+[323/165] Axioms: stop 1458 tok 1.84s
+[324/165] Delegation: stop 652 tok 0.94s
+[325/165] CreditDepositBank_Attack: stop 1570 tok 1.88s
+[326/165] DocumentSigner: stop 1546 tok 1.01s
+[327/165] ERC1967Proxy: stop 1457 tok 0.79s
+[328/165] ERC20Basic: stop 1450 tok 1.45s
+[329/165] EthRoulette: stop 854 tok 1.07s
+[330/165] ERC223Token: stop 2262 tok 0.94s
+[331/165] ETHDropOpenAdd: stop 1507 tok 1.66s
+[332/165] Etheramid_Attack: stop 1255 tok 1.14s
+[333/165] Ethmoon: stop 1583 tok 1.77s
+[334/165] ForTheBlockchain: stop 2387 tok 1.72s
+[335/165] HFConditionalTransfer: stop 975 tok 1.8s
+[336/165] HelpMeSave: stop 1134 tok 1.46s
+[337/165] MultiTokenNetwork: stop 1902 tok 1.2s
+[338/165] Ownable: stop 1561 tok 1.51s
+[339/165] QuarterMachine: stop 1414 tok 1.75s
+[340/165] IManagedToken: stop 2246 tok 1.61s
+[341/165] SuicideMultiTxInfeasible: stop 724 tok 1.11s
+[342/165] ProofOfExistence: stop 2511 tok 2.5s
+[343/165] SuicideMultiTxFeasible: stop 658 tok 1.02s
+[344/165] etherbank: stop 669 tok 0.77s
+[345/165] insecure_transfer: stop 585 tok 0.88s
+[346/165] multi_delegatecall: stop 970 tok 1.88s
+[347/165] lottopollo: stop 919 tok 1.3s
+[348/165] reentrancy_bonus: stop 867 tok 1.38s
+[349/165] reentrancy_cross_function: stop 643 tok 1.08s
+[350/165] reentrancy_insecure: stop 568 tok 0.86s
+[351/165] mishandled: stop 620 tok 0.91s
+[352/165] storage_example: stop 816 tok 1.17s
+[353/165] owner_example: stop 838 tok 1.25s
+[354/165] storage_abuse: stop 718 tok 1.22s
+[355/165] vulnerableBlockHashGame: stop 761 tok 1.09s
+[356/165] theRun: stop 1760 tok 1.65s
+[357/165] wallet_sucide: stop 2464 tok 1.62s
+[358/165] wallet_delegatecall: stop 2198 tok 1.04s
+358/165 contracts have an LLM reply -> datasets\tool_results\llm_ba.json
+270 done, 95 to go
+      daily limit on groq key 4, switching to groq key 11
+      daily limit on groq key 6, switching to groq key 12
+[271/165] 0x0cbe050f75bc8f8c2d6c0d249fea125fd6e1acc9: stop 912 tok 6.78s
+[272/165] 0x23a91059fdc9579a9fbd0edc5f2ea0bfdb70deb4: stop 1268 tok 6.83s
+      daily limit on groq key 5, switching to groq key 13
+[273/165] 0x4051334adc52057aca763453820cb0e045076ef3: stop 1274 tok 7.03s
+      daily limit on groq key 10, switching to nvidia key 14
+[274/165] 0x3f2ef511aa6e75231e4deafc7a3d2ecab3741de2: stop 1444 tok 7.28s
+0x4e73b32ed6c35f570686b89848e5f39f20ecc106: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pka)
+[275/165] 0x3e013fc32a54c4c5b6991ba539dcd0ec4355c859: stop 1514 tok 7.55s
+0x524960d55174d912768678d8c606b4d50b79d7b1: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk7)
+[276/165] 0x07f7ecb66d788ab01dc93b9b71a88401de7d0f2e: stop 2487 tok 8.2s
+0x52d2e0f9b01101a59b38a3d05c80b7618aeed984: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01knpjq)
+[277/165] 0x01f8c4e3fa3edeb29e514cba738d87ce8c091d3f: stop 2247 tok 8.44s
+0x561eac93c92360949ab1f1403323e6db345cbf31: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kn7ym)
+[278/165] 0x2972d548497286d18e92b5fa1f8f9139e5653fd2: stop 1326 tok 3.71s
+      nvidia does not serve openai/gpt-oss-120b any more; skipping it
+0x4b71ad9c1a84b9b643aa54fdd66e2dec96e8b152: stopping worker (DailyLimitReached: nvidia: model unavailable, no other keys left)
+[279/165] 0x3a0e9acd953ffc0dd18d63603488846a6b8b2b01: stop 2316 tok 8.88s
+0x610495793564aed0f9c7fc48dc4c7c9151d34fd6: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk5)
+[280/165] 0x4320e6f8c05b27ab4707cd1f6d5ce6f3e4b3a5a1: stop 1672 tok 2.53s
+0x627fa62ccbb1c1b04ffaecd72a53e37fc0e17839: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk0)
+[281/165] 0x19cf8481ea15427a98ba3cdd6d9e14690011ab10: stop 3030 tok 4.44s
+[282/165] 0x4a66ad0bca2d700f11e1f2fc2c106f7d3264504c: stop 1263 tok 3.94s
+[283/165] 0x5aa88d2901c68fda244f1d0584400368d2c8e739: stop 1463 tok 2.37s
+[284/165] 0x7541b76cb60f4c60af330c208b0623b7f54bf615: stop 1496 tok 2.17s
+[285/165] 0x70f9eddb3931491aab1aeafbc1e7f1ca2a012db4: stop 1592 tok 2.74s
+[286/165] 0x663e4229142a27f00bafb5d087e1e730648314c3: stop 2931 tok 3.1s
+[287/165] 0x7a4349a749e59a5736efb7826ee3496a2dfd5489: stop 1607 tok 2.49s
+[288/165] 0x78c2a1e91b52bca4130b6ed9edd9fbcfd4671c37: stop 1503 tok 2.41s
+[289/165] 0x7a8721a9d64c74da899424c1b52acbf58ddc9782: stop 1212 tok 1.67s
+[290/165] 0x7b368c4e805c3870b6c49a3f1f49f69af8662cf3: stop 1407 tok 2.04s
+[291/165] 0x84d9ec85c9c568eb332b7226a8f826d897e0a4a8: stop 1503 tok 2.86s
+[292/165] 0x7d09edb07d23acb532a82be3da5c17d9d85806b4: stop 3109 tok 4.91s
+[293/165] 0x806a6bd219f162442d992bdc4ee6eba1f2c5a707: stop 1492 tok 2.48s
+[294/165] 0x8c7777c45481dba411450c228cb692ac3d550344: stop 1219 tok 1.55s
+[295/165] 0x8fd1e427396ddb511533cf9abdbebd0a7e08da35: stop 1855 tok 2.79s
+[296/165] 0x89c1b3807d4c67df034fffb62f3509561218d30b: stop 3060 tok 3.31s
+[297/165] 0x93c32845fae42c83a70e5f06214c8433665c2ab5: stop 1548 tok 2.33s
+[298/165] 0x96edbe868531bd23a6c05e9d0c424ea64fb1b78b: stop 1535 tok 2.29s
+[299/165] 0x941d225236464a25eb18076df7da6a91d0f95e9e: stop 1525 tok 2.44s
+[300/165] 0x9d06cbafa865037a01d322d3f4222fa3e04e5488: stop 2400 tok 4.13s
+[301/165] 0xa1fceeff3acc57d257b917e30c4df661401d6431: stop 1277 tok 2.17s
+[302/165] 0x958a8f594101d2c0485a52319f29b2647f2ebc06: stop 1939 tok 2.48s
+[303/165] 0xaae1f51cf3339f18b6d3f3bdc75a5facd744b0b8: stop 1733 tok 2.65s
+[304/165] 0xb0510d68f210b7db66e8c7c814f22680f2b8d1d6: stop 1970 tok 2.52s
+[305/165] 0xa46edd6a9a93feec36576ee5048146870ea2c3ae: stop 1273 tok 2.23s
+[306/165] 0xb11b2fed6c9354f7aa2f658d3b4d7b31d8a13b77: stop 1659 tok 2.92s
+[307/165] 0xb5e1b1ee15c6fa0e48fce100125569d430f1bd12: stop 1442 tok 2.24s
+[308/165] 0xb37f18af15bafb869a065b61fc83cfc44ed9cc27: stop 1263 tok 2.01s
+[309/165] 0xb7c5c5aa4d42967efe906e1b66cb8df9cebf04f7: stop 1133 tok 1.94s
+[310/165] 0xb93430ce38ac4a6bb47fb1fc085ea669353fd89e: stop 1846 tok 3.02s
+[311/165] 0xb620cee6b52f96f3c6b253e6eea556aa2d214a99: stop 2270 tok 4.74s
+[312/165] 0xbaf51e761510c1a11bf48dd87c0307ac8a8c8a4f: stop 1396 tok 2.24s
+[313/165] 0xbaa3de6504690efb064420d89e871c27065cdd52: stop 2404 tok 4.4s
+[314/165] 0xbe4041d55db380c5ae9d4a9b9703f1ed4e7e3888: stop 1660 tok 3.29s
+[315/165] 0xcead721ef5b11f1a7b530171aab69b16c5e66b6e: stop 1447 tok 2.23s
+[316/165] 0xbebbfe5b549f5db6e6c78ca97cac19d1fb03082c: stop 2539 tok 4.67s
+[317/165] 0xd2018bfaa266a9ec0a1a84b061640faa009def76: stop 1445 tok 2.89s
+[318/165] 0xf2570186500a46986f3139f65afedc2afe4f445d: stop 1446 tok 2.57s
+[319/165] 0xf015c35649c82f5467c9c74b7f28ee67665aad68: stop 1510 tok 2.8s
+[320/165] BankOfEther: stop 1297 tok 2.11s
+[321/165] 0xf70d589d76eebdd7c12cc5eec99f8f6fa4233b9e: stop 1485 tok 2.36s
+[322/165] CreditDepositBank_Attack: stop 2226 tok 3.75s
+[323/165] Axioms: stop 1966 tok 3.0s
+[324/165] DocumentSigner: stop 2580 tok 3.15s
+[325/165] BeaconProxy: stop 2059 tok 2.89s
+[326/165] ERC20Basic: stop 1978 tok 2.36s
+[327/165] Delegation: stop 939 tok 1.37s
+[328/165] ETHDropOpenAdd: stop 1845 tok 2.62s
+[329/165] ERC1967Proxy: stop 1798 tok 1.88s
+[330/165] EthRoulette: stop 1744 tok 4.87s
+[331/165] Etheramid_Attack: stop 2188 tok 3.08s
+[332/165] ERC223Token: stop 3245 tok 4.36s
+[333/165] HFConditionalTransfer: stop 1745 tok 2.89s
+[334/165] Ethmoon: stop 2059 tok 2.75s
+[335/165] ForTheBlockchain: stop 3528 tok 5.35s
+[336/165] HelpMeSave: stop 1675 tok 2.65s
+[337/165] Ownable: stop 2513 tok 3.21s
+[338/165] IManagedToken: stop 3185 tok 3.69s
+[339/165] MultiTokenNetwork: stop 3067 tok 3.83s
+[340/165] SuicideMultiTxFeasible: stop 706 tok 1.23s
+[341/165] ProofOfExistence: stop 3407 tok 6.42s
+[342/165] etherbank: stop 1055 tok 2.17s
+[343/165] QuarterMachine: stop 1899 tok 2.65s
+[344/165] lottopollo: stop 1399 tok 3.32s
+[345/165] mishandled: stop 888 tok 1.5s
+[346/165] SuicideMultiTxInfeasible: stop 647 tok 0.96s
+[347/165] owner_example: stop 1109 tok 1.64s
+[348/165] reentrancy_bonus: stop 1650 tok 2.74s
+[349/165] reentrancy_cross_function: stop 798 tok 1.21s
+[350/165] insecure_transfer: stop 711 tok 0.94s
+[351/165] storage_abuse: stop 1348 tok 2.33s
+[352/165] storage_example: stop 1523 tok 3.2s
+[353/165] multi_delegatecall: stop 1692 tok 3.55s
+[354/165] vulnerableBlockHashGame: stop 1441 tok 2.7s
+[355/165] reentrancy_insecure: stop 733 tok 1.43s
+[356/165] wallet_sucide: stop 3353 tok 5.01s
+[357/165] theRun: stop 2747 tok 3.67s
+[358/165] wallet_delegatecall: stop 3725 tok 5.38s
+358/165 contracts have an LLM reply -> datasets\tool_results\llm_ba_med.json
+269 done, 96 to go
+      daily limit on groq key 2, switching to groq key 11
+      daily limit on groq key 5, switching to groq key 12
+[270/165] 0x0cbe050f75bc8f8c2d6c0d249fea125fd6e1acc9: stop 757 tok 7.71s
+[271/165] 0x2972d548497286d18e92b5fa1f8f9139e5653fd2: stop 897 tok 7.97s
+      daily limit on groq key 6, switching to groq key 13
+[272/165] 0x3e013fc32a54c4c5b6991ba539dcd0ec4355c859: stop 1118 tok 8.18s
+[273/165] 0x3a0e9acd953ffc0dd18d63603488846a6b8b2b01: stop 1567 tok 8.53s
+      daily limit on groq key 8, switching to nvidia key 14
+[274/165] 0x19cf8481ea15427a98ba3cdd6d9e14690011ab10: stop 2590 tok 8.6s
+[275/165] 0x01f8c4e3fa3edeb29e514cba738d87ce8c091d3f: stop 1467 tok 8.62s
+[276/165] 0x3f2ef511aa6e75231e4deafc7a3d2ecab3741de2: stop 1316 tok 8.71s
+0x52d2e0f9b01101a59b38a3d05c80b7618aeed984: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pkd)
+0x524960d55174d912768678d8c606b4d50b79d7b1: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kn7ym)
+0x4e73b32ed6c35f570686b89848e5f39f20ecc106: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk1)
+[277/165] 0x39cfd754c85023648bf003bea2dd498c5612abfa: stop 1674 tok 8.98s
+0x561eac93c92360949ab1f1403323e6db345cbf31: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk5)
+[278/165] 0x4051334adc52057aca763453820cb0e045076ef3: stop 1150 tok 1.43s
+0x5aa88d2901c68fda244f1d0584400368d2c8e739: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk0)
+[279/165] 0x4a66ad0bca2d700f11e1f2fc2c106f7d3264504c: stop 1146 tok 1.22s
+0x610495793564aed0f9c7fc48dc4c7c9151d34fd6: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pka)
+[280/165] 0x23a91059fdc9579a9fbd0edc5f2ea0bfdb70deb4: stop 1205 tok 2.53s
+[281/165] 0x07f7ecb66d788ab01dc93b9b71a88401de7d0f2e: stop 2096 tok 2.77s
+      nvidia does not serve openai/gpt-oss-120b any more; skipping it
+0x4b71ad9c1a84b9b643aa54fdd66e2dec96e8b152: stopping worker (DailyLimitReached: nvidia: model unavailable, no other keys left)
+[282/165] 0x4320e6f8c05b27ab4707cd1f6d5ce6f3e4b3a5a1: stop 1525 tok 3.01s
+[283/165] 0x627fa62ccbb1c1b04ffaecd72a53e37fc0e17839: stop 1772 tok 1.95s
+[284/165] 0x70f9eddb3931491aab1aeafbc1e7f1ca2a012db4: stop 1313 tok 1.34s
+[285/165] 0x7541b76cb60f4c60af330c208b0623b7f54bf615: stop 1321 tok 1.11s
+[286/165] 0x663e4229142a27f00bafb5d087e1e730648314c3: stop 2339 tok 1.12s
+[287/165] 0x7a8721a9d64c74da899424c1b52acbf58ddc9782: stop 1372 tok 1.39s
+[288/165] 0x78c2a1e91b52bca4130b6ed9edd9fbcfd4671c37: stop 1322 tok 1.5s
+[289/165] 0x7a4349a749e59a5736efb7826ee3496a2dfd5489: stop 1210 tok 1.43s
+[290/165] 0x7d09edb07d23acb532a82be3da5c17d9d85806b4: stop 2142 tok 2.16s
+[291/165] 0x806a6bd219f162442d992bdc4ee6eba1f2c5a707: stop 1159 tok 1.49s
+[292/165] 0x7b368c4e805c3870b6c49a3f1f49f69af8662cf3: stop 1296 tok 1.48s
+[293/165] 0x84d9ec85c9c568eb332b7226a8f826d897e0a4a8: stop 1200 tok 1.17s
+[294/165] 0x8c7777c45481dba411450c228cb692ac3d550344: stop 1272 tok 1.34s
+[295/165] 0x93c32845fae42c83a70e5f06214c8433665c2ab5: stop 1350 tok 1.37s
+[296/165] 0x8fd1e427396ddb511533cf9abdbebd0a7e08da35: stop 1593 tok 1.7s
+[297/165] 0x89c1b3807d4c67df034fffb62f3509561218d30b: stop 2720 tok 4.65s
+[298/165] 0x941d225236464a25eb18076df7da6a91d0f95e9e: stop 1330 tok 1.39s
+[299/165] 0x96edbe868531bd23a6c05e9d0c424ea64fb1b78b: stop 1665 tok 2.16s
+[300/165] 0x958a8f594101d2c0485a52319f29b2647f2ebc06: stop 1681 tok 1.56s
+[301/165] 0x9d06cbafa865037a01d322d3f4222fa3e04e5488: stop 1470 tok 2.77s
+[302/165] 0xa46edd6a9a93feec36576ee5048146870ea2c3ae: stop 1082 tok 1.22s
+[303/165] 0xa1fceeff3acc57d257b917e30c4df661401d6431: stop 1065 tok 1.19s
+[304/165] 0xaae1f51cf3339f18b6d3f3bdc75a5facd744b0b8: stop 1424 tok 1.88s
+[305/165] 0xb11b2fed6c9354f7aa2f658d3b4d7b31d8a13b77: stop 1482 tok 1.9s
+[306/165] 0xb37f18af15bafb869a065b61fc83cfc44ed9cc27: stop 1139 tok 1.41s
+[307/165] 0xb5e1b1ee15c6fa0e48fce100125569d430f1bd12: stop 1292 tok 1.47s
+[308/165] 0xb0510d68f210b7db66e8c7c814f22680f2b8d1d6: stop 1738 tok 1.53s
+[309/165] 0xb93430ce38ac4a6bb47fb1fc085ea669353fd89e: stop 1271 tok 1.11s
+[310/165] 0xb7c5c5aa4d42967efe906e1b66cb8df9cebf04f7: stop 996 tok 1.3s
+[311/165] 0xb620cee6b52f96f3c6b253e6eea556aa2d214a99: stop 1936 tok 1.78s
+[312/165] 0xbaf51e761510c1a11bf48dd87c0307ac8a8c8a4f: stop 1273 tok 2.47s
+[313/165] 0xbe4041d55db380c5ae9d4a9b9703f1ed4e7e3888: stop 1584 tok 1.72s
+[314/165] 0xbebbfe5b549f5db6e6c78ca97cac19d1fb03082c: stop 1342 tok 1.81s
+[315/165] 0xbaa3de6504690efb064420d89e871c27065cdd52: stop 1421 tok 2.06s
+[316/165] 0xf015c35649c82f5467c9c74b7f28ee67665aad68: stop 1327 tok 1.25s
+[317/165] 0xf2570186500a46986f3139f65afedc2afe4f445d: stop 1007 tok 1.16s
+[318/165] 0xcead721ef5b11f1a7b530171aab69b16c5e66b6e: stop 1378 tok 1.36s
+[319/165] 0xd2018bfaa266a9ec0a1a84b061640faa009def76: stop 1287 tok 1.26s
+[320/165] BankOfEther: stop 1023 tok 1.17s
+[321/165] Axioms: stop 1653 tok 2.35s
+[322/165] 0xf70d589d76eebdd7c12cc5eec99f8f6fa4233b9e: stop 1370 tok 1.5s
+[323/165] Delegation: stop 1000 tok 1.09s
+[324/165] CreditDepositBank_Attack: stop 1819 tok 1.86s
+[325/165] BeaconProxy: stop 1901 tok 1.08s
+[326/165] ERC20Basic: stop 1628 tok 1.07s
+[327/165] ERC1967Proxy: stop 1701 tok 1.38s
+[328/165] DocumentSigner: stop 1817 tok 1.26s
+[329/165] EthRoulette: stop 1214 tok 1.37s
+[330/165] ETHDropOpenAdd: stop 1709 tok 1.26s
+[331/165] ERC223Token: stop 2600 tok 1.31s
+[332/165] Ethmoon: stop 1793 tok 1.84s
+[333/165] Etheramid_Attack: stop 1695 tok 1.72s
+[334/165] HelpMeSave: stop 1563 tok 1.99s
+[335/165] HFConditionalTransfer: stop 1092 tok 0.76s
+[336/165] ForTheBlockchain: stop 2529 tok 1.28s
+[337/165] MultiTokenNetwork: stop 2217 tok 3.65s
+[338/165] IManagedToken: stop 2535 tok 1.66s
+[339/165] QuarterMachine: stop 1375 tok 1.01s
+[340/165] Ownable: stop 2063 tok 3.46s
+[341/165] SuicideMultiTxInfeasible: stop 986 tok 0.93s
+[342/165] etherbank: stop 961 tok 1.06s
+[343/165] SuicideMultiTxFeasible: stop 890 tok 1.32s
+[344/165] ProofOfExistence: stop 2849 tok 2.91s
+[345/165] mishandled: stop 1007 tok 1.22s
+[346/165] lottopollo: stop 1200 tok 2.31s
+[347/165] owner_example: stop 950 tok 1.16s
+[348/165] reentrancy_bonus: stop 1083 tok 1.24s
+[349/165] insecure_transfer: stop 840 tok 0.78s
+[350/165] reentrancy_insecure: stop 817 tok 0.84s
+[351/165] storage_abuse: stop 1080 tok 1.85s
+[352/165] storage_example: stop 1282 tok 1.69s
+[353/165] multi_delegatecall: stop 1128 tok 1.02s
+[354/165] vulnerableBlockHashGame: stop 974 tok 0.96s
+[355/165] reentrancy_cross_function: stop 911 tok 1.05s
+[356/165] wallet_sucide: stop 2884 tok 1.85s
+[357/165] theRun: stop 2278 tok 2.46s
+[358/165] wallet_delegatecall: stop 2741 tok 1.4s
+358/165 contracts have an LLM reply -> datasets\tool_results\llm_ba_dasp.json
+[finish_pipeline] A (TA as tools + PPO): data incomplete, not done | B (real-only PPO): data incomplete, not done
+===== 24-11-2026 17:36:42.66 ===== 
+TA mode: 178/269 contracts complete; ~19,874 tokens per contract; ~1.81M tokens to go
+[179/269] sf_timestamp_dependence_11: 22,412 tokens
+[180/269] sf_reentrancy_48: 26,380 tokens
+[181/269] sf_timestamp_dependence_13: 22,532 tokens
+      daily limit on groq key 6, switching to groq key 11
+      daily limit on groq key 5, switching to groq key 12
+[182/269] sf_timestamp_dependence_12: 24,361 tokens
+[183/269] sf_timestamp_dependence_17: 24,151 tokens
+      daily limit on groq key 1, switching to groq key 13
+[184/269] sf_timestamp_dependence_15: 22,645 tokens
+      daily limit on groq key 10, switching to nvidia key 14
+sf_timestamp_dependence_18: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pka)
+sf_timestamp_dependence_24: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk7)
+      nvidia does not serve openai/gpt-oss-120b any more; skipping it
+sf_timestamp_dependence_19: stopping worker (DailyLimitReached: nvidia: model unavailable, no other keys left)
+sf_timestamp_dependence_16: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk5)
+sf_timestamp_dependence_22: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk1)
+sf_timestamp_dependence_20: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01knpjq)
+sf_timestamp_dependence_23: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk0)
+[185/269] sf_timestamp_dependence_14: 22,974 tokens
+[186/269] sf_timestamp_dependence_21: 22,970 tokens
+[187/269] sf_timestamp_dependence_25: 25,041 tokens
+[188/269] sf_timestamp_dependence_26: 21,139 tokens
+[189/269] sf_timestamp_dependence_27: 22,704 tokens
+[190/269] sf_timestamp_dependence_28: 23,174 tokens
+[191/269] sf_timestamp_dependence_29: 24,984 tokens
+[192/269] sf_timestamp_dependence_30: 21,836 tokens
+[193/269] sf_timestamp_dependence_31: 22,017 tokens
+[194/269] sf_timestamp_dependence_32: 23,268 tokens
+[195/269] sf_timestamp_dependence_33: 23,839 tokens
+[196/269] sf_timestamp_dependence_34: 23,373 tokens
+[197/269] sf_timestamp_dependence_35: 22,767 tokens
+[198/269] sf_timestamp_dependence_36: 24,077 tokens
+[199/269] sf_timestamp_dependence_37: 23,529 tokens
+[200/269] sf_timestamp_dependence_39: 15,894 tokens
+[201/269] sf_timestamp_dependence_38: 22,391 tokens
+[202/269] sf_timestamp_dependence_40: 22,963 tokens
+[203/269] sf_timestamp_dependence_41: 21,087 tokens
+[204/269] sf_timestamp_dependence_42: 24,011 tokens
+[205/269] sf_timestamp_dependence_43: 23,229 tokens
+[206/269] sf_timestamp_dependence_44: 23,479 tokens
+[207/269] sf_timestamp_dependence_45: 23,922 tokens
+[208/269] sf_timestamp_dependence_46: 21,243 tokens
+[209/269] sf_timestamp_dependence_47: 22,097 tokens
+[210/269] sf_timestamp_dependence_48: 22,738 tokens
+[211/269] sf_timestamp_dependence_49: 16,406 tokens
+===== 25-11-2026 11:06:48.74 ===== 
+TA mode: 211/269 contracts complete; ~20,318 tokens per contract; ~1.18M tokens to go
+      nvidia does not serve openai/gpt-oss-120b any more; skipping it
+sf_unchecked_low_level_calls_6: stopping worker (DailyLimitReached: nvidia: model unavailable, no other keys left)
+[212/269] sf_timestamp_dependence_16: 23,228 tokens
+[213/269] sf_timestamp_dependence_19: 21,839 tokens
+[214/269] sf_timestamp_dependence_50: 24,453 tokens
+[215/269] sf_timestamp_dependence_18: 23,007 tokens
+[216/269] sf_unchecked_low_level_calls_1: 23,994 tokens
+[217/269] sf_timestamp_dependence_20: 21,553 tokens
+[218/269] sf_unchecked_low_level_calls_2: 25,981 tokens
+[219/269] sf_timestamp_dependence_23: 21,513 tokens
+[220/269] sf_timestamp_dependence_22: 23,895 tokens
+[221/269] sf_timestamp_dependence_24: 21,295 tokens
+[222/269] sf_unchecked_low_level_calls_5: 25,827 tokens
+[223/269] sf_unchecked_low_level_calls_3: 27,611 tokens
+[224/269] sf_unchecked_low_level_calls_4: 28,649 tokens
+[225/269] sf_unchecked_low_level_calls_7: 25,274 tokens
+[226/269] sf_unchecked_low_level_calls_10: 21,520 tokens
+[227/269] sf_unchecked_low_level_calls_8: 28,338 tokens
+[228/269] sf_unchecked_low_level_calls_9: 30,190 tokens
+[229/269] sf_unchecked_low_level_calls_11: 30,420 tokens
+[230/269] sf_unchecked_low_level_calls_12: 25,906 tokens
+[231/269] sf_unchecked_low_level_calls_13: 26,613 tokens
+[232/269] sf_unchecked_low_level_calls_14: 25,686 tokens
+sf_unchecked_low_level_calls_19: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01knmtd)
+[233/269] sf_unchecked_low_level_calls_15: 28,610 tokens
+sf_unchecked_low_level_calls_18: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m86gq)
+[234/269] sf_unchecked_low_level_calls_16: 30,231 tokens
+[235/269] sf_unchecked_low_level_calls_17: 32,294 tokens
+[236/269] sf_unchecked_low_level_calls_20: 25,697 tokens
+[237/269] sf_unchecked_low_level_calls_21: 28,759 tokens
+[238/269] sf_unchecked_low_level_calls_23: 23,794 tokens
+[239/269] sf_unchecked_low_level_calls_22: 27,038 tokens
+sf_unchecked_low_level_calls_30: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m86gw)
+[240/269] sf_unchecked_low_level_calls_24: 22,359 tokens
+[241/269] sf_unchecked_low_level_calls_25: 27,556 tokens
+[242/269] sf_unchecked_low_level_calls_26: 29,005 tokens
+[243/269] sf_unchecked_low_level_calls_27: 27,153 tokens
+[244/269] sf_unchecked_low_level_calls_28: 25,421 tokens
+[245/269] sf_unchecked_low_level_calls_29: 24,850 tokens
+sf_unchecked_low_level_calls_38: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk4)
+[246/269] sf_unchecked_low_level_calls_31: 26,532 tokens
+[247/269] sf_unchecked_low_level_calls_32: 27,953 tokens
+sf_unchecked_low_level_calls_39: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk4)
+[248/269] sf_unchecked_low_level_calls_34: 26,512 tokens
+[249/269] sf_unchecked_low_level_calls_33: 30,446 tokens
+[250/269] sf_unchecked_low_level_calls_35: 25,250 tokens
+[251/269] sf_unchecked_low_level_calls_36: 26,378 tokens
+[252/269] sf_unchecked_low_level_calls_37: 26,149 tokens
+[253/269] sf_unchecked_low_level_calls_40: 26,051 tokens
+[254/269] sf_unchecked_low_level_calls_41: 26,481 tokens
+[255/269] sf_unchecked_low_level_calls_42: 26,324 tokens
+[256/269] sf_unchecked_low_level_calls_44: 25,134 tokens
+[257/269] sf_unchecked_low_level_calls_43: 27,813 tokens
+[258/269] sf_unchecked_low_level_calls_45: 27,563 tokens
+[259/269] sf_unchecked_low_level_calls_46: 25,174 tokens
+[260/269] sf_unchecked_low_level_calls_47: 25,307 tokens
+[261/269] sf_unchecked_low_level_calls_48: 25,952 tokens
+[262/269] sf_unchecked_low_level_calls_49: 19,524 tokens
+[263/269] sf_unchecked_low_level_calls_50: 24,555 tokens
+TA mode: 263/269 contracts complete -> datasets\tool_results\llm_ta.json
+[score_ta] TA mode still missing for 6/269 contracts; nothing to score yet.
+358 done, 7 to go
+[359/165] 0x4320e6f8c05b27ab4707cd1f6d5ce6f3e4b3a5a1: stop 1067 tok 5.02s
+[360/165] 0xb5e1b1ee15c6fa0e48fce100125569d430f1bd12: stop 950 tok 4.98s
+[361/165] 0x958a8f594101d2c0485a52319f29b2647f2ebc06: stop 1304 tok 5.06s
+[362/165] 0x941d225236464a25eb18076df7da6a91d0f95e9e: stop 1089 tok 5.15s
+[363/165] 0x78c2a1e91b52bca4130b6ed9edd9fbcfd4671c37: stop 1113 tok 5.29s
+[364/165] 0x70f9eddb3931491aab1aeafbc1e7f1ca2a012db4: stop 1077 tok 5.33s
+[365/165] 0x4e73b32ed6c35f570686b89848e5f39f20ecc106: stop 1316 tok 5.65s
+365/165 contracts have an LLM reply -> datasets\tool_results\llm_ba.json
+358 done, 7 to go
+      daily limit on groq key 5, switching to groq key 8
+[359/165] 0x610495793564aed0f9c7fc48dc4c7c9151d34fd6: stop 1058 tok 8.02s
+[360/165] 0x524960d55174d912768678d8c606b4d50b79d7b1: stop 1270 tok 8.63s
+[361/165] 0x52d2e0f9b01101a59b38a3d05c80b7618aeed984: stop 1466 tok 8.76s
+[362/165] 0x4b71ad9c1a84b9b643aa54fdd66e2dec96e8b152: stop 1354 tok 8.99s
+[363/165] 0x4e73b32ed6c35f570686b89848e5f39f20ecc106: stop 1927 tok 9.7s
+[364/165] 0x561eac93c92360949ab1f1403323e6db345cbf31: stop 1654 tok 3.19s
+[365/165] 0x627fa62ccbb1c1b04ffaecd72a53e37fc0e17839: stop 2076 tok 9.8s
+365/165 contracts have an LLM reply -> datasets\tool_results\llm_ba_med.json
+358 done, 7 to go
+      daily limit on groq key 6, switching to groq key 8
+      daily limit on groq key 5, switching to groq key 9
+[359/165] 0x524960d55174d912768678d8c606b4d50b79d7b1: stop 924 tok 5.95s
+[360/165] 0x610495793564aed0f9c7fc48dc4c7c9151d34fd6: stop 1085 tok 6.16s
+[361/165] 0x52d2e0f9b01101a59b38a3d05c80b7618aeed984: stop 1138 tok 6.43s
+[362/165] 0x4e73b32ed6c35f570686b89848e5f39f20ecc106: stop 1415 tok 6.54s
+[363/165] 0x4b71ad9c1a84b9b643aa54fdd66e2dec96e8b152: stop 1183 tok 6.63s
+[364/165] 0x5aa88d2901c68fda244f1d0584400368d2c8e739: stop 1122 tok 2.47s
+[365/165] 0x561eac93c92360949ab1f1403323e6db345cbf31: stop 1429 tok 2.61s
+365/165 contracts have an LLM reply -> datasets\tool_results\llm_ba_dasp.json
+[finish_pipeline] A (TA as tools + PPO): data incomplete, not done | B (real-only PPO): data complete, not done
+[finish_pipeline] $ rl_tools/build_real_dataset.py --src datasets/smartbugs_meta
+excluded 14 SolidiFI-injected contracts found in tasks/: ['AZT', 'AsseteGram', 'BitCash', 'CareerOnToken', 'DocumentSinger', 'HotDollarsToken', 'MD', 'ProofofExistence', 'TAMC', 'TAMContract', 'TTC', 'bug_1', 'bug_2', 'bug_3']
+Slither not available. Using regex-based analysis only.
+Wrote 165 real contracts x 4 tools -> datasets\tool_results\real_tools.json
+[finish_pipeline] $ rl_tools/run.py --data datasets/tool_results/real_tools.json --steps 40000
+165 contracts x 4 tools; lams [0.0, 0.01, 0.02, 0.05]; 5-fold x 3 repeats; 40,000 PPO steps per fold
+  lam=0     rep 0 fold 0: best-fixed=['llm_ba', 'llm_ba_med', 'llm_ba_dasp']  (86s)
+  lam=0     rep 0 fold 1: best-fixed=['llm_ba', 'llm_ba_med', 'llm_ba_dasp']  (197s)
+  lam=0     rep 0 fold 2: best-fixed=['llm_ba', 'llm_ba_med', 'llm_ba_dasp']  (306s)
+  lam=0     rep 0 fold 3: best-fixed=['llm_ba', 'llm_ba_med', 'llm_ba_dasp']  (436s)
+  lam=0     rep 0 fold 4: best-fixed=['llm_ba', 'llm_ba_med', 'llm_ba_dasp']  (571s)
+  lam=0.01  rep 0 fold 0: best-fixed=['llm_ba', 'llm_ba_med', 'llm_ba_dasp']  (683s)
+  lam=0.01  rep 0 fold 1: best-fixed=['llm_ba', 'llm_ba_med', 'llm_ba_dasp']  (827s)
+  lam=0.01  rep 0 fold 2: best-fixed=['llm_ba', 'llm_ba_med', 'llm_ba_dasp']  (959s)
+  lam=0.01  rep 0 fold 3: best-fixed=['llm_ba', 'llm_ba_med', 'llm_ba_dasp']  (1061s)
+  lam=0.01  rep 0 fold 4: best-fixed=['llm_ba', 'llm_ba_med', 'llm_ba_dasp']  (1181s)
+  lam=0.02  rep 0 fold 0: best-fixed=['llm_ba', 'llm_ba_med', 'llm_ba_dasp']  (1359s)
+  lam=0.02  rep 0 fold 1: best-fixed=['llm_ba', 'llm_ba_med', 'llm_ba_dasp']  (1554s)
+  lam=0.02  rep 0 fold 2: best-fixed=['llm_ba', 'llm_ba_med', 'llm_ba_dasp']  (1746s)
+  lam=0.02  rep 0 fold 3: best-fixed=['llm_ba', 'llm_ba_med', 'llm_ba_dasp']  (1926s)
+  lam=0.02  rep 0 fold 4: best-fixed=['llm_ba', 'llm_ba_med', 'llm_ba_dasp']  (2122s)
+  lam=0.02  rep 1 fold 0: best-fixed=['llm_ba', 'llm_ba_med', 'llm_ba_dasp']  (2318s)
+  lam=0.02  rep 1 fold 1: best-fixed=['llm_ba', 'llm_ba_med', 'llm_ba_dasp']  (2567s)
+  lam=0.02  rep 1 fold 2: best-fixed=['llm_ba', 'llm_ba_med', 'llm_ba_dasp']  (2840s)
+  lam=0.02  rep 1 fold 3: best-fixed=['llm_ba', 'llm_ba_med', 'llm_ba_dasp']  (3089s)
+  lam=0.02  rep 1 fold 4: best-fixed=['llm_ba', 'llm_ba_dasp']  (3294s)
+  lam=0.02  rep 2 fold 0: best-fixed=['llm_ba', 'llm_ba_med', 'llm_ba_dasp']  (3455s)
+  lam=0.02  rep 2 fold 1: best-fixed=['llm_ba', 'llm_ba_med', 'llm_ba_dasp']  (3620s)
+  lam=0.02  rep 2 fold 2: best-fixed=['llm_ba', 'llm_ba_med', 'llm_ba_dasp']  (3776s)
+  lam=0.02  rep 2 fold 3: best-fixed=['llm_ba', 'llm_ba_med', 'llm_ba_dasp']  (3936s)
+  lam=0.02  rep 2 fold 4: best-fixed=['llm_ba', 'llm_ba_med', 'llm_ba_dasp']  (4093s)
+  lam=0.05  rep 0 fold 0: best-fixed=['llm_ba', 'llm_ba_med', 'llm_ba_dasp']  (4174s)
+  lam=0.05  rep 0 fold 1: best-fixed=['llm_ba', 'llm_ba_med', 'llm_ba_dasp']  (4257s)
+  lam=0.05  rep 0 fold 2: best-fixed=['llm_ba', 'llm_ba_med', 'llm_ba_dasp']  (4340s)
+  lam=0.05  rep 0 fold 3: best-fixed=['llm_ba', 'llm_ba_med', 'llm_ba_dasp']  (4419s)
+  lam=0.05  rep 0 fold 4: best-fixed=['llm_ba', 'llm_ba_med', 'llm_ba_dasp']  (4498s)
+# Tool-selection RL on real static-analysis results
+
+- Data: `datasets\tool_results\real_tools.json` — real outputs of 4 tools on 165 labelled contracts (paper_labeled: 78, smartbugs_curated: 87); sources: SmartBugs curated contracts in tasks/ (labels); Slither run locally; LLM via Groq.
+- PPO sees 4 compact contract features + tools run so far + categories they found.
+- Utility = score − λ·cost, cost = min per contract (`--cost minutes`); λ = 0.02 at the main setting.
+- 5-fold stratified cross-validation × 3 repeats; every contract is scored by policies that never saw it. 95% bootstrap CIs over contracts.
+
+## Main result (λ = 0.02)
+
+| Method | Utility [95% CI] | Score [95% CI] | Precision | Recall | Cost (min) | LLM tokens | Tools run |
+|---|---|---|---|---|---|---|---|
+| PPO | 0.675 [0.626, 0.719] | 0.676 [0.628, 0.721] | 0.454 | 0.824 | 0.09 | 1,619 | 1.46 |
+| PPO-static | 0.667 [0.622, 0.710] | 0.670 [0.624, 0.712] | 0.420 | 0.836 | 0.11 | 2,654 | 1.95 |
+| best-fixed | 0.695 [0.653, 0.734] | 0.698 [0.656, 0.737] | 0.411 | 0.889 | 0.15 | 3,978 | 2.93 |
+| greedy-cheapest | 0.695 [0.653, 0.734] | 0.698 [0.656, 0.737] | 0.411 | 0.889 | 0.15 | 3,978 | 2.93 |
+| all tools | 0.680 [0.641, 0.717] | 0.686 [0.646, 0.722] | 0.359 | 0.903 | 0.27 | 4,075 | 4.00 |
+| random | 0.663 [0.623, 0.701] | 0.667 [0.626, 0.704] | 0.397 | 0.846 | 0.16 | 2,494 | 2.41 |
+| slither | 0.479 [0.417, 0.538] | 0.481 [0.420, 0.540] | 0.294 | 0.606 | 0.11 | 0 | 1.00 |
+| llm_ba | 0.661 [0.603, 0.715] | 0.663 [0.604, 0.716] | 0.484 | 0.782 | 0.06 | 1,095 | 1.00 |
+| llm_ba_med | 0.669 [0.615, 0.719] | 0.670 [0.617, 0.720] | 0.458 | 0.812 | 0.06 | 1,608 | 1.00 |
+| llm_ba_dasp | 0.646 [0.588, 0.701] | 0.647 [0.589, 0.701] | 0.453 | 0.776 | 0.04 | 1,373 | 1.00 |
+| oracle | 0.787 [0.742, 0.829] | 0.788 [0.743, 0.829] | 0.616 | 0.903 | 0.05 | 933 | 0.90 |
+
+## By source (λ = 0.02): score [95% CI], cost (min)
+
+| Method | paper_labeled (n=78) | smartbugs_curated (n=87) |
+|---|---|---|
+| PPO | 0.628 [0.549, 0.705], 0.07 | 0.719 [0.666, 0.770], 0.10 |
+| PPO-static | 0.631 [0.553, 0.707], 0.08 | 0.705 [0.656, 0.750], 0.14 |
+| best-fixed | 0.668 [0.597, 0.734], 0.11 | 0.725 [0.679, 0.768], 0.20 |
+| greedy-cheapest | 0.668 [0.597, 0.734], 0.11 | 0.725 [0.679, 0.768], 0.20 |
+| all tools | 0.655 [0.587, 0.719], 0.22 | 0.713 [0.673, 0.751], 0.32 |
+| random | 0.642 [0.571, 0.708], 0.13 | 0.689 [0.645, 0.730], 0.18 |
+| slither | 0.367 [0.277, 0.460], 0.11 | 0.584 [0.510, 0.656], 0.12 |
+| llm_ba | 0.643 [0.552, 0.731], 0.03 | 0.680 [0.611, 0.747], 0.08 |
+| llm_ba_med | 0.631 [0.545, 0.716], 0.05 | 0.705 [0.643, 0.764], 0.07 |
+| llm_ba_dasp | 0.604 [0.512, 0.693], 0.03 | 0.685 [0.616, 0.749], 0.05 |
+| oracle | 0.752 [0.674, 0.825], 0.03 | 0.821 [0.774, 0.863], 0.06 |
+
+PPO minus best-fixed (score) per source: paper_labeled -0.039 [-0.079, -0.005]; smartbugs_curated -0.006 [-0.042, +0.026]
+
+## Paired bootstrap: PPO minus method
+
+| Method | ΔUtility [95% CI] | p | ΔScore [95% CI] | p |
+|---|---|---|---|---|
+| PPO-static | +0.007 [-0.016, +0.028] | 0.248 | +0.007 [-0.016, +0.027] | 0.260 |
+| best-fixed | -0.020 [-0.047, +0.004] | 0.946 | -0.022 [-0.048, +0.003] | 0.958 |
+| greedy-cheapest | -0.020 [-0.047, +0.004] | 0.946 | -0.022 [-0.048, +0.003] | 0.958 |
+| all tools | -0.006 [-0.033, +0.020] | 0.663 | -0.009 [-0.037, +0.016] | 0.759 |
+| random | +0.011 [-0.014, +0.035] | 0.190 | +0.010 [-0.015, +0.034] | 0.220 |
+| slither | +0.195 [+0.134, +0.261] | 0.000 | +0.195 [+0.134, +0.260] | 0.000 |
+| llm_ba | +0.013 [-0.015, +0.043] | 0.191 | +0.014 [-0.014, +0.044] | 0.180 |
+| llm_ba_med | +0.005 [-0.028, +0.040] | 0.375 | +0.006 [-0.027, +0.040] | 0.363 |
+| llm_ba_dasp | +0.029 [-0.011, +0.069] | 0.074 | +0.030 [-0.010, +0.070] | 0.068 |
+| oracle | -0.113 [-0.141, -0.087] | 1.000 | -0.112 [-0.141, -0.086] | 1.000 |
+
+p = one-sided bootstrap probability that PPO is not better (small = PPO better).
+
+## Tools PPO runs (% of contracts)
+
+| slither | llm_ba | llm_ba_med | llm_ba_dasp |
+|---|---|---|---|
+| 19.4 | 69.3 | 27.3 | 30.3 |
+
+## λ sweep
+
+| λ | PPO utility | PPO score | PPO cost | best-fixed utility | best-fixed score | best-fixed cost | oracle utility |
+|---|---|---|---|---|---|---|---|
+| 0 | 0.689 | 0.689 | 0.09 | 0.704 | 0.704 | 0.16 | 0.788 |
+| 0.01 | 0.691 | 0.691 | 0.07 | 0.702 | 0.704 | 0.16 | 0.788 |
+| 0.02 | 0.675 | 0.676 | 0.09 | 0.695 | 0.698 | 0.15 | 0.787 |
+| 0.05 | 0.677 | 0.681 | 0.09 | 0.696 | 0.704 | 0.16 | 0.786 |
+
+Saved => verify\results\tools\20261125-130548  (75.1 min)
+===== 25-11-2026 13:36:42.77 ===== 
+TA mode: 263/269 contracts complete; ~21,429 tokens per contract; ~0.13M tokens to go
+[264/269] sf_unchecked_low_level_calls_18: 26,708 tokens
+[265/269] sf_unchecked_low_level_calls_19: 26,225 tokens
+      daily limit on groq key 6, switching to groq key 7
+      daily limit on groq key 5, switching to groq key 8
+[266/269] sf_unchecked_low_level_calls_39: 22,037 tokens
+[267/269] sf_unchecked_low_level_calls_30: 24,590 tokens
+[268/269] sf_unchecked_low_level_calls_38: 30,460 tokens
+[269/269] sf_unchecked_low_level_calls_6: 25,315 tokens
+TA mode: 269/269 contracts complete -> datasets\tool_results\llm_ta.json
+[score_ta] TA mode still missing for 96/165 contracts; nothing to score yet.
+365 done, 0 to go
+365/165 contracts have an LLM reply -> datasets\tool_results\llm_ba.json
+365 done, 0 to go
+365/165 contracts have an LLM reply -> datasets\tool_results\llm_ba_med.json
+365 done, 0 to go
+365/165 contracts have an LLM reply -> datasets\tool_results\llm_ba_dasp.json
+[finish_pipeline] A (TA as tools + PPO): data complete, not done | B (real-only PPO): data complete, done
+[finish_pipeline] $ rl_tools/run.py --data datasets/tool_results/combined_ta_tools.json --cost both --steps 40000
+269 contracts x 9 tools; lams [0.0, 0.01, 0.02, 0.05]; 5-fold x 3 repeats; 40,000 PPO steps per fold
+  lam=0     rep 0 fold 0: best-fixed=['llm_ba_med']  (113s)
+  lam=0     rep 0 fold 1: best-fixed=['llm_ba', 'llm_ba_dasp']  (219s)
+  lam=0     rep 0 fold 2: best-fixed=['llm_ba_med']  (323s)
+  lam=0     rep 0 fold 3: best-fixed=['llm_ba_med']  (426s)
+  lam=0     rep 0 fold 4: best-fixed=['llm_ba', 'llm_ba_dasp']  (529s)
+  lam=0.01  rep 0 fold 0: best-fixed=['llm_ba_med']  (638s)
+  lam=0.01  rep 0 fold 1: best-fixed=['llm_ba_med']  (742s)
+  lam=0.01  rep 0 fold 2: best-fixed=['llm_ba_med']  (844s)
+  lam=0.01  rep 0 fold 3: best-fixed=['llm_ba_med']  (948s)
+  lam=0.01  rep 0 fold 4: best-fixed=['llm_ba_med']  (1043s)
+  lam=0.02  rep 0 fold 0: best-fixed=['llm_ba_med']  (1254s)
+  lam=0.02  rep 0 fold 1: best-fixed=['smartcheck', 'llm_ba']  (1461s)
+  lam=0.02  rep 0 fold 2: best-fixed=['llm_ba_med']  (1640s)
+  lam=0.02  rep 0 fold 3: best-fixed=['llm_ba_med']  (1831s)
+  lam=0.02  rep 0 fold 4: best-fixed=['llm_ba_med']  (2034s)
+  lam=0.02  rep 1 fold 0: best-fixed=['llm_ba_med']  (2274s)
+  lam=0.02  rep 1 fold 1: best-fixed=['llm_ba_med']  (2457s)
+  lam=0.02  rep 1 fold 2: best-fixed=['smartcheck', 'llm_ba']  (2672s)
+  lam=0.02  rep 1 fold 3: best-fixed=['llm_ba_med']  (2884s)
+  lam=0.02  rep 1 fold 4: best-fixed=['llm_ba_med']  (3100s)
+  lam=0.02  rep 2 fold 0: best-fixed=['llm_ba_med']  (3296s)
+  lam=0.02  rep 2 fold 1: best-fixed=['llm_ba_med']  (3485s)
+  lam=0.02  rep 2 fold 2: best-fixed=['llm_ba_med']  (3676s)
+  lam=0.02  rep 2 fold 3: best-fixed=['llm_ba_med']  (3883s)
+  lam=0.02  rep 2 fold 4: best-fixed=['llm_ba_med']  (4075s)
+  lam=0.05  rep 0 fold 0: best-fixed=['mythril', 'slither', 'smartcheck']  (4172s)
+  lam=0.05  rep 0 fold 1: best-fixed=['mythril', 'slither', 'smartcheck']  (4270s)
+  lam=0.05  rep 0 fold 2: best-fixed=['mythril', 'slither', 'smartcheck']  (4367s)
+  lam=0.05  rep 0 fold 3: best-fixed=['mythril', 'slither', 'smartcheck']  (4469s)
+  lam=0.05  rep 0 fold 4: best-fixed=['mythril', 'slither', 'smartcheck']  (4560s)
+# Tool-selection RL on real static-analysis results
+
+- Data: `datasets\tool_results\combined_ta_tools.json` — real outputs of 9 tools on 269 labelled contracts (smartbugs: 69, solidifi: 200); sources: https://github.com/smartbugs/smartbugs-results (Apache-2.0), Durieux et al. ICSE 2020; https://github.com/smartbugs/SolidiFI-benchmark, Ghaleb & Pattabiraman ISSTA 2020.
+- PPO sees 4 compact contract features + tools run so far + categories they found.
+- Utility = score − λ·cost, cost = min + k tokens per contract (`--cost both`); λ = 0.02 at the main setting.
+- 5-fold stratified cross-validation × 3 repeats; every contract is scored by policies that never saw it. 95% bootstrap CIs over contracts.
+
+## Main result (λ = 0.02)
+
+| Method | Utility [95% CI] | Score [95% CI] | Precision | Recall | Cost (min + k tokens) | LLM tokens | Tools run |
+|---|---|---|---|---|---|---|---|
+| PPO | 0.762 [0.732, 0.790] | 0.777 [0.748, 0.805] | 0.566 | 0.918 | 0.79 | 696 | 1.25 |
+| PPO-static | 0.731 [0.701, 0.760] | 0.762 [0.732, 0.791] | 0.549 | 0.905 | 1.54 | 1,466 | 1.14 |
+| best-fixed | 0.690 [0.663, 0.716] | 0.746 [0.719, 0.773] | 0.478 | 0.926 | 2.81 | 2,719 | 1.13 |
+| greedy-cheapest | 0.669 [0.640, 0.697] | 0.715 [0.686, 0.743] | 0.457 | 0.887 | 2.30 | 2,201 | 1.60 |
+| all tools | -0.235 [-0.270, -0.200] | 0.681 [0.673, 0.690] | 0.209 | 0.996 | 45.84 | 44,404 | 9.00 |
+| random | 0.176 [0.141, 0.212] | 0.676 [0.662, 0.691] | 0.267 | 0.949 | 25.00 | 24,171 | 4.97 |
+| mythril | 0.418 [0.373, 0.466] | 0.427 [0.381, 0.473] | 0.230 | 0.558 | 0.41 | 0 | 1.00 |
+| oyente | 0.339 [0.292, 0.385] | 0.343 [0.297, 0.389] | 0.189 | 0.446 | 0.20 | 0 | 1.00 |
+| slither | 0.460 [0.416, 0.503] | 0.461 [0.417, 0.504] | 0.211 | 0.628 | 0.05 | 0 | 1.00 |
+| smartcheck | 0.611 [0.562, 0.658] | 0.613 [0.563, 0.660] | 0.467 | 0.710 | 0.09 | 0 | 1.00 |
+| llm_ba | 0.685 [0.647, 0.721] | 0.726 [0.688, 0.763] | 0.527 | 0.859 | 2.07 | 2,021 | 1.00 |
+| llm_ba_med | 0.700 [0.672, 0.726] | 0.758 [0.730, 0.785] | 0.496 | 0.933 | 2.91 | 2,827 | 1.00 |
+| llm_ba_dasp | 0.680 [0.643, 0.716] | 0.728 [0.691, 0.763] | 0.520 | 0.866 | 2.39 | 2,342 | 1.00 |
+| llm_ta1 | 0.363 [0.339, 0.385] | 0.681 [0.659, 0.700] | 0.279 | 0.948 | 15.90 | 15,686 | 1.00 |
+| llm_ta3 | 0.261 [0.233, 0.289] | 0.698 [0.674, 0.721] | 0.340 | 0.937 | 21.84 | 21,528 | 1.00 |
+| oracle | 0.898 [0.883, 0.912] | 0.919 [0.904, 0.933] | 0.803 | 0.996 | 1.07 | 986 | 1.00 |
+
+## By source (λ = 0.02): score [95% CI], cost (min + k tokens)
+
+| Method | smartbugs (n=69) | solidifi (n=200) |
+|---|---|---|
+| PPO | 0.650 [0.557, 0.739], 1.08 | 0.821 [0.802, 0.839], 0.69 |
+| PPO-static | 0.651 [0.558, 0.738], 1.15 | 0.801 [0.778, 0.822], 1.68 |
+| best-fixed | 0.653 [0.561, 0.743], 1.36 | 0.779 [0.763, 0.794], 3.30 |
+| greedy-cheapest | 0.655 [0.565, 0.740], 1.20 | 0.736 [0.712, 0.758], 2.68 |
+| all tools | 0.723 [0.691, 0.753], 28.30 | 0.667 [0.665, 0.669], 51.90 |
+| random | 0.676 [0.625, 0.725], 15.43 | 0.677 [0.667, 0.686], 28.31 |
+| mythril | 0.441 [0.336, 0.545], 1.21 | 0.421 [0.372, 0.472], 0.13 |
+| oyente | 0.261 [0.167, 0.359], 0.60 | 0.371 [0.321, 0.423], 0.06 |
+| slither | 0.240 [0.151, 0.334], 0.05 | 0.538 [0.495, 0.581], 0.05 |
+| smartcheck | 0.187 [0.105, 0.278], 0.10 | 0.759 [0.718, 0.798], 0.09 |
+| llm_ba | 0.665 [0.565, 0.760], 1.00 | 0.747 [0.708, 0.783], 2.43 |
+| llm_ba_med | 0.684 [0.590, 0.774], 1.40 | 0.784 [0.766, 0.800], 3.43 |
+| llm_ba_dasp | 0.660 [0.562, 0.752], 1.27 | 0.751 [0.714, 0.786], 2.77 |
+| llm_ta1 | 0.675 [0.607, 0.737], 9.97 | 0.683 [0.665, 0.697], 17.95 |
+| llm_ta3 | 0.648 [0.567, 0.725], 12.70 | 0.715 [0.699, 0.730], 24.99 |
+| oracle | 0.904 [0.863, 0.939], 0.88 | 0.924 [0.909, 0.938], 1.14 |
+
+PPO minus best-fixed (score) per source: smartbugs -0.003 [-0.076, +0.067]; solidifi +0.043 [+0.021, +0.064]
+
+## Paired bootstrap: PPO minus method
+
+| Method | ΔUtility [95% CI] | p | ΔScore [95% CI] | p |
+|---|---|---|---|---|
+| PPO-static | +0.030 [+0.012, +0.047] | 0.001 | +0.015 [-0.003, +0.033] | 0.053 |
+| best-fixed | +0.071 [+0.046, +0.095] | 0.000 | +0.031 [+0.007, +0.055] | 0.006 |
+| greedy-cheapest | +0.093 [+0.066, +0.119] | 0.000 | +0.063 [+0.036, +0.089] | 0.000 |
+| all tools | +0.997 [+0.951, +1.042] | 0.000 | +0.096 [+0.069, +0.122] | 0.000 |
+| random | +0.585 [+0.545, +0.625] | 0.000 | +0.101 [+0.075, +0.126] | 0.000 |
+| mythril | +0.343 [+0.291, +0.393] | 0.000 | +0.351 [+0.300, +0.401] | 0.000 |
+| oyente | +0.422 [+0.374, +0.472] | 0.000 | +0.434 [+0.387, +0.484] | 0.000 |
+| slither | +0.301 [+0.252, +0.350] | 0.000 | +0.316 [+0.266, +0.366] | 0.000 |
+| smartcheck | +0.151 [+0.111, +0.193] | 0.000 | +0.165 [+0.124, +0.208] | 0.000 |
+| llm_ba | +0.077 [+0.038, +0.118] | 0.000 | +0.052 [+0.012, +0.092] | 0.004 |
+| llm_ba_med | +0.062 [+0.035, +0.087] | 0.000 | +0.019 [-0.006, +0.044] | 0.070 |
+| llm_ba_dasp | +0.081 [+0.046, +0.118] | 0.000 | +0.050 [+0.014, +0.086] | 0.003 |
+| llm_ta1 | +0.399 [+0.367, +0.431] | 0.000 | +0.097 [+0.068, +0.126] | 0.000 |
+| llm_ta3 | +0.500 [+0.466, +0.533] | 0.000 | +0.079 [+0.051, +0.107] | 0.000 |
+| oracle | -0.136 [-0.161, -0.113] | 1.000 | -0.142 [-0.167, -0.118] | 1.000 |
+
+p = one-sided bootstrap probability that PPO is not better (small = PPO better).
+
+## Tools PPO runs (% of contracts)
+
+| mythril | oyente | slither | smartcheck | llm_ba | llm_ba_med | llm_ba_dasp | llm_ta1 | llm_ta3 |
+|---|---|---|---|---|---|---|---|---|
+| 0.0 | 0.5 | 6.9 | 78.9 | 11.3 | 11.5 | 16.2 | 0.0 | 0.0 |
+
+## λ sweep
+
+| λ | PPO utility | PPO score | PPO cost | best-fixed utility | best-fixed score | best-fixed cost | oracle utility |
+|---|---|---|---|---|---|---|---|
+| 0 | 0.778 | 0.778 | 2.70 | 0.743 | 0.743 | 3.54 | 0.922 |
+| 0.01 | 0.764 | 0.780 | 1.54 | 0.729 | 0.758 | 2.91 | 0.909 |
+| 0.02 | 0.762 | 0.777 | 0.79 | 0.690 | 0.746 | 2.81 | 0.898 |
+| 0.05 | 0.758 | 0.782 | 0.48 | 0.641 | 0.668 | 0.55 | 0.869 |
+
+Saved => verify\results\tools\20261125-150051  (76.3 min)
+===== 25-11-2026 15:36:42.72 ===== 
+TA mode: 269/269 contracts complete; ~21,528 tokens per contract; ~0.00M tokens to go
+TA mode: 269/269 contracts complete -> datasets\tool_results\llm_ta.json
+# Base TA mode vs PPO tool selector (same contracts)
+
+- Contracts: 269 from `datasets\tool_results\combined_tools.json`; PPO run: `verify\results\tools\20261121-172401` (out-of-fold picks, λ = 0.02).
+- TA mode: base project prompts (6 targeted scenario batches + consensus reviews), gpt-oss-120b, comments stripped and benchmark bug names neutralised.
+
+| Method | Score [95% CI] | Precision | Recall | LLM tokens / contract | Minutes / contract |
+|---|---|---|---|---|---|
+| TA@1 (base TA mode, round 1) | 0.681 [0.659, 0.700] | 0.279 | 0.948 | 15,686 | 0.21 |
+| TA@3 (base TA mode, n=3) | 0.698 [0.674, 0.721] | 0.340 | 0.937 | 21,528 | 0.31 |
+| BA@1 (base BA mode, 1 call) | 0.726 [0.688, 0.763] | 0.527 | 0.859 | 2,021 | 0.04 |
+| PPO tool selector (this project) | 0.787 [0.759, 0.814] | 0.580 | 0.926 | 1,927 | 0.08 |
+
+## PPO minus each base mode (paired bootstrap over contracts)
+
+| Base mode | ΔScore [95% CI] | p (PPO not better) | ΔScore smartbugs | ΔScore solidifi |
+|---|---|---|---|---|
+| TA@1 (base TA mode, round 1) | +0.107 [+0.078, +0.136] | 0.000 | +0.017 [-0.068, +0.101] | +0.138 [+0.115, +0.162] |
+| TA@3 (base TA mode, n=3) | +0.089 [+0.061, +0.116] | 0.000 | +0.043 [-0.043, +0.127] | +0.105 [+0.084, +0.126] |
+| BA@1 (base BA mode, 1 call) | +0.062 [+0.028, +0.096] | 0.000 | +0.027 [-0.050, +0.107] | +0.074 [+0.039, +0.111] |
+
+## Score by source
+
+| Method | smartbugs | solidifi |
+|---|---|---|
+| TA@1 (base TA mode, round 1) | 0.675 | 0.683 |
+| TA@3 (base TA mode, n=3) | 0.648 | 0.715 |
+| BA@1 (base BA mode, 1 call) | 0.665 | 0.747 |
+| PPO tool selector (this project) | 0.692 | 0.821 |
+
+[score_ta] Saved => verify\results\tools\20261121-172401\ta_comparison.md
+365 done, 0 to go
+365/165 contracts have an LLM reply -> datasets\tool_results\llm_ba.json
+365 done, 0 to go
+365/165 contracts have an LLM reply -> datasets\tool_results\llm_ba_med.json
+365 done, 0 to go
+365/165 contracts have an LLM reply -> datasets\tool_results\llm_ba_dasp.json
+[finish_pipeline] A (TA as tools + PPO): data complete, done | B (real-only PPO): data complete, done
+===== 25-11-2026 17:36:42.92 ===== 
+TA mode: 269/269 contracts complete; ~21,528 tokens per contract; ~0.00M tokens to go
+TA mode: 269/269 contracts complete -> datasets\tool_results\llm_ta.json
+# Base TA mode vs PPO tool selector (same contracts)
+
+- Contracts: 269 from `datasets\tool_results\combined_tools.json`; PPO run: `verify\results\tools\20261121-172401` (out-of-fold picks, λ = 0.02).
+- TA mode: base project prompts (6 targeted scenario batches + consensus reviews), gpt-oss-120b, comments stripped and benchmark bug names neutralised.
+
+| Method | Score [95% CI] | Precision | Recall | LLM tokens / contract | Minutes / contract |
+|---|---|---|---|---|---|
+| TA@1 (base TA mode, round 1) | 0.681 [0.659, 0.700] | 0.279 | 0.948 | 15,686 | 0.21 |
+| TA@3 (base TA mode, n=3) | 0.698 [0.674, 0.721] | 0.340 | 0.937 | 21,528 | 0.31 |
+| BA@1 (base BA mode, 1 call) | 0.726 [0.688, 0.763] | 0.527 | 0.859 | 2,021 | 0.04 |
+| PPO tool selector (this project) | 0.787 [0.759, 0.814] | 0.580 | 0.926 | 1,927 | 0.08 |
+
+## PPO minus each base mode (paired bootstrap over contracts)
+
+| Base mode | ΔScore [95% CI] | p (PPO not better) | ΔScore smartbugs | ΔScore solidifi |
+|---|---|---|---|---|
+| TA@1 (base TA mode, round 1) | +0.107 [+0.078, +0.136] | 0.000 | +0.017 [-0.068, +0.101] | +0.138 [+0.115, +0.162] |
+| TA@3 (base TA mode, n=3) | +0.089 [+0.061, +0.116] | 0.000 | +0.043 [-0.043, +0.127] | +0.105 [+0.084, +0.126] |
+| BA@1 (base BA mode, 1 call) | +0.062 [+0.028, +0.096] | 0.000 | +0.027 [-0.050, +0.107] | +0.074 [+0.039, +0.111] |
+
+## Score by source
+
+| Method | smartbugs | solidifi |
+|---|---|---|
+| TA@1 (base TA mode, round 1) | 0.675 | 0.683 |
+| TA@3 (base TA mode, n=3) | 0.648 | 0.715 |
+| BA@1 (base BA mode, 1 call) | 0.665 | 0.747 |
+| PPO tool selector (this project) | 0.692 | 0.821 |
+
+[score_ta] Saved => verify\results\tools\20261121-172401\ta_comparison.md
+365 done, 0 to go
+365/165 contracts have an LLM reply -> datasets\tool_results\llm_ba.json
+365 done, 0 to go
+365/165 contracts have an LLM reply -> datasets\tool_results\llm_ba_med.json
+365 done, 0 to go
+365/165 contracts have an LLM reply -> datasets\tool_results\llm_ba_dasp.json
+[finish_pipeline] A (TA as tools + PPO): data complete, done | B (real-only PPO): data complete, done

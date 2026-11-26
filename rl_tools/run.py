@@ -94,6 +94,37 @@ def outcome(it, subset) -> tuple[float, float, float, float]:
     return 0.6 * r + 0.4 * p, p, r, float(sum(it["cost"][i] for i in subset))
 
 
+# ── attention policy (optional, --policy attn) ───────────────────────────────
+
+def attn_policy_kwargs(heads: int = 8, d_model: int = 64) -> dict:
+    """Policy whose input layer is a small transformer over the state: every state value
+    (contract feature, tool-used flag, category-found flag, time) becomes one token
+    (value * learned vector + learned position vector), a learned [CLS] token is added,
+    and one multi-head self-attention encoder layer lets features and tool results attend
+    to each other. The [CLS] output feeds the usual actor and critic heads."""
+    import torch
+    from torch import nn
+    from stable_baselines3.common.torch_layers import BaseFeaturesExtractor
+
+    class StateAttention(BaseFeaturesExtractor):
+        def __init__(self, observation_space):
+            super().__init__(observation_space, features_dim=d_model)
+            n = observation_space.shape[0]
+            self.w = nn.Parameter(torch.randn(n, d_model) * 0.1)
+            self.b = nn.Parameter(torch.zeros(n, d_model))
+            self.cls = nn.Parameter(torch.zeros(1, 1, d_model))
+            self.enc = nn.TransformerEncoderLayer(d_model, heads, dim_feedforward=2 * d_model,
+                                                  dropout=0.1, batch_first=True)
+            self.norm = nn.LayerNorm(d_model)
+
+        def forward(self, obs):
+            tok = obs.unsqueeze(-1) * self.w + self.b                       # (B, n, d)
+            tok = torch.cat([self.cls.expand(obs.shape[0], -1, -1), tok], 1)
+            return self.norm(self.enc(tok)[:, 0])
+
+    return {"features_extractor_class": StateAttention, "net_arch": [64]}
+
+
 # ── environment ───────────────────────────────────────────────────────────────
 
 class ToolEnv(gym.Env):
@@ -222,6 +253,69 @@ def folds(items, k, seed):
     return out
 
 
+# ── parallel folds (--jobs N) ─────────────────────────────────────────────────
+
+def _train_fold(job: dict) -> dict:
+    """PPO training + test rollouts for one fold, in a worker process (same seeds and
+    settings as the sequential loop in main, so results do not depend on --jobs)."""
+    import torch
+    from stable_baselines3 import PPO
+    torch.set_num_threads(1)
+    _, tools, items = load(Path(job["data"]), job["cost"])
+    T, N, test = len(tools), len(items), set(job["test_idx"])
+    tr = [items[i] for i in range(N) if i not in test]
+    X = np.stack([it["x"] for it in tr])
+    mu, sd = X.mean(0), X.std(0) + 1e-6
+    pkw = attn_policy_kwargs(job["heads"], job["d_model"]) if job["policy"] == "attn" else {"net_arch": [64, 64]}
+    out = {}
+    for v in job["variants"]:
+        env = ToolEnv(tr, T, job["lam"], mu, sd, adaptive=(v == "PPO"), seed=job["seed"], feat_idx=job["fidx"])
+        model = PPO("MlpPolicy", env, seed=job["seed"], verbose=0, n_steps=512, batch_size=128,
+                    ent_coef=job["ent"], gamma=1.0, policy_kwargs=pkw)
+        model.learn(job["steps"])
+        ev = ToolEnv(tr, T, job["lam"], mu, sd, adaptive=(v == "PPO"), feat_idx=job["fidx"])
+        out[v] = {i: [int(a) for a in rollout(model, ev, items[i])] for i in job["test_idx"]}
+    return out
+
+
+def _parallel_folds(args, data_path, items, T, tools, fidx, subsets, done_folds, ckpt, started):
+    from concurrent.futures import ProcessPoolExecutor, as_completed
+    N, jobs = len(items), []
+    for lam in args.lams:
+        for rep in range(args.repeats if lam == args.main_lam else 1):
+            for f, test_idx in enumerate(folds(items, args.folds, seed=rep)):
+                if f"{lam:g}|{rep}|{f}" in done_folds:
+                    continue
+                jobs.append({"data": str(data_path), "cost": args.cost, "lam": lam, "rep": rep, "f": f,
+                             "test_idx": list(test_idx), "seed": 1000 * rep + f, "fidx": fidx,
+                             "variants": ("PPO", "PPO-static") if lam == args.main_lam and not args.no_static
+                             else ("PPO",), "steps": args.steps, "ent": args.ent, "policy": args.policy,
+                             "heads": args.heads, "d_model": args.d_model})
+    if not jobs:
+        return
+    print(f"Training {len(jobs)} folds, {args.jobs} at a time", flush=True)
+    with ProcessPoolExecutor(max_workers=args.jobs) as pool:
+        futs = {pool.submit(_train_fold, j): j for j in jobs}
+        for fut in as_completed(futs):
+            j, ppo = futs[fut], fut.result()
+            lam, test_idx = j["lam"], j["test_idx"]
+            tr = [items[i] for i in range(N) if i not in set(test_idx)]
+            bf, gc = best_fixed(tr, lam, subsets), greedy_cheapest(tr, lam, T)
+            rng = random.Random(j["seed"])
+            fp = {**ppo, "best-fixed": {}, "greedy-cheapest": {}, "random": {}}
+            for i in test_idx:
+                fp["best-fixed"][i] = [int(a) for a in bf]
+                fp["greedy-cheapest"][i] = [int(a) for a in gc]
+                fp["random"][i] = rng.sample(range(T), rng.randint(1, T))
+            done_folds[f"{lam:g}|{j['rep']}|{j['f']}"] = {m: {str(i): v for i, v in per_i.items()}
+                                                         for m, per_i in fp.items()}
+            tmp = ckpt.with_suffix(".tmp")
+            tmp.write_text(json.dumps(done_folds), encoding="utf-8")
+            tmp.replace(ckpt)
+            print(f"  lam={lam:<5g} rep {j['rep']} fold {j['f']}: best-fixed={[tools[k] for k in bf]}  "
+                  f"({time.time() - started:.0f}s)", flush=True)
+
+
 # ── main ──────────────────────────────────────────────────────────────────────
 
 def main():
@@ -240,6 +334,14 @@ def main():
                     help="contract features PPO sees: 4 compact ones (default) or all 28")
     ap.add_argument("--data", default=str(DATA.relative_to(ROOT)),
                     help="Tool dataset (rl_tools/build_dataset.py output)")
+    ap.add_argument("--policy", choices=("mlp", "attn"), default="mlp",
+                    help="mlp: 64x64 network (default); attn: multi-head self-attention over the state")
+    ap.add_argument("--heads", type=int, default=8, help="attention heads (--policy attn)")
+    ap.add_argument("--d-model", type=int, default=64, help="attention width (--policy attn)")
+    ap.add_argument("--no-static", action="store_true",
+                    help="skip the PPO-static ablation (halves training time)")
+    ap.add_argument("--jobs", type=int, default=1,
+                    help="train this many folds at once in separate processes (same results, faster)")
     ap.add_argument("--quick", action="store_true")
     args = ap.parse_args()
     data_path = Path(args.data) if Path(args.data).is_absolute() else ROOT / args.data
@@ -253,6 +355,7 @@ def main():
     fidx = COMPACT if args.features == "compact" else None
     T, N = len(tools), len(items)
     subsets = all_subsets(T)
+    pkw = attn_policy_kwargs(args.heads, args.d_model) if args.policy == "attn" else {"net_arch": [64, 64]}
     print(f"{N} contracts x {T} tools; lams {args.lams}; {args.folds}-fold x {args.repeats} repeats; "
           f"{args.steps:,} PPO steps per fold")
 
@@ -262,13 +365,19 @@ def main():
     cfg_key = json.dumps({"env": "v2-repeat-noop", "ent": args.ent, "cost": args.cost, "features": args.features, "lams": sorted(args.lams), "main": args.main_lam, "folds": args.folds,
                           "repeats": args.repeats, "steps": args.steps,
                           "data": meta_d.get("source_commit"), "n": N, "tools": tools,
-                          "built_at": meta_d.get("built_at")}, sort_keys=True)
+                          "built_at": meta_d.get("built_at"),
+                          # only for attention runs, so earlier MLP checkpoints stay valid
+                          **({"policy": "attn", "heads": args.heads, "d_model": args.d_model}
+                             if args.policy == "attn" else {}),
+                          **({"no_static": True} if args.no_static else {})}, sort_keys=True)
     import hashlib
     ckpt = ROOT / "verify" / "results" / "tools" / "_checkpoints" /         f"{hashlib.sha256(cfg_key.encode()).hexdigest()[:12]}.json"
     ckpt.parent.mkdir(parents=True, exist_ok=True)
     done_folds = json.loads(ckpt.read_text(encoding="utf-8")) if ckpt.exists() else {}
     if done_folds:
         print(f"Resuming: {len(done_folds)} folds already done ({ckpt.relative_to(ROOT)})")
+    if args.jobs > 1:            # train the missing folds in parallel, then replay them below
+        _parallel_folds(args, data_path, items, T, tools, fidx, subsets, done_folds, ckpt, started)
     per_lam = {}
     for lam in args.lams:
         reps = args.repeats if lam == args.main_lam else 1
@@ -287,11 +396,11 @@ def main():
                 X = np.stack([it["x"] for it in tr])
                 mu, sd = X.mean(0), X.std(0) + 1e-6
                 seed = 1000 * rep + f
-                variants = ("PPO", "PPO-static") if lam == args.main_lam else ("PPO",)
+                variants = ("PPO", "PPO-static") if lam == args.main_lam and not args.no_static else ("PPO",)
                 for v in variants:
                     env = ToolEnv(tr, T, lam, mu, sd, adaptive=(v == "PPO"), seed=seed, feat_idx=fidx)
                     model = PPO("MlpPolicy", env, seed=seed, verbose=0, n_steps=512, batch_size=128,
-                                ent_coef=args.ent, gamma=1.0, policy_kwargs={"net_arch": [64, 64]})
+                                ent_coef=args.ent, gamma=1.0, policy_kwargs=pkw)
                     model.learn(args.steps)
                     ev = ToolEnv(tr, T, lam, mu, sd, adaptive=(v == "PPO"), feat_idx=fidx)
                     for i in test_idx:
@@ -367,7 +476,9 @@ def main():
             "data_commit": meta_d["source_commit"], "n_contracts": N, "tools": tools,
             "labels": dict(Counter(min(it["labels"]) for it in items)),
             "lams": args.lams, "main_lam": args.main_lam, "folds": args.folds, "repeats": args.repeats,
-            "ppo_steps": args.steps, "cost_mode": args.cost, "features": args.features, "ent_coef": args.ent, "minutes": round((time.time() - started) / 60, 1),
+            "ppo_steps": args.steps, "cost_mode": args.cost, "features": args.features, "ent_coef": args.ent,
+            "policy": args.policy, "heads": args.heads if args.policy == "attn" else None,
+            "d_model": args.d_model if args.policy == "attn" else None,"minutes": round((time.time() - started) / 60, 1),
             "python": platform.python_version()}
     (out / "results.json").write_text(json.dumps({"metadata": meta, "results": clean, "paired_vs_PPO": paired_rows,
                                                   "by_origin": by_origin}, indent=2), encoding="utf-8")
@@ -375,11 +486,14 @@ def main():
     def fmt(ci):
         return f"{ci[0]:.3f} [{ci[1]:.3f}, {ci[2]:.3f}]"
     order = ["PPO", "PPO-static", "best-fixed", "greedy-cheapest", "all tools", "random"] + list(tools) + ["oracle"]
+    order = [m for m in order if m in main_rows]          # PPO-static absent with --no-static
     md = ["# Tool-selection RL on real static-analysis results", "",
           f"- Data: `{data_path.relative_to(ROOT)}` — real outputs of {T} tools on {N} labelled contracts "
           f"({', '.join(f'{o}: {by_origin[o]['n']}' for o in origins)}); sources: {meta_d['source']}.",
           f"- PPO sees {'4 compact contract features' if args.features == 'compact' else 'all 28 contract features'} "
-          f"+ tools run so far + categories they found.",
+          f"+ tools run so far + categories they found; policy: "
+          + (f"{args.heads}-head self-attention encoder (d={args.d_model}) over the state tokens."
+             if args.policy == "attn" else "64x64 MLP."),
           f"- Utility = score − λ·cost, cost = {COST_UNITS[args.cost]} per contract (`--cost {args.cost}`); "
           f"λ = {args.main_lam} at the main setting.",
           f"- {args.folds}-fold stratified cross-validation × {args.repeats} repeats; every contract is "

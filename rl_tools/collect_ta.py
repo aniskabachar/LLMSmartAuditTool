@@ -15,12 +15,13 @@ Writes datasets/tool_results/llm_ta.json: per contract every call (raw reply, to
 latency, finish reason). Resumable call by call; stops cleanly when every Groq key has hit
 its daily limit, so it can simply be rerun (run_ta_collection.bat, daily task).
 
-Run:  py rl_tools/collect_ta.py [--data datasets/tool_results/combined_tools.json] [--workers 10]
+Run:  py rl_tools/collect_ta.py [--data datasets/tool_results/combined_tools.json] [--workers N]
+                                [--max-minutes 100]
       py rl_tools/collect_ta.py --status
 """
 
 from __future__ import annotations
-import argparse, json, sys, threading
+import argparse, json, sys, threading, time
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -42,7 +43,10 @@ def main():
     utf8_console()
     ap = argparse.ArgumentParser()
     ap.add_argument("--data", default="datasets/tool_results/combined_tools.json")
-    ap.add_argument("--workers", type=int, default=10)
+    ap.add_argument("--workers", type=int, default=None, help="default: one per API key")
+    ap.add_argument("--max-minutes", type=float, default=None,
+                    help="stop taking new contracts after this long (scheduled runs: the next run "
+                         "starts again with every key instead of a few slow leftover workers)")
     ap.add_argument("--limit", type=int, default=None, help="only the first N contracts (pilot)")
     ap.add_argument("--status", action="store_true")
     args = ap.parse_args()
@@ -77,11 +81,15 @@ def main():
         tmp.write_text(json.dumps(done, indent=1), encoding="utf-8")
         tmp.replace(OUT)
 
+    deadline = time.time() + args.max_minutes * 60 if args.max_minutes else None
+
     def worker():
         b = GroqBackend(pool=pool)
         while True:
             with lock:
                 if not queue:
+                    return
+                if deadline and time.time() > deadline:   # next scheduled run restarts with every key
                     return
                 name = queue.pop(0)
                 rec = done["contracts"].setdefault(name, {"n_ta_batches": len(ME.TA_BATCH_TEXTS), "calls": {}})
@@ -108,7 +116,8 @@ def main():
                 t = sum(c["prompt_tokens"] + c["completion_tokens"] for c in rec["calls"].values())
             print(f"[{n_ok}/{len(names)}] {name}: {t:,} tokens", flush=True)
 
-    ths = [threading.Thread(target=worker) for _ in range(min(args.workers, len(pool.free), len(queue) or 1))]
+    n_workers = args.workers or len(pool.free)                # default: one worker per key
+    ths = [threading.Thread(target=worker) for _ in range(min(n_workers, len(pool.free), len(queue) or 1))]
     [t.start() for t in ths]
     [t.join() for t in ths]
     print(f"TA mode: {sum(complete(n) for n in names)}/{len(names)} contracts complete -> {OUT.relative_to(ROOT)}")

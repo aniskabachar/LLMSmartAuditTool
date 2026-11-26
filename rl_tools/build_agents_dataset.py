@@ -1,0 +1,84 @@
+"""
+rl_tools/build_agents_dataset.py
+
+Multi-agent version of the tool-selection dataset: instead of static tools, the RL
+coordinator chooses which LLM *agents* to consult for each contract.
+
+  spec_0 .. spec_5   the base project's six TA specialist agents (one targeted detector
+                     batch each: integer overflow, selfdestruct, uninitialised return,
+                     centralisation, signature verification, denial of service, ...),
+                     taken from their round-1 replies in datasets/tool_results/llm_ta.json
+  llm_ba, llm_ba_med, llm_ba_dasp   the three generalist auditor agents (BA prompt; low
+                     reasoning, medium reasoning, DASP-guided), from combined_tools.json
+
+The base TA mode always consults all six specialists (+ two consensus reviews). The
+reviews are not offered as agents: their replies were produced after seeing every
+specialist's findings, so they would not be valid once the coordinator skips some.
+
+With --hybrid the four static tools of combined_tools.json (slither, mythril, oyente,
+smartcheck) are kept as extra, non-LLM agents.
+
+No API calls: everything comes from replies already collected.
+
+Run:  py rl_tools/build_agents_dataset.py [--hybrid]
+Out:  datasets/tool_results/agents_tools.json   (or agents_hybrid_tools.json)
+"""
+
+from __future__ import annotations
+import argparse, json, sys
+from datetime import datetime
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
+
+TR = ROOT / "datasets" / "tool_results"
+GENERALISTS = ["llm_ba", "llm_ba_med", "llm_ba_dasp"]
+
+
+def main():
+    from rl_offline.common import _parse, utf8_console
+    from rl_tools.build_dataset import LLM_TYPE_MAP
+    utf8_console()
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--hybrid", action="store_true", help="also keep the 4 static tools")
+    args = ap.parse_args()
+
+    base = json.loads((TR / "combined_tools.json").read_text(encoding="utf-8"))
+    ta = json.loads((TR / "llm_ta.json").read_text(encoding="utf-8"))
+    n_spec = len([k for k in ta["keys"] if k.startswith("ta_r1_b")])
+    specs = [f"spec_{i}" for i in range(n_spec)]
+    static = [t for t in base["tools"] if not t.startswith("llm_")] if args.hybrid else []
+    tools = specs + GENERALISTS + static
+
+    empty, contracts = 0, {}
+    for name, c in base["contracts"].items():
+        calls = ta["contracts"][name]["calls"]
+        new = {k: v for k, v in c.items() if k != "tools"}
+        new["tools"] = {}
+        for i, s in enumerate(specs):
+            call = calls[f"ta_r1_b{i}"]
+            a, _ = _parse(call["raw"])
+            if a is None:
+                empty += 1
+            types = {v.type.value for v in a.vulnerabilities} if a else set()
+            new["tools"][s] = {"found": sorted({LLM_TYPE_MAP.get(x, x) for x in types}),
+                               "seconds": float(call["seconds"]),
+                               "tokens": int(call["prompt_tokens"] + call["completion_tokens"])}
+        for t in GENERALISTS + static:
+            new["tools"][t] = c["tools"][t]
+        contracts[name] = new
+
+    out = TR / ("agents_hybrid_tools.json" if args.hybrid else "agents_tools.json")
+    meta = {k: v for k, v in base.items() if k not in ("contracts", "tools")}
+    meta.update({"tools": tools, "built_at": datetime.now().isoformat(timespec="seconds"),
+                 "agents_note": "spec_0..5: base TA specialist agents (round-1 replies); "
+                                "llm_ba*: generalist agents" + ("; + static tools" if static else ""),
+                 "n_contracts": len(contracts), "contracts": contracts})
+    out.write_text(json.dumps(meta, indent=1), encoding="utf-8")
+    print(f"Wrote {len(contracts)} contracts x {len(tools)} agents {tools} -> {out.relative_to(ROOT)}"
+          f" ({empty} unparseable specialist replies counted as 'found nothing')")
+
+
+if __name__ == "__main__":
+    main()

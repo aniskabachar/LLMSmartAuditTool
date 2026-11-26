@@ -1,0 +1,26 @@
+269 contracts x 9 tools; lams [0.02]; 5-fold x 3 repeats; 40,000 PPO steps per fold
+Resuming: 6 folds already done (verify\results\tools\_checkpoints\a28a20035fa7.json)
+Training 9 folds, 7 at a time
+  lam=0.02  rep 2 fold 1: best-fixed=['llm_ba_med']  (1491s)
+  lam=0.02  rep 1 fold 1: best-fixed=['llm_ba_med']  (1499s)
+  lam=0.02  rep 2 fold 2: best-fixed=['llm_ba_med']  (1501s)
+  lam=0.02  rep 2 fold 0: best-fixed=['llm_ba_med']  (1503s)
+  lam=0.02  rep 1 fold 3: best-fixed=['llm_ba_med']  (1505s)
+  lam=0.02  rep 1 fold 2: best-fixed=['llm_ba_med']  (1507s)
+  lam=0.02  rep 1 fold 4: best-fixed=['llm_ba_med']  (1509s)
+Traceback (most recent call last):
+  File "C:\Users\anisk\OneDrive\Desktop\LLMSmartAuditTool-Multiagent\rl_tools\run.py", line 543, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\anisk\OneDrive\Desktop\LLMSmartAuditTool-Multiagent\rl_tools\run.py", line 380, in main
+    _parallel_folds(args, data_path, items, T, tools, fidx, subsets, done_folds, ckpt, started)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\anisk\OneDrive\Desktop\LLMSmartAuditTool-Multiagent\rl_tools\run.py", line 300, in _parallel_folds
+    j, ppo = futs[fut], fut.result()
+                        ~~~~~~~~~~^^
+  File "C:\Users\anisk\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\_base.py", line 443, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\anisk\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\_base.py", line 395, in __get_result
+    raise self._exception
+concurrent.futures.process.BrokenProcessPool: A process in the process pool was terminated abruptly while the future was running or pending.

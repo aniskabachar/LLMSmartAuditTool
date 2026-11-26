@@ -7,7 +7,7 @@ REM  3. finish_pipeline: TA-as-tools PPO run and real-only PPO run, once each wh
 cd /d "%~dp0"
 set PYTHONIOENCODING=utf-8
 echo ===== %date% %time% ===== >> verify\results\ta_collection.log
-py -u rl_tools\collect_ta.py >> verify\results\ta_collection.log 2>&1
+py -u rl_tools\collect_ta.py --max-minutes 100 >>verify\results\ta_collection.log 2>&1
 py -u rl_tools\score_ta.py >> verify\results\ta_collection.log 2>&1
 if exist datasets\tool_results\real_tools.json (
   py -u rl_tools\collect_llm.py --data datasets\tool_results\real_tools.json --variant ba >> verify\results\ta_collection.log 2>&1

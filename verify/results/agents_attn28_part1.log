@@ -1,0 +1,7 @@
+269 contracts x 9 tools; lams [0.02]; 5-fold x 3 repeats; 40,000 PPO steps per fold
+  lam=0.02  rep 0 fold 0: best-fixed=['llm_ba_med']  (1131s)
+  lam=0.02  rep 0 fold 1: best-fixed=['llm_ba_med']  (2189s)
+  lam=0.02  rep 0 fold 2: best-fixed=['llm_ba_med']  (3118s)
+  lam=0.02  rep 0 fold 3: best-fixed=['llm_ba_med']  (4117s)
+  lam=0.02  rep 0 fold 4: best-fixed=['llm_ba_med']  (5132s)
+  lam=0.02  rep 1 fold 0: best-fixed=['llm_ba_med']  (6148s)

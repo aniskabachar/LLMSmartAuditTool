@@ -1,0 +1,102 @@
+269 contracts x 9 tools; lams [0.02]; 5-fold x 3 repeats; 40,000 PPO steps per fold
+  lam=0.02  rep 0 fold 0: best-fixed=['llm_ba_med']  (157s)
+  lam=0.02  rep 0 fold 1: best-fixed=['llm_ba_med']  (306s)
+  lam=0.02  rep 0 fold 2: best-fixed=['llm_ba_med']  (452s)
+  lam=0.02  rep 0 fold 3: best-fixed=['llm_ba_med']  (641s)
+  lam=0.02  rep 0 fold 4: best-fixed=['llm_ba_med']  (812s)
+  lam=0.02  rep 1 fold 0: best-fixed=['llm_ba_med']  (974s)
+  lam=0.02  rep 1 fold 1: best-fixed=['llm_ba_med']  (1142s)
+  lam=0.02  rep 1 fold 2: best-fixed=['llm_ba_med']  (1310s)
+  lam=0.02  rep 1 fold 3: best-fixed=['llm_ba_med']  (1457s)
+  lam=0.02  rep 1 fold 4: best-fixed=['llm_ba_med']  (1608s)
+  lam=0.02  rep 2 fold 0: best-fixed=['llm_ba_med']  (1758s)
+  lam=0.02  rep 2 fold 1: best-fixed=['llm_ba_med']  (1917s)
+  lam=0.02  rep 2 fold 2: best-fixed=['llm_ba_med']  (2061s)
+  lam=0.02  rep 2 fold 3: best-fixed=['llm_ba_med']  (2208s)
+  lam=0.02  rep 2 fold 4: best-fixed=['llm_ba_med']  (2359s)
+# Tool-selection RL on real static-analysis results
+
+- Data: `datasets\tool_results\agents_tools.json` — real outputs of 9 tools on 269 labelled contracts (smartbugs: 69, solidifi: 200); sources: https://github.com/smartbugs/smartbugs-results (Apache-2.0), Durieux et al. ICSE 2020; https://github.com/smartbugs/SolidiFI-benchmark, Ghaleb & Pattabiraman ISSTA 2020.
+- PPO sees all 28 contract features + tools run so far + categories they found; policy: 64x64 MLP.
+- Utility = score − λ·cost, cost = min + k tokens per contract (`--cost both`); λ = 0.02 at the main setting.
+- 5-fold stratified cross-validation × 3 repeats; every contract is scored by policies that never saw it. 95% bootstrap CIs over contracts.
+
+## Main result (λ = 0.02)
+
+| Method | Utility [95% CI] | Score [95% CI] | Precision | Recall | Cost (min + k tokens) | LLM tokens | Tools run |
+|---|---|---|---|---|---|---|---|
+| PPO | 0.729 [0.702, 0.753] | 0.782 [0.755, 0.806] | 0.565 | 0.926 | 2.65 | 2,596 | 1.07 |
+| PPO-static | 0.708 [0.678, 0.737] | 0.761 [0.730, 0.789] | 0.552 | 0.900 | 2.62 | 2,566 | 1.02 |
+| best-fixed | 0.700 [0.672, 0.726] | 0.758 [0.730, 0.785] | 0.496 | 0.933 | 2.91 | 2,827 | 1.00 |
+| greedy-cheapest | 0.537 [0.510, 0.562] | 0.681 [0.655, 0.705] | 0.337 | 0.911 | 7.23 | 7,121 | 2.93 |
+| all tools | 0.224 [0.202, 0.247] | 0.689 [0.675, 0.702] | 0.251 | 0.981 | 23.26 | 22,876 | 9.00 |
+| random | 0.391 [0.368, 0.415] | 0.648 [0.626, 0.668] | 0.300 | 0.880 | 12.82 | 12,609 | 4.97 |
+| spec_0 | 0.671 [0.634, 0.707] | 0.735 [0.698, 0.771] | 0.539 | 0.866 | 3.21 | 3,165 | 1.00 |
+| spec_1 | 0.343 [0.291, 0.396] | 0.403 [0.352, 0.456] | 0.300 | 0.472 | 3.01 | 2,971 | 1.00 |
+| spec_2 | 0.048 [0.014, 0.084] | 0.099 [0.065, 0.135] | 0.086 | 0.108 | 2.54 | 2,501 | 1.00 |
+| spec_3 | 0.157 [0.111, 0.204] | 0.206 [0.161, 0.253] | 0.164 | 0.234 | 2.48 | 2,445 | 1.00 |
+| spec_4 | 0.450 [0.402, 0.498] | 0.504 [0.456, 0.551] | 0.340 | 0.613 | 2.67 | 2,638 | 1.00 |
+| spec_5 | -0.015 [-0.032, 0.005] | 0.025 [0.007, 0.044] | 0.022 | 0.026 | 2.00 | 1,966 | 1.00 |
+| llm_ba | 0.685 [0.647, 0.721] | 0.726 [0.688, 0.763] | 0.527 | 0.859 | 2.07 | 2,021 | 1.00 |
+| llm_ba_med | 0.700 [0.672, 0.726] | 0.758 [0.730, 0.785] | 0.496 | 0.933 | 2.91 | 2,827 | 1.00 |
+| llm_ba_dasp | 0.680 [0.643, 0.716] | 0.728 [0.691, 0.763] | 0.520 | 0.866 | 2.39 | 2,342 | 1.00 |
+| oracle | 0.871 [0.851, 0.888] | 0.918 [0.898, 0.935] | 0.822 | 0.981 | 2.35 | 2,312 | 0.98 |
+
+## By source (λ = 0.02): score [95% CI], cost (min + k tokens)
+
+| Method | smartbugs (n=69) | solidifi (n=200) |
+|---|---|---|
+| PPO | 0.683 [0.601, 0.761], 1.63 | 0.816 [0.796, 0.834], 3.00 |
+| PPO-static | 0.665 [0.574, 0.752], 1.41 | 0.794 [0.769, 0.817], 3.03 |
+| best-fixed | 0.684 [0.590, 0.774], 1.40 | 0.784 [0.766, 0.800], 3.43 |
+| greedy-cheapest | 0.711 [0.640, 0.778], 4.29 | 0.671 [0.646, 0.692], 8.24 |
+| all tools | 0.714 [0.664, 0.759], 13.64 | 0.680 [0.672, 0.686], 26.58 |
+| random | 0.659 [0.596, 0.720], 7.68 | 0.644 [0.625, 0.662], 14.59 |
+| spec_0 | 0.541 [0.434, 0.647], 2.14 | 0.802 [0.774, 0.828], 3.58 |
+| spec_1 | 0.453 [0.341, 0.562], 2.00 | 0.386 [0.328, 0.444], 3.36 |
+| spec_2 | 0.214 [0.128, 0.316], 1.62 | 0.059 [0.032, 0.091], 2.85 |
+| spec_3 | 0.487 [0.374, 0.603], 1.55 | 0.109 [0.074, 0.148], 2.80 |
+| spec_4 | 0.527 [0.417, 0.638], 1.69 | 0.496 [0.443, 0.548], 3.01 |
+| spec_5 | 0.084 [0.026, 0.154], 0.97 | 0.004 [0.000, 0.012], 2.35 |
+| llm_ba | 0.665 [0.565, 0.760], 1.00 | 0.747 [0.708, 0.783], 2.43 |
+| llm_ba_med | 0.684 [0.590, 0.774], 1.40 | 0.784 [0.766, 0.800], 3.43 |
+| llm_ba_dasp | 0.660 [0.562, 0.752], 1.27 | 0.751 [0.714, 0.786], 2.77 |
+| oracle | 0.894 [0.833, 0.946], 1.16 | 0.926 [0.909, 0.941], 2.76 |
+
+PPO minus best-fixed (score) per source: smartbugs -0.001 [-0.061, +0.062]; solidifi +0.032 [+0.011, +0.053]
+
+## Paired bootstrap: PPO minus method
+
+| Method | ΔUtility [95% CI] | p | ΔScore [95% CI] | p |
+|---|---|---|---|---|
+| PPO-static | +0.020 [+0.004, +0.038] | 0.007 | +0.021 [+0.004, +0.040] | 0.008 |
+| best-fixed | +0.029 [+0.006, +0.051] | 0.006 | +0.023 [+0.001, +0.046] | 0.019 |
+| greedy-cheapest | +0.192 [+0.164, +0.220] | 0.000 | +0.100 [+0.073, +0.128] | 0.000 |
+| all tools | +0.505 [+0.475, +0.533] | 0.000 | +0.092 [+0.071, +0.113] | 0.000 |
+| random | +0.337 [+0.310, +0.364] | 0.000 | +0.134 [+0.109, +0.159] | 0.000 |
+| spec_0 | +0.058 [+0.029, +0.087] | 0.000 | +0.046 [+0.018, +0.076] | 0.001 |
+| spec_1 | +0.385 [+0.332, +0.438] | 0.000 | +0.378 [+0.324, +0.431] | 0.000 |
+| spec_2 | +0.680 [+0.639, +0.720] | 0.000 | +0.683 [+0.641, +0.722] | 0.000 |
+| spec_3 | +0.572 [+0.522, +0.620] | 0.000 | +0.575 [+0.525, +0.624] | 0.000 |
+| spec_4 | +0.278 [+0.228, +0.329] | 0.000 | +0.278 [+0.227, +0.329] | 0.000 |
+| spec_5 | +0.744 [+0.711, +0.775] | 0.000 | +0.757 [+0.723, +0.788] | 0.000 |
+| llm_ba | +0.044 [+0.011, +0.078] | 0.004 | +0.056 [+0.022, +0.090] | 0.001 |
+| llm_ba_med | +0.029 [+0.006, +0.051] | 0.006 | +0.023 [+0.001, +0.046] | 0.019 |
+| llm_ba_dasp | +0.048 [+0.018, +0.081] | 0.001 | +0.054 [+0.023, +0.086] | 0.000 |
+| oracle | -0.142 [-0.163, -0.123] | 1.000 | -0.136 [-0.158, -0.116] | 1.000 |
+
+p = one-sided bootstrap probability that PPO is not better (small = PPO better).
+
+## Tools PPO runs (% of contracts)
+
+| spec_0 | spec_1 | spec_2 | spec_3 | spec_4 | spec_5 | llm_ba | llm_ba_med | llm_ba_dasp |
+|---|---|---|---|---|---|---|---|---|
+| 25.9 | 0.1 | 0.2 | 5.5 | 2.0 | 0.0 | 45.7 | 12.5 | 15.4 |
+
+## λ sweep
+
+| λ | PPO utility | PPO score | PPO cost | best-fixed utility | best-fixed score | best-fixed cost | oracle utility |
+|---|---|---|---|---|---|---|---|
+| 0.02 | 0.729 | 0.782 | 2.65 | 0.700 | 0.758 | 2.91 | 0.871 |
+
+Saved => verify\results\tools\20261125-170121  (39.4 min)

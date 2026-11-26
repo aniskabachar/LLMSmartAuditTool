@@ -40,8 +40,10 @@ def main():
     args = ap.parse_args()
 
     runs = sorted((ROOT / "verify" / "results" / "tools").glob("2*"))
-    run = Path(args.run) if args.run else next(
-        r for r in reversed(runs) if "by_origin" in json.loads((r / "results.json").read_text(encoding="utf-8")))
+    def is_main(r):          # PPO run on the 269-contract dataset (not the real-only or TA-as-tools runs)
+        res = json.loads((r / "results.json").read_text(encoding="utf-8"))
+        return "by_origin" in res and Path(res["metadata"]["data"]).name == "combined_tools.json"
+    run = Path(args.run) if args.run else next(r for r in reversed(runs) if is_main(r))
     res = json.loads((run / "results.json").read_text(encoding="utf-8"))
     meta = res["metadata"]
     data = ROOT / meta["data"]
