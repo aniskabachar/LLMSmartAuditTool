@@ -1,0 +1,127 @@
+Slither 0.11.6: 0/125 done, 125 to go
+[1/125] paper__TOD__BitCash: FAILED solc 0.5.17 0 findings 6.46s  ''
+[2/125] paper__TOD__CareerOnToken: ok solc 0.5.17 145 findings 11.9s
+[3/125] paper__TOD__DocumentSigner: ok solc 0.5.17 46 findings 6.27s
+[4/125] paper__TOD__ERC223Token: ok solc 0.5.17 264 findings 7.13s
+[5/125] paper__TOD__FindThisHash: FAILED solc 0.4.26 0 findings 6.02s  ''
+[6/125] paper__TOD__ForTheBlockchain: ok solc 0.5.17 194 findings 9.23s
+[7/125] paper__TOD__HotDollarsToken: FAILED solc 0.5.17 0 findings 6.91s  ''
+[8/125] paper__TOD__ProofOfExistence: ok solc 0.5.17 55 findings 8.16s
+[9/125] paper__TOD__eth_tx_order_dependence_minimal: ok solc 0.4.26 5 findings 5.52s
+[10/125] paper__TOD__odds_and_evens: ok solc 0.4.26 5 findings 5.49s
+[11/125] paper__arithmetic__BECToken: ok solc 0.4.26 27 findings 6.34s
+[12/125] paper__arithmetic__insecure_transfer: ok solc 0.4.26 5 findings 5.49s
+[13/125] paper__arithmetic__integer_overflow_add: ok solc 0.4.26 2 findings 5.85s
+[14/125] paper__arithmetic__integer_overflow_benign_1: ok solc 0.4.26 3 findings 4.93s
+[15/125] paper__arithmetic__integer_overflow_minimal: ok solc 0.4.26 2 findings 4.97s
+[16/125] paper__arithmetic__integer_overflow_mul: ok solc 0.4.26 2 findings 5.28s
+[17/125] paper__arithmetic__integer_overflow_multitx_multifunc_feasible: ok solc 0.4.26 2 findings 6.21s
+[18/125] paper__arithmetic__integer_overflow_multitx_onefunc_feasible: ok solc 0.4.26 2 findings 5.68s
+[19/125] paper__arithmetic__overflow_single_tx: ok solc 0.4.26 2 findings 6.76s
+[20/125] paper__arithmetic__tokensalechallenge: ok solc 0.4.26 2 findings 6.66s
+[21/125] paper__bad_randomness__blackjack: FAILED solc 0.4.26 0 findings 5.78s  ''
+[22/125] paper__bad_randomness__etheraffle: ok solc 0.4.26 9 findings 7.64s
+[23/125] paper__bad_randomness__guess_the_random_number: ok solc 0.4.26 7 findings 5.34s
+[24/125] paper__bad_randomness__lottery: ok solc 0.4.26 8 findings 5.68s
+[25/125] paper__bad_randomness__lucky_doubler: ok solc 0.4.26 19 findings 6.09s
+[26/125] paper__bad_randomness__old_blockhash: ok solc 0.4.26 3 findings 5.45s
+[27/125] paper__bad_randomness__random_number_generator: ok solc 0.4.26 4 findings 5.2s
+[28/125] paper__bad_randomness__smart_billions: ok solc 0.4.26 77 findings 7.23s
+[29/125] paper__bad_randomness__theRun: ok solc 0.4.26 54 findings 6.71s
+[30/125] paper__bad_randomness__vulnerableBlockHashGame: ok solc 0.5.17 7 findings 6.05s
+[31/125] paper__cve__CVE-2018-14085: ok solc 0.4.26 28 findings 5.66s
+[32/125] paper__cve__CVE-2018-14087: ok solc 0.4.26 32 findings 5.71s
+[33/125] paper__cve__CVE-2018-14089: ok solc 0.4.26 39 findings 5.52s
+[34/125] paper__cve__CVE-2018-17111: ok solc 0.4.26 15 findings 6.12s
+[35/125] paper__cve__CVE-2018-17987: ok solc 0.4.26 15 findings 5.52s
+[36/125] paper__cve__CVE-2018-18425: ok solc 0.4.26 31 findings 5.47s
+[37/125] paper__cve__CVE-2019-15079: ok solc 0.4.26 14 findings 5.62s
+[38/125] paper__cve__CVE-2021-3004: ok solc 0.8.26 30 findings 6.85s
+[39/125] paper__cve__CVE-2021-33403: ok solc 0.4.26 64 findings 5.88s
+[40/125] paper__cve__CVE-2021-34270: ok solc 0.4.26 30 findings 5.69s
+[41/125] paper__cve__CVE-2021-34272: ok solc 0.4.26 24 findings 5.92s
+[42/125] paper__cve__CVE-2021-34273: ok solc 0.4.26 17 findings 5.71s
+[43/125] paper__cve__CVE-2023-26488: FAILED solc 0.8.26 0 findings 5.02s  ''
+[44/125] paper__gasless_send__Axioms: FAILED solc 0.4.26 0 findings 4.78s  ''
+[45/125] paper__gasless_send__CreditDepositBank_Attack: ok solc 0.4.26 25 findings 5.23s
+[46/125] paper__gasless_send__ETHDropOpenAdd: ok solc 0.5.17 19 findings 5.21s
+[47/125] paper__gasless_send__Etheramid_Attack: FAILED solc 0.4.26 0 findings 4.79s  ''
+[48/125] paper__gasless_send__Ethmoon: ok solc 0.4.26 9 findings 5.19s
+[49/125] paper__gasless_send__HFConditionalTransfer: FAILED solc 0.4.26 0 findings 4.77s  ''
+[50/125] paper__gasless_send__HelpMeSave: ok solc 0.4.26 25 findings 5.4s
+[51/125] paper__gasless_send__IManagedToken: FAILED solc 0.4.26 0 findings 4.83s  ''
+[52/125] paper__gasless_send__MultiTokenNetwork: ok solc 0.4.26 18 findings 5.36s
+[53/125] paper__gasless_send__Ownable: FAILED solc 0.5.17 0 findings 4.71s  ''
+[54/125] paper__gasless_send__QuarterMachine: ok solc 0.4.26 8 findings 5.15s
+[55/125] paper__reentrancy__etherbank: ok solc 0.4.26 6 findings 5.24s
+[56/125] paper__reentrancy__etherstore: ok solc 0.4.26 7 findings 5.1s
+[57/125] paper__reentrancy__modifier_reentrancy: ok solc 0.4.26 5 findings 5.13s
+[58/125] paper__reentrancy__reentrance: ok solc 0.4.26 8 findings 5.18s
+[59/125] paper__reentrancy__reentrancy_bonus: FAILED solc 0.4.26 0 findings 5.06s  ''
+[60/125] paper__reentrancy__reentrancy_cross_function: FAILED solc 0.4.26 0 findings 5.64s  ''
+[61/125] paper__reentrancy__reentrancy_dao: ok solc 0.4.26 4 findings 5.6s
+[62/125] paper__reentrancy__reentrancy_insecure: ok solc 0.5.17 5 findings 5.22s
+[63/125] paper__reentrancy__reentrancy_simple: ok solc 0.4.26 5 findings 4.81s
+[64/125] paper__reentrancy__simple_dao: ok solc 0.4.26 4 findings 5.12s
+[65/125] paper__safecontract__CareerOnToken: ok solc 0.8.26 13 findings 4.91s
+[66/125] paper__safecontract__PullPayment: ok solc 0.8.26 9 findings 5.01s
+[67/125] paper__safecontract__StableDEX: ok solc 0.5.17 35 findings 5.16s
+[68/125] paper__safecontract__SushiSwap: ok solc 0.8.26 3 findings 4.44s
+[69/125] paper__safecontract__Uniswap: ok solc 0.8.26 3 findings 4.61s
+[70/125] paper__safecontract__WETH9: FAILED solc 0.4.26 0 findings 5.39s  ''
+[71/125] paper__safecontract__WrappedToken: ok solc 0.8.26 6 findings 4.62s
+[72/125] paper__safecontract__balancer: ok solc 0.8.26 3 findings 4.43s
+[73/125] paper__safecontract__ballot: ok solc 0.4.26 5 findings 4.45s
+[74/125] paper__safecontract__curve: ok solc 0.8.26 3 findings 4.46s
+[75/125] paper__time_manipulation__AZT: FAILED solc 0.5.17 0 findings 4.02s  ''
+[76/125] paper__time_manipulation__DocumentSigner: ok solc 0.5.17 30 findings 4.39s
+[77/125] paper__time_manipulation__HotDollarsToken: FAILED solc 0.5.17 0 findings 4.13s  ''
+[78/125] paper__time_manipulation__TAMContract: FAILED solc 0.5.17 0 findings 4.16s  ''
+[79/125] paper__time_manipulation__TTC: FAILED solc 0.5.17 0 findings 5.6s  ''
+[80/125] paper__time_manipulation__ether_lotto: ok solc 0.4.26 8 findings 4.66s
+[81/125] paper__time_manipulation__governmental_survey: ok solc 0.4.26 14 findings 4.43s
+[82/125] paper__time_manipulation__lottopollo: ok solc 0.4.26 8 findings 4.38s
+[83/125] paper__time_manipulation__roulette: ok solc 0.4.26 6 findings 4.38s
+[84/125] paper__time_manipulation__timed_crowdsale: ok solc 0.4.26 3 findings 4.39s
+[85/125] paper__tx_origin__AsseteGram: ok solc 0.5.17 100 findings 4.63s
+[86/125] paper__tx_origin__BitCash: ok solc 0.6.12 81 findings 4.71s
+[87/125] paper__tx_origin__CareerOnToken: FAILED solc 0.5.17 0 findings 4.01s  ''
+[88/125] paper__tx_origin__DocumentSinger: ok solc 0.5.17 36 findings 4.34s
+[89/125] paper__tx_origin__HotDollarsToken: FAILED solc 0.5.17 0 findings 3.89s  ''
+[90/125] paper__tx_origin__MD: ok solc 0.5.17 82 findings 4.52s
+[91/125] paper__tx_origin__ProofofExistence: FAILED solc 0.5.17 0 findings 4.03s  ''
+[92/125] paper__tx_origin__TAMC: ok solc 0.5.17 50 findings 4.47s
+[93/125] paper__tx_origin__mycontract: ok solc 0.4.26 5 findings 4.46s
+[94/125] paper__tx_origin__phishable: ok solc 0.4.26 7 findings 4.36s
+[95/125] paper__unchecked_send__0x3e013fc32a54c4c5b6991ba539dcd0ec4355c859: FAILED solc 0.4.26 0 findings 4.03s  ''
+[96/125] paper__unchecked_send__0x3f2ef511aa6e75231e4deafc7a3d2ecab3741de2: FAILED solc 0.4.26 0 findings 4.01s  ''
+[97/125] paper__unchecked_send__0x4a66ad0bca2d700f11e1f2fc2c106f7d3264504c: ok solc 0.4.26 10 findings 4.32s
+[98/125] paper__unchecked_send__0xf2570186500a46986f3139f65afedc2afe4f445d: ok solc 0.4.26 7 findings 4.38s
+[99/125] paper__unchecked_send__0xf70d589d76eebdd7c12cc5eec99f8f6fa4233b9e: FAILED solc 0.4.26 0 findings 4.06s  ''
+[100/125] paper__unchecked_send__etherpot_lotto: ok solc 0.4.26 11 findings 4.76s
+[101/125] paper__unchecked_send__king_of_the_ether_throne: ok solc 0.4.26 25 findings 4.4s
+[102/125] paper__unchecked_send__lotto: ok solc 0.4.26 10 findings 4.16s
+[103/125] paper__unchecked_send__mishandled: ok solc 0.4.26 3 findings 4.23s
+[104/125] paper__unchecked_send__unchecked_return_value: ok solc 0.4.25 6 findings 4.3s
+[105/125] paper__unsafe_delegatecall__BeaconProxy: FAILED solc 0.8.26 0 findings 3.86s  ''
+[106/125] paper__unsafe_delegatecall__Delegation: ok solc 0.7.6 8 findings 4.66s
+[107/125] paper__unsafe_delegatecall__ERC1967Proxy: FAILED solc 0.8.26 0 findings 4.15s  ''
+[108/125] paper__unsafe_delegatecall__FibonacciBalance: ok solc 0.4.26 15 findings 5.63s
+[109/125] paper__unsafe_delegatecall__multi_delegatecall: ok solc 0.8.26 5 findings 4.41s
+[110/125] paper__unsafe_delegatecall__owner_example: ok solc 0.8.26 10 findings 4.37s
+[111/125] paper__unsafe_delegatecall__proxy: ok solc 0.4.26 6 findings 4.36s
+[112/125] paper__unsafe_delegatecall__storage_abuse: FAILED solc 0.4.26 0 findings 4.29s  ''
+[113/125] paper__unsafe_delegatecall__storage_example: ok solc 0.4.26 11 findings 4.39s
+[114/125] paper__unsafe_delegatecall__wallet_delegatecall: FAILED solc 0.4.26 0 findings 3.97s  ''
+[115/125] paper__unsafe_suicide__BankOfEther: ok solc 0.6.12 7 findings 4.23s
+[116/125] paper__unsafe_suicide__ERC20Basic: ok solc 0.4.26 24 findings 4.46s
+[117/125] paper__unsafe_suicide__EthRoulette: FAILED solc 0.5.17 0 findings 3.92s  ''
+[118/125] paper__unsafe_suicide__SuicideMultiTxFeasible: ok solc 0.4.26 4 findings 4.61s
+[119/125] paper__unsafe_suicide__SuicideMultiTxInfeasible: ok solc 0.4.26 4 findings 4.6s
+[120/125] paper__unsafe_suicide__bug_1: ok solc 0.5.17 96 findings 4.65s
+[121/125] paper__unsafe_suicide__bug_2: ok solc 0.5.17 102 findings 5.23s
+[122/125] paper__unsafe_suicide__bug_3: FAILED solc 0.5.17 0 findings 3.9s  ''
+[123/125] paper__unsafe_suicide__parity_wallet_bug_2: FAILED solc 0.4.26 0 findings 3.97s  ''
+[124/125] paper__unsafe_suicide__simple_suicide: ok solc 0.4.26 3 findings 4.19s
+[125/125] paper__unsafe_suicide__wallet_sucide: FAILED solc 0.4.26 0 findings 4.05s  ''
+done: 447/504 compiled and analysed -> datasets\tool_results\slither_local.json

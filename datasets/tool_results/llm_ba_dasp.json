@@ -3292,6 +3292,1209 @@
    "seconds": 2.61,
    "provider": "groq",
    "at": "2026-11-25T06:20:15+00:00"
+  },
+  "paper__arithmetic__BECToken": {
+   "raw": "{\n  \"vulnerabilities\": [],\n  \"confidence\": 0.97\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1638,
+   "completion_tokens": 177,
+   "seconds": 7.28,
+   "provider": "groq",
+   "at": "2026-11-20T12:22:42+00:00",
+   "copied_from": "BECToken"
+  },
+  "paper__arithmetic__insecure_transfer": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"transfer function\",\n      \"severity\": \"high\",\n      \"explanation\": \"Using Solidity ^0.4.0 arithmetic does not have built\u2011in overflow checks. The line `balanceOf[_to] += _value;` can overflow the uint256 balance, allowing an attacker to wrap their balance to a low value and potentially create tokens out of thin air.\"\n    }\n  ],\n  \"confidence\": 0.99\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 641,
+   "completion_tokens": 199,
+   "seconds": 0.78,
+   "provider": "groq",
+   "at": "2026-11-24T10:50:58+00:00",
+   "copied_from": "insecure_transfer"
+  },
+  "paper__arithmetic__integer_overflow_add": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"run(uint256) function\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract uses Solidity ^0.4.19 without SafeMath. The statement `count += input;` can overflow the 256\u2011bit unsigned integer, wrapping around and allowing an attacker to reset or manipulate `count`.\"\n    }\n  ],\n  \"confidence\": 0.99\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 608,
+   "completion_tokens": 206,
+   "seconds": 0.89,
+   "provider": "groq",
+   "at": "2026-11-20T12:22:44+00:00",
+   "copied_from": "integer_overflow_add"
+  },
+  "paper__arithmetic__integer_overflow_benign_1": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"run(uint256) function\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The subtraction `count - input` can underflow when `input` > `count` (count is 1). In Solidity ^0.4.19 arithmetic does not revert on underflow, leading to a huge uint value and unintended behavior.\"\n    }\n  ],\n  \"confidence\": 0.99\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 613,
+   "completion_tokens": 196,
+   "seconds": 0.81,
+   "provider": "groq",
+   "at": "2026-11-20T12:22:45+00:00",
+   "copied_from": "integer_overflow_benign_1"
+  },
+  "paper__arithmetic__integer_overflow_minimal": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"run(uint256) function\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract uses Solidity ^0.4.19 without SafeMath. The subtraction `count -= input;` can underflow when `input` > `count`, causing `count` to wrap around to a very large value.\"\n    }\n  ],\n  \"confidence\": 0.99\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 608,
+   "completion_tokens": 210,
+   "seconds": 0.84,
+   "provider": "groq",
+   "at": "2026-11-20T12:22:45+00:00",
+   "copied_from": "integer_overflow_minimal"
+  },
+  "paper__arithmetic__integer_overflow_mul": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"run(uint256) function\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract uses Solidity ^0.4.19 which lacks built\u2011in overflow checks. The multiplication `count *= input;` can overflow the 256\u2011bit uint, leading to incorrect state and potential exploitation.\"\n    }\n  ],\n  \"confidence\": 0.99\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 608,
+   "completion_tokens": 178,
+   "seconds": 0.68,
+   "provider": "groq",
+   "at": "2026-11-20T12:22:45+00:00",
+   "copied_from": "integer_overflow_mul"
+  },
+  "paper__arithmetic__integer_overflow_multitx_multifunc_feasible": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"run\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function run subtracts `input` from `count` without any bounds check. In Solidity 0.4.23 arithmetic does not revert on underflow, so providing an `input` greater than `count` will cause `count` to wrap around to a very large value, breaking the contract's logic.\"\n    }\n  ],\n  \"confidence\": 0.9\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 641,
+   "completion_tokens": 253,
+   "seconds": 0.66,
+   "provider": "groq",
+   "at": "2026-11-20T12:23:44+00:00",
+   "copied_from": "integer_overflow_multitx_multifunc_feasible"
+  },
+  "paper__arithmetic__integer_overflow_multitx_onefunc_feasible": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"function run(uint256 input)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract uses Solidity 0.4.23 without SafeMath. The statement `count -= input;` can underflow when `input` is greater than `count` (which starts at 1), wrapping `count` to a very large value and breaking the intended logic.\"\n    }\n  ],\n  \"confidence\": 0.99\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 637,
+   "completion_tokens": 234,
+   "seconds": 0.91,
+   "provider": "groq",
+   "at": "2026-11-20T12:22:45+00:00",
+   "copied_from": "integer_overflow_multitx_onefunc_feasible"
+  },
+  "paper__arithmetic__overflow_single_tx": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"overflowaddtostate(uint256)\",\n      \"severity\": \"high\",\n      \"explanation\": \"Uses `count += input` without SafeMath on Solidity 0.4.23, allowing overflow of `count`.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"overflowmultostate(uint256)\",\n      \"severity\": \"high\",\n      \"explanation\": \"Uses `count *= input` without SafeMath on Solidity 0.4.23, allowing overflow of `count`.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"underflowtostate(uint256)\",\n      \"severity\": \"high\",\n      \"explanation\": \"Uses `count -= input` without checks; if `input` > `count` it underflows to a large value.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"overflowlocalonly(uint256)\",\n      \"severity\": \"high\",\n      \"explanation\": \"Computes `uint res = count + input` without SafeMath; overflow can occur even though result is not stored.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"overflowmulocalonly(uint256)\",\n      \"severity\": \"high\",\n      \"explanation\": \"Computes `uint res = count * input` without SafeMath; overflow can occur.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"underflowlocalonly(uint256)\",\n      \"severity\": \"high\",\n      \"explanation\": \"Computes `uint res = count - input` without checks; underflow can occur if `input` > `count`.\"\n    }\n  ],\n  \"confidence\": 0.99\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 697,
+   "completion_tokens": 443,
+   "seconds": 1.31,
+   "provider": "groq",
+   "at": "2026-11-20T12:23:45+00:00",
+   "copied_from": "overflow_single_tx"
+  },
+  "paper__arithmetic__tokensalechallenge": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"buy(uint256 numTokens) function\",\n      \"severity\": \"high\",\n      \"explanation\": \"The multiplication `numTokens * PRICE_PER_TOKEN` can overflow in Solidity 0.4.21 (no built\u2011in overflow checks). An attacker can supply a large `numTokens` value that causes the product to wrap around, making `msg.value == numTokens * PRICE_PER_TOKEN` pass with far less ether than required, allowing acquisition of tokens cheaply.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 718,
+   "completion_tokens": 281,
+   "seconds": 1.08,
+   "provider": "groq",
+   "at": "2026-11-20T12:24:45+00:00",
+   "copied_from": "tokensalechallenge"
+  },
+  "paper__bad_randomness__blackjack": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"checkGameResult() \u2013 external send() is performed before updating games[msg.sender].state\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract sends ether to the player using msg.sender.send() and only afterwards updates the game state. A malicious receiver could re\u2011enter the contract (e.g., via a fallback that calls hit/stand) before the state is changed, allowing double payouts.\"\n    },\n    {\n      \"type\": \"bad_randomness\",\n      \"location\": \"Deck.deal() \u2013 uses block.blockhash, block.timestamp and block.number to generate card values\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Card dealing relies on predictable block variables, which miners or front\u2011runners can manipulate to influence the outcome, breaking fairness of the game.\"\n    },\n    {\n      \"type\": \"timestamp_dependence\",\n      \"location\": \"Deck.deal() \u2013 includes block.timestamp in the keccak256 hash\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Including block.timestamp makes the randomness partially controllable by miners, allowing them to bias card distribution.\"\n    }\n  ],\n  \"confidence\": 0.93\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 2184,
+   "completion_tokens": 642,
+   "seconds": 8.3,
+   "provider": "groq",
+   "at": "2026-11-20T12:22:43+00:00",
+   "copied_from": "blackjack"
+  },
+  "paper__bad_randomness__etheraffle": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"bad_randomness\",\n      \"location\": \"chooseWinner()\",\n      \"severity\": \"high\",\n      \"explanation\": \"Winner is selected using block.coinbase, msg.sender and block.difficulty which can be influenced by miners or participants, allowing manipulation of the raffle outcome.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1333,
+   "completion_tokens": 391,
+   "seconds": 1.06,
+   "provider": "groq",
+   "at": "2026-11-20T12:22:44+00:00",
+   "copied_from": "etheraffle"
+  },
+  "paper__bad_randomness__guess_the_random_number": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"bad_randomness\",\n      \"location\": \"constructor GuessTheRandomNumberChallenge()\",\n      \"severity\": \"high\",\n      \"explanation\": \"The answer is generated using keccak256(block.blockhash(block.number - 1), now), which can be predicted or manipulated by miners, making the challenge trivially solvable.\"\n    },\n    {\n      \"type\": \"timestamp_dependence\",\n      \"location\": \"constructor GuessTheRandomNumberChallenge()\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The contract uses `now` (block.timestamp) as part of the randomness source, allowing miners to influence the generated answer.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 685,
+   "completion_tokens": 387,
+   "seconds": 1.23,
+   "provider": "groq",
+   "at": "2026-11-20T12:22:44+00:00",
+   "copied_from": "guess_the_random_number"
+  },
+  "paper__bad_randomness__lottery": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"bad_randomness\",\n      \"location\": \"makeBet()\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The outcome (won) is determined solely by block.number % 2, which is predictable and manipulable by miners, making the lottery insecure.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"getBets()\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The function iterates over the unbounded bets array and emits an event for each entry, which can run out of gas as the array grows, preventing the organizer from retrieving bet data.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 761,
+   "completion_tokens": 438,
+   "seconds": 1.79,
+   "provider": "groq",
+   "at": "2026-11-20T12:23:45+00:00",
+   "copied_from": "lottery"
+  },
+  "paper__bad_randomness__lucky_doubler": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"balance calculations in join() and payout logic\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract uses Solidity ^0.4.0 which lacks built\u2011in overflow checks. Operations like `balance += (dValue * (100 - fee)) / 100;` and `balance -= payout;` can overflow/underflow and corrupt the contract state.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"multiple `send` calls (e.g., `msg.sender.send(...)`, `theEntry.entryAddress.send(payout)`, `owner.send(fees)`)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The return value of `send` is not checked, so failed Ether transfers are silently ignored, potentially leaving funds locked or causing inconsistent state.\"\n    },\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"payout section in join() where `theEntry.entryAddress.send(payout)` is executed before updating `theEntry.paid`, `balance`, and `unpaidEntries`\",\n      \"severity\": \"high\",\n      \"explanation\": \"An external call is made before the contract\u2019s internal bookkeeping is updated, allowing a malicious recipient to re\u2011enter the contract (via fallback) and trigger another payout.\"\n    },\n    {\n      \"type\": \"bad_randomness\",\n      \"location\": \"function rand(uint max)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Randomness is derived from `block.blockhash` and block number, which miners can influence, making the selection of the winning entry predictable and exploitable.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"use of `send` in payout loop and fee transfer\",\n      \"severity\": \"medium\",\n      \"explanation\": \"If the recipient\u2019s fallback consumes more than 2300 gas or reverts, `send` returns false and the contract does not handle it, potentially preventing future payouts or fee withdrawals.\"\n    }\n  ],\n  \"confidence\": 0.93\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1418,
+   "completion_tokens": 789,
+   "seconds": 1.9,
+   "provider": "groq",
+   "at": "2026-11-20T12:23:45+00:00",
+   "copied_from": "lucky_doubler"
+  },
+  "paper__bad_randomness__old_blockhash": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"settle() function\",\n      \"severity\": \"medium\",\n      \"explanation\": \"blockhash only returns a valid hash for the last 256 blocks; if settle() is called after that window the answer will be 0, the guess will never match and the contract's ether becomes permanently locked.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 732,
+   "completion_tokens": 262,
+   "seconds": 0.9,
+   "provider": "groq",
+   "at": "2026-11-20T12:23:44+00:00",
+   "copied_from": "old_blockhash"
+  },
+  "paper__bad_randomness__random_number_generator": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"bad_randomness\",\n      \"location\": \"function random(uint max)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The random number is derived from block.timestamp, block.number, and blockhash, which can be manipulated by miners or predicted by attackers, making the output insecure.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"function random(uint max)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Using Solidity ^0.4.25 without SafeMath means arithmetic operations like `salt * 100`, `salt * block.number`, and divisions can overflow or underflow, leading to incorrect randomness or revert behavior.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 680,
+   "completion_tokens": 311,
+   "seconds": 0.86,
+   "provider": "groq",
+   "at": "2026-11-20T12:23:45+00:00",
+   "copied_from": "random_number_generator"
+  },
+  "paper__bad_randomness__smart_billions": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"bad_randomness\",\n      \"location\": \"playSystem() \u2013 uses blockhash and block.number to generate bet hash\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract derives game randomness from block variables (blockhash, block.number) which can be manipulated by miners or front\u2011runners, allowing prediction or bias of outcomes.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"putHashes(uint _num) \u2013 loops up to _num without gas limit checks\",\n      \"severity\": \"medium\",\n      \"explanation\": \"An attacker can call putHashes with a large _num causing the transaction to run out of gas, blocking the function and potentially halting hash generation needed for the game.\"\n    },\n    {\n      \"type\": \"access_control\",\n      \"location\": \"addHashes(uint _sadd) \u2013 public function that can initialize hashFirst and hashLast\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The function is unrestricted and can be called by any address to set critical internal state (hashFirst, hashLast) when hashFirst == 0, potentially allowing an attacker to manipulate the hash schedule.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 2266,
+   "completion_tokens": 573,
+   "seconds": 3.02,
+   "provider": "groq",
+   "at": "2026-11-20T12:24:48+00:00",
+   "copied_from": "smart_billions"
+  },
+  "paper__bad_randomness__theRun": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"CollectAllFees and GetAndReduceFeesByFraction functions\",\n      \"severity\": \"high\",\n      \"explanation\": \"feeFrac is decremented without underflow check; after reaching zero further calls will underflow to a very large value, breaking fee calculations and potentially causing overflow in later arithmetic.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"init(), Participate(), while loop sending payouts, CollectAllFees, GetAndReduceFeesByFraction\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Calls to .send() are made without checking the returned boolean, so failed transfers are silently ignored, leading to loss of funds or inconsistent state.\"\n    },\n    {\n      \"type\": \"access_control\",\n      \"location\": \"fallback function\",\n      \"severity\": \"high\",\n      \"explanation\": \"The fallback function is not marked payable, so sending ether to the contract will revert, preventing participation and potentially locking the contract.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"while (Balance > players[Payout_id].payout) loop in Participate\",\n      \"severity\": \"high\",\n      \"explanation\": \"The loop iterates over an unbounded number of players, performing external .send() calls; if a payout fails or gas runs out, the contract can become stuck and stop processing further payouts.\"\n    },\n    {\n      \"type\": \"bad_randomness\",\n      \"location\": \"random() function\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Randomness is derived solely from predictable on\u2011chain values (block.timestamp, block.number, blockhash) and a constant salt set at deployment, allowing miners or attackers to manipulate outcomes.\"\n    },\n    {\n      \"type\": \"timestamp_dependence\",\n      \"location\": \"salt constant initialization with block.timestamp\",\n      \"severity\": \"low\",\n      \"explanation\": \"Using block.timestamp at contract creation to seed randomness gives miners influence over the seed, weakening randomness.\"\n    }\n  ],\n  \"confidence\": 0.93\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1424,
+   "completion_tokens": 854,
+   "seconds": 2.46,
+   "provider": "groq",
+   "at": "2026-11-24T10:52:03+00:00",
+   "copied_from": "theRun"
+  },
+  "paper__bad_randomness__vulnerableBlockHashGame": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"bad_randomness\",\n      \"location\": \"checkWinner()\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract uses blockhash(blockNumber[msg.sender]) to determine the winner. Block hashes are manipulable by miners within the allowed 256\u2011block window and become zero after that, allowing an attacker to predict or force the outcome, breaking the intended randomness of the game.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 715,
+   "completion_tokens": 259,
+   "seconds": 0.96,
+   "provider": "groq",
+   "at": "2026-11-24T10:51:55+00:00",
+   "copied_from": "vulnerableBlockHashGame"
+  },
+  "paper__gasless_send__Axioms": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"addNewAirdrop \u2013 airdrops.length++\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The contract uses Solidity 0.4.25 without SafeMath. Incrementing the dynamic array length can overflow if the array grows to 2^256\u20111, causing unexpected behavior.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"distributeAirdrop \u2013 airdrop.tokenSC.transfer(...)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The external ERC20 transfer call\u2019s return value is not checked. If the token contract returns false or reverts, the function will continue silently, potentially leading to loss of funds or inconsistent state.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"distributeAirdrop \u2013 for loop over _addrs array\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The function iterates over an unbounded external array and makes a token transfer for each element. A malicious caller can supply a very large array, causing the transaction to run out of gas and block the distribution.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1052,
+   "completion_tokens": 601,
+   "seconds": 2.35,
+   "provider": "groq",
+   "at": "2026-11-24T10:46:43+00:00",
+   "copied_from": "Axioms"
+  },
+  "paper__gasless_send__CreditDepositBank_Attack": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"takeOver()\",\n      \"severity\": \"high\",\n      \"explanation\": \"Anyone with a non\u2011zero balance can become the contract owner, allowing unauthorized takeover of privileged functions.\"\n    },\n    {\n      \"type\": \"access_control\",\n      \"location\": \"setManager()\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Manager can be set by any address that merely holds >100 finney in the contract's internal balance mapping, without owner restriction.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"deposit()\",\n      \"severity\": \"low\",\n      \"explanation\": \"Uses Solidity 0.4.17 without SafeMath; balances[msg.sender] += msg.value can overflow if a user repeatedly deposits large amounts.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"credit()\",\n      \"severity\": \"critical\",\n      \"explanation\": \"balances[msg.sender] -= this.balance + msg.value can underflow, allowing manipulation of balances and potential theft.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"withdraw()\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Uses msg.sender.send without checking the return value; failure silently loses funds and can be exploited.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"credit()\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Calls msg.sender.send without checking success, risking loss of ether on failure.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"close()\",\n      \"severity\": \"high\",\n      \"explanation\": \"Calls manager.send without checking the return value; if the send fails the contract remains with ether and selfdestruct is blocked, leading to denial of service.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"close()\",\n      \"severity\": \"high\",\n      \"explanation\": \"Selfdestruct is conditioned on this.balance == 0 after a send; a malicious manager can cause the send to fail, preventing contract termination and locking funds.\"\n    },\n    {\n      \"type\": \"other\",\n      \"location\": \"owner variable shadowing\",\n      \"severity\": \"low\",\n      \"explanation\": \"CreditDepositBank declares its own owner variable, shadowing Ownable.owner, causing confusion and potential misuse of ownership checks.\"\n    }\n  ],\n  \"confidence\": 0.93\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1040,
+   "completion_tokens": 779,
+   "seconds": 1.86,
+   "provider": "groq",
+   "at": "2026-11-24T10:46:47+00:00",
+   "copied_from": "CreditDepositBank_Attack"
+  },
+  "paper__gasless_send__ETHDropOpenAdd": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"addMember function\",\n      \"severity\": \"medium\",\n      \"explanation\": \"addMember is public and lacks any access restriction, allowing any address to add arbitrary members to the drop.\"\n    },\n    {\n      \"type\": \"access_control\",\n      \"location\": \"removeMember function\",\n      \"severity\": \"high\",\n      \"explanation\": \"The require statement uses assignment (memberList[_removeMember].exists = true) instead of a comparison, so it always succeeds and allows removal of non\u2011existent members, breaking the membership mapping.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"dripETH / dropETH / customDropETH loops\",\n      \"severity\": \"high\",\n      \"explanation\": \"The functions iterate over the members array and call transfer on each. If any member is a contract that reverts on receiving ether, the whole transaction reverts, enabling a DOS by a malicious member.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1218,
+   "completion_tokens": 491,
+   "seconds": 1.26,
+   "provider": "groq",
+   "at": "2026-11-24T10:47:49+00:00",
+   "copied_from": "ETHDropOpenAdd"
+  },
+  "paper__gasless_send__Etheramid_Attack": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"enter() function \u2013 all .send calls\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The contract uses address.send() without checking the returned boolean. If the recipient contract rejects the transfer, the call fails silently and the ether is lost, breaking the intended payout logic.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"enter() function \u2013 payout loop using .send\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Because the return value of .send is ignored, a malicious contract can cause the send to fail (e.g., by reverting in its fallback). This prevents the intended distribution of funds and can lock ether in the contract.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"addParticipant() \u2013 Count += 1\",\n      \"severity\": \"low\",\n      \"explanation\": \"The contract is compiled with Solidity ^0.4.5 which lacks built\u2011in overflow checks. Incrementing Count could overflow uint256 after 2^256 participants, leading to incorrect indexing and potential overwrites.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1091,
+   "completion_tokens": 604,
+   "seconds": 1.72,
+   "provider": "groq",
+   "at": "2026-11-24T10:48:47+00:00",
+   "copied_from": "Etheramid_Attack"
+  },
+  "paper__gasless_send__Ethmoon": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"fallback function and pay() calculations (e.g., (msg.value * MULTIPLIER) / 100 and uint128 casts)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract is compiled with Solidity 0.4.25 which lacks built\u2011in overflow checks. Multiplying msg.value by MULTIPLIER (125) can overflow the 256\u2011bit uint before it is cast to uint128, leading to incorrect expect values and potential loss of funds.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"pay() loop over queue array\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The queue array never shrinks; deleted entries remain in storage, so the array length grows indefinitely. Each call to pay() iterates over the entire array (or a large portion), which can exceed block gas limits and make the contract unusable.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1212,
+   "completion_tokens": 581,
+   "seconds": 1.84,
+   "provider": "groq",
+   "at": "2026-11-24T10:48:46+00:00",
+   "copied_from": "Ethmoon"
+  },
+  "paper__gasless_send__HelpMeSave": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"function MyTestWallet7()\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function intended to be the constructor is named MyTestWallet7 instead of matching the contract name HelpMeSave, so anyone can call it to reset the owner variable.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"function withdraw()\",\n      \"severity\": \"low\",\n      \"explanation\": \"msg.sender.send(withdraw_amt) does not check the return value, so a failed send is silently ignored.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"function withdraw()\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Because the send return value is not checked, a malicious fallback that consumes >2300 gas will cause send to fail and the contract's balance becomes permanently locked.\"\n    },\n    {\n      \"type\": \"bad_randomness\",\n      \"location\": \"function recovery(string _password,address _return_addr)\",\n      \"severity\": \"low\",\n      \"explanation\": \"The condition for selfdestruct is based on uint256(sha3(_return_addr)) % 100000000000000, which is fully predictable and can be brute\u2011forced off\u2011chain.\"\n    }\n  ],\n  \"confidence\": 0.93\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 881,
+   "completion_tokens": 682,
+   "seconds": 1.99,
+   "provider": "groq",
+   "at": "2026-11-24T10:48:49+00:00",
+   "copied_from": "HelpMeSave"
+  },
+  "paper__gasless_send__HFConditionalTransfer": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"transferIfHF and transferIfNoHF functions (use of .send without checking return value)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The contract uses address.send to forward ether but does not check the boolean return value. If the send fails (e.g., due to gas limits or a reverting fallback), the ether is silently lost and the function proceeds as if the transfer succeeded, leading to potential loss of funds.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 834,
+   "completion_tokens": 258,
+   "seconds": 0.76,
+   "provider": "groq",
+   "at": "2026-11-24T10:48:50+00:00",
+   "copied_from": "HFConditionalTransfer"
+  },
+  "paper__gasless_send__IManagedToken": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"Various arithmetic operations (e.g., token allocation calculations, percentage calculations) without SafeMath in Solidity ^0.4.15\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract uses Solidity 0.4.15 where arithmetic does not automatically check for overflow/underflow. Calculations such as \\\"(_amount * p.eth) / percentageDenominator\\\" can overflow, leading to incorrect token/ether allocations.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"_allocateStakeholdersEth and _allocateStakeholdersTokens functions\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Both functions iterate over the dynamic array stakeholderPercentagesIndex. As the number of stakeholders grows, the loops can exceed the block gas limit, preventing the function from completing and effectively locking token/ether allocation.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1995,
+   "completion_tokens": 540,
+   "seconds": 1.66,
+   "provider": "groq",
+   "at": "2026-11-24T10:49:51+00:00",
+   "copied_from": "IManagedToken"
+  },
+  "paper__gasless_send__MultiTokenNetwork": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"function deploy(uint256 index, bytes data)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function calls an external contract via _deployers[index].deploy(data) before updating the contract state (pushing the new token address to _multitokens). A malicious deployer could re-enter and manipulate the contract's storage, e.g., by calling back into deploy or other state\u2011changing functions.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1825,
+   "completion_tokens": 392,
+   "seconds": 3.65,
+   "provider": "groq",
+   "at": "2026-11-24T10:49:50+00:00",
+   "copied_from": "MultiTokenNetwork"
+  },
+  "paper__gasless_send__Ownable": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"function claimPrize()\",\n      \"severity\": \"high\",\n      \"explanation\": \"External ERC721 token.transferFrom calls are made before the contract updates state (isPrizeClaimed). A malicious token contract could re-enter claimPrize and cause multiple transfers of the prize tokens.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"function claimPrize() loop over prizeTokens\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The function iterates over an unbounded array of prize tokens, performing external calls. If the array grows large, the transaction may run out of gas, preventing anyone (including the rightful winner) from claiming the prize.\"\n    },\n    {\n      \"type\": \"timestamp_dependence\",\n      \"location\": \"functions sendPrize, sendPresent, claimPrize, isTooLate\",\n      \"severity\": \"low\",\n      \"explanation\": \"Logic relies on block.timestamp (now) for timing checks, which miners can manipulate within a reasonable range, potentially allowing them to affect deadline enforcement.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1370,
+   "completion_tokens": 693,
+   "seconds": 3.46,
+   "provider": "groq",
+   "at": "2026-11-24T10:49:57+00:00",
+   "copied_from": "Ownable"
+  },
+  "paper__gasless_send__QuarterMachine": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"purchase() function loop over buyIns\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The while loop iterates over the dynamic array buyIns without a bound. As the array grows, the loop can exceed the block gas limit, causing the purchase() function to become uncallable and effectively DoS the contract.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1101,
+   "completion_tokens": 274,
+   "seconds": 1.01,
+   "provider": "groq",
+   "at": "2026-11-24T10:49:52+00:00",
+   "copied_from": "QuarterMachine"
+  },
+  "paper__reentrancy__etherbank": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"withdrawBalance()\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract sends Ether to msg.sender via low\u2011level call before resetting the user's balance, allowing a malicious contract to re\u2011enter withdrawBalance and drain funds.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"addToBalance()\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Using Solidity ^0.4.0 without SafeMath means userBalances[msg.sender] += msg.value can overflow, letting an attacker wrap their balance to a low value and later withdraw more than deposited.\"\n    }\n  ],\n  \"confidence\": 0.9\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 668,
+   "completion_tokens": 293,
+   "seconds": 1.06,
+   "provider": "groq",
+   "at": "2026-11-24T10:49:59+00:00",
+   "copied_from": "etherbank"
+  },
+  "paper__reentrancy__etherstore": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"depositFunds()\",\n      \"severity\": \"high\",\n      \"explanation\": \"balances[msg.sender] is increased with `+= msg.value` without SafeMath in Solidity 0.4, allowing an overflow that can reset the balance and enable unauthorized withdrawals.\"\n    },\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"withdrawFunds(uint256)\",\n      \"severity\": \"critical\",\n      \"explanation\": \"The contract makes an external call `msg.sender.call.value(_weiToWithdraw)()` before updating the user's balance and lastWithdrawTime, allowing a malicious contract to re-enter withdrawFunds and drain funds.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"withdrawFunds(uint256)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The return value of `msg.sender.call.value(_weiToWithdraw)()` is not checked; if the call fails the function will still continue, potentially causing inconsistent state or loss of funds.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 712,
+   "completion_tokens": 332,
+   "seconds": 1.13,
+   "provider": "groq",
+   "at": "2026-11-20T12:22:44+00:00",
+   "copied_from": "etherstore"
+  },
+  "paper__reentrancy__modifier_reentrancy": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"airDrop function (tokenBalance[msg.sender] += 20)\",\n      \"severity\": \"low\",\n      \"explanation\": \"Using Solidity ^0.4.24 without SafeMath allows the addition to overflow the uint256 balance after enough calls.\"\n    },\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"airDrop function via supportsToken modifier\",\n      \"severity\": \"high\",\n      \"explanation\": \"The supportsToken modifier makes an external call to Bank(msg.sender).supportsToken() before updating state. An attacker contract can re-enter airDrop in that call, bypassing the hasNoBalance check and incrementing tokenBalance multiple times.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 767,
+   "completion_tokens": 398,
+   "seconds": 1.07,
+   "provider": "groq",
+   "at": "2026-11-20T12:23:43+00:00",
+   "copied_from": "modifier_reentrancy"
+  },
+  "paper__reentrancy__reentrance": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"withdraw(uint _amount)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract sends ether to msg.sender via a low\u2011level call before updating the sender's balance, allowing a malicious contract to re\u2011enter withdraw and drain funds.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"withdraw(uint _amount) - msg.sender.call.value(_amount)()\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The return value of the low\u2011level call is not properly handled; the code attempts to use it but does not revert on failure, potentially leading to inconsistent state.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"donate(address _to) - balances[_to] += msg.value\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Using Solidity ^0.4.18 without SafeMath allows balances to overflow when large amounts are donated, corrupting the accounting.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 681,
+   "completion_tokens": 315,
+   "seconds": 1.09,
+   "provider": "groq",
+   "at": "2026-11-20T12:23:46+00:00",
+   "copied_from": "reentrance"
+  },
+  "paper__reentrancy__reentrancy_bonus": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"function getFirstWithdrawalBonus\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The contract uses Solidity ^0.4.0 which lacks built\u2011in overflow checks. Adding 100 to rewardsForA[recipient] can overflow a uint and wrap around, allowing an attacker to manipulate the reward amount.\"\n    },\n    {\n      \"type\": \"access_control\",\n      \"location\": \"function getFirstWithdrawalBonus\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function is public and allows any caller to trigger a bonus withdrawal for any address. There is no restriction that only the recipient or an authorized party can call it, enabling arbitrary users to claim bonuses on behalf of others.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 710,
+   "completion_tokens": 373,
+   "seconds": 1.24,
+   "provider": "groq",
+   "at": "2026-11-24T10:50:58+00:00",
+   "copied_from": "reentrancy_bonus"
+  },
+  "paper__reentrancy__reentrancy_cross_function": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"withdrawBalance\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract sends Ether to msg.sender via a low\u2011level call before setting userBalances[msg.sender] to 0, allowing a malicious recipient to re\u2011enter withdrawBalance and drain funds repeatedly.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"transfer (userBalances[to] += amount)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Using Solidity ^0.4.0 without SafeMath means the addition to userBalances[to] can overflow, potentially wrapping the balance and breaking accounting.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 680,
+   "completion_tokens": 231,
+   "seconds": 1.05,
+   "provider": "groq",
+   "at": "2026-11-24T10:51:56+00:00",
+   "copied_from": "reentrancy_cross_function"
+  },
+  "paper__reentrancy__reentrancy_dao": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"withdrawAll()\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract sends ether to msg.sender via a low\u2011level call before setting credit[msg.sender] to 0, allowing a malicious recipient to re\u2011enter withdrawAll() and drain funds repeatedly.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"deposit() and withdrawAll() (credit and balance updates)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The contract uses Solidity ^0.4.19 which lacks built\u2011in overflow checks; additions to credit[msg.sender] and balance, and subtraction from balance can overflow/underflow, potentially corrupting accounting.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 674,
+   "completion_tokens": 271,
+   "seconds": 0.93,
+   "provider": "groq",
+   "at": "2026-11-20T12:23:46+00:00",
+   "copied_from": "reentrancy_dao"
+  },
+  "paper__reentrancy__reentrancy_insecure": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"withdrawBalance\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract sends Ether to msg.sender via a low\u2011level call before updating userBalances, allowing a malicious recipient to re\u2011enter withdrawBalance and drain funds.\"\n    }\n  ],\n  \"confidence\": 0.99\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 644,
+   "completion_tokens": 173,
+   "seconds": 0.84,
+   "provider": "groq",
+   "at": "2026-11-24T10:50:59+00:00",
+   "copied_from": "reentrancy_insecure"
+  },
+  "paper__reentrancy__reentrancy_simple": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"withdrawBalance\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract sends Ether to msg.sender via a low\u2011level call before resetting the user's balance, allowing a malicious contract to re\u2011enter withdrawBalance and drain funds.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"addToBalance\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Using Solidity ^0.4.15 without SafeMath means userBalance[msg.sender] += msg.value can overflow, letting an attacker wrap their balance to a low value and later withdraw more than deposited.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 661,
+   "completion_tokens": 251,
+   "seconds": 0.91,
+   "provider": "groq",
+   "at": "2026-11-20T12:23:46+00:00",
+   "copied_from": "reentrancy_simple"
+  },
+  "paper__reentrancy__simple_dao": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"donate function (credit[to] += msg.value)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Using Solidity ^0.4.2 arithmetic does not have built\u2011in overflow checks, so a large donation could overflow the stored credit value.\"\n    },\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"withdraw function (msg.sender.call.value(amount)() before credit subtraction)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract sends Ether to the caller via a low\u2011level call before updating the user's credit balance, allowing a malicious contract to re\u2011enter withdraw and drain funds.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"withdraw function (bool res = msg.sender.call.value(amount)())\",\n      \"severity\": \"low\",\n      \"explanation\": \"The return value of the low\u2011level call is stored in `res` but never checked; a failed call would still lead to credit being decreased, potentially locking funds.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 658,
+   "completion_tokens": 346,
+   "seconds": 1.2,
+   "provider": "groq",
+   "at": "2026-11-20T12:23:47+00:00",
+   "copied_from": "simple_dao"
+  },
+  "paper__time_manipulation__ether_lotto": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"function play() line with pot += msg.value\",\n      \"severity\": \"high\",\n      \"explanation\": \"Solidity ^0.4.15 does not have built\u2011in overflow checks; repeated calls can make `pot` exceed 2^256\u20111 and wrap around, allowing loss of funds.\"\n    },\n    {\n      \"type\": \"bad_randomness\",\n      \"location\": \"function play() line with uint(sha3(block.timestamp)) % 2\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The outcome is derived from `block.timestamp`, which miners can manipulate to bias the random result and increase their chance of winning.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 687,
+   "completion_tokens": 386,
+   "seconds": 1.25,
+   "provider": "groq",
+   "at": "2026-11-20T12:22:44+00:00",
+   "copied_from": "ether_lotto"
+  },
+  "paper__time_manipulation__governmental_survey": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"resetInvestment()\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract sends ether to lastInvestor before resetting state variables. A malicious lastInvestor can execute code in its fallback function that calls resetInvestment() again, re-entering the function while the contract's state is still vulnerable.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"resetInvestment() - lastInvestor.send(jackpot) and owner.send(this.balance-1 ether)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The return values of .send are ignored, so failed ether transfers are not detected, potentially leaving funds locked or causing inconsistent state.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"invest() - jackpot += msg.value/2\",\n      \"severity\": \"low\",\n      \"explanation\": \"Using Solidity ^0.4.0 without SafeMath allows jackpot to overflow if enough investments are made, corrupting the jackpot amount.\"\n    },\n    {\n      \"type\": \"access_control\",\n      \"location\": \"resetInvestment()\",\n      \"severity\": \"medium\",\n      \"explanation\": \"resetInvestment can be called by any address after ONE_MINUTE, not only by the owner, allowing anyone to trigger the payout and state reset.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 785,
+   "completion_tokens": 582,
+   "seconds": 1.42,
+   "provider": "groq",
+   "at": "2026-11-20T12:22:44+00:00",
+   "copied_from": "governmental_survey"
+  },
+  "paper__time_manipulation__lottopollo": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"payOut function (msg.sender.send and leader.send)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The return value of send is ignored, so failures are not detected and Ether may be lost.\"\n    },\n    {\n      \"type\": \"bad_randomness\",\n      \"location\": \"randomGen function\",\n      \"severity\": \"high\",\n      \"explanation\": \"Randomness is derived solely from block.timestamp, which can be manipulated by miners.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"payOut function condition `now - rand > 24 hours`\",\n      \"severity\": \"high\",\n      \"explanation\": \"In Solidity 0.4.0 arithmetic is unchecked; if `rand` is greater than `now` the subtraction underflows, producing a large value that satisfies the condition and allows unintended payouts.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 697,
+   "completion_tokens": 503,
+   "seconds": 2.31,
+   "provider": "groq",
+   "at": "2026-11-24T10:50:55+00:00",
+   "copied_from": "lottopollo"
+  },
+  "paper__time_manipulation__roulette": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"bad_randomness\",\n      \"location\": \"fallback function\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The contract uses `now % 15 == 0` to decide the winner, relying on block timestamp for randomness. Miners can manipulate the timestamp within allowed bounds to increase their chance of winning, making the outcome predictable and exploitable.\"\n    },\n    {\n      \"type\": \"timestamp_dependence\",\n      \"location\": \"fallback function\",\n      \"severity\": \"low\",\n      \"explanation\": \"The logic requires `now != pastBlockTime` and uses `now` for timing checks. Block timestamps are miner\u2011controlled within a range, so the condition can be influenced, potentially allowing denial\u2011of\u2011service or unintended behavior.\"\n    }\n  ],\n  \"confidence\": 0.93\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 640,
+   "completion_tokens": 336,
+   "seconds": 0.95,
+   "provider": "groq",
+   "at": "2026-11-20T12:23:46+00:00",
+   "copied_from": "roulette"
+  },
+  "paper__time_manipulation__timed_crowdsale": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"timestamp_dependence\",\n      \"location\": \"isSaleFinished\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The function relies on block.timestamp to determine if the sale is finished, allowing miners to manipulate the timestamp within allowed bounds to prematurely end or extend the sale.\"\n    }\n  ],\n  \"confidence\": 0.99\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 613,
+   "completion_tokens": 157,
+   "seconds": 1.59,
+   "provider": "groq",
+   "at": "2026-11-20T12:24:45+00:00",
+   "copied_from": "timed_crowdsale"
+  },
+  "paper__TOD__DocumentSigner": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"signDocument function\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The function iterates over the entire signers array for a document to check for duplicates. As the array grows, the loop can exceed block gas limits, preventing new signatures and effectively DoS-ing the contract.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1474,
+   "completion_tokens": 343,
+   "seconds": 1.26,
+   "provider": "groq",
+   "at": "2026-11-24T10:47:45+00:00",
+   "copied_from": "DocumentSigner"
+  },
+  "paper__TOD__ERC223Token": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"claimReward_TOD10 (and all other claimReward_TOD* functions)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function transfers Ether to msg.sender before setting the claimed flag, allowing a malicious contract to re\u2011enter the function via its fallback and drain the reward before the flag is updated.\"\n    }\n  ],\n  \"confidence\": 0.9\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 2217,
+   "completion_tokens": 383,
+   "seconds": 1.31,
+   "provider": "groq",
+   "at": "2026-11-24T10:47:52+00:00",
+   "copied_from": "ERC223Token"
+  },
+  "paper__TOD__FindThisHash": {
+   "raw": "{\n  \"vulnerabilities\": [],\n  \"confidence\": 0.99\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 644,
+   "completion_tokens": 153,
+   "seconds": 7.18,
+   "provider": "groq",
+   "at": "2026-11-20T12:22:42+00:00",
+   "copied_from": "FindThisHash"
+  },
+  "paper__TOD__ForTheBlockchain": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"transferAnyERC20Token function\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function is protected by an onlyOwner modifier, but the modifier is not defined or imported in the contract, allowing any caller to execute transferAnyERC20Token and withdraw arbitrary ERC20 tokens.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"approveAndCall function\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The function makes an external call to ApproveAndCallFallBack(spender).receiveApproval without checking the return value or using a safe call pattern, which could cause silent failures or re\u2011entrancy issues.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 2130,
+   "completion_tokens": 399,
+   "seconds": 1.28,
+   "provider": "groq",
+   "at": "2026-11-24T10:48:53+00:00",
+   "copied_from": "ForTheBlockchain"
+  },
+  "paper__TOD__odds_and_evens": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"andTheWinnerIs() \u2013 send() calls\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The contract calls `address.send` to transfer winnings but only stores the returned bool in a local variable and never checks it. If the send fails (e.g., recipient contract\u2019s fallback uses more than 2300 gas), the ether remains locked in the contract.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"andTheWinnerIs() \u2013 send() without handling failure\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Because the contract ignores the result of `send`, a malicious recipient can cause the transfer to fail, preventing the winner from receiving the prize and effectively locking the contract\u2019s balance.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"play() \u2013 `tot++`\",\n      \"severity\": \"low\",\n      \"explanation\": \"The contract is compiled with Solidity ^0.4.2 which lacks built\u2011in overflow checks. `tot` is a `uint8`; if for any reason more than 255 valid `play` calls occur without resetting `tot`, it will overflow and break the game logic.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 761,
+   "completion_tokens": 664,
+   "seconds": 1.65,
+   "provider": "groq",
+   "at": "2026-11-20T12:23:44+00:00",
+   "copied_from": "odds_and_evens"
+  },
+  "paper__TOD__ProofOfExistence": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"GetFileExistenceProof / getQRCode / searchExistenceProoUsngQRf loops\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Functions iterate over a dynamic array without a bound, allowing an attacker to grow the array and make the loops exceed block gas limits, causing calls to revert.\"\n    },\n    {\n      \"type\": \"access_control\",\n      \"location\": \"setReward_TOD36, setReward_TOD40, setReward_TOD40 (owner variables never initialized)\",\n      \"severity\": \"high\",\n      \"explanation\": \"Owner address is never set, so the require(msg.sender == owner) check can never be satisfied, effectively locking the function and allowing any address to become owner if the variable is later set externally, indicating missing proper initialization and access control.\"\n    },\n    {\n      \"type\": \"access_control\",\n      \"location\": \"claimReward_TOD36, claimReward_TOD40\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Anyone can call claimReward without any restriction other than a numeric submission check, allowing arbitrary users to drain the reward funds.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"getReward_TOD35, getReward_TOD33, getReward_TOD27, getReward_TOD31, getReward_TOD13\",\n      \"severity\": \"low\",\n      \"explanation\": \"Transfers are made to winner addresses without checking if the transfer succeeded; if the winner is a contract with a fallback that uses more than 2300 gas, the transfer will revert and block the function.\"\n    }\n  ],\n  \"confidence\": 0.87\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1968,
+   "completion_tokens": 881,
+   "seconds": 2.91,
+   "provider": "groq",
+   "at": "2026-11-24T10:50:53+00:00",
+   "copied_from": "ProofOfExistence"
+  },
+  "paper__tx_origin__mycontract": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"sendTo\",\n      \"severity\": \"high\",\n      \"explanation\": \"Authorization relies on tx.origin instead of msg.sender, allowing an attacker to trick a user into calling the function through a malicious contract and bypass the intended owner check.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 623,
+   "completion_tokens": 228,
+   "seconds": 1.15,
+   "provider": "groq",
+   "at": "2026-11-20T12:22:47+00:00",
+   "copied_from": "mycontract"
+  },
+  "paper__tx_origin__phishable": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"withdrawAll function\",\n      \"severity\": \"high\",\n      \"explanation\": \"Authorization uses tx.origin == owner, which can be bypassed via a phishing contract that calls withdrawAll on behalf of the owner, allowing an attacker to drain funds.\"\n    }\n  ],\n  \"confidence\": 0.99\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 630,
+   "completion_tokens": 253,
+   "seconds": 0.9,
+   "provider": "groq",
+   "at": "2026-11-20T12:23:45+00:00",
+   "copied_from": "phishable"
+  },
+  "paper__unchecked_send__0x3e013fc32a54c4c5b6991ba539dcd0ec4355c859": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"function multiplicate\",\n      \"severity\": \"high\",\n      \"explanation\": \"The expression `this.balance + msg.value` can overflow uint256 in Solidity 0.4.18 because arithmetic is unchecked, potentially allowing an attacker to manipulate the transferred amount.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"function Command\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The low\u2011level `adr.call.value(msg.value)(data)` does not check the returned boolean value, so a failed call is silently ignored, which can lead to unexpected behavior or loss of funds.\"\n    }\n  ],\n  \"confidence\": 0.93\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 673,
+   "completion_tokens": 445,
+   "seconds": 8.18,
+   "provider": "groq",
+   "at": "2026-11-24T10:40:30+00:00",
+   "copied_from": "0x3e013fc32a54c4c5b6991ba539dcd0ec4355c859"
+  },
+  "paper__unchecked_send__0x3f2ef511aa6e75231e4deafc7a3d2ecab3741de2": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"Command function\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function uses adr.call.value(msg.value)(data) without checking the returned boolean. If the call fails, the contract will silently ignore the failure, potentially leading to loss of funds or unexpected state.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"redeem function\",\n      \"severity\": \"medium\",\n      \"explanation\": \"After transferring the contract balance to Owner, the contract attempts to transfer the same balance to msg.sender. If msg.sender is a contract whose fallback reverts, the second transfer will revert the whole transaction, preventing Owner from receiving the funds.\"\n    },\n    {\n      \"type\": \"access_control\",\n      \"location\": \"withdraw function\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The function allows any caller matching a hard\u2011coded address (0x7a617c2B05d2A74Ff9bABC9d81E5225C1e01004b) to change the Owner variable before the require check, effectively letting that address hijack ownership without proper authorization flow.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 773,
+   "completion_tokens": 543,
+   "seconds": 8.71,
+   "provider": "groq",
+   "at": "2026-11-24T10:40:31+00:00",
+   "copied_from": "0x3f2ef511aa6e75231e4deafc7a3d2ecab3741de2"
+  },
+  "paper__unchecked_send__0x4a66ad0bca2d700f11e1f2fc2c106f7d3264504c": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"transfer function, caddress.call(...)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The low\u2011level call to caddress does not check the returned success flag, so a failure in the external contract will be ignored and the function will still return true, potentially hiding errors or enabling unexpected behavior.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"transfer function, v[i] * 1000000000000000000\",\n      \"severity\": \"high\",\n      \"explanation\": \"Using Solidity ^0.4.18 means arithmetic is unchecked; multiplying a user\u2011provided value by 1e18 can overflow uint256, leading to incorrect transfer amounts or loss of funds.\"\n    }\n  ],\n  \"confidence\": 0.93\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 772,
+   "completion_tokens": 374,
+   "seconds": 1.22,
+   "provider": "groq",
+   "at": "2026-11-24T10:40:32+00:00",
+   "copied_from": "0x4a66ad0bca2d700f11e1f2fc2c106f7d3264504c"
+  },
+  "paper__unchecked_send__0xf2570186500a46986f3139f65afedc2afe4f445d": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"makeOldFucks function (call to fuck.call)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The low\u2011level call's return value is ignored, so a failure in the external contract will not be detected and may lead to unexpected behavior.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"makeOldFucks function (unbounded for loop over user\u2011provided number)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The function loops up to a user\u2011controlled `number` without any gas or iteration limits; a caller can supply a very large value causing the transaction to run out of gas and block the contract.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 667,
+   "completion_tokens": 340,
+   "seconds": 1.16,
+   "provider": "groq",
+   "at": "2026-11-24T10:45:45+00:00",
+   "copied_from": "0xf2570186500a46986f3139f65afedc2afe4f445d"
+  },
+  "paper__unchecked_send__0xf70d589d76eebdd7c12cc5eec99f8f6fa4233b9e": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"Command function\",\n      \"severity\": \"high\",\n      \"explanation\": \"The low\u2011level call `adr.call.value(msg.value)(data)` does not check the returned boolean, so failures are ignored and the contract may behave incorrectly.\"\n    },\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"Command function\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract makes an external call via `adr.call` before any state changes (e.g., updating Owner), allowing a malicious callee to re\u2011enter and potentially exploit the contract.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"withdraw function\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The function uses `Owner.transfer(this.balance)` which will revert if the Owner is a contract whose fallback requires more than 2300 gas, potentially locking the contract's funds.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 762,
+   "completion_tokens": 608,
+   "seconds": 1.5,
+   "provider": "groq",
+   "at": "2026-11-24T10:46:44+00:00",
+   "copied_from": "0xf70d589d76eebdd7c12cc5eec99f8f6fa4233b9e"
+  },
+  "paper__unchecked_send__etherpot_lotto": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"fallback function (ticket purchase) and cash function when updating rounds[roundIndex].pot and ticketsCount\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract uses Solidity ^0.4.0 which lacks built\u2011in overflow checks. Adding `value` to `pot` or `ticketsCount` can overflow, allowing an attacker to wrap the counters and manipulate the lottery outcome.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"cash() \u2013 `winner.send(subpot);` and fallback \u2013 `msg.sender.send(msg.value-value);`\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The return value of `send` is ignored. If the external call fails (e.g., recipient is a contract with a reverting fallback), the ether is lost and the contract state may become inconsistent.\"\n    },\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"cash() \u2013 state `rounds[roundIndex].isCashed[subpotIndex]` is set after the external `send`\",\n      \"severity\": \"high\",\n      \"explanation\": \"An attacker-controlled winner contract could re\u2011enter `cash()` in its fallback before `isCashed` is marked true, causing the same sub\u2011pot to be sent multiple times.\"\n    },\n    {\n      \"type\": \"bad_randomness\",\n      \"location\": \"calculateWinner() \u2013 uses `blockhash(decisionBlockNumber)` derived from a future block\",\n      \"severity\": \"high\",\n      \"explanation\": \"Block hashes can be influenced by miners, and the decision block is known in advance, allowing a miner or attacker to manipulate the winning ticket selection.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"calculateWinner() \u2013 loops over `rounds[roundIndex].buyers` array\",\n      \"severity\": \"medium\",\n      \"explanation\": \"If the buyers array grows large, the loop may exceed the block gas limit, making `calculateWinner` and consequently `cash` unusable, freezing the lottery.\"\n    }\n  ],\n  \"confidence\": 0.93\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1359,
+   "completion_tokens": 702,
+   "seconds": 1.92,
+   "provider": "groq",
+   "at": "2026-11-20T12:22:44+00:00",
+   "copied_from": "etherpot_lotto"
+  },
+  "paper__unchecked_send__king_of_the_ether_throne": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"claimThrone\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract sends Ether to the previous monarch (currentMonarch.etherAddress.send) before updating the state (pastMonarchs push and currentMonarch assignment). A malicious previous monarch could re\u2011enter claimThrone via a fallback and claim the throne multiple times.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"claimThrone (msg.sender.send, currentMonarch.etherAddress.send)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The return values of send calls are ignored, so failed Ether transfers are not detected, potentially causing loss of funds or inconsistent state.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"claimThrone (currentClaimPrice * claimPriceAdjustNum)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract is compiled with Solidity ^0.4.0 which lacks built\u2011in overflow checks. Multiplying currentClaimPrice by claimPriceAdjustNum can overflow, allowing the claim price to wrap around to a low value.\"\n    }\n  ],\n  \"confidence\": 0.93\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1240,
+   "completion_tokens": 534,
+   "seconds": 1.55,
+   "provider": "groq",
+   "at": "2026-11-20T12:23:44+00:00",
+   "copied_from": "king_of_the_ether_throne"
+  },
+  "paper__unchecked_send__lotto": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"sendToWinner() - winner.send(winAmount)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The return value of winner.send is not checked, so if the transfer fails the contract will still mark payedOut as true and consider the payout successful.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"withdrawLeftOver() - msg.sender.send(this.balance)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The return value of msg.sender.send is ignored, allowing the function to appear successful even when the Ether transfer fails.\"\n    },\n    {\n      \"type\": \"access_control\",\n      \"location\": \"withdrawLeftOver()\",\n      \"severity\": \"high\",\n      \"explanation\": \"Any address can call withdrawLeftOver after payedOut is true and drain the remaining contract balance, because there is no restriction on who may execute this function.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 646,
+   "completion_tokens": 426,
+   "seconds": 1.3,
+   "provider": "groq",
+   "at": "2026-11-20T12:23:44+00:00",
+   "copied_from": "lotto"
+  },
+  "paper__unchecked_send__mishandled": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"withdrawBalance() - msg.sender.send(amountToWithdraw)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The return value of .send is not checked. If the send fails (e.g., due to gas limit or recipient fallback reverting), the function silently ignores the failure, causing the user to lose their balance.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"withdrawBalance() - msg.sender.send(amountToWithdraw)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Because the contract does not handle a failed .send, a malicious recipient can cause the send to always revert (e.g., by using a fallback that consumes >2300 gas), preventing the user from ever withdrawing their funds.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 628,
+   "completion_tokens": 379,
+   "seconds": 1.22,
+   "provider": "groq",
+   "at": "2026-11-24T10:50:55+00:00",
+   "copied_from": "mishandled"
+  },
+  "paper__unchecked_send__unchecked_return_value": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"callnotchecked(address)\",\n      \"severity\": \"low\",\n      \"explanation\": \"The low\u2011level call result is ignored; if the called contract reverts or returns false the caller will not detect the failure, potentially leading to unexpected behavior.\"\n    }\n  ],\n  \"confidence\": 0.99\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 616,
+   "completion_tokens": 196,
+   "seconds": 0.75,
+   "provider": "groq",
+   "at": "2026-11-20T12:23:47+00:00",
+   "copied_from": "unchecked_return_value"
+  },
+  "paper__unsafe_delegatecall__BeaconProxy": {
+   "raw": "{\n  \"vulnerabilities\": [],\n  \"confidence\": 0.97\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1771,
+   "completion_tokens": 130,
+   "seconds": 1.08,
+   "provider": "groq",
+   "at": "2026-11-24T10:46:49+00:00",
+   "copied_from": "BeaconProxy"
+  },
+  "paper__unsafe_delegatecall__Delegation": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"fallback() external\",\n      \"severity\": \"high\",\n      \"explanation\": \"The fallback function forwards any calldata to the delegate contract via delegatecall without any access restriction. An attacker can invoke the delegate's `pwn()` function, which runs in the context of `Delegation` and overwrites its `owner` variable, allowing unauthorized takeover of the contract.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 670,
+   "completion_tokens": 330,
+   "seconds": 1.09,
+   "provider": "groq",
+   "at": "2026-11-24T10:46:45+00:00",
+   "copied_from": "Delegation"
+  },
+  "paper__unsafe_delegatecall__ERC1967Proxy": {
+   "raw": "{\n  \"vulnerabilities\": [],\n  \"confidence\": 0.99\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1588,
+   "completion_tokens": 113,
+   "seconds": 1.38,
+   "provider": "groq",
+   "at": "2026-11-24T10:47:44+00:00",
+   "copied_from": "ERC1967Proxy"
+  },
+  "paper__unsafe_delegatecall__multi_delegatecall": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"function multiDelegatecall\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The function loops over an unbounded array of delegatecall data; a caller can provide a very large array causing the transaction to run out of gas and block execution, effectively a DoS.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 858,
+   "completion_tokens": 270,
+   "seconds": 1.02,
+   "provider": "groq",
+   "at": "2026-11-24T10:51:55+00:00",
+   "copied_from": "multi_delegatecall"
+  },
+  "paper__unsafe_delegatecall__owner_example": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"fallback() external payable in Vulnerable contract\",\n      \"severity\": \"high\",\n      \"explanation\": \"The fallback function blindly forwards any calldata to an external library via delegatecall without any access restrictions. An attacker can call any function of the library (e.g., setowner()) and it will execute in the context of Vulnerable, overwriting its storage (owner) and taking control of the contract.\"\n    }\n  ],\n  \"confidence\": 0.99\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 693,
+   "completion_tokens": 257,
+   "seconds": 1.16,
+   "provider": "groq",
+   "at": "2026-11-24T10:50:56+00:00",
+   "copied_from": "owner_example"
+  },
+  "paper__unsafe_delegatecall__storage_abuse": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"other\",\n      \"location\": \"function callTwo in contract B\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The function forwards an arbitrary address to delegatecall. Because delegatecall runs the code of the target contract in the context of B, a malicious contract can overwrite B's storage (e.g., owner, num) and gain control. No validation or access control is performed, making this a dangerous delegatecall misuse.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 705,
+   "completion_tokens": 375,
+   "seconds": 1.85,
+   "provider": "groq",
+   "at": "2026-11-24T10:51:00+00:00",
+   "copied_from": "storage_abuse"
+  },
+  "paper__unsafe_delegatecall__storage_example": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"Vulnerable.constructor (function named constructor in Solidity 0.4.24)\",\n      \"severity\": \"high\",\n      \"explanation\": \"In Solidity 0.4.x the constructor must be a function with the same name as the contract. Using the `constructor` keyword defines a regular public function that can be called by anyone, leaving `owner` uninitialized and allowing an attacker to set it.\"\n    },\n    {\n      \"type\": \"access_control\",\n      \"location\": \"Vulnerable.performOperation\",\n      \"severity\": \"critical\",\n      \"explanation\": \"The function forwards a `delegatecall` to an external library contract without any access restriction. Because `delegatecall` runs in the context of `Vulnerable`, the library can overwrite the contract's storage (e.g., `owner`), enabling an attacker to take ownership.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"Vulnerable.performOperation\",\n      \"severity\": \"low\",\n      \"explanation\": \"The return value of `delegatecall` is not checked. If the call fails, the contract proceeds as if it succeeded, potentially leaving the state inconsistent.\"\n    },\n    {\n      \"type\": \"other\",\n      \"location\": \"Vulnerable.performOperation (storage layout collision)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The library `Lib` has a different storage layout than `Vulnerable`. Using `delegatecall` causes the library's `num` variable to write to `Vulnerable`'s `owner` slot, leading to unintended state changes.\"\n    }\n  ],\n  \"confidence\": 0.93\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 746,
+   "completion_tokens": 536,
+   "seconds": 1.69,
+   "provider": "groq",
+   "at": "2026-11-24T10:51:02+00:00",
+   "copied_from": "storage_example"
+  },
+  "paper__unsafe_delegatecall__wallet_delegatecall": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"function underLimit(uint _value)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The addition `m_spentToday + _value` is performed without SafeMath on Solidity ^0.4.9, allowing an overflow that can bypass the daily limit check.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"fallback function and functions hasConfirmed/isOwner in Wallet contract\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The contract uses low\u2011level `delegatecall` to the library but does not check the returned success flag, so a failed delegatecall will be silently ignored and may lead to inconsistent state.\"\n    },\n    {\n      \"type\": \"timestamp_dependence\",\n      \"location\": \"function today() and underLimit() daily limit logic\",\n      \"severity\": \"low\",\n      \"explanation\": \"The daily limit relies on `now` (block timestamp) to reset spending counters, which a miner can manipulate within allowed bounds to affect the limit enforcement.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 2217,
+   "completion_tokens": 524,
+   "seconds": 1.4,
+   "provider": "groq",
+   "at": "2026-11-24T10:52:56+00:00",
+   "copied_from": "wallet_delegatecall"
+  },
+  "paper__unsafe_suicide__BankOfEther": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"transferTo function\",\n      \"severity\": \"high\",\n      \"explanation\": \"Authorization is performed using tx.origin == owner, which can be spoofed via a malicious contract calling this function, allowing non\u2011owner accounts to trigger transfers.\"\n    },\n    {\n      \"type\": \"access_control\",\n      \"location\": \"changeOwner function\",\n      \"severity\": \"high\",\n      \"explanation\": \"Uses tx.origin for authorization, enabling attacker contracts to hijack ownership by calling through a victim contract.\"\n    },\n    {\n      \"type\": \"access_control\",\n      \"location\": \"transferTo function\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Function does not verify that the caller has sufficient balance before transferring Ether, allowing the owner (or attacker via tx.origin) to drain arbitrary funds from the contract.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 687,
+   "completion_tokens": 336,
+   "seconds": 1.17,
+   "provider": "groq",
+   "at": "2026-11-24T10:45:49+00:00",
+   "copied_from": "BankOfEther"
+  },
+  "paper__unsafe_suicide__ERC20Basic": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"function EGC()\",\n      \"severity\": \"critical\",\n      \"explanation\": \"The function intended to be the constructor is named EGC, not matching the contract name KAI. In Solidity 0.4.11 this means it is a regular public function, allowing anyone to call it to set themselves as owner and mint the entire token supply.\"\n    }\n  ],\n  \"confidence\": 0.98\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1359,
+   "completion_tokens": 269,
+   "seconds": 1.07,
+   "provider": "groq",
+   "at": "2026-11-24T10:46:50+00:00",
+   "copied_from": "ERC20Basic"
+  },
+  "paper__unsafe_suicide__EthRoulette": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"function EthRoulette() public\",\n      \"severity\": \"high\",\n      \"explanation\": \"In Solidity 0.5.0 the constructor must be declared with the 'constructor' keyword. Declaring it as a regular public function allows anyone to call it later, resetting ownerAddr and secretNumber, effectively taking ownership of the contract.\"\n    },\n    {\n      \"type\": \"bad_randomness\",\n      \"location\": \"function shuffle() internal\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The secretNumber is derived from now (block.timestamp) and blockhash of the previous block, both manipulable by miners. This provides predictable randomness that can be exploited to win the game.\"\n    },\n    {\n      \"type\": \"timestamp_dependence\",\n      \"location\": \"function shuffle() internal and function play()\",\n      \"severity\": \"low\",\n      \"explanation\": \"The contract uses now (block.timestamp) for randomness and for lastPlayed tracking, allowing miners to influence outcomes within a small window.\"\n    }\n  ],\n  \"confidence\": 0.93\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 776,
+   "completion_tokens": 438,
+   "seconds": 1.37,
+   "provider": "groq",
+   "at": "2026-11-24T10:47:47+00:00",
+   "copied_from": "EthRoulette"
+  },
+  "paper__unsafe_suicide__SuicideMultiTxFeasible": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"run(uint256)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The run function can be called by any address after anyone has called init(), which lacks any access restriction. This allows arbitrary users to trigger selfdestruct and destroy the contract, leading to loss of funds and functionality.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 640,
+   "completion_tokens": 250,
+   "seconds": 1.32,
+   "provider": "groq",
+   "at": "2026-11-24T10:50:53+00:00",
+   "copied_from": "SuicideMultiTxFeasible"
+  },
+  "paper__unsafe_suicide__SuicideMultiTxInfeasible": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"run(uint256)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The run function is public and can trigger selfdestruct when initialized == 2, but there is no proper access control or safe initialization check, allowing potential unauthorized contract destruction if the storage variable is manipulated.\"\n    }\n  ],\n  \"confidence\": 0.85\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 641,
+   "completion_tokens": 345,
+   "seconds": 0.93,
+   "provider": "groq",
+   "at": "2026-11-24T10:49:58+00:00",
+   "copied_from": "SuicideMultiTxInfeasible"
+  },
+  "paper__unsafe_suicide__wallet_sucide": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"underLimit function (m_spentToday + _value)\",\n      \"severity\": \"high\",\n      \"explanation\": \"Solidity ^0.4.9 does not have built\u2011in overflow checks; the addition m_spentToday + _value can overflow and bypass the daily limit check.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"ownerIndexBit calculation (2 ** ownerIndex)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Exponentiation can overflow for large ownerIndex values, causing incorrect bitmask handling in confirmation/revoke logic.\"\n    },\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"execute function when calling external contract (m_txs[_h].to.call.value(...))\",\n      \"severity\": \"high\",\n      \"explanation\": \"The external call is performed before the transaction record is deleted, allowing a malicious callee to re\u2011enter and execute the same transaction again.\"\n    },\n    {\n      \"type\": \"access_control\",\n      \"location\": \"initMultiowned function (only_uninitialized modifier missing or undefined)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The function is intended to be called only once during initialization, but the modifier only_uninitialized is not defined, so it can be invoked repeatedly to reset owners and required signatures.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"delegatecall in Wallet constructor\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The delegatecall result is not checked; if the call fails the contract will be left uninitialized, potentially allowing later misuse.\"\n    }\n  ],\n  \"confidence\": 0.87\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 2250,
+   "completion_tokens": 634,
+   "seconds": 1.85,
+   "provider": "groq",
+   "at": "2026-11-24T10:52:00+00:00",
+   "copied_from": "wallet_sucide"
+  },
+  "paper__safecontract__CareerOnToken": {
+   "raw": "{\n  \"vulnerabilities\": [],\n  \"confidence\": 0.99\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 883,
+   "completion_tokens": 106,
+   "seconds": 4.41,
+   "provider": "groq",
+   "at": "2026-11-26T12:51:32+00:00"
+  },
+  "paper__safecontract__Uniswap": {
+   "raw": "{\n  \"vulnerabilities\": [],\n  \"confidence\": 0.99\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1216,
+   "completion_tokens": 113,
+   "seconds": 4.44,
+   "provider": "groq",
+   "at": "2026-11-26T12:51:32+00:00"
+  },
+  "paper__safecontract__SushiSwap": {
+   "raw": "{\n  \"vulnerabilities\": [],\n  \"confidence\": 0.92\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 963,
+   "completion_tokens": 210,
+   "seconds": 4.76,
+   "provider": "groq",
+   "at": "2026-11-26T12:51:33+00:00"
+  },
+  "paper__safecontract__curve": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"swap function (IERC20(tokenIn).transferFrom and IERC20(tokenOut).transfer)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The contract calls ERC20 transferFrom and transfer but does not check the returned boolean value. If the token contract returns false or reverts, the swap will appear successful while funds may not be transferred, leading to inconsistent state or loss of assets.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 988,
+   "completion_tokens": 300,
+   "seconds": 4.82,
+   "provider": "groq",
+   "at": "2026-11-26T12:51:33+00:00"
+  },
+  "paper__safecontract__ballot": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"vote() and delegate() functions (proposals[...].voteCount += ...)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract uses Solidity ^0.4.0 which does not have built\u2011in overflow checks. Adding weight to voteCount can overflow the uint, allowing vote counts to wrap around and corrupt the election result.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"delegate() function \u2013 while loop traversing delegation chain\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The while loop iterates through the delegate chain without a bound. An attacker can create a long chain of delegations causing the function to run out of gas, making delegation (and thus voting) impossible for others.\"\n    }\n  ],\n  \"confidence\": 0.93\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 928,
+   "completion_tokens": 322,
+   "seconds": 4.85,
+   "provider": "groq",
+   "at": "2026-11-26T12:51:33+00:00"
+  },
+  "paper__safecontract__WrappedToken": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"wrap function\",\n      \"severity\": \"high\",\n      \"explanation\": \"wrap calls an external ERC20 contract via transferFrom before updating internal state (minting). A malicious underlying token could re-enter wrap (or another function) during transferFrom and cause multiple _mint calls, leading to unauthorized token creation.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1329,
+   "completion_tokens": 287,
+   "seconds": 4.86,
+   "provider": "groq",
+   "at": "2026-11-26T12:51:33+00:00"
+  },
+  "paper__safecontract__WETH9": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"deposit(), transferFrom() balance updates\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract uses Solidity 0.4.18 which lacks built\u2011in overflow checks. balanceOf[msg.sender] += msg.value in deposit() and balanceOf[dst] += wad in transferFrom() can overflow a uint, allowing an attacker to wrap a huge amount of ether and cause the balance to wrap around, breaking accounting.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"allowance subtraction in transferFrom()\",\n      \"severity\": \"medium\",\n      \"explanation\": \"allowance[src][msg.sender] -= wad is performed without overflow protection. If allowance is set to a value lower than wad due to a race condition, the subtraction will underflow, granting the spender a huge allowance.\"\n    }\n  ],\n  \"confidence\": 0.93\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 915,
+   "completion_tokens": 344,
+   "seconds": 5.03,
+   "provider": "groq",
+   "at": "2026-11-26T12:51:33+00:00"
+  },
+  "paper__time_manipulation__DocumentSigner": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"function play_x27 / play_x31 (startTime + (5 * 1 days))\",\n      \"severity\": \"low\",\n      \"explanation\": \"Arithmetic is performed without SafeMath in Solidity 0.5.0; a sufficiently large startTime could overflow the uint addition, causing incorrect winner selection.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"function signDocument\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The function iterates over the entire signers array to check for duplicates before pushing a new signer. As the array grows, the loop can become unbounded and exceed block gas limits, preventing further signing.\"\n    },\n    {\n      \"type\": \"timestamp_dependence\",\n      \"location\": \"functions f_x33, f_x13, play_x27, play_x31\",\n      \"severity\": \"low\",\n      \"explanation\": \"Logic relies on block.timestamp for time\u2011based conditions (equality check for winner selection). Miners can slightly manipulate timestamps, potentially influencing outcomes.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1036,
+   "completion_tokens": 534,
+   "seconds": 1.36,
+   "provider": "groq",
+   "at": "2026-11-26T12:51:34+00:00"
+  },
+  "paper__time_manipulation__HotDollarsToken": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"timestamp_dependence\",\n      \"location\": \"play_x39, play_x35, play_x7, play_x23, play_x14, play_x30, play_x27, play_x31\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Winner selection relies on exact equality with block.timestamp (e.g., startTime + 5 days == block.timestamp). Miners can manipulate timestamp within allowed bounds to influence the outcome, enabling front\u2011running or unfair winner selection.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1802,
+   "completion_tokens": 336,
+   "seconds": 1.19,
+   "provider": "groq",
+   "at": "2026-11-26T12:51:34+00:00"
+  },
+  "paper__time_manipulation__AZT": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"timestamp_dependence\",\n      \"location\": \"play_x7, play_x23, play_x2, play_x3, play_x14, play_x38, play_x27, play_x31 and functions f_x4, f_x40\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The contract determines winners and allows withdrawals based on exact equality or modulo conditions with block.timestamp (now). Miners can manipulate the timestamp within allowed bounds to satisfy these conditions, enabling them to claim rewards or withdraw funds unfairly.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 2236,
+   "completion_tokens": 531,
+   "seconds": 1.62,
+   "provider": "groq",
+   "at": "2026-11-26T12:51:34+00:00"
+  },
+  "paper__safecontract__StableDEX": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"function multiTransfer\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The function iterates over unbounded input arrays, allowing an attacker to supply a very large array that exceeds block gas limits and makes the transaction revert, effectively blocking usage of the contract.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1785,
+   "completion_tokens": 282,
+   "seconds": 2.13,
+   "provider": "groq",
+   "at": "2026-11-26T12:51:34+00:00"
+  },
+  "paper__TOD__CareerOnToken": {
+   "raw": "{\n  \"vulnerabilities\": [],\n  \"confidence\": 0.92\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 2170,
+   "completion_tokens": 347,
+   "seconds": 1.24,
+   "provider": "groq",
+   "at": "2026-11-26T12:51:34+00:00"
+  },
+  "paper__safecontract__PullPayment": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"Escrow.withdraw\",\n      \"severity\": \"low\",\n      \"explanation\": \"withdraw uses payee.sendValue which forwards all gas and reverts on failure. A malicious payee contract can cause the call to revert, preventing withdrawal for that payee and potentially blocking the owner from processing withdrawals for that address.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1677,
+   "completion_tokens": 400,
+   "seconds": 2.31,
+   "provider": "groq",
+   "at": "2026-11-26T12:51:34+00:00"
+  },
+  "paper__time_manipulation__TAMContract": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"play_x35 / play_x27 / play_x31 functions (startTime + (5 * 1 days))\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The addition of a user\u2011controlled startTime with a constant can overflow uint256 in Solidity 0.5.x, allowing the equality check to be bypassed and letting an attacker become the winner.\"\n    },\n    {\n      \"type\": \"timestamp_dependence\",\n      \"location\": \"play_x35, play_x27, play_x31 (exact timestamp equality) and f_x40 (now % 15 == 0)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Logic depends on exact block.timestamp values which miners can manipulate within a small range, enabling them to force the conditions to succeed or fail.\"\n    },\n    {\n      \"type\": \"timestamp_dependence\",\n      \"location\": \"f_x40 function (require(now != pastBlockTime_x40) and now % 15 == 0)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The function uses block.timestamp for both a uniqueness check and a modulo condition, allowing a miner to schedule a block at a timestamp divisible by 15 to trigger an unintended transfer of the contract balance.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1156,
+   "completion_tokens": 522,
+   "seconds": 1.5,
+   "provider": "groq",
+   "at": "2026-11-26T12:51:34+00:00"
+  },
+  "paper__safecontract__balancer": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"swap() function calls IERC20(tokenIn).transferFrom and IERC20(tokenOut).transfer\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The contract ignores the boolean return values of ERC20 transferFrom and transfer. If either call fails (returns false) the function will continue as if the transfer succeeded, leading to inconsistent internal accounting and potential loss of funds.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"swap() function updates pools[tokenOut].balances[msg.sender] and pools[tokenOut].totalBalance before ensuring the user has sufficient tokenOut balance\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract subtracts amountOut from the caller's tokenOut balance without checking that the balance is large enough. If the subtraction underflows, the transaction reverts, preventing any further swaps for that pool and effectively causing a denial\u2011of\u2011service.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1016,
+   "completion_tokens": 440,
+   "seconds": 2.38,
+   "provider": "groq",
+   "at": "2026-11-26T12:51:34+00:00"
+  },
+  "paper__time_manipulation__TTC": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"constructor of TokenERC20 (totalSupply calculation) and mintToken, sell, buy functions\",\n      \"severity\": \"high\",\n      \"explanation\": \"Solidity ^0.5.0 does not have built\u2011in overflow checks. Multiplying initialSupply by 10**decimals, adding mintedAmount to totalSupply, and computing amount * sellPrice can overflow and corrupt balances or total supply.\"\n    },\n    {\n      \"type\": \"timestamp_dependence\",\n      \"location\": \"functions f_x1, f_x17, f_x37, f_x9, f_x25, f_x33, f_x13 and all play_x* functions that compare block.timestamp to a specific value\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Logic depends on exact block.timestamp (or now) values, which miners can manipulate within a ~15\u2011second window, allowing them to influence winner selection or trigger payable functions.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 2142,
+   "completion_tokens": 599,
+   "seconds": 1.72,
+   "provider": "groq",
+   "at": "2026-11-26T12:51:34+00:00"
+  },
+  "paper__TOD__eth_tx_order_dependence_minimal": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"claimReward function\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract sends Ether to msg.sender via transfer before setting the claimed flag, allowing a malicious recipient contract to re-enter claimReward and receive the reward multiple times.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"claimReward function\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The function uses transfer to send Ether, which reverts on failure. If the recipient is a contract with a fallback that consumes more than 2300 gas or deliberately reverts, the whole claimReward call will fail, preventing anyone (including the rightful claimer) from receiving the reward.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 675,
+   "completion_tokens": 455,
+   "seconds": 1.32,
+   "provider": "groq",
+   "at": "2026-11-26T12:51:35+00:00"
+  },
+  "paper__tx_origin__MD": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"multiple functions using require(tx.origin == owner_*) for authorization\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract relies on tx.origin for access control, which can be bypassed via malicious contracts calling the victim contract, allowing unauthorized actions.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"functions transferTo_x7, transferTo_x23, transferTo_x27, transferTo_x31, transferTo_x39, transferTo_x35, and any use of to.call.value(amount)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Low\u2011level call is used to send ether without checking the returned success value, so failed calls are ignored and can lead to lost funds or unexpected behavior.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1618,
+   "completion_tokens": 329,
+   "seconds": 1.11,
+   "provider": "groq",
+   "at": "2026-11-26T12:51:35+00:00"
+  },
+  "paper__tx_origin__DocumentSinger": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"functions transferTo_x39, transferTo_x31, transferTo_x35, transferTo_x27, sendto_x13, sendto_x33, f_x36, f_x40, f_x40 (all use tx.origin)\",\n      \"severity\": \"high\",\n      \"explanation\": \"Authorization is based on tx.origin instead of msg.sender, allowing phishing attacks where a user is tricked into calling a malicious contract that then calls these functions, bypassing intended owner checks.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"functions transferTo_x39, transferTo_x31, transferTo_x35, transferTo_x27\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Uses low\u2011level call with value without checking the returned success flag, so failed transfers are silently ignored and can lead to loss of funds or unexpected behavior.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"function signDocument\",\n      \"severity\": \"low\",\n      \"explanation\": \"Iterates over a dynamic array of signers without a gas limit; as the array grows, the loop may exceed block gas limits, preventing new signatures from being added.\"\n    }\n  ],\n  \"confidence\": 0.93\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1082,
+   "completion_tokens": 486,
+   "seconds": 1.49,
+   "provider": "groq",
+   "at": "2026-11-26T12:51:36+00:00"
+  },
+  "paper__TOD__BitCash": {
+   "raw": "{\n  \"vulnerabilities\": [],\n  \"confidence\": 0.92\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 2183,
+   "completion_tokens": 362,
+   "seconds": 1.3,
+   "provider": "groq",
+   "at": "2026-11-26T12:52:34+00:00"
+  },
+  "paper__tx_origin__HotDollarsToken": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"functions using require(tx.origin == owner_x*) e.g., transferTo_x7, withdrawAll_x14, sendto_x13, etc.\",\n      \"severity\": \"high\",\n      \"explanation\": \"Authorization is based on tx.origin, which can be spoofed through intermediate contracts, allowing unauthorized callers to execute privileged actions.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"transferTo_x7, transferTo_x23, transferTo_x31, transferTo_x39, transferTo_x35, transferTo_x27, and any other *_to_x* functions that use to.call.value(amount) without checking the return value\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Low\u2011level call is used to send ether but its success is not verified, so failures are silently ignored and may lead to loss of funds or inconsistent state.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"transfer and transferFrom functions where balances[_to] += _value and allowed[_from][msg.sender] -= _value are performed\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract is compiled with Solidity <0.8, so arithmetic operations do not automatically check for overflow/underflow, allowing balance or allowance manipulation if values exceed uint256 limits.\"\n    },\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"transferTo_x7 (and similar transferTo_x* functions) that use to.call.value(amount) without updating any contract state before the external call\",\n      \"severity\": \"low\",\n      \"explanation\": \"Although no state is modified, the external call could trigger a fallback that re\u2011enters the contract and invoke other privileged functions protected only by tx.origin, potentially leading to unexpected behavior.\"\n    }\n  ],\n  \"confidence\": 0.93\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1642,
+   "completion_tokens": 575,
+   "seconds": 1.94,
+   "provider": "groq",
+   "at": "2026-11-26T12:52:35+00:00"
+  },
+  "paper__unsafe_delegatecall__proxy": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"function forward\",\n      \"severity\": \"critical\",\n      \"explanation\": \"The forward function allows any caller to execute an arbitrary delegatecall to any address without any access restriction. Because delegatecall runs in the context of this contract, an attacker can call a malicious contract that overwrites storage variables (e.g., the owner) and take full control.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 619,
+   "completion_tokens": 288,
+   "seconds": 0.98,
+   "provider": "groq",
+   "at": "2026-11-26T12:52:35+00:00"
+  },
+  "paper__tx_origin__AsseteGram": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"All functions using `require(tx.origin == owner_\u2026)` for authorization\",\n      \"severity\": \"high\",\n      \"explanation\": \"`tx.origin` can be spoofed through a malicious contract, allowing unauthorized callers to bypass the intended owner check.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"Functions `transferTo_x7`, `transferTo_x23`, `transferTo_x19`, `transferTo_x39`, `transferTo_x35`, `transferTo_x31`, `transferTo_x27`, and any other `to.call.value(amount)` usages\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Low\u2011level `.call.value` is used without checking the returned boolean, so failed ether transfers are silently ignored and may lead to inconsistent state or loss of funds.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1739,
+   "completion_tokens": 410,
+   "seconds": 1.29,
+   "provider": "groq",
+   "at": "2026-11-26T12:52:35+00:00"
+  },
+  "paper__tx_origin__TAMC": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"functions withdrawAll_x14, withdrawAll_x30, f_x8, transferTo_x39, transferTo_x31, transferTo_x35, f_x40, sendto_x13, f_x36, sendto_x33, transferTo_x27\",\n      \"severity\": \"high\",\n      \"explanation\": \"Authorization is based on tx.origin instead of msg.sender, allowing phishing attacks where a user is tricked into calling a malicious contract that then calls these functions, bypassing intended owner checks.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"transferTo_x39, transferTo_x31, transferTo_x35, transferTo_x27\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Uses low\u2011level call with value without checking the returned success flag, so failed ether transfers are silently ignored and may lead to loss of funds or inconsistent state.\"\n    },\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"transferTo_x39, transferTo_x31, transferTo_x35, transferTo_x27\",\n      \"severity\": \"low\",\n      \"explanation\": \"Ether is sent via low\u2011level call before any state changes; a malicious recipient could re\u2011enter the contract and invoke other functions to manipulate balances.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"transfer, transferFrom\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Contract is compiled with Solidity 0.5.11 which lacks built\u2011in overflow checks; arithmetic on balances and allowances could overflow/underflow if extremely large values are used.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1159,
+   "completion_tokens": 553,
+   "seconds": 1.67,
+   "provider": "groq",
+   "at": "2026-11-26T12:52:36+00:00"
+  },
+  "paper__tx_origin__BitCash": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"All functions using require(tx.origin == owner_*) for authorization\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract relies on tx.origin for access control, which can be spoofed through intermediate contracts, allowing unauthorized callers to bypass restrictions.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"Functions transferTo_x7, transferTo_x23, transferTo_x27, transferTo_x31, transferTo_x39, transferTo_x35 (calls to to.call.value(amount))\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Low\u2011level call is used to send ether without checking the returned success flag, so failed calls are silently ignored and can lead to loss of funds or inconsistent state.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1619,
+   "completion_tokens": 484,
+   "seconds": 1.5,
+   "provider": "groq",
+   "at": "2026-11-26T12:52:36+00:00"
+  },
+  "paper__tx_origin__CareerOnToken": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"all functions using require(tx.origin == owner_x..)\",\n      \"severity\": \"high\",\n      \"explanation\": \"Authorization is based on tx.origin, which can be spoofed via a malicious contract calling these functions, allowing unauthorized parties to execute privileged actions.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"functions transferTo_x27, transferTo_x31, transferTo_x19, transferTo_x23, transferTo_x7, transferTo_x35, transferTo_x39, etc. using to.call.value(amount)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Low\u2011level call is used to send ether without checking the returned success value, so failed calls are ignored and can lead to loss of funds or unexpected behavior.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1752,
+   "completion_tokens": 516,
+   "seconds": 1.6,
+   "provider": "groq",
+   "at": "2026-11-26T12:52:36+00:00"
+  },
+  "paper__TOD__HotDollarsToken": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"transfer(uint256 _value)\",\n      \"severity\": \"high\",\n      \"explanation\": \"Uses unchecked subtraction and addition on balances in Solidity 0.5.0, which can overflow/underflow without SafeMath.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"transferFrom(address _from, address _to, uint256 _value)\",\n      \"severity\": \"high\",\n      \"explanation\": \"Performs unchecked arithmetic on balances and allowance, vulnerable to overflow/underflow in Solidity 0.5.0.\"\n    },\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"claimReward_TOD14(uint256 submission)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Transfers ether to msg.sender before setting claimed_TOD14 flag, allowing re\u2011entrancy to claim multiple times.\"\n    },\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"claimReward_TOD30(uint256 submission)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Transfers ether before updating claimed_TOD30, enabling re\u2011entrancy attacks.\"\n    },\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"claimReward_TOD8(uint256 submission)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Ether is sent before claimed_TOD8 is set, permitting re\u2011entrancy.\"\n    },\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"claimReward_TOD36(uint256 submission)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Ether transfer occurs before claimed_TOD36 flag is updated, allowing re\u2011entrancy.\"\n    },\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"claimReward_TOD40(uint256 submission)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Ether is transferred before claimed_TOD40 is set, creating a re\u2011entrancy vector.\"\n    }\n  ],\n  \"confidence\": 0.93\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 2151,
+   "completion_tokens": 707,
+   "seconds": 2.04,
+   "provider": "groq",
+   "at": "2026-11-26T12:52:36+00:00"
+  },
+  "paper__unsafe_suicide__bug_3": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"function f_x27 (and f_x31)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Subtracting 10 from a uint8 initialized to 0 causes an underflow, wrapping to 246, which can lead to incorrect logic.\"\n    },\n    {\n      \"type\": \"access_control\",\n      \"location\": \"function kill\",\n      \"severity\": \"high\",\n      \"explanation\": \"The kill function uses a non\u2011existent onlyOwner modifier and calls suicide(owner) without proper ownership checks, allowing anyone to self\u2011destruct the contract if the code compiles.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 799,
+   "completion_tokens": 288,
+   "seconds": 0.83,
+   "provider": "groq",
+   "at": "2026-11-26T12:52:36+00:00"
+  },
+  "paper__tx_origin__ProofofExistence": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"functions f_x36, f_x40, transferTo_x35, sendto_x33, transferTo_x27, transferTo_x31, sendto_x13\",\n      \"severity\": \"high\",\n      \"explanation\": \"Authorization is based on tx.origin, which can be spoofed through intermediate contracts, allowing unauthorized callers to bypass the intended owner check.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"transferTo_x35, transferTo_x27, transferTo_x31 (to.call.value(amount))\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Low\u2011level call is used without checking the returned success flag, so failed transfers are silently ignored and may lead to inconsistent state.\"\n    },\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"transferTo_x35, transferTo_x27, transferTo_x31\",\n      \"severity\": \"medium\",\n      \"explanation\": \"External call (call.value) is made before any state changes; a malicious callee could re\u2011enter the contract and exploit other functions.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"GetFileExistenceProof, getQRCode, searchExistenceProoUsngQRf\",\n      \"severity\": \"low\",\n      \"explanation\": \"Functions iterate over an unbounded array stored in contract storage; with enough entries the loop can exceed block gas limit, making the function unusable.\"\n    }\n  ],\n  \"confidence\": 0.93\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1605,
+   "completion_tokens": 537,
+   "seconds": 1.57,
+   "provider": "groq",
+   "at": "2026-11-26T12:52:36+00:00"
+  },
+  "paper__unsafe_suicide__simple_suicide": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"function sudicideAnyone()\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function is public and allows any caller to invoke selfdestruct, enabling anyone to destroy the contract and withdraw its balance.\"\n    }\n  ],\n  \"confidence\": 0.99\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 601,
+   "completion_tokens": 189,
+   "seconds": 0.83,
+   "provider": "groq",
+   "at": "2026-11-26T12:52:36+00:00"
+  },
+  "paper__unsafe_delegatecall__FibonacciBalance": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"constructor\",\n      \"severity\": \"high\",\n      \"explanation\": \"In Solidity 0.4.0 the constructor must be named after the contract. The function `constructor` is a regular public function, so it is never executed on deployment, leaving `fibonacciLibrary` uninitialized and allowing anyone to set it via the fallback delegatecall.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"fallback function\",\n      \"severity\": \"high\",\n      \"explanation\": \"The fallback function forwards arbitrary calldata to `fibonacciLibrary` via `delegatecall` without checking the return value, so a failing call will not revert and may leave the contract in an inconsistent state.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"function withdraw (calculatedFibNumber * 1 ether)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The contract uses Solidity ^0.4.0 which lacks built\u2011in overflow checks; multiplying a large `calculatedFibNumber` by 1 ether can overflow the 256\u2011bit uint and cause incorrect payouts.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"FibonacciLib.fibonacci (recursive implementation)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The recursive Fibonacci implementation has exponential gas cost and no bounds on `n`. An attacker can trigger it with a large `withdrawalCounter`, causing out\u2011of\u2011gas and blocking withdrawals.\"\n    },\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"function withdraw\",\n      \"severity\": \"low\",\n      \"explanation\": \"`withdraw` performs a `delegatecall` to an external library before transferring Ether. If the library\u2019s code is malicious and re\u2011enters `withdraw`, the state variable `withdrawalCounter` has already been incremented, but the Ether transfer uses `transfer` which limits gas, reducing re\u2011entrancy risk; however the ordering still presents a re\u2011entrancy vector.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 794,
+   "completion_tokens": 729,
+   "seconds": 2.42,
+   "provider": "groq",
+   "at": "2026-11-26T12:52:37+00:00"
+  },
+  "paper__cve__CVE-2018-17111": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"modifier onlyOwner\",\n      \"severity\": \"high\",\n      \"explanation\": \"The onlyOwner modifier uses `require(msg.sender != owner)` which is the opposite of the intended check, allowing anyone except the owner to pass. This mis\u2011implemented access control can be exploited if the modifier is applied to sensitive functions.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1201,
+   "completion_tokens": 301,
+   "seconds": 0.86,
+   "provider": "groq",
+   "at": "2026-11-26T12:52:37+00:00"
+  },
+  "paper__cve__CVE-2019-15079": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"function EAI_TokenERC20 (intended constructor)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function is named EAI_TokenERC20 instead of matching the contract name EAI_TokenERC, so it is not a constructor. It is public and can be called by anyone to reset totalSupply, balances, name and symbol, allowing arbitrary token minting.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"line totalSupply = initialSupply * 10 ** uint256(decimals);\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Using Solidity 0.4.16 without SafeMath, multiplication can overflow if initialSupply is large, leading to an incorrect totalSupply.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"variable previousBalances in _transfer\",\n      \"severity\": \"low\",\n      \"explanation\": \"previousBalances is declared as uint (alias for uint256) but the addition of two balances could overflow without SafeMath; the subsequent assert may not catch overflow correctly.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1126,
+   "completion_tokens": 518,
+   "seconds": 1.33,
+   "provider": "groq",
+   "at": "2026-11-26T12:52:38+00:00"
+  },
+  "paper__unsafe_suicide__bug_1": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"function sudicideAnyone()\",\n      \"severity\": \"critical\",\n      \"explanation\": \"Anyone can call sudicideAnyone to selfdestruct the contract and send its balance to themselves, allowing complete takeover of contract destruction.\"\n    },\n    {\n      \"type\": \"timestamp_dependence\",\n      \"location\": \"functions play_x38, play_x7, play_x23, play_x14, play_x30, play_x39, play_x35, play_x27, play_x31\",\n      \"severity\": \"medium\",\n      \"explanation\": \"These functions award a winner only when block.timestamp exactly equals startTime + 5 days, which miners can manipulate to influence the outcome.\"\n    },\n    {\n      \"type\": \"front_running\",\n      \"location\": \"functions f_x32, f_x4, f_x8, f_x36, f_x40\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Payout is triggered when now % 15 == 0 after a 10 ether payment; an attacker can time or front\u2011run transactions to ensure the condition is met and capture the contract balance.\"\n    }\n  ],\n  \"confidence\": 0.93\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 2017,
+   "completion_tokens": 685,
+   "seconds": 1.97,
+   "provider": "groq",
+   "at": "2026-11-26T12:53:36+00:00"
+  },
+  "paper__unsafe_suicide__bug_2": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"increaseLockTime_x33 / increaseLockTime_x37 / increaseLockTime_x9 / increaseLockTime_x25 functions (addition without overflow check) and transfer_x14 / transfer_x10 / transfer_x22 etc. using `balances_x... - _value >= 0` check which underflows before the require\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The contract adds to lockTime and subtracts balances using plain arithmetic without SafeMath. In Solidity 0.5.0 underflow/overflow wraps, so the subtraction in the require is evaluated after the wrap, making the check ineffective and allowing balance underflow or lockTime wraparound.\"\n    },\n    {\n      \"type\": \"access_control\",\n      \"location\": \"function sudicideAnyone() public\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function allows any caller to invoke `selfdestruct(msg.sender)`, giving unrestricted ability to destroy the contract and withdraw all its ether, which should be restricted to the owner.\"\n    }\n  ],\n  \"confidence\": 0.93\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 2219,
+   "completion_tokens": 562,
+   "seconds": 1.63,
+   "provider": "groq",
+   "at": "2026-11-26T12:53:37+00:00"
+  },
+  "paper__cve__CVE-2018-18425": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"withdrawAltcoinTokens\",\n      \"severity\": \"low\",\n      \"explanation\": \"The external token.transfer call's return value is not verified with require/assert, so a failing token transfer could be silently ignored.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1951,
+   "completion_tokens": 475,
+   "seconds": 1.53,
+   "provider": "groq",
+   "at": "2026-11-26T12:53:37+00:00"
+  },
+  "paper__cve__CVE-2018-14085": {
+   "raw": "{\n  \"vulnerabilities\": [],\n  \"confidence\": 0.97\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1453,
+   "completion_tokens": 481,
+   "seconds": 1.54,
+   "provider": "groq",
+   "at": "2026-11-26T12:53:37+00:00"
+  },
+  "paper__unsafe_suicide__parity_wallet_bug_2": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"underLimit function (m_spentToday + _value)\",\n      \"severity\": \"high\",\n      \"explanation\": \"Solidity ^0.4.9 does not have built\u2011in overflow checks; adding _value to m_spentToday can overflow and bypass the daily limit check.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"confirmAndCheck function (2 ** ownerIndex)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"ownerIndex can be up to 255, making 2 ** ownerIndex overflow the uint256 and corrupt the ownersDone bitmask.\"\n    },\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"confirm function when executing external call (m_txs[_h].to.call.value(...)(...))\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract makes an external call before deleting the pending transaction, allowing a malicious callee to re\u2011enter and potentially execute the same transaction again.\"\n    },\n    {\n      \"type\": \"access_control\",\n      \"location\": \"initMultiowned function\",\n      \"severity\": \"critical\",\n      \"explanation\": \"The initializer is not protected by a proper constructor or onlyOwner check; if only_uninitialized modifier is missing or bypassed, any attacker could re\u2011initialize the wallet and take ownership.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"create function (assembly create)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The low\u2011level create opcode return value is not verified correctly; the jump to invalidJumpLabel on failure may not revert as intended, potentially leaving an uninitialized contract address.\"\n    }\n  ],\n  \"confidence\": 0.87\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 2260,
+   "completion_tokens": 741,
+   "seconds": 1.95,
+   "provider": "groq",
+   "at": "2026-11-26T12:53:38+00:00"
+  },
+  "paper__cve__CVE-2018-14087": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"mintToken, totalSupply += mintedAmount\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract uses Solidity 0.4.16 without SafeMath, so adding mintedAmount to totalSupply can overflow, allowing the owner to inflate supply beyond uint256 limits.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"fallback function and getEth function (owner.send(...))\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The contract calls owner.send without checking the return value, so a failing send (e.g., if the owner address is a contract that rejects ether) will silently fail and may lead to loss of funds or unexpected behavior.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1712,
+   "completion_tokens": 502,
+   "seconds": 1.85,
+   "provider": "groq",
+   "at": "2026-11-26T12:53:38+00:00"
+  },
+  "paper__cve__CVE-2021-3004": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"withdraw function\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function makes external calls to the Sushiswap pair contract (safeTransfer and burn) before updating the user's collateral and credit balances. A malicious pair contract could re-enter withdraw and manipulate state, leading to double withdrawal or incorrect accounting.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1928,
+   "completion_tokens": 287,
+   "seconds": 1.35,
+   "provider": "groq",
+   "at": "2026-11-26T12:53:39+00:00"
+  },
+  "paper__cve__CVE-2018-17987": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"resetGame() \u2013 multiplication currentGameBalance * 9\",\n      \"severity\": \"high\",\n      \"explanation\": \"Solidity ^0.4.13 does not have built\u2011in overflow checks. The calculation `uint winningAmount = currentGameBalance * 9 / 10;` can overflow if `currentGameBalance` is large enough, allowing an attacker to manipulate the payout.\"\n    },\n    {\n      \"type\": \"bad_randomness\",\n      \"location\": \"determineWinner() \u2013 uses block.blockhash(block.number - 1) and last byte\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The winner is selected based on the previous block hash, which miners can influence. This provides predictable and manipulable randomness, enabling a miner to bias the winning tile.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"refundWinnings() \u2013 loops from STARTING_GAME_NUMBER to currentGameNumber\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The loop iterates over all past games. As the number of games grows, the function can exceed the block gas limit, preventing the contract owner from refunding winnings and potentially locking funds.\"\n    }\n  ],\n  \"confidence\": 0.93\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1779,
+   "completion_tokens": 701,
+   "seconds": 2.32,
+   "provider": "groq",
+   "at": "2026-11-26T12:53:39+00:00"
+  },
+  "paper__cve__CVE-2018-14089": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"reentrancy\",\n      \"location\": \"fallback payable function\",\n      \"severity\": \"high\",\n      \"explanation\": \"The contract sends ether to `owner` via `owner.transfer(msg.value)` before updating internal state (`totalContribution`, `balances`). If `owner` is a contract, its fallback can re\u2011enter the payable function and cause inconsistent state or drain funds.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"fallback payable function (totalContribution, totalSupply, balances updates)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The contract uses Solidity ^0.4.19 without SafeMath for arithmetic on `totalContribution`, `totalSupply` and token balances, allowing potential overflow/underflow.\"\n    },\n    {\n      \"type\": \"unchecked_low_level_calls\",\n      \"location\": \"withdrawForeignTokens\",\n      \"severity\": \"low\",\n      \"explanation\": \"The external call `token.transfer(owner, amount)` returns a boolean that is simply returned to the caller without checking `require` or handling a false return, which may hide a failed token transfer.\"\n    },\n    {\n      \"type\": \"other\",\n      \"location\": \"transferFrom function\",\n      \"severity\": \"high\",\n      \"explanation\": \"Logic errors: `sufficientFunds` uses `fromBalance <= _value` instead of `>=`, and `sufficientAllowance` uses `allowance <= _value`. This allows transfers without sufficient balance or allowance and can lead to token creation or loss.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 2028,
+   "completion_tokens": 767,
+   "seconds": 2.53,
+   "provider": "groq",
+   "at": "2026-11-26T12:53:39+00:00"
+  },
+  "paper__cve__CVE-2023-26488": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"mintBatchOfOne\",\n      \"severity\": \"high\",\n      \"explanation\": \"The mintBatchOfOne function is public and lacks any access restriction, allowing any address to call it and mint unlimited NFTs, leading to uncontrolled token creation.\"\n    }\n  ],\n  \"confidence\": 0.99\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 978,
+   "completion_tokens": 206,
+   "seconds": 1.48,
+   "provider": "groq",
+   "at": "2026-11-26T12:53:39+00:00"
+  },
+  "paper__cve__CVE-2021-33403": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"fallback payable function (token purchase) where numTokens = msg.value * getExchangeRate(msg.sender)\",\n      \"severity\": \"high\",\n      \"explanation\": \"Using Solidity ^0.4.8 without SafeMath allows multiplication of msg.value by the exchange rate to overflow, resulting in an incorrect token amount and potential token supply manipulation.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"transfer function when updating balances[_to] += _value\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Balance addition is performed without overflow checks, which can be exploited if a user crafts a transfer that causes the recipient's balance to wrap around.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"transferFrom function balance addition and subtraction\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Balances and allowances are updated with arithmetic that lacks overflow/underflow protection, allowing potential supply manipulation.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"finalize function when calculating additionalTokens = totalTokens * percentOfTotal / (100 - percentOfTotal)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Multiplication can overflow the uint256 totalTokens, leading to incorrect token minting.\"\n    },\n    {\n      \"type\": \"access_control\",\n      \"location\": \"functions requiring msg.sender == master (e.g., setExchangeRate, finalize, etc.)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The master address is never initialized in the constructor, leaving it at the zero address. Consequently, only the zero address can call these privileged functions, effectively locking admin functionality and potentially allowing an attacker who can become the zero address (via contract creation) to gain control.\"\n    }\n  ],\n  \"confidence\": 0.92\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1912,
+   "completion_tokens": 661,
+   "seconds": 2.61,
+   "provider": "groq",
+   "at": "2026-11-26T12:53:41+00:00"
+  },
+  "paper__cve__CVE-2021-34270": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"mintToken function\",\n      \"severity\": \"high\",\n      \"explanation\": \"balanceOf[_target] and _totalSupply are increased without overflow checks; in Solidity 0.4.13 arithmetic can overflow, allowing supply manipulation.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"sell function multiplication _amount * sellPrice\",\n      \"severity\": \"high\",\n      \"explanation\": \"Multiplication is performed without overflow protection; overflow can bypass the balance check and cause incorrect payouts.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"mine function subtraction miningStorage - _minedAmount\",\n      \"severity\": \"high\",\n      \"explanation\": \"The require check uses the result of an unsigned subtraction which underflows before the comparison, making the check ineffective and allowing miningStorage to wrap around.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"mine function balance addition balanceOf[_target] + _minedAmount\",\n      \"severity\": \"medium\",\n      \"explanation\": \"Addition to balanceOf[_target] is not protected against overflow; the preceding require only checks for overflow after the addition, but the addition itself can wrap.\"\n    }\n  ],\n  \"confidence\": 0.93\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1721,
+   "completion_tokens": 667,
+   "seconds": 1.94,
+   "provider": "groq",
+   "at": "2026-11-26T12:54:39+00:00"
+  },
+  "paper__cve__CVE-2021-34272": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"Owned contract constructor (function owned)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The constructor is incorrectly defined as a regular public function named `owned`. As a result, `owner` is never initialized, leaving the `onlyOwner` modifier ineffective and allowing no one to call owner\u2011only functions, which is a critical access control flaw.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"mintToken function and sell function (amount * sellPrice)\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The contract uses Solidity 0.4.18 without SafeMath. `mintToken` adds `mintedAmount` to `balanceOf[target]` and `totalSupply` without overflow checks. In `sell`, `amount * sellPrice` is computed before the balance check, which can overflow and allow incorrect ether transfers.\"\n    }\n  ],\n  \"confidence\": 0.9\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1709,
+   "completion_tokens": 581,
+   "seconds": 1.77,
+   "provider": "groq",
+   "at": "2026-11-26T12:54:39+00:00"
+  },
+  "paper__cve__CVE-2021-34273": {
+   "raw": "{\n  \"vulnerabilities\": [\n    {\n      \"type\": \"access_control\",\n      \"location\": \"Owned contract constructor (function owned)\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function `owned()` is intended to be the constructor but is not named correctly for Solidity 0.4.4, so it is a regular public function. The `owner` variable is never initialized, allowing anyone to call `transferOwnership` after deployment, breaking ownership checks.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"StandardToken.transfer\",\n      \"severity\": \"high\",\n      \"explanation\": \"Balances are decreased with `balances[msg.sender] -= _value` without using SafeMath and Solidity <0.8 does not check underflows, allowing an underflow if `_value` exceeds the sender's balance despite the preceding check (race condition possible).\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"StandardToken.transferFrom\",\n      \"severity\": \"high\",\n      \"explanation\": \"Similar to `transfer`, balances and allowance are decreased without overflow/underflow protection, vulnerable in pre\u20110.8 Solidity.\"\n    },\n    {\n      \"type\": \"integer_overflow\",\n      \"location\": \"StandardToken.distributeToken\",\n      \"severity\": \"high\",\n      \"explanation\": \"The function subtracts `_value` from `balances[msg.sender]` for each address without checking that the sender has enough total tokens, leading to possible underflow and creation of tokens.\"\n    },\n    {\n      \"type\": \"denial_of_service\",\n      \"location\": \"StandardToken.distributeToken\",\n      \"severity\": \"medium\",\n      \"explanation\": \"The function iterates over an unbounded `addresses` array, which can exceed block gas limits and make the transaction fail, effectively blocking token distribution.\"\n    }\n  ],\n  \"confidence\": 0.97\n}",
+   "finish_reason": "stop",
+   "prompt_tokens": 1267,
+   "completion_tokens": 553,
+   "seconds": 1.67,
+   "provider": "groq",
+   "at": "2026-11-26T12:54:39+00:00"
   }
  }
 }

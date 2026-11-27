@@ -1,0 +1,4 @@
+53 excluded
+Trained on 216 contracts x 13 analysers in 74s -> models\coordinator_paper_heldout_s0
+Trained on 216 contracts x 13 analysers in 66s -> models\coordinator_paper_heldout_s1
+Trained on 216 contracts x 13 analysers in 68s -> models\coordinator_paper_heldout_s2

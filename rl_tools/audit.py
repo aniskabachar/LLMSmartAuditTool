@@ -42,12 +42,15 @@ STEPS, LAM, COST, SEED = 40_000, 0.02, "both", 0
 
 # ── training ──────────────────────────────────────────────────────────────────
 
-def train(data: Path = DATA):
+def train(data: Path = DATA, model_dir: Path | None = None, exclude: set[str] = frozenset()):
+    """exclude: contract names left out of training (e.g. those shared with a test set)."""
     import torch
     from stable_baselines3 import PPO
     from rl_tools.run import COMPACT, TYPES, ToolEnv, load
+    MODEL_DIR = model_dir or globals()["MODEL_DIR"]
     torch.set_num_threads(1)
     meta_d, tools, items = load(data, COST)
+    items = [it for it in items if it["name"] not in exclude]
     X = np.stack([it["x"] for it in items])
     mu, sd = X.mean(0), X.std(0) + 1e-6
     env = ToolEnv(items, len(tools), LAM, mu, sd, adaptive=True, seed=SEED, feat_idx=COMPACT)
@@ -62,6 +65,7 @@ def train(data: Path = DATA):
         "mu": mu[list(COMPACT)].tolist(), "sd": sd[list(COMPACT)].tolist(),
         "lam": LAM, "cost": COST, "steps": STEPS, "seed": SEED, "policy": "MlpPolicy 64x64",
         "trained_on": str(data.relative_to(ROOT)), "n_contracts": len(items),
+        "excluded": sorted(exclude),
         "data_built_at": meta_d.get("built_at"),
         "trained_at": datetime.now().isoformat(timespec="seconds")}, indent=1), encoding="utf-8")
     print(f"Trained on {len(items)} contracts x {len(tools)} analysers in {time.time() - t0:.0f}s "
@@ -139,26 +143,14 @@ class Analysers:
 
 # ── audit ─────────────────────────────────────────────────────────────────────
 
-def audit(sol: Path, max_tools: int | None = None, quiet: bool = False):
+def coordinate(meta: dict, model, feats, run, max_tools: int | None = None, say=lambda *a, **k: None):
+    """The coordinator's loop: observation exactly as ToolEnv.obs, argmax action, no reruns.
+    run(tool) -> {"categories", "seconds", "tokens", ...}: live analysers (audit) or replies
+    collected earlier for the same request (rl_tools/paper_eval.py)."""
     import torch
-    from stable_baselines3 import PPO
-    from rl_offline.common import _features
-    if not (MODEL_DIR / "model.zip").exists():
-        raise SystemExit("No trained coordinator; run: py rl_tools/audit.py --train")
-    meta = json.loads((MODEL_DIR / "meta.json").read_text(encoding="utf-8"))
     tools, types, fidx = meta["tools"], meta["types"], meta["feat_idx"]
     mu, sd, T = np.asarray(meta["mu"]), np.asarray(meta["sd"]), len(meta["tools"])
-    model = PPO.load(MODEL_DIR / "model.zip", device="cpu")
-    import contextlib, io
-    with contextlib.redirect_stdout(io.StringIO()):     # its import notice is about the feature
-        import rl_environment.contract_analyzer          # extractor (regex only, by design), not
-    feats = np.asarray(_features(sol), dtype=np.float32) # about the Slither analyser used below
-    an = Analysers(sol)
-    say = (lambda *a_, **k_: None) if quiet else print
-
     used, found, cost, steps = [], set(), 0.0, []
-    t_start = time.time()
-    say(f"Auditing {sol.name} with the RL coordinator ({T} analysers available)")
     for _ in range(min(T, max_tools or T)):
         x = np.clip((feats[fidx] - mu) / sd, -10, 10)
         u = np.zeros(T, np.float32)
@@ -176,7 +168,7 @@ def audit(sol: Path, max_tools: int | None = None, quiet: bool = False):
         tool = tools[a]
         say(f"  coordinator: run {tool} (p={probs[a]:.2f}) ...", end="", flush=True)
         try:
-            r = an.run(tool)
+            r = run(tool)
         except Exception as e:                               # e.g. every Groq key at its limit
             say(f" failed: {type(e).__name__}: {str(e)[:120]}")
             r = {"categories": [], "details": [], "seconds": 0.0, "tokens": 0, "error": str(e)[:300]}
@@ -188,6 +180,29 @@ def audit(sol: Path, max_tools: int | None = None, quiet: bool = False):
         say(f" {r['categories'] or 'nothing'} ({r['tokens']:,} tokens, {r['seconds']:.1f}s)")
     else:
         say("  coordinator: used its tool budget")
+    return found, steps
+
+
+def audit(sol: Path, max_tools: int | None = None, quiet: bool = False):
+    import torch
+    from stable_baselines3 import PPO
+    from rl_offline.common import _features
+    if not (MODEL_DIR / "model.zip").exists():
+        raise SystemExit("No trained coordinator; run: py rl_tools/audit.py --train")
+    meta = json.loads((MODEL_DIR / "meta.json").read_text(encoding="utf-8"))
+    tools, types, fidx = meta["tools"], meta["types"], meta["feat_idx"]
+    mu, sd, T = np.asarray(meta["mu"]), np.asarray(meta["sd"]), len(meta["tools"])
+    model = PPO.load(MODEL_DIR / "model.zip", device="cpu")
+    import contextlib, io
+    with contextlib.redirect_stdout(io.StringIO()):     # its import notice is about the feature
+        import rl_environment.contract_analyzer          # extractor (regex only, by design), not
+    feats = np.asarray(_features(sol), dtype=np.float32) # about the Slither analyser used below
+    an = Analysers(sol)
+    say = (lambda *a_, **k_: None) if quiet else print
+
+    t_start = time.time()
+    say(f"Auditing {sol.name} with the RL coordinator ({T} analysers available)")
+    found, steps = coordinate(meta, model, feats, an.run, max_tools, say)
 
     rep = {"contract": str(sol), "audited_at": datetime.now().isoformat(timespec="seconds"),
            "vulnerability_categories": sorted(found), "analysers_run": [s["tool"] for s in steps],

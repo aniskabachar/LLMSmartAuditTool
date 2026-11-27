@@ -1,0 +1,444 @@
+=== Thu Nov 26 17:27:19 IST 2026 TA mode (base paper) ===
+TA mode: 36/125 contracts complete; ~12,273 tokens per contract; ~1.09M tokens to go
+      nvidia does not serve openai/gpt-oss-120b any more; skipping it
+paper__reentrancy__etherbank: stopping worker (DailyLimitReached: nvidia: model unavailable, no other keys left)
+[37/125] paper__gasless_send__HFConditionalTransfer: 11,463 tokens
+[38/125] paper__bad_randomness__vulnerableBlockHashGame: 11,085 tokens
+[40/125] paper__gasless_send__HelpMeSave: 14,014 tokens
+[40/125] paper__gasless_send__Axioms: 15,745 tokens
+[41/125] paper__gasless_send__QuarterMachine: 14,490 tokens
+[42/125] paper__gasless_send__Ethmoon: 14,935 tokens
+[43/125] paper__gasless_send__ETHDropOpenAdd: 17,365 tokens
+[44/125] paper__gasless_send__Etheramid_Attack: 15,436 tokens
+paper__bad_randomness__theRun: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kn7ym)
+[45/125] paper__gasless_send__CreditDepositBank_Attack: 18,756 tokens
+[46/125] paper__gasless_send__MultiTokenNetwork: 21,107 tokens
+[47/125] paper__reentrancy__reentrancy_bonus: 12,002 tokens
+[48/125] paper__gasless_send__Ownable: 18,724 tokens
+[49/125] paper__reentrancy__reentrancy_cross_function: 10,806 tokens
+[50/125] paper__gasless_send__IManagedToken: 23,129 tokens
+[51/125] paper__reentrancy__reentrancy_insecure: 9,196 tokens
+[52/125] paper__safecontract__CareerOnToken: 11,373 tokens
+[53/125] paper__safecontract__ballot: 13,009 tokens
+[54/125] paper__safecontract__balancer: 14,312 tokens
+[55/125] paper__safecontract__curve: 13,973 tokens
+[56/125] paper__safecontract__WETH9: 11,807 tokens
+[57/125] paper__safecontract__SushiSwap: 12,664 tokens
+[58/125] paper__time_manipulation__DocumentSigner: 13,724 tokens
+[59/125] paper__time_manipulation__lottopollo: 12,661 tokens
+[60/125] paper__safecontract__Uniswap: 13,447 tokens
+[61/125] paper__safecontract__WrappedToken: 15,229 tokens
+[62/125] paper__safecontract__PullPayment: 19,724 tokens
+[63/125] paper__safecontract__StableDEX: 20,205 tokens
+[64/125] paper__time_manipulation__AZT: 24,918 tokens
+[65/125] paper__time_manipulation__TAMContract: 15,570 tokens
+[66/125] paper__TOD__eth_tx_order_dependence_minimal: 10,878 tokens
+[67/125] paper__time_manipulation__HotDollarsToken: 21,701 tokens
+[68/125] paper__time_manipulation__TTC: 24,863 tokens
+[69/125] paper__TOD__BitCash: 23,868 tokens
+[70/125] paper__TOD__DocumentSigner: 18,117 tokens
+[71/125] paper__TOD__CareerOnToken: 24,822 tokens
+[72/125] paper__TOD__ERC223Token: 23,429 tokens
+[73/125] paper__TOD__HotDollarsToken: 23,920 tokens
+[74/125] paper__TOD__ForTheBlockchain: 23,343 tokens
+[75/125] paper__TOD__ProofOfExistence: 24,839 tokens
+[76/125] paper__tx_origin__DocumentSinger: 16,116 tokens
+[77/125] paper__tx_origin__AsseteGram: 21,262 tokens
+[78/125] paper__tx_origin__BitCash: 21,655 tokens
+[79/125] paper__unchecked_send__0x3e013fc32a54c4c5b6991ba539dcd0ec4355c859: 11,958 tokens
+[80/125] paper__tx_origin__CareerOnToken: 23,247 tokens
+[81/125] paper__unchecked_send__0x4a66ad0bca2d700f11e1f2fc2c106f7d3264504c: 12,523 tokens
+[82/125] paper__unchecked_send__0xf2570186500a46986f3139f65afedc2afe4f445d: 11,080 tokens
+[83/125] paper__tx_origin__HotDollarsToken: 21,536 tokens
+[84/125] paper__tx_origin__TAMC: 17,193 tokens
+[85/125] paper__unchecked_send__mishandled: 9,647 tokens
+[86/125] paper__tx_origin__MD: 22,062 tokens
+[87/125] paper__tx_origin__ProofofExistence: 20,448 tokens
+[88/125] paper__unchecked_send__0x3f2ef511aa6e75231e4deafc7a3d2ecab3741de2: 13,161 tokens
+[89/125] paper__unchecked_send__0xf70d589d76eebdd7c12cc5eec99f8f6fa4233b9e: 12,252 tokens
+[90/125] paper__unsafe_delegatecall__Delegation: 10,354 tokens
+[91/125] paper__unsafe_delegatecall__FibonacciBalance: 13,449 tokens
+[92/125] paper__unsafe_delegatecall__BeaconProxy: 17,852 tokens
+[93/125] paper__unsafe_delegatecall__owner_example: 10,753 tokens
+[94/125] paper__unsafe_delegatecall__proxy: 10,265 tokens
+[95/125] paper__unsafe_delegatecall__storage_abuse: 10,820 tokens
+[96/125] paper__unsafe_delegatecall__storage_example: 10,988 tokens
+[97/125] paper__unsafe_delegatecall__multi_delegatecall: 12,252 tokens
+[98/125] paper__unsafe_suicide__BankOfEther: 11,398 tokens
+[99/125] paper__unsafe_delegatecall__ERC1967Proxy: 16,233 tokens
+[100/125] paper__unsafe_suicide__bug_3: 12,317 tokens
+[101/125] paper__unsafe_suicide__simple_suicide: 10,000 tokens
+[102/125] paper__unsafe_suicide__SuicideMultiTxInfeasible: 9,313 tokens
+[103/125] paper__unsafe_suicide__SuicideMultiTxFeasible: 9,521 tokens
+[104/125] paper__unsafe_suicide__EthRoulette: 12,131 tokens
+[105/125] paper__unsafe_delegatecall__wallet_delegatecall: 24,574 tokens
+[106/125] paper__unsafe_suicide__bug_1: 22,766 tokens
+[107/125] paper__unsafe_suicide__ERC20Basic: 16,273 tokens
+[108/125] paper__unsafe_suicide__bug_2: 24,799 tokens
+[109/125] paper__cve__CVE-2018-14085: 17,229 tokens
+[110/125] paper__unsafe_suicide__parity_wallet_bug_2: 25,113 tokens
+[111/125] paper__cve__CVE-2018-17111: 15,221 tokens
+[112/125] paper__unsafe_suicide__wallet_sucide: 25,282 tokens
+[113/125] paper__cve__CVE-2019-15079: 13,398 tokens
+[114/125] paper__cve__CVE-2018-14087: 21,680 tokens
+[115/125] paper__cve__CVE-2018-14089: 23,729 tokens
+paper__cve__CVE-2018-18425: stopping worker (DailyLimitReached: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m7pk4)
+[116/125] paper__cve__CVE-2018-17987: 21,964 tokens
+[117/125] paper__cve__CVE-2021-34270: 19,963 tokens
+[118/125] paper__cve__CVE-2021-3004: 20,878 tokens
+[119/125] paper__cve__CVE-2021-33403: 22,172 tokens
+[120/125] paper__cve__CVE-2023-26488: 11,722 tokens
+[121/125] paper__cve__CVE-2021-34273: 17,587 tokens
+[122/125] paper__cve__CVE-2021-34272: 21,103 tokens
+TA mode: 122/125 contracts complete -> datasets\tool_results\llm_ta.json
+=== Thu Nov 26 18:15:54 IST 2026 ba ===
+443 done, 47 to go
+[444/125] paper__safecontract__Uniswap: stop 1096 tok 4.61s
+[445/125] paper__safecontract__WETH9: stop 871 tok 4.75s
+[446/125] paper__safecontract__ballot: stop 877 tok 4.81s
+[447/125] paper__safecontract__CareerOnToken: stop 863 tok 4.85s
+[448/125] paper__safecontract__SushiSwap: stop 923 tok 4.98s
+[449/125] paper__safecontract__WrappedToken: stop 1334 tok 4.99s
+[450/125] paper__safecontract__curve: stop 1086 tok 5.07s
+[451/125] paper__safecontract__balancer: stop 1241 tok 5.57s
+[452/125] paper__time_manipulation__AZT: stop 2512 tok 1.42s
+[453/125] paper__time_manipulation__DocumentSigner: stop 1244 tok 1.45s
+[454/125] paper__TOD__BitCash: stop 2408 tok 1.31s
+[455/125] paper__TOD__eth_tx_order_dependence_minimal: stop 689 tok 0.87s
+[456/125] paper__TOD__CareerOnToken: stop 2218 tok 1.36s
+[457/125] paper__time_manipulation__TAMContract: stop 1453 tok 1.65s
+[458/125] paper__time_manipulation__HotDollarsToken: stop 2095 tok 1.77s
+[459/125] paper__time_manipulation__TTC: stop 2435 tok 1.72s
+[460/125] paper__tx_origin__CareerOnToken: stop 1958 tok 1.51s
+[461/125] paper__safecontract__PullPayment: stop 1814 tok 14.81s
+      daily limit on groq key 5, switching to groq key 11
+[462/125] paper__unsafe_delegatecall__FibonacciBalance: stop 1039 tok 2.05s
+[463/125] paper__unsafe_delegatecall__proxy: stop 610 tok 0.8s
+[464/125] paper__unsafe_suicide__bug_1: stop 2059 tok 1.07s
+      daily limit on groq key 6, switching to groq key 12
+[465/125] paper__safecontract__StableDEX: stop 1809 tok 1.81s
+[466/125] paper__unsafe_suicide__bug_3: stop 980 tok 1.38s
+[467/125] paper__tx_origin__DocumentSinger: stop 1182 tok 1.16s
+[468/125] paper__tx_origin__AsseteGram: stop 2026 tok 1.51s
+[469/125] paper__tx_origin__HotDollarsToken: stop 1890 tok 1.44s
+[470/125] paper__tx_origin__MD: stop 1754 tok 1.63s
+[471/125] paper__TOD__HotDollarsToken: stop 2230 tok 1.03s
+[472/125] paper__unsafe_suicide__simple_suicide: stop 529 tok 1.41s
+[473/125] paper__tx_origin__TAMC: stop 1414 tok 2.09s
+[474/125] paper__tx_origin__BitCash: stop 1753 tok 1.32s
+[475/125] paper__cve__CVE-2018-14085: stop 1670 tok 1.47s
+[476/125] paper__cve__CVE-2018-14087: stop 1978 tok 1.63s
+[477/125] paper__tx_origin__ProofofExistence: stop 1734 tok 1.26s
+[478/125] paper__cve__CVE-2018-17111: stop 1168 tok 0.98s
+[479/125] paper__cve__CVE-2018-14089: stop 2323 tok 1.7s
+[480/125] paper__cve__CVE-2018-18425: stop 1864 tok 1.03s
+[481/125] paper__cve__CVE-2019-15079: stop 1319 tok 1.71s
+[482/125] paper__cve__CVE-2018-17987: stop 2060 tok 1.87s
+[483/125] paper__cve__CVE-2021-34270: stop 1990 tok 1.63s
+[484/125] paper__unsafe_suicide__bug_2: stop 2510 tok 1.48s
+[485/125] paper__unsafe_suicide__parity_wallet_bug_2: stop 2706 tok 1.97s
+[486/125] paper__cve__CVE-2021-3004: stop 2035 tok 1.32s
+      daily limit on groq key 1, switching to groq key 13
+[487/125] paper__cve__CVE-2021-34273: stop 1496 tok 1.93s
+[488/125] paper__cve__CVE-2021-34272: stop 1964 tok 1.8s
+[489/125] paper__cve__CVE-2023-26488: stop 880 tok 1.57s
+[490/125] paper__cve__CVE-2021-33403: stop 2083 tok 1.83s
+490/125 contracts have an LLM reply -> datasets\tool_results\llm_ba.json
+=== Thu Nov 26 18:18:06 IST 2026 ba_med ===
+443 done, 47 to go
+      daily limit on groq key 1, switching to groq key 11
+      daily limit on groq key 5, switching to groq key 12
+      daily limit on groq key 6, switching to groq key 13
+[444/125] paper__safecontract__Uniswap: stop 1417 tok 5.8s
+[445/125] paper__safecontract__WETH9: stop 1325 tok 5.88s
+[446/125] paper__safecontract__WrappedToken: stop 1903 tok 6.14s
+[447/125] paper__safecontract__CareerOnToken: stop 1100 tok 6.34s
+[448/125] paper__safecontract__ballot: stop 1598 tok 6.4s
+[449/125] paper__safecontract__PullPayment: stop 2122 tok 3.02s
+[450/125] paper__safecontract__curve: stop 1938 tok 6.99s
+[451/125] paper__time_manipulation__DocumentSigner: stop 1471 tok 1.71s
+[452/125] paper__safecontract__balancer: stop 1856 tok 3.78s
+[453/125] paper__safecontract__SushiSwap: stop 2297 tok 7.75s
+[454/125] paper__safecontract__StableDEX: stop 2735 tok 4.11s
+[455/125] paper__time_manipulation__AZT: stop 3151 tok 2.93s
+[456/125] paper__time_manipulation__HotDollarsToken: stop 2710 tok 2.94s
+[457/125] paper__time_manipulation__TAMContract: stop 2107 tok 3.03s
+[458/125] paper__time_manipulation__TTC: stop 3340 tok 3.55s
+[459/125] paper__TOD__eth_tx_order_dependence_minimal: stop 1365 tok 2.45s
+[460/125] paper__tx_origin__DocumentSinger: stop 1533 tok 2.01s
+[461/125] paper__tx_origin__HotDollarsToken: stop 2855 tok 3.81s
+[462/125] paper__TOD__HotDollarsToken: stop 2947 tok 2.76s
+[463/125] paper__TOD__CareerOnToken: stop 3450 tok 3.81s
+[464/125] paper__tx_origin__AsseteGram: stop 2850 tok 3.35s
+[465/125] paper__tx_origin__ProofofExistence: stop 2814 tok 3.62s
+[466/125] paper__TOD__BitCash: stop 3727 tok 4.29s
+[467/125] paper__tx_origin__CareerOnToken: stop 2874 tok 3.2s
+[468/125] paper__unsafe_delegatecall__proxy: stop 1118 tok 2.04s
+[469/125] paper__unsafe_suicide__bug_3: stop 1046 tok 1.31s
+[470/125] paper__unsafe_delegatecall__FibonacciBalance: stop 1551 tok 2.53s
+[471/125] paper__tx_origin__TAMC: stop 2475 tok 3.8s
+[472/125] paper__unsafe_suicide__simple_suicide: stop 822 tok 1.25s
+[473/125] paper__tx_origin__MD: stop 3028 tok 4.02s
+[474/125] paper__tx_origin__BitCash: stop 4297 tok 6.6s
+[475/125] paper__cve__CVE-2018-17111: stop 1824 tok 2.76s
+[476/125] paper__unsafe_suicide__bug_2: stop 3017 tok 3.14s
+[477/125] paper__cve__CVE-2018-14089: stop 3273 tok 4.15s
+[478/125] paper__cve__CVE-2018-14085: stop 2618 tok 3.85s
+[479/125] paper__unsafe_suicide__bug_1: stop 3197 tok 3.55s
+[480/125] paper__unsafe_suicide__parity_wallet_bug_2: stop 3111 tok 3.17s
+[481/125] paper__cve__CVE-2018-14087: stop 2785 tok 3.44s
+[482/125] paper__cve__CVE-2023-26488: stop 1305 tok 1.81s
+[483/125] paper__cve__CVE-2019-15079: stop 1562 tok 2.13s
+[484/125] paper__cve__CVE-2018-18425: stop 3159 tok 3.91s
+[485/125] paper__cve__CVE-2018-17987: stop 3232 tok 7.24s
+[486/125] paper__cve__CVE-2021-3004: stop 2813 tok 2.98s
+[487/125] paper__cve__CVE-2021-34273: stop 2305 tok 3.0s
+[488/125] paper__cve__CVE-2021-33403: stop 3005 tok 3.34s
+[489/125] paper__cve__CVE-2021-34272: stop 2923 tok 3.65s
+[490/125] paper__cve__CVE-2021-34270: stop 3023 tok 3.79s
+490/125 contracts have an LLM reply -> datasets\tool_results\llm_ba_med.json
+=== Thu Nov 26 18:21:27 IST 2026 ba_dasp ===
+443 done, 47 to go
+      daily limit on groq key 5, switching to groq key 11
+      daily limit on groq key 1, switching to groq key 12
+      daily limit on groq key 6, switching to groq key 13
+[444/125] paper__safecontract__CareerOnToken: stop 989 tok 4.41s
+[445/125] paper__safecontract__Uniswap: stop 1329 tok 4.44s
+[446/125] paper__safecontract__SushiSwap: stop 1173 tok 4.76s
+[447/125] paper__safecontract__curve: stop 1288 tok 4.82s
+[448/125] paper__safecontract__ballot: stop 1250 tok 4.85s
+[449/125] paper__safecontract__WrappedToken: stop 1616 tok 4.86s
+[450/125] paper__safecontract__WETH9: stop 1259 tok 5.03s
+[451/125] paper__time_manipulation__DocumentSigner: stop 1570 tok 1.36s
+[452/125] paper__time_manipulation__HotDollarsToken: stop 2138 tok 1.19s
+[453/125] paper__time_manipulation__AZT: stop 2767 tok 1.62s
+[454/125] paper__safecontract__StableDEX: stop 2067 tok 2.13s
+[455/125] paper__TOD__CareerOnToken: stop 2517 tok 1.24s
+[456/125] paper__safecontract__PullPayment: stop 2077 tok 2.31s
+[457/125] paper__time_manipulation__TAMContract: stop 1678 tok 1.5s
+[458/125] paper__safecontract__balancer: stop 1456 tok 2.38s
+[459/125] paper__time_manipulation__TTC: stop 2741 tok 1.72s
+[460/125] paper__TOD__eth_tx_order_dependence_minimal: stop 1130 tok 1.32s
+[461/125] paper__tx_origin__MD: stop 1947 tok 1.11s
+[462/125] paper__tx_origin__DocumentSinger: stop 1568 tok 1.49s
+[463/125] paper__TOD__BitCash: stop 2545 tok 1.3s
+[464/125] paper__tx_origin__HotDollarsToken: stop 2217 tok 1.94s
+[465/125] paper__unsafe_delegatecall__proxy: stop 907 tok 0.98s
+[466/125] paper__tx_origin__AsseteGram: stop 2149 tok 1.29s
+[467/125] paper__tx_origin__TAMC: stop 1712 tok 1.67s
+[468/125] paper__tx_origin__BitCash: stop 2103 tok 1.5s
+[469/125] paper__tx_origin__CareerOnToken: stop 2268 tok 1.6s
+[470/125] paper__TOD__HotDollarsToken: stop 2858 tok 2.04s
+[471/125] paper__unsafe_suicide__bug_3: stop 1087 tok 0.83s
+[472/125] paper__tx_origin__ProofofExistence: stop 2142 tok 1.57s
+[473/125] paper__unsafe_suicide__simple_suicide: stop 790 tok 0.83s
+[474/125] paper__unsafe_delegatecall__FibonacciBalance: stop 1523 tok 2.42s
+[475/125] paper__cve__CVE-2018-17111: stop 1502 tok 0.86s
+[476/125] paper__cve__CVE-2019-15079: stop 1644 tok 1.33s
+[477/125] paper__unsafe_suicide__bug_1: stop 2702 tok 1.97s
+[478/125] paper__unsafe_suicide__bug_2: stop 2781 tok 1.63s
+[479/125] paper__cve__CVE-2018-18425: stop 2426 tok 1.53s
+[480/125] paper__cve__CVE-2018-14085: stop 1934 tok 1.54s
+[481/125] paper__unsafe_suicide__parity_wallet_bug_2: stop 3001 tok 1.95s
+[482/125] paper__cve__CVE-2018-14087: stop 2214 tok 1.85s
+[483/125] paper__cve__CVE-2021-3004: stop 2215 tok 1.35s
+[484/125] paper__cve__CVE-2018-17987: stop 2480 tok 2.32s
+[485/125] paper__cve__CVE-2018-14089: stop 2795 tok 2.53s
+[486/125] paper__cve__CVE-2023-26488: stop 1184 tok 1.48s
+[487/125] paper__cve__CVE-2021-33403: stop 2573 tok 2.61s
+[488/125] paper__cve__CVE-2021-34270: stop 2388 tok 1.94s
+[489/125] paper__cve__CVE-2021-34272: stop 2290 tok 1.77s
+[490/125] paper__cve__CVE-2021-34273: stop 1820 tok 1.67s
+490/125 contracts have an LLM reply -> datasets\tool_results\llm_ba_dasp.json
+=== Thu Nov 26 18:24:40 IST 2026 qwen_ba ===
+443 done, 47 to go
+[444/125] paper__safecontract__WETH9: stop 742 tok 4.57s
+[445/125] paper__safecontract__CareerOnToken: stop 744 tok 4.61s
+[446/125] paper__safecontract__PullPayment: stop 1594 tok 4.9s
+[447/125] paper__safecontract__SushiSwap: stop 1073 tok 5.24s
+[448/125] paper__safecontract__StableDEX: stop 1890 tok 5.28s
+[449/125] paper__safecontract__curve: stop 1196 tok 5.51s
+[450/125] paper__time_manipulation__DocumentSigner: stop 1015 tok 0.92s
+[451/125] paper__safecontract__ballot: stop 1200 tok 5.65s
+[452/125] paper__time_manipulation__TAMContract: stop 1290 tok 0.98s
+[453/125] paper__TOD__eth_tx_order_dependence_minimal: stop 623 tok 0.72s
+[454/125] paper__time_manipulation__HotDollarsToken: stop 2260 tok 1.58s
+[455/125] paper__safecontract__WrappedToken: stop 1777 tok 6.55s
+[456/125] paper__time_manipulation__AZT: stop 3037 tok 2.21s
+[457/125] paper__TOD__BitCash: stop 2831 tok 1.8s
+[458/125] paper__TOD__CareerOnToken: stop 2786 tok 1.8s
+[459/125] paper__tx_origin__AsseteGram: stop 1992 tok 1.09s
+[460/125] paper__tx_origin__CareerOnToken: stop 2387 tok 2.04s
+[461/125] paper__safecontract__Uniswap: stop 3075 tok 8.77s
+[462/125] paper__safecontract__balancer: stop 3076 tok 9.34s
+      rate limit (groq), waiting 11s
+[463/125] paper__unsafe_delegatecall__proxy: stop 555 tok 10.68s
+[464/125] paper__tx_origin__DocumentSinger: stop 1168 tok 0.98s
+[465/125] paper__tx_origin__BitCash: stop 1881 tok 1.22s
+[466/125] paper__tx_origin__ProofofExistence: stop 1706 tok 0.95s
+[467/125] paper__time_manipulation__TTC: stop 2717 tok 2.06s
+[468/125] paper__unsafe_suicide__bug_3: stop 935 tok 1.0s
+[469/125] paper__TOD__HotDollarsToken: stop 3128 tok 2.46s
+[470/125] paper__tx_origin__TAMC: stop 1323 tok 1.5s
+      rate limit (groq), waiting 21s
+[471/125] paper__tx_origin__HotDollarsToken: stop 1966 tok 1.82s
+[472/125] paper__unsafe_suicide__parity_wallet_bug_2: stop 2493 tok 1.88s
+[473/125] paper__tx_origin__MD: stop 2007 tok 2.2s
+[474/125] paper__unsafe_suicide__bug_2: stop 3154 tok 3.1s
+[475/125] paper__cve__CVE-2018-17111: stop 1218 tok 0.81s
+[476/125] paper__cve__CVE-2018-14089: stop 2568 tok 1.47s
+[477/125] paper__unsafe_suicide__bug_1: stop 2454 tok 1.54s
+[478/125] paper__unsafe_delegatecall__FibonacciBalance: stop 878 tok 0.92s
+[479/125] paper__unsafe_suicide__simple_suicide: stop 460 tok 42.58s
+[480/125] paper__cve__CVE-2018-14085: stop 2398 tok 2.57s
+[481/125] paper__cve__CVE-2018-14087: stop 2118 tok 1.29s
+      rate limit (groq), waiting 11s
+[482/125] paper__cve__CVE-2021-3004: stop 2760 tok 2.23s
+[483/125] paper__cve__CVE-2018-17987: stop 2523 tok 2.14s
+[484/125] paper__cve__CVE-2018-18425: stop 2713 tok 1.91s
+[485/125] paper__cve__CVE-2021-33403: stop 2539 tok 1.76s
+[486/125] paper__cve__CVE-2021-34270: stop 2830 tok 2.84s
+[487/125] paper__cve__CVE-2021-34272: stop 4386 tok 6.2s
+      rate limit (groq), waiting 21s
+[488/125] paper__cve__CVE-2021-34273: stop 1623 tok 39.78s
+[489/125] paper__cve__CVE-2019-15079: stop 2609 tok 3.75s
+      rate limit (groq), waiting 11s
+      rate limit (groq), waiting 21s
+[490/125] paper__cve__CVE-2023-26488: stop 845 tok 0.39s
+490/125 contracts have an LLM reply -> datasets\tool_results\llm_qwen_ba.json
+=== Thu Nov 26 18:29:06 IST 2026 qwen_think ===
+443 done, 47 to go
+      rate limit (groq), waiting 11s
+      rate limit (groq), waiting 11s
+      rate limit (groq), waiting 11s
+      rate limit (groq), waiting 11s
+      rate limit (groq), waiting 11s
+[444/125] paper__safecontract__CareerOnToken: stop 744 tok 5.18s
+[445/125] paper__safecontract__ballot: stop 871 tok 5.35s
+[446/125] paper__safecontract__PullPayment: stop 1719 tok 5.62s
+[447/125] paper__safecontract__WrappedToken: stop 1438 tok 5.64s
+[448/125] paper__time_manipulation__DocumentSigner: stop 1044 tok 0.76s
+[449/125] paper__safecontract__curve: stop 1339 tok 6.3s
+      rate limit (groq), waiting 11s
+[450/125] paper__time_manipulation__AZT: stop 3358 tok 2.8s
+      rate limit (groq), waiting 21s
+[451/125] paper__safecontract__WETH9: stop 741 tok 1.53s
+      rate limit (groq), waiting 11s
+[452/125] paper__safecontract__SushiSwap: stop 1037 tok 1.92s
+[453/125] paper__safecontract__balancer: stop 1117 tok 2.09s
+[454/125] paper__time_manipulation__TAMContract: stop 1283 tok 13.93s
+[455/125] paper__TOD__BitCash: stop 2866 tok 34.92s
+[456/125] paper__TOD__eth_tx_order_dependence_minimal: stop 626 tok 0.77s
+[457/125] paper__safecontract__StableDEX: stop 1884 tok 1.21s
+[458/125] paper__tx_origin__AsseteGram: stop 2035 tok 1.43s
+[459/125] paper__TOD__HotDollarsToken: stop 2797 tok 2.25s
+[460/125] paper__tx_origin__HotDollarsToken: stop 1783 tok 1.45s
+[461/125] paper__tx_origin__BitCash: stop 2024 tok 1.91s
+[462/125] paper__safecontract__Uniswap: stop 1757 tok 2.94s
+      rate limit (groq), waiting 11s
+[463/125] paper__time_manipulation__TTC: stop 3494 tok 6.05s
+      rate limit (groq), waiting 11s
+[464/125] paper__tx_origin__MD: stop 1800 tok 1.29s
+      rate limit (groq), waiting 14s
+      rate limit (groq), waiting 21s
+[465/125] paper__unsafe_delegatecall__proxy: stop 429 tok 25.47s
+[466/125] paper__tx_origin__CareerOnToken: stop 2569 tok 2.28s
+      rate limit (groq), waiting 11s
+      rate limit (groq), waiting 21s
+[467/125] paper__tx_origin__TAMC: stop 1333 tok 1.04s
+      rate limit (groq), waiting 11s
+[468/125] paper__tx_origin__ProofofExistence: stop 1719 tok 0.94s
+[469/125] paper__unsafe_suicide__bug_3: stop 787 tok 0.79s
+[470/125] paper__unsafe_delegatecall__FibonacciBalance: stop 910 tok 1.04s
+[471/125] paper__TOD__CareerOnToken: stop 2663 tok 1.61s
+[472/125] paper__cve__CVE-2018-17111: stop 1115 tok 0.42s
+[473/125] paper__unsafe_suicide__bug_1: stop 2275 tok 2.51s
+      rate limit (groq), waiting 21s
+[474/125] paper__cve__CVE-2018-14085: stop 1751 tok 11.2s
+[475/125] paper__unsafe_suicide__bug_2: stop 3027 tok 2.36s
+[476/125] paper__cve__CVE-2018-14089: stop 2766 tok 1.87s
+      rate limit (groq), waiting 31s
+[477/125] paper__time_manipulation__HotDollarsToken: stop 2032 tok 1.2s
+[478/125] paper__cve__CVE-2021-34270: stop 2872 tok 3.59s
+[479/125] paper__unsafe_suicide__parity_wallet_bug_2: stop 2588 tok 1.53s
+      rate limit (groq), waiting 11s
+[480/125] paper__cve__CVE-2018-14087: stop 2280 tok 1.75s
+      rate limit (groq), waiting 11s
+[481/125] paper__tx_origin__DocumentSinger: stop 1193 tok 0.96s
+      rate limit (groq), waiting 31s
+[482/125] paper__cve__CVE-2019-15079: stop 1235 tok 0.87s
+[483/125] paper__cve__CVE-2018-17987: stop 3092 tok 3.17s
+      rate limit (groq), waiting 11s
+[484/125] paper__cve__CVE-2021-3004: stop 2176 tok 1.43s
+[485/125] paper__cve__CVE-2021-33403: stop 2432 tok 1.51s
+      rate limit (groq), waiting 11s
+[486/125] paper__unsafe_suicide__simple_suicide: stop 459 tok 0.52s
+      rate limit (groq), waiting 21s
+[487/125] paper__cve__CVE-2023-26488: stop 845 tok 0.39s
+[488/125] paper__cve__CVE-2021-34273: stop 1595 tok 1.25s
+      rate limit (groq), waiting 21s
+[489/125] paper__cve__CVE-2021-34272: stop 2494 tok 2.24s
+[490/125] paper__cve__CVE-2018-18425: stop 2618 tok 1.92s
+490/125 contracts have an LLM reply -> datasets\tool_results\llm_qwen_think.json
+=== Thu Nov 26 18:34:25 IST 2026 qwen_dasp ===
+443 done, 47 to go
+      rate limit (groq), waiting 11s
+      rate limit (groq), waiting 11s
+[444/125] paper__safecontract__Uniswap: stop 1258 tok 5.15s
+[445/125] paper__safecontract__CareerOnToken: stop 903 tok 5.24s
+[446/125] paper__safecontract__balancer: stop 1297 tok 5.59s
+[447/125] paper__safecontract__WETH9: stop 1155 tok 5.62s
+[448/125] paper__safecontract__SushiSwap: stop 1208 tok 5.66s
+[449/125] paper__time_manipulation__DocumentSigner: stop 1305 tok 0.71s
+[450/125] paper__safecontract__WrappedToken: stop 2284 tok 6.98s
+[451/125] paper__time_manipulation__HotDollarsToken: stop 2503 tok 1.55s
+[452/125] paper__time_manipulation__TAMContract: stop 1863 tok 1.61s
+[453/125] paper__time_manipulation__AZT: stop 3571 tok 2.74s
+[454/125] paper__time_manipulation__TTC: stop 3278 tok 2.47s
+[455/125] paper__safecontract__curve: stop 3968 tok 10.84s
+      rate limit (groq), waiting 11s
+      rate limit (groq), waiting 21s
+      rate limit (groq), waiting 11s
+[456/125] paper__safecontract__PullPayment: stop 3008 tok 3.16s
+[457/125] paper__TOD__BitCash: stop 3762 tok 3.36s
+[458/125] paper__TOD__CareerOnToken: stop 3049 tok 1.9s
+[459/125] paper__TOD__HotDollarsToken: stop 2872 tok 1.99s
+[460/125] paper__tx_origin__AsseteGram: stop 2470 tok 1.54s
+[461/125] paper__tx_origin__BitCash: stop 2347 tok 1.64s
+      rate limit (groq), waiting 11s
+[462/125] paper__TOD__eth_tx_order_dependence_minimal: stop 949 tok 0.98s
+[463/125] paper__safecontract__ballot: stop 1188 tok 1.44s
+[464/125] paper__unsafe_suicide__bug_1: stop 3046 tok 2.22s
+[465/125] paper__unsafe_delegatecall__FibonacciBalance: stop 1255 tok 28.43s
+      rate limit (groq), waiting 21s
+      rate limit (groq), waiting 11s
+      rate limit (groq), waiting 11s
+[466/125] paper__tx_origin__HotDollarsToken: stop 2151 tok 1.2s
+[467/125] paper__tx_origin__MD: stop 2107 tok 1.28s
+[468/125] paper__tx_origin__ProofofExistence: stop 2009 tok 1.11s
+[469/125] paper__tx_origin__TAMC: stop 1504 tok 0.92s
+[470/125] paper__unsafe_suicide__bug_3: stop 1119 tok 1.16s
+[471/125] paper__cve__CVE-2018-14087: stop 2489 tok 1.59s
+[472/125] paper__tx_origin__CareerOnToken: stop 2402 tok 2.44s
+[473/125] paper__unsafe_delegatecall__proxy: stop 702 tok 0.39s
+[474/125] paper__unsafe_suicide__simple_suicide: stop 691 tok 18.48s
+[475/125] paper__unsafe_suicide__bug_2: stop 2949 tok 1.92s
+[476/125] paper__cve__CVE-2018-14089: stop 2650 tok 1.48s
+      rate limit (groq), waiting 31s
+[477/125] paper__cve__CVE-2018-18425: stop 2657 tok 1.2s
+[478/125] paper__tx_origin__DocumentSinger: stop 1370 tok 0.75s
+      rate limit (groq), waiting 11s
+[479/125] paper__cve__CVE-2019-15079: stop 1445 tok 0.72s
+[480/125] paper__unsafe_suicide__parity_wallet_bug_2: stop 3001 tok 1.76s
+[481/125] paper__cve__CVE-2018-17111: stop 1409 tok 0.75s
+[482/125] paper__cve__CVE-2018-17987: stop 2975 tok 2.38s
+[483/125] paper__cve__CVE-2018-14085: stop 4189 tok 5.49s
+[484/125] paper__cve__CVE-2021-34273: stop 1712 tok 12.71s
+[485/125] paper__cve__CVE-2021-3004: stop 2998 tok 2.07s
+[486/125] paper__cve__CVE-2021-33403: stop 2716 tok 1.49s
+[487/125] paper__safecontract__StableDEX: stop 4239 tok 7.55s
+[488/125] paper__cve__CVE-2021-34270: stop 3307 tok 3.48s
+[489/125] paper__cve__CVE-2023-26488: stop 1129 tok 0.62s
+[490/125] paper__cve__CVE-2021-34272: stop 2300 tok 37.18s
+490/125 contracts have an LLM reply -> datasets\tool_results\llm_qwen_dasp.json
+=== Thu Nov 26 18:39:14 IST 2026 done ===
